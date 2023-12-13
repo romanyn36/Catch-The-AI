@@ -6,8 +6,6 @@ def create_folder(folder_path):
     else:
         print(f"Folder '{folder_path}' already exists.")
 
-import os
-
 def create_readme_in_folders(folder_path,file):
     # get member name
     memeberName=folder_path.split('/')[1]
