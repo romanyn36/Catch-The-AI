@@ -11,42 +11,37 @@
 <p align="center">
 
 <!-- contributors -->
-<a href="https://github.com/romanyn36/chest_xray_pneumonia_classification_with_cnn/graphs/contributors">
+<a href="https://github.com/romanyn36/Graduation-project/graphs/contributors">
 
-  <img src="https://img.shields.io/github/contributors/romanyn36/chest_xray_pneumonia_classification_with_cnn.svg?style=flat" alt="Contributors" />
+  <img src="https://img.shields.io/github/contributors/romanyn36/Graduation-project.svg?style=flat" alt="Contributors" />
   
 </a>
 
 
 <!-- issues -->
-<a href="https://github.com/romanyn36/chest_xray_pneumonia_classification_with_cnn/issues">
-  <img src="https://img.shields.io/github/issues/romanyn36/chest_xray_pneumonia_classification_with_cnn.svg?style=flat" alt="issues" />
+<a href="https://github.com/romanyn36/Graduation-project/issues">
+  <img src="https://img.shields.io/github/issues/romanyn36/Graduation-project.svg?style=flat" alt="issues" />
 </a>
   
-<img alt="Github top language" src="https://img.shields.io/github/languages/top/romanyn36/chest_xray_pneumonia_classification_with_cnn?color=yellow">
+<img alt="Github top language" src="https://img.shields.io/github/languages/top/romanyn36/Graduation-project?color=yellow">
 
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/romanyn36/chest_xray_pneumonia_classification_with_cnn?color=blue">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/romanyn36/Graduation-project?color=blue">
   
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/romanyn36/chest_xray_pneumonia_classification_with_cnn?color=56BEB8">
-
-  <img alt="License" src="https://img.shields.io/github/license/romanyn36/chest_xray_pneumonia_classification_with_cnn?color=red">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/romanyn36/Graduation-project?color=56BEB8">
 
 
-<!-- forks -->
-<a href="https://github.com/romanyn36/chest_xray_pneumonia_classification_with_cnn/network/members">
 
-  <img alt="Github forks" src="https://img.shields.io/github/forks/romanyn36/chest_xray_pneumonia_classification_with_cnn.svg?color=cyan" alt="forks"/>
-</a>
+
 
 
   
 
 <!-- stars -->
-  <a href="https://github.com/romanyn36/chest_xray_pneumonia_classification_with_cnn/stargazers">
+  <a href="https://github.com/romanyn36/Graduation-project/stargazers">
   
-  <img alt="Github stars" src="https://img.shields.io/github/stars/romanyn36/chest_xray_pneumonia_classification_with_cnn?color=56BEB8"  alt="stars" />
+  <img alt="Github stars" src="https://img.shields.io/github/stars/romanyn36/Graduation-project?color=56BEB8"  alt="stars" />
 
 </a>
 
@@ -131,33 +126,19 @@
 </p>
 
 The following tools were used in this project:
-- tensorflow==2.12.0
-- tqdm 
-- scikit-learn
-- matplotlib 
-- numpy
-- pandas 
-- pickle 
-- cv2
-- CNN 
-- Tensorflow, keras
-- Jupyter notebook
-- deep learning
+
 
 ## :white_check_mark: Requirements ##
 
 Before starting :checkered_flag:, you need to have tensorflow==2.12.0 and all mensioned libraries 
 
 ## :checkered_flag: Starting ##
-first create new environment or work in existing one if requirments satsfied 
+first clone the repo  
 ```bash
 # Clone this project
-$ https://github.com/romanyn36/chest_xray_pneumonia_classification_with_cnn.git
+$ https://github.com/romanyn36/Graduation-project.git
 
-use pip to install libraries 
-$ pip install tensorflow==2.12.0
-$ pip install tqdm
-$ pip install scikit-learn          
+         
 
 ```
 ## :busts_in_silhouette: collaborators ##
