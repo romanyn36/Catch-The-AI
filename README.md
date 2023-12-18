@@ -10,74 +10,12 @@
 
 <p align="center">
 
-<!-- contributors -->
-<a href="https://github.com/romanyn36/Graduation-project/graphs/contributors">
 
-  <img src="https://img.shields.io/github/contributors/romanyn36/Graduation-project.svg?style=flat" alt="Contributors" />
-  
-</a>
-
-
-<!-- issues -->
-<a href="https://github.com/romanyn36/Graduation-project/issues">
-  <img src="https://img.shields.io/github/issues/romanyn36/Graduation-project.svg?style=flat" alt="issues" />
-</a>
-  
-<img alt="Github top language" src="https://img.shields.io/github/languages/top/romanyn36/Graduation-project?color=yellow">
-
-
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/romanyn36/Graduation-project?color=blue">
-  
-
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/romanyn36/Graduation-project?color=56BEB8">
-
-
-
-
-
-
-  
-
-<!-- stars -->
-  <a href="https://github.com/romanyn36/Graduation-project/stargazers">
-  
-  <img alt="Github stars" src="https://img.shields.io/github/stars/romanyn36/Graduation-project?color=56BEB8"  alt="stars" />
-
-</a>
-
-
-
-
-
-
-
-
-
-
-</p>
-<p align="center">
- <a href="https://www.facebook.com/romanyn3/" target="_blank">
-  <img src="https://img.shields.io/badge/-Romani-1877F2?style=flat&logo=facebook&logoColor=white" alt="Facebook" />
-</a>
-
-<a href="https://twitter.com/romanyn36" target="_blank">
-  <img src="https://img.shields.io/badge/-@romanyn36-1DA1F2?style=flat&logo=twitter&logoColor=white" alt="Twitter" />
-</a>
-
-
-<a href="https://www.linkedin.com/in/romanyn36" target="_blank">
-  <img src="https://img.shields.io/badge/-@romanyn36-0077B5?style=flat&logo=linkedin&logoColor=white" alt="LinkedIn" />
-</a>
-
-<a href="https://github.com/romanyn36" target="_blank">
-  <img src="https://img.shields.io/badge/-@romanyn36-181717?style=flat&logo=github&logoColor=white" alt="GitHub" />
-</a>
-</p>
 
 
 
 <!-- TABLE OF CONTENTS -->
-#### Table of Contents
+<!-- #### Table of Contents
   <ol>
     <li><a href="#dart-about">About</a></li>
     <li><a href="#sparkles-features">Features</a></li>
@@ -91,13 +29,13 @@
   </ol>
 
 
-<br>
+<br> -->
 
 # :dart: About ##
 
 
-
-##### dataset we used [Chest X-Ray Images (Pneumonia)]()
+<!-- 
+##### dataset we used [nnn]()
 
 ##### full project in details in the [documentation](AI-Generated%20Media%20Detection%20System.pdf)
 
@@ -105,7 +43,7 @@
 
 :heavy_check_mark:
 
-:heavy_check_mark:
+:heavy_check_mark: -->
 
 
 ## :rocket: Technologies ##
@@ -127,10 +65,10 @@
 
 The following tools were used in this project:
 
-
+<!-- 
 ## :white_check_mark: Requirements ##
 
-Before starting :checkered_flag:, you need to have tensorflow==2.12.0 and all mensioned libraries 
+Before starting :checkered_flag:, you need to have tensorflow==2.12.0 and all mensioned libraries  -->
 
 ## :checkered_flag: Starting ##
 first clone the repo  
@@ -161,6 +99,8 @@ git commit -m "message descibe what you did in the task but breifly"
 git push origin yourname
 
 # after i tell you that task is good, delete the branch
+git checkout main
+git pull origin main
 git branch -D yourname
 
 # note that yourname is name of the branch you created
