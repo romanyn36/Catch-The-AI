@@ -33,7 +33,7 @@
 
 # :dart: About ##
 
-
+all task files and will be here
 <!-- 
 ##### dataset we used [nnn]()
 
@@ -44,7 +44,7 @@
 :heavy_check_mark:
 
 :heavy_check_mark: -->
-
+<!-- 
 
 ## :rocket: Technologies ##
 <p align='center'>
@@ -63,7 +63,7 @@
  
 </p>
 
-The following tools were used in this project:
+The following tools were used in this project: -->
 
 <!-- 
 ## :white_check_mark: Requirements ##
@@ -108,7 +108,7 @@ git branch -D yourname
 
 
 
-## :busts_in_silhouette: collaborators ##
+<!-- ## :busts_in_silhouette: collaborators ##
 - Ahmed Mohamed Ali &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![](https://img.shields.io/badge/-@AhmedAboElkassem-181717?style=flat&logo=github&logoColor=white)](https://github.com/AhmedAboElkassem) [![](https://img.shields.io/badge/-Ahmed_Ali-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/mwlite/in/ahmed-ali-54292924b)
 
 - Reham Mustafa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![](https://img.shields.io/badge/-Reham_Mustafa-181717?style=flat&logo=github&logoColor=white)](https://github.com/Reham-Mustafa) [![](https://img.shields.io/badge/-Reham_Mustafa-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/reham-mustafa-9a321b263/)
@@ -118,9 +118,9 @@ git branch -D yourname
 
 - Ziad El-Sayed Abdel-Azim&nbsp;&nbsp;&nbsp;&nbsp;[![](https://img.shields.io/badge/-@zeyadusf-181717?style=flat&logo=github&logoColor=white)](https://github.com/zeyadusf) [![](https://img.shields.io/badge/-Zeyad_Usf-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/zeyad-usf-360154214/)
 
- - Rawan Abdel-Aziz Ahmed&nbsp;&nbsp;&nbsp;&nbsp;[![](https://img.shields.io/badge/-@rawanazizsaad-181717?style=flat&logo=github&logoColor=white)](https://github.com/rawanazizsaad) [![](https://img.shields.io/badge/-Email-D14836?style=flat&logo=mail.ru&logoColor=white)](mailto:rawansaad222222@gmail.com)
+ - Rawan Abdel-Aziz Ahmed&nbsp;&nbsp;&nbsp;&nbsp;[![](https://img.shields.io/badge/-@rawanazizsaad-181717?style=flat&logo=github&logoColor=white)](https://github.com/rawanazizsaad) [![](https://img.shields.io/badge/-Email-D14836?style=flat&logo=mail.ru&logoColor=white)](mailto:rawansaad222222@gmail.com) -->
 
-### :email: Contact ##
+<!-- ### :email: Contact ##
 
 <p align="center">
  <a href="https://www.facebook.com/romanyn3/" target="_blank">
@@ -129,7 +129,7 @@ git branch -D yourname
 
 <a href="https://twitter.com/romanyn36" target="_blank">
   <img src="https://img.shields.io/badge/-@romanyn36-1DA1F2?style=flat&logo=twitter&logoColor=white" alt="Twitter" />
-</a>
+</a> -->
 
 
 
@@ -137,7 +137,7 @@ git branch -D yourname
   <img src="https://img.shields.io/badge/-@romanyn36-0077B5?style=flat&logo=linkedin&logoColor=white" alt="LinkedIn" />
 </a> -->
 
-<a href="https://github.com/romanyn36" target="_blank">
+<!-- <a href="https://github.com/romanyn36" target="_blank">
   <img src="https://img.shields.io/badge/-@romanyn36-181717?style=flat&logo=github&logoColor=white" alt="GitHub" />
 </a>
 
@@ -160,12 +160,12 @@ git branch -D yourname
 <a href="https://www.kaggle.com/romanyn36" target="_blank" style="display: inline-block;">
     <img src="https://img.shields.io/badge/Kaggle-Romani-blue.svg?style=flat-square&logo=kaggle" />
 </a>
-<!-- <a href="https://www.buymeacoffee.com/romanyn36" target="_blank" style="display: inline-block;">
+<a href="https://www.buymeacoffee.com/romanyn36" target="_blank" style="display: inline-block;">
     <img src="https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-orange.svg?style=flat-square&logo=buymeacoffee" align="center"/>
-  </a> -->
+  </a> 
   
 
-</p>
+</p> -->
 
 &#xa0;
 
