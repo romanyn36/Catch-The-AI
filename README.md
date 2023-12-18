@@ -138,9 +138,36 @@ first clone the repo
 # Clone this project
 $ https://github.com/romanyn36/Graduation-project.git
 
-         
+# now switch to main 
+git checkout main
+git pull origin main
 
+# create new branch :use your name:
+git checkout -b yourname 
+
+# to see the current branch
+git branch 
+
+# now good luck let's work
+............
+# after you fished  the task then psuh it 
+
+# add all files 
+git add . 
+
+git commit -m "message descibe what you did in the task but breifly"
+
+
+git push origin yourname
+
+# after i tell you that task is good, delete the branch
+git branch -D yourname
+
+# note that yourname is name of the branch you created
 ```
+
+
+
 ## :busts_in_silhouette: collaborators ##
 - Ahmed Mohamed Ali &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![](https://img.shields.io/badge/-@AhmedAboElkassem-181717?style=flat&logo=github&logoColor=white)](https://github.com/AhmedAboElkassem) [![](https://img.shields.io/badge/-Ahmed_Ali-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/mwlite/in/ahmed-ali-54292924b)
 
