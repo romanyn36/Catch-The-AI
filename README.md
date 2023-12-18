@@ -88,7 +88,7 @@ git branch
 
 # now good luck let's work
 ............
-# after you fished  the task then psuh it 
+# after you fishe the task then psuh it 
 
 # add all files 
 git add . 
@@ -99,6 +99,7 @@ git commit -m "message descibe what you did in the task but breifly"
 git push origin yourname
 
 # after i tell you that task is good, delete the branch
+# don't delete branch until i tell you ok man ? you will lose your work hahah
 git checkout main
 git pull origin main
 git branch -D yourname
