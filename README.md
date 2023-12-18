@@ -74,7 +74,7 @@ Before starting :checkered_flag:, you need to have tensorflow==2.12.0 and all me
 first clone the repo  
 ```bash
 # Clone this project
-$ https://github.com/romanyn36/Graduation-project.git
+$ git clone https://github.com/romanyn36/Graduation-project.git
 
 # now switch to main 
 git checkout main
