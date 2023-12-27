@@ -3,3 +3,5 @@
 - write commite name describe the modification and description if exist
 - put all attachments here to be safe from any unexpected deletions
 - submit before deadlines 
+
+## deadline next firday
