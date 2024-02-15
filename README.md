@@ -1,8 +1,8 @@
 
 
 
-<!-- <p align="center" id="top"> 
-<img src="/images/test.jpg" alt="x-ray" width="400" height="300" /> -->
+<p align="center" id="top"> 
+<img src="/images/slide1.jpg" alt="x-ray" width="400" height="300" />
 
 </p>
 
