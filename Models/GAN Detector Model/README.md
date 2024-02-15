@@ -29,7 +29,7 @@ we got accuracy about :
 ### training history
 <image src="accuracy and loss.png" width='1000' height='500'>
 
-### classification report
+### Confusion Matrix
  <image src="cm.png" width='1000' height='500'>
 
 ### classification report
