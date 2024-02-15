@@ -2,7 +2,7 @@
 
 
 <p align="center" id="top"> 
-<img src="/images/slide1.jpg" alt="x-ray" width="400" height="300" />
+<img src="/images/slide1.jpg" alt="x-ray" width="450" height="300" />
 
 </p>
 
