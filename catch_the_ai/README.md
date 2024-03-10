@@ -18,10 +18,12 @@ That works as server-side of our Catch the AI web system
 ## :white_check_mark: Requirements ##
 
 Before starting :checkered_flag:, you need to have all the next installed.
+but should same verison in new environment "اشتغل علي نضافة علشان متعيطش بعدين "
 - tensorflow== 2.16.1
 - keras== 3.0.5
 - django== 5.0.3
 - Python== 3.12.2
+
 note that all requirements listed in the txt file
 ### to install all 
 ``` 
@@ -38,9 +40,6 @@ $ cd catch_the_ai
 
 # now runserver
 $ python manage.py runserver
-
-# Run the project
-$ yarn start
 
 # The server will initialize in the http://127.0.0.1:8000/
 ```
