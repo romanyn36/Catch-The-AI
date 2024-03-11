@@ -25,8 +25,11 @@ but should same verison in new environment "اشتغل علي نضافة علش�
 - Python== 3.12.2
 
 note that all requirements listed in the txt file
-### to install all 
+### first create new env 
 ``` 
+conda create -n env_name python=3.12.2
+
+#to install all 
 pip install --file requirements.txt
 
 
