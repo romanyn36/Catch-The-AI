@@ -1,11 +1,13 @@
-
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
-
+from django.templatetags.static import static
 
 # Load the pre-trained model
-model = load_model('Real VS Fake.h5')
+def load_AI_model():
+    path='D:/Graduation-project/Backend/ai_media_detection/static/Real VS Fake.h5'
+    model = load_model(path)
+    return model
 
 # Define function to preprocess input image
 def preprocess_image(img_path):
@@ -19,12 +21,14 @@ def preprocess_image(img_path):
 
 
 
-def predict_AI_generated_media(img_path):
+def predict_AI_generated_media(img_path, model):
     img_array = preprocess_image(img_path)
     predictions = model.predict(img_array)
     if predictions[0][0] < 0.5:
-        return "AI generated fake image"
+       res= "AI generated fake image"
     else:
-        return "Real image"
+        res ="Real image"
+    # print(res)
+    return res
 
 
