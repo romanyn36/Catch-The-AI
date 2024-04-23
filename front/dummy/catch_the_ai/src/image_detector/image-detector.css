@@ -1,0 +1,65 @@
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.image-detector-container {
+  /* background-image: url('6.jpg'); */
+  background-size: cover;
+  background-position: center;
+  height: 92vh; /* Make the container fill the entire viewport height */
+}
+
+
+
+.title-section {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-right: 20px; 
+}
+
+.text-section {
+    max-width: 40%;
+    text-align: left;
+}
+
+.upload-frame {
+    border: 2px solid #000000;
+    padding: 30px;
+    height: 350px; 
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 120px;
+  }
+
+  .imagetitle {
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 60px;
+    color: black; /* Add this line to set the font color to black */
+  }
+  
+  .upload-frame input[type="file"] {
+    margin-bottom: 200px;
+  }
+  
+  .upload-frame button {
+    align-self: center;
+  }
+
+   .Footer {
+   display: block; /* Ensure the footer is initially visible */
+ }
+ 
+ body.hide-footer .Footer {
+   display: none; /* Hide the footer when the hide-footer class is present on the body */
+ }
+  

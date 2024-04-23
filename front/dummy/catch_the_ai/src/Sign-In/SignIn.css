@@ -1,0 +1,98 @@
+/* Container styles */
+.signin-container {
+ width: 700px;
+  max-width: 90%; /* Adjusted for responsiveness */
+  padding: 20px;
+  background-color: rgba(223, 213, 241, 0.521);
+  border: 5px solid rgb(215, 127, 241);
+  border-radius: 5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 20px auto;
+  box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+/* Title styles */
+.signin-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Social login container styles */
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Social login button styles */
+.social-login button {
+  text-align: center;
+  width: 100%; /* Adjusted for responsiveness */
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(215, 127, 241);
+  transition: background-color 0.3s ease;
+  box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+/* Icon styles */
+.social-login img {
+  width: 20px; 
+  height: 20px; 
+}
+
+/* Form group styles */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 3px solid #530870;
+  border-radius: 5px;
+  box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+/* Submit button styles */
+.form-group button[type="submit"] {
+  width: 100%; /* Adjusted for responsiveness */
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #530870;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+/* Forgot password link styles */
+.form-group p {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.form-group p a {
+  color: rgb(215, 127, 241);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.form-group p a:hover {
+  text-decoration: underline;
+}
+
+.frgt_pass {
+  color: #530870;
+}

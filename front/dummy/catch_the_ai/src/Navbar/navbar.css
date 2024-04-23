@@ -1,0 +1,78 @@
+/* Navbar styles */
+.navbar {
+  background-image: url('img.png');
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: blur(10px);
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  align-items: center;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar a:hover {
+  text-decoration: none;
+  color: rgb(246, 145, 253);
+}
+
+.navbar-logo {
+  height: 40px;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right-items {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item {
+  width: inherit;
+  background-color: inherit;
+}
+
+.dropdown-toggle {
+  white-space: nowrap;
+  margin-right: 50px;
+  margin-left: 20px;
+}
+
+.dropdown-menu {
+  --bs-dropdown-min-width: 100px !important;
+  background-color: inherit !important;
+}
+
+@media (max-width: 692px) {
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-collapse {
+    justify-content: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 10px 0;
+  }
+
+  .dropdown-toggle {
+    margin: 10px 0; /* Adjust margin for better spacing */
+  }
+}
+

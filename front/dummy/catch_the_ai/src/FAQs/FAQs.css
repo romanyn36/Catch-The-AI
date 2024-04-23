@@ -1,0 +1,91 @@
+/* FAQs.css */
+.container {
+  color: #000000; /* Adjust the color of the container text, if needed */
+  /* background-color: #333; Dark background for the whole FAQ section */
+  padding: 20px; /* Adds some padding around the FAQ section */
+  border-radius: 8px; /* Optional: adds rounded corners to the FAQ container */
+}
+
+.title {
+  color: #000000; 
+  text-align: center; 
+  margin-bottom: 30px; 
+  font-weight: bold;
+
+
+}
+.accordion .card-header .btn-link {
+  color: #000; /* Black color for the question text */
+  text-decoration: none;
+}
+.accordion {
+  width: 100%; /* Ensures the accordion takes up the full container width */
+  color: #000;
+  text-decoration: none;
+}
+
+.card {
+  background-color: #222; /* Dark background for each FAQ card */
+  border: 1px solid #444; /* Slightly lighter border for the card for a subtle contrast */
+  margin-bottom: 10px; /* Adds space between each FAQ card */
+}
+
+.card-header {
+  background-color: #000; /* Darker background for the header to make it stand out */
+  color: #000000; /* White text color for the question */
+}
+
+.btn-link {
+  color: #000000; /* Ensures the question text is white */
+  text-decoration: none; /* Removes underline from the question text */
+  font-weight: bold; /* Makes the question text bold */
+}
+
+.btn-link:hover, .btn-link:focus {
+  color: #000000; /* Lighter color on hover/focus for a visual feedback */
+  text-decoration: none; /* Ensures the text decoration doesn't change on hover/focus */
+}
+
+.btn-dark {
+  color: #000000; /* Text color for the toggle button */
+  /* background-color: hsl(0, 0%, 33%); Darker background color for the toggle button */
+  border-color: #666; /* Border color for the toggle button */
+}
+
+.btn-dark:hover {
+  background-color: #666;
+  border-color: #777; 
+}
+
+.card-body {
+  color: #ccc; 
+}
+
+.card-header, .card-body {
+  padding: 15px; 
+}
+
+.FAQS{
+  text-decoration: none;
+  color: aliceblue;
+}
+
+.Footer {
+  display: block; /* Ensure the footer is initially visible */
+}
+
+body.hide-footer .Footer {
+  display: none; /* Hide the footer when the hide-footer class is present on the body */
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 768px) {
+  .title {
+    margin-bottom: 20px;
+  }
+
+  .card-header,
+  .card-body {
+    padding: 10px;
+  }
+}

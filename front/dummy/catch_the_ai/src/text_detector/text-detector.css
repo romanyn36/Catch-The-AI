@@ -1,0 +1,92 @@
+.containers {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column; /* Ensure column layout */
+    overflow: scroll;
+}
+
+/* Hide scrollbar */
+.containers::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar width */
+    height: 0; /* Remove scrollbar height */
+    display: none; /* Hide scrollbar */
+}
+
+.Text_title {
+    text-align: center;
+    padding-top: 25px;
+    padding-left: 290px;
+    font-family: Segoe Script;
+    color: rgb(252, 186, 254);
+}
+
+.Text {
+    width: 100%; 
+    padding: 0 25px; 
+}
+
+.TH {
+    padding-top: 25px;
+}
+
+.TP {
+    width: 60%;
+}
+
+.Upload {
+    width: 100%;
+    max-width: 400px;
+    margin-top: -234px;
+    margin-left: 985px;
+}
+
+.Up_Frame {
+    border: 2px solid #000000;
+    padding: 30px;
+    height: auto; /* Auto height */
+    max-height: 350px; /* Limiting maximum height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px; /* Adjusting margin */
+}
+
+.Txt_T {
+    text-align: center;
+    margin-top: 20px; /* Adjusting margin */
+}
+
+.Up_Frame input[type="file"] {
+    margin-bottom: 200px;
+}
+
+.Up_Frame button {
+    align-self: center;
+}
+
+.Footer {
+    display: block;
+}
+
+body.hide-footer .Footer {
+    display: none;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .Text_title {
+        padding-left: 25px; /* Adjust padding for smaller screens */
+    }
+    
+    .containers {
+        align-items: left; /* Align items to the left on smaller screens */
+    }
+    
+    .Upload {
+        margin-left: 25px; /* Move upload section to the left */
+        margin-right: auto; /* Ensure it stays centered horizontally */
+    }
+}
+

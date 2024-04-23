@@ -1,0 +1,115 @@
+.signup-container {
+  background-color: rgba(223, 213, 241, 0.521);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 700px;
+  padding: 20px;
+  border: 5px solid rgba(187, 107, 217, 1);
+  border-radius: 50px;
+ 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 20px auto;
+
+}
+
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.UP{
+  margin-top: 10px;
+  margin-bottom: 30px;
+  color: #530870 !important;
+  text-align: center !important;
+}
+
+.ff {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Social login button styles */
+.google-login {
+
+  width: 50%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: rgb(215, 127, 241);
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.google-login:hover {
+  background-color: #530870;
+}
+
+/* Icon styles */
+.google-login img {
+  width: 20px;
+  height: 20px;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.info>div {
+  margin: 10px;
+  width: fit-content;
+}
+
+.form-g {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  color: #530870;
+  background-color: rgb(247, 243, 249);
+  border: 3px solid rgba(187, 107, 217, 1);
+  border-radius: 5px;
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group input[type="password"]::placeholder {
+  color: #530870;
+  /* Modern browsers */
+}
+
+.form-g button[type="submit"] {
+  width: 50%;
+  padding: 10px;
+  background-color: #530870;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.IN{
+  color: #530870;
+}
+
+.INN{
+  color: rgba(187, 107, 217, 1) !important;
+}

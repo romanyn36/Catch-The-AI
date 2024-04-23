@@ -1,0 +1,111 @@
+/* Container styles */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* background-image: url('/src/imgs/robot.jpg'); */
+  background-size: cover; 
+  background-position: center; 
+}
+
+/* Title styles */
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px; 
+}
+
+/* Quote styles */
+.quote {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 40px; /* Add more space below the quote */
+}
+
+/* Card styles */
+.card {
+  transition: transform 0.3s ease-in-out,
+  box-shadow 0.3s ease-in-out,
+  background-color 0.3s ease,
+  color 0.3s ease;
+    margin-bottom: 30px; /* Add some space between cards */
+}
+
+/* Card hover styles */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 8px 4px 4px rgba(0, 0, 0, 0.2);
+  background-color: #563d7c;
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Button hover styles */
+.card:hover button {
+  background-color: rgba(255, 255, 255, 1);
+  color: #563d7c;
+  background-color: rgba(187, 107, 217, 1);
+}
+
+/* Button styles */
+.btn-outline-primary {
+  border-color: #563d7c;
+  color: #563d7c;
+}
+
+.btn-outline-primary:hover {
+  background-color: #563d7c;
+  color: #fff;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+  background-color: #563d7c;
+  border-color: #563d7c;
+}
+
+/* Custom control styles */
+.custom-control-label:before,
+.custom-control-input:checked~.custom-control-label:before {
+  border-color: #563d7c;
+  background-color: #563d7c;
+}
+
+/* Pricing card title styles */
+.pricing-card-title {
+  font-size: 2rem;
+  color: #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 20px;
+  }
+}
+
+/* AOS animation styles */
+[data-aos="fade-up"] {
+  opacity: 0;
+  transform: translate3d(0, 100px, 0);
+}
+
+[data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.Footer {
+  display: block; /* Ensure the footer is initially visible */
+}
+
+body.hide-footer .Footer {
+  display: none; /* Hide the footer when the hide-footer class is present on the body */
+}

@@ -1,0 +1,57 @@
+.tos {
+  color: aliceblue;
+  text-decoration: none;
+}
+
+/* .terms-of-service {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  background-color: gainsboro;
+
+} */
+
+.terms-of-service h2 {
+  color: #000000; 
+  text-align: center; 
+  padding-top: 30px;
+  margin-bottom: 30px; 
+  font-weight: bold;
+
+}
+
+.terms-of-service h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.terms-of-service p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.terms-of-service ul {
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.terms-of-service li {
+  margin-bottom: 5px;
+}
+
+.terms-of-service strong {
+  font-weight: bold;
+}
+.about_TOS {
+  background-color: #fff;
+  border: 1px solid #ef6bfb;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 8px 2px 4px rgba(0, 0, 0, 0.1);
+  width: 60%;
+ margin-left: 300px;
+ margin-bottom: 20px;
+}
