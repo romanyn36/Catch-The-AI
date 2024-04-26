@@ -1,10 +1,16 @@
+.romani{
+  background-image: url('back.png');
+  background-size: cover;
+  background-repeat: repeat;
+  /* background-attachment: fixed; */
+}
 .signup-container {
   background-color: rgba(223, 213, 241, 0.521);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 700px;
+  max-width: 50%;
   padding: 20px;
   border: 5px solid rgba(187, 107, 217, 1);
   border-radius: 50px;

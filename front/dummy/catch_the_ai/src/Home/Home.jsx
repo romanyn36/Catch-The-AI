@@ -29,63 +29,34 @@ export class Home extends Component {
 
 
 
-
-
-
-
-
-
-const navItems = [
-  { label: "Home", link: "/" },
-  { label: "Start", link: "/text-detector" },
-  { label: "Pricing", link: "/pricing" },
-  { label: "About Us", link: "/about" },
-];
-
 function MyComponent() {
   return (
-    <MainContainer>
-      <Header>
-        <Nav>
-          <Logo>Catch The AI</Logo>
-          <NavList>
-            {navItems.map((item) => (
-              <NavItem key={item.label}>
-                <NavLink href={item.link}>{item.label}</NavLink>
-              </NavItem>
-            ))}
-          </NavList>
-        </Nav>
-        <AuthButtons>
-          <SignUpButton>Sign Up</SignUpButton>
-          <SignInButton>Sign In</SignInButton>
-        </AuthButtons>
-      </Header>
-      <HeroSection>
-        <HeroTitle>
-          Start Detecting <BrandText>
-          <br></br>AI-Generated Media</BrandText>
-        </HeroTitle>
-        <HeroContent>
-          <HeroText>
+    <RootContainer>
+      <MainContainer>
+        
+        <HeroSection>
+          <HeroTitle>
+            Start Detecting <br />
+             <ColoredText>AI-Generated Media</ColoredText>
+          </HeroTitle>
+          <HeroContent>
             <HeroDescription>
               Swiftly and accurately detect AI-generated content with our
-              advanced models. Our deep learning technology distinguishes
-              between AI and human-authored media in images and text.
+              advanced models. Our deep learning technology distinguishes between
+              AI and human-authored media in images and text.
             </HeroDescription>
-            <GetStartedButton>Get Started</GetStartedButton>
-          </HeroText>
-          <HeroImage src="https://cdn.builder.io/api/v1/image/assets/TEMP/2810289fab9468aaa5ac9bcefc68f088b5be9b0df0c26b538845081cbff79d32?apiKey=6a476df83ed34c79b17b6da21d1f5a8d&" alt="Hero Image" />
-        </HeroContent>
-      </HeroSection>
-    </MainContainer>
+            <HeroImage src="https://cdn.builder.io/api/v1/image/assets/TEMP/cd1991c8ae0805c9735bbc2e3a7cd7a827e8bac008916f7e55e7f4a6415e7c8b?apiKey=e44401a3b8aa4f0a9012ff74cb907d4d&" alt="Hero Image" />
+          </HeroContent>
+          <GetStartedButton>Get Started</GetStartedButton>
+        </HeroSection>
+      </MainContainer>
+    </RootContainer>
   );
 }
 
 const MainContainer = styled.main`
-  // border-radius: 64px;
-  background: linear-gradient(135deg, #252e4d 0%, #15182d 100%);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  border-radius: 44px;
+  box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,107 +67,26 @@ const MainContainer = styled.main`
   }
 `;
 
-const Header = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 20px;
-
-  @media (max-width: 991px) {
-    flex-direction: column;
-    gap: 40px;
-  }
+const RootContainer = styled.div`
+background-color:#241440;
 `;
 
-const Nav = styled.nav`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-
-  @media (max-width: 991px) {
-    flex-direction: column;
-    gap: 40px;
-  }
-`;
-
-const Logo = styled.h1`
-  color: #fff;
-`;
-
-const NavList = styled.ul`
-  display: flex;
-  gap: 20px;
-  list-style: none;
-  padding: 0;
-
-  @media (max-width: 991px) {
-    flex-direction: column;
-    gap: 40px;
-  }
-`;
-
-const NavItem = styled.li``;
-
-const NavLink = styled.a`
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 1.8px;
-  font: 600 18px Manrope, sans-serif;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const AuthButtons = styled.div`
-  display: flex;
-  gap: 20px;
-  color: #fff;
-  font-weight: 800;
-
-  @media (max-width: 991px) {
-    margin-top: 40px;
-  }
-`;
-
-const SignUpButton = styled.button`
-  letter-spacing: 1.8px;
-  margin: auto 0;
-  font: 18px Manrope, sans-serif;
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-`;
-
-const SignInButton = styled.button`
-  border-radius: 99px;
-  background-color: #bb6bd9;
-  padding: 14px 32px;
-  font: 20px Manrope, sans-serif;
-  color: inherit;
-  border: none;
-  cursor: pointer;
-`;
 
 const HeroSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin-top: 87px;
   width: 100%;
-  max-width: 1165px;
-
-  @media (max-width: 991px) {
-    margin-top: 40px;
-  }
+  max-width: 1450px;
 `;
 
 const HeroTitle = styled.h2`
-  color: #fff;
+  color: white;
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   text-transform: capitalize;
-  font: 700 60px/120px Manrope, sans-serif;
+  margin-top: 20px;
+  font: 700 85px/120px Manrope, sans-serif;
 
   @media (max-width: 991px) {
     font-size: 40px;
@@ -204,55 +94,63 @@ const HeroTitle = styled.h2`
   }
 `;
 
-const BrandText = styled.span`
-  color: #706af6;
+const ColoredText = styled.span`
+  color: #a038cc;
 `;
 
 const HeroContent = styled.div`
   display: flex;
-  gap: 20px;
-  margin-top: 27px;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 82px;
+  color: #fff;
 
   @media (max-width: 991px) {
-    flex-direction: column;
-    gap: 40px;
+    margin-top: 40px;
   }
-`;
-
-const HeroText = styled.div`
-  flex: 1;
-  color: #fff;
-  text-align: center;
 `;
 
 const HeroDescription = styled.p`
   font: 700 32px Manrope, sans-serif;
+  max-width: 600px;
+
+  @media (max-width: 991px) {
+    font-size: 24px;
+  }
 `;
 
 const GetStartedButton = styled.button`
+  justify-content: center;
   border-radius: 99px;
-  background-color: #bb6bd9;
-  margin-top: 44px;
+  background-color: #c34da9;
+  margin-top: 30px;
+  margin-left: -360px;
+  margin-bottom: 200px;
   padding: 13px 15px;
-  font: 800 36px Manrope, sans-serif;
-  color: inherit;
+  font: 600 26px Manrope, sans-serif;
+  color: white;
   border: none;
   cursor: pointer;
 
   @media (max-width: 991px) {
     margin-top: 40px;
+    font-size: 24px;
   }
 `;
 
 const HeroImage = styled.img`
-  aspect-ratio: 1.04;
-  object-fit: cover;
-  width: 100%;
-  max-width: 29%;
-
-  @media (max-width: 991px) {
-    max-width: 100%;
-    margin-top: 40px;
-  }
+  width: 308px;
+  max-width: 100%;
+  margin-top: 32px;
+  margin-left:50px;
 `;
+
+export default MyComponent;
+
+
+
+
+
+
+
 

@@ -20,7 +20,8 @@ export default class App extends Component {
     return (
       <Router>
         <>
-          {/* <Navbar /> */}
+        
+          <Navbar />
           <Routes>
             <Route path="/" element={<Home />} /> 
             <Route path="/image-detector" element={<ImageDetector />} />

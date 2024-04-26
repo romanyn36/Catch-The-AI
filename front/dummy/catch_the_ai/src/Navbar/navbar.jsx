@@ -4,7 +4,7 @@ import './navbar.css';
 import LogoIcon from "./IMG-20240309-WA0012.jpg"; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-
+import styled from "styled-components";
 export class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -24,51 +24,116 @@ export class Navbar extends Component {
 
     return (
       <nav className="navbar navbar-expand-lg custom-navbar">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <Link className="navbar-brand" to="Home">
-             <img src={LogoIcon} alt="Logo" className="navbar-logo" />
-            </Link>
-          </div>
-          <div className="navbar-nav ms-auto">
-            <ul className="me-auto mb-2 mb-lg-0 d-flex">
-              <li className="nav-item">
-                <Link className="nav-link" to="/">Home</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/image-detector">Image Detector</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/text-detector">Text Detector</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/audio-detector">Audio Detector</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/pricing">Pricing</Link>
-              </li>
-               <li className="nav-item">
-                <a className="nav-link" href="#Help">Help</a>
-              </li>
-               <li className="nav-item">
-                <a className="nav-link" href="#Footer">Contact Us</a>
-              </li>
-            </ul>
-          </div>
-          <div className="navbar-right-items">
-            <div className={`dropdown ${menuVisible ? 'show' : ''}`}>
-              <button className="btn btn-outline-light dropdown-toggle" onClick={this.toggleMenu} style={{ border: 'none', backgroundColor: 'transparent' }}>
-                <FontAwesomeIcon icon={faUser} />
-              </button>
-              <div className={`dropdown-menu ${menuVisible ? 'show' : ''}`}>
-                <Link className="dropdown-item" to="/sign-up">Sign Up</Link>
-                <Link className="dropdown-item" to="/sign-in">Sign In</Link>
-                <Link className="dropdown-item" to="/admin">Admin</Link>
-              </div>
-            </div>
-          </div>
-        </div>
+      <Header>
+        <Nav>
+          <Logo>Catch The AI</Logo>
+          <NavList>
+            {navItems.map((item) => (
+              <NavItem key={item.label}>
+                <NavLink href={item.link}>{item.label}</NavLink>
+              </NavItem>
+            ))}
+          </NavList>
+        </Nav>
+        <AuthButtons>
+          <SignUpButton>Sign Up</SignUpButton>
+          <SignInButton>Sign In</SignInButton>
+        </AuthButtons>
+      </Header>
       </nav>
     );
   }
 }
+
+const navItems = [
+  { label: "Home", link: "/" },
+  { label: "Start", link: "/text-detector" },
+  { label: "Pricing", link: "/pricing" },
+  { label: "About Us", link: "/about" },
+];
+
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+
+  @media (max-width: 991px) {
+    flex-direction: column;
+    gap: 40px;
+  }
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  @media (max-width: 991px) {
+    flex-direction: column;
+    gap: 40px;
+  }
+`;
+
+const Logo = styled.h1`
+  color: #fff;
+`;
+
+const NavList = styled.ul`
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+
+  @media (max-width: 991px) {
+    flex-direction: column;
+    gap: 40px;
+  }
+`;
+
+const NavItem = styled.li``;
+
+const NavLink = styled.a`
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  font: 600 18px Manrope, sans-serif;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const AuthButtons = styled.div`
+  display: flex;
+  gap: 20px;
+  color: #fff;
+  font-weight: 800;
+
+  @media (max-width: 991px) {
+    margin-top: 40px;
+  }
+`;
+
+const SignUpButton = styled.button`
+  letter-spacing: 1.8px;
+  margin: auto 0;
+  font: 18px Manrope, sans-serif;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+`;
+
+const SignInButton = styled.button`
+  border-radius: 99px;
+  background-color: #bb6bd9;
+  padding: 14px 32px;
+  font: 20px Manrope, sans-serif;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+`;

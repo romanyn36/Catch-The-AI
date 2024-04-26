@@ -1,6 +1,8 @@
 /* Navbar styles */
 .navbar {
-  background-image: url('img.png');
+  /* background-image: url('img.png');
+   */
+  background: linear-gradient(135deg, #252e4d 0%, #15182d 100%);
   background-size: cover;
   background-position: center;
   backdrop-filter: blur(10px);
