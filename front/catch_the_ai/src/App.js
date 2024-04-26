@@ -20,10 +20,10 @@ export default class App extends Component {
     return (
       <Router>
         <>
-        
+
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home />} /> 
+            <Route path="/" element={<Home />} />
             <Route path="/image-detector" element={<ImageDetector />} />
             <Route path="/Pricing" element={<Pricing />} />
             <Route path="/audio-detector" element={<AudioDetector />} />

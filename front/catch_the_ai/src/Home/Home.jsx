@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import './Home.css';
 import { TextDetector } from '../text_detector/text-detector';
-import Pricing from './pricing'; // Import the Pricing component
+import Pricing from './pricing'; 
+
 import styled from "styled-components";
 export class Home extends Component {
   render() {
@@ -12,6 +13,7 @@ export class Home extends Component {
 
         <MyComponent />
         <TextDetector />
+        <Pricing />
 
 
 
@@ -33,11 +35,11 @@ function MyComponent() {
   return (
     <RootContainer>
       <MainContainer>
-        
+
         <HeroSection>
           <HeroTitle>
             Start Detecting <br />
-             <ColoredText>AI-Generated Media</ColoredText>
+            <ColoredText>AI-Generated Media</ColoredText>
           </HeroTitle>
           <HeroContent>
             <HeroDescription>
@@ -85,8 +87,8 @@ const HeroTitle = styled.h2`
   color: white;
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   text-transform: capitalize;
-  margin-top: 20px;
-  font: 700 85px/120px Manrope, sans-serif;
+  margin-top: 10px;
+  font: 700 50px/120px Manrope, sans-serif;
 
   @media (max-width: 991px) {
     font-size: 40px;
