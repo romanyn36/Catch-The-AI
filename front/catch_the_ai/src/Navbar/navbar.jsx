@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import './navbar.css';
-import LogoIcon from "./IMG-20240309-WA0012.jpg"; 
+import LogoIcon from "./IMG-20240309-WA0012.jpg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import styled from "styled-components";
@@ -24,22 +24,23 @@ export class Navbar extends Component {
 
     return (
       <nav className="navbar navbar-expand-lg custom-navbar">
-      <Header>
-        <Nav>
-          <Logo>Catch The AI</Logo>
-          <NavList>
-            {navItems.map((item) => (
-              <NavItem key={item.label}>
-                <NavLink href={item.link}>{item.label}</NavLink>
-              </NavItem>
-            ))}
-          </NavList>
-        </Nav>
-        <AuthButtons>
-          <SignUpButton>Sign Up</SignUpButton>
-          <SignInButton>Sign In</SignInButton>
-        </AuthButtons>
-      </Header>
+        <Header>
+          <Nav>
+            <Logo>Catch The AI</Logo>
+            <NavList>
+              {navItems.map((item) => (
+                <NavItem key={item.label}>
+                  <NavLink href={item.link}>{item.label}</NavLink>
+                </NavItem>
+              ))}
+            </NavList>
+          </Nav>
+          <AuthButtons>
+            <SignUpButton>Sign Up</SignUpButton>
+
+            <SignInButton ><link to="/Sign-In"> Sign In</link></SignInButton> 
+          </AuthButtons>
+        </Header>
       </nav>
     );
   }
@@ -128,7 +129,7 @@ const SignUpButton = styled.button`
   cursor: pointer;
 `;
 
-const SignInButton = styled.button`
+const StyledSignInButton = styled.button`
   border-radius: 99px;
   background-color: #bb6bd9;
   padding: 14px 32px;
@@ -137,3 +138,12 @@ const SignInButton = styled.button`
   border: none;
   cursor: pointer;
 `;
+
+function SignInButton() {
+  return (
+    <StyledSignInButton>
+      {/* Use Link component instead of anchor tag */}
+      <Link to="/Sign-In" style={{ textDecoration: 'none', color: 'inherit' }}>Sign In</Link>
+    </StyledSignInButton>
+  );
+}
