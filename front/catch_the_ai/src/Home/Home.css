@@ -1,10 +1,8 @@
 .Home {
   padding-top: 10px;
   color: white;
-  /* min-height: 400vh; */
-  background-image: url('img.png');
-  background-size: cover;
-  background-position: center;
+
+  background-color:#241440;
 }
 
 .content {

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import './Home.css';
 import { TextDetector } from '../text_detector/text-detector';
-import Pricing from './pricing'; 
 
 import styled from "styled-components";
+import Pricing from "../pricing/pricing";
 export class Home extends Component {
   render() {
     return (
@@ -58,7 +58,7 @@ function MyComponent() {
 
 const MainContainer = styled.main`
   border-radius: 44px;
-  box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);
+  // box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
