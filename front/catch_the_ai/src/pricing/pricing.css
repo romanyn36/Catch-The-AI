@@ -1,5 +1,5 @@
 /* Container styles */
-.container {
+.pricing-container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
@@ -7,9 +7,10 @@
   flex-direction: column;
   justify-content: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* background-image: url('/src/imgs/robot.jpg'); */
-  background-size: cover; 
-  background-position: center; 
+  background-image: url('bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50px;
 }
 
 /* Title styles */
@@ -17,23 +18,25 @@
   font-size: 32px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 /* Quote styles */
 .quote {
   font-size: 18px;
   text-align: center;
-  margin-bottom: 40px; /* Add more space below the quote */
+  margin-bottom: 40px;
+  /* Add more space below the quote */
 }
 
 /* Card styles */
 .card {
   transition: transform 0.3s ease-in-out,
-  box-shadow 0.3s ease-in-out,
-  background-color 0.3s ease,
-  color 0.3s ease;
-    margin-bottom: 30px; /* Add some space between cards */
+    box-shadow 0.3s ease-in-out,
+    background-color 0.3s ease,
+    color 0.3s ease;
+  margin-bottom: 30px;
+  /* Add some space between cards */
 }
 
 /* Card hover styles */
@@ -103,9 +106,11 @@
 }
 
 .Footer {
-  display: block; /* Ensure the footer is initially visible */
+  display: block;
+  /* Ensure the footer is initially visible */
 }
 
 body.hide-footer .Footer {
-  display: none; /* Hide the footer when the hide-footer class is present on the body */
+  display: none;
+  /* Hide the footer when the hide-footer class is present on the body */
 }

@@ -33,7 +33,7 @@ export class Pricing extends Component {
     const premiumPrice = isYearly ? "$500 /Year" : "$50 / Month";
 
     return (
-      <div className="container my-5">
+      <div className="pricing-container my-5">
         <div className="text-center mb-4">
           <h1 className="title">Plans & Pricing</h1>
           <p className="quote">Whether you are an individual, developer, or enterprise, we have a plan for you.</p>
