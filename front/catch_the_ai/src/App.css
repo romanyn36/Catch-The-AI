@@ -1,4 +1,5 @@
-*{
-  /* background-color: #563d7c; */
+body{
+  background-color: #241440 !important;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
 }

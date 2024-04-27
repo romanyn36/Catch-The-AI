@@ -31,22 +31,6 @@ const mediaData = [
 function MyComponent() {
   return (
     <MainContainer>
-      {/* <Header>
-        <Nav>
-          <Logo>Catch The AI</Logo>
-          <NavList>
-            {navItems.map((item) => (
-              <NavItem key={item.label}>
-                <NavLink href={item.link}>{item.label}</NavLink>
-              </NavItem>
-            ))}
-          </NavList>
-        </Nav>
-        <AuthButtons>
-          <SignUpButton>Sign Up</SignUpButton>
-          <SignInButton>Sign In</SignInButton>
-        </AuthButtons>
-      </Header> */}
       <MediaTypeHeading>Select Media Type</MediaTypeHeading>
       <MediaTypeButtons>
         {mediaData.map((media) => (
@@ -70,8 +54,7 @@ function MyComponent() {
 
 const MainContainer = styled.main`
 // border-radius: 64px;
-  background: linear-gradient(135deg, #252e4d 0%, #15182d 100%);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  // box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
