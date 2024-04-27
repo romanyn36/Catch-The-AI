@@ -23,7 +23,7 @@ export class Navbar extends Component {
     const { menuVisible } = this.state;
 
     return (
-      <nav className="navbar navbar-expand-lg custom-navbar">
+      <nav className="navbar navbar-expand-lg custom-navbar fixed-nav">
         <Header>
           <Nav>
             <Logo>Catch The AI</Logo>
@@ -61,6 +61,8 @@ const Header = styled.header`
   width: 100%;
   margin-bottom: 20px;
 
+
+  
   @media (max-width: 991px) {
     flex-direction: column;
     gap: 40px;
@@ -119,7 +121,7 @@ const AuthButtons = styled.div`
   }
 `;
 
-const SignUpButton = styled.button`
+const StyledSignUpButton = styled.button`
   letter-spacing: 1.8px;
   margin: auto 0;
   font: 18px Manrope, sans-serif;
@@ -128,6 +130,16 @@ const SignUpButton = styled.button`
   color: inherit;
   cursor: pointer;
 `;
+
+
+function SignUpButton() {
+  return (
+    <StyledSignUpButton>
+  
+      <Link to="/Sign-Up" style={{ textDecoration: 'none', color: 'inherit' }}>Sign Up</Link>
+    </StyledSignUpButton>
+  );
+}
 
 const StyledSignInButton = styled.button`
   border-radius: 99px;

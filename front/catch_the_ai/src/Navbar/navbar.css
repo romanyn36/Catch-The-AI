@@ -78,3 +78,11 @@
   }
 }
 
+/* make nave fixed  */
+.fixed-nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 1000 !important; /* Ensure it's above other content */
+  /* Add any other styles you need */
+}
