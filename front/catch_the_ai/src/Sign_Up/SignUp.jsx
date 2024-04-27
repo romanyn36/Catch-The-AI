@@ -20,44 +20,44 @@ export class SignUp extends Component {
           <form className="ff">
             <div className="info">
               <div className="left">
-                <div className="form-group">
+                <div className="signup_form_group">
                   <label htmlFor="name">Name</label><br />
                   <input type="text" id="name" name="name" placeholder="Enter your Name" />
                 </div>
-                <div className="form-group">
+                <div className="signup_form_group">
                   <label htmlFor="country">Country</label><br />
                   <input type="text" id="country" name="country" placeholder="Enter your country" />
                 </div>
-                <div className="form-group">
+                <div className="signup_form_group">
                   <label htmlFor="password">Password</label><br />
                   <input type="password" id="password" name="password" placeholder="Enter your password" />
                 </div>
               </div>
               <div className="right">
-                <div className="form-group">
+                <div className="signup_form_group">
                   <label htmlFor="email">Email</label><br />
                   <input type="text" id="email" name="email" placeholder="Enter your Email" />
                 </div>
-                <div className="form-group">
+                <div className="signup_form_group">
                   <label htmlFor="age">Age</label><br />
                   <input type="text" id="age" name="age" placeholder="Enter your Age" />
                 </div>
-                <div className="form-group">
+                <div className="signup_form_group">
                   <label htmlFor="password2">Confirm Password</label><br />
                   <input type="password" id="password2" name="password2" placeholder="Confirm Your Password" />
                 </div>
               </div>
             </div>
 
-            <div className="form-g">
+            <div className="formsubmit">
               <label> <input type="checkbox" name="remember-me" /> Remember Me  </label>
             </div>
 
-            <div className="form-g">
+            <div className="formsubmit">
               <button type="submit">Sign Up</button>
             </div>
           </form>
-          <div className="form-group">
+          <div className="">
             <p className="IN">Do you have an account? <a href="/sign-in" className="INN">Sign In</a></p>
           </div>
         </div>
