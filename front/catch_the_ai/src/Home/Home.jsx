@@ -9,8 +9,6 @@ export class Home extends Component {
     return (
       <div className="Home">
 
-
-
         <MyComponent />
         <TextDetector />
         <Pricing />
@@ -18,10 +16,6 @@ export class Home extends Component {
 
 
       </div>
-
-
-
-
     );
   }
 }

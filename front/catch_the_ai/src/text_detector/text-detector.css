@@ -1,92 +1,107 @@
-.containers {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-direction: column; /* Ensure column layout */
-    overflow: scroll;
-}
+/* text-detector.css */
 
-/* Hide scrollbar */
-.containers::-webkit-scrollbar {
-    width: 0; /* Remove scrollbar width */
-    height: 0; /* Remove scrollbar height */
-    display: none; /* Hide scrollbar */
-}
-
-.Text_title {
-    text-align: center;
-    padding-top: 25px;
-    padding-left: 290px;
-    font-family: Segoe Script;
-    color: rgb(252, 186, 254);
-}
-
-.Text {
-    width: 100%; 
-    padding: 0 25px; 
-}
-
-.TH {
-    padding-top: 25px;
-}
-
-.TP {
-    width: 60%;
-}
-
-.Upload {
-    width: 100%;
-    max-width: 400px;
-    margin-top: -234px;
-    margin-left: 985px;
-}
-
-.Up_Frame {
-    border: 2px solid #000000;
-    padding: 30px;
-    height: auto; /* Auto height */
-    max-height: 350px; /* Limiting maximum height */
+  
+.media-type-button {
+    font-family: Manrope, sans-serif;
+    justify-content: center;
+    align-items: center;
+    border-radius: 99px;
+    padding: 16px 110px; 
+    border: none;
+    cursor: pointer;
+    background-color: #ccc; /* Gray color for default state */
+  }
+  
+  .media-type-button:hover {
+    animation: colorGradient 2s linear infinite alternate; /* Animation on hover */
+  }
+  @media (max-width: 991px) {
+    .media-type-button {
+      padding: 16px 32px; /* Adjusted padding for smaller screens */
+    }
+  }
+  
+  @keyframes colorGradient {
+    0% {
+      background: linear-gradient(135deg, #bb6bd9 0%, #1bfed5 100%);
+    }
+    100% {
+      background: linear-gradient(135deg, #1bfed5 0%, #bb6bd9 100%);
+    }
+  }
+  
+  .main-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px; /* Adjusting margin */
-}
+    padding: 5px 64px 80px ;
+  }
+  
+  .media-type-heading {
+    color: #fff;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font: Sans-serif bold;
+  }
+  
+  .media-type-buttons {
+    display: flex;
+    gap: 20px; 
+  }
+  
 
-.Txt_T {
+  .drag-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    border: 5px dashed rgb(168, 163, 163);
+    background-color: rgba(149, 148, 148, 0.8);
+    font-weight: 800;  
+      padding: 60px 80px;
+
+
+  }
+  
+  .label,.txt {
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+
+  }
+  
+  /* .label:hover {
+    text-decoration: underline;
+  } */
+
+.txt1{
+    color: gainsboro;
+}
+  .submit-button {
+    border-radius: 99px;
+    background-color: #bb6bd9;
+    color: #fff;
     text-align: center;
-    margin-top: 20px; /* Adjusting margin */
-}
-
-.Up_Frame input[type="file"] {
-    margin-bottom: 200px;
-}
-
-.Up_Frame button {
-    align-self: center;
-}
-
-.Footer {
-    display: block;
-}
-
-body.hide-footer .Footer {
-    display: none;
-}
-
-/* Media Queries */
-@media screen and (max-width: 768px) {
-    .Text_title {
-        padding-left: 25px; /* Adjust padding for smaller screens */
+    padding: 16px 48px; /* Increased padding */
+    font-family: "Lucida Console", Courier, monospace;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .submit-button:hover {
+    animation: pulse 1s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
     }
-    
-    .containers {
-        align-items: left; /* Align items to the left on smaller screens */
+    50% {
+      transform: scale(1.1);
     }
-    
-    .Upload {
-        margin-left: 25px; /* Move upload section to the left */
-        margin-right: auto; /* Ensure it stays centered horizontally */
+    100% {
+      transform: scale(1);
     }
-}
-
+  }
+  

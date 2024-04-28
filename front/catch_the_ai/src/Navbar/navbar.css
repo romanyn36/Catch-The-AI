@@ -1,88 +1,85 @@
-/* Navbar styles */
-.navbar {
-  /* background-image: url('img.png');
-   */
-  background: linear-gradient(135deg, #252e4d 0%, #15182d 100%);
-  background-size: cover;
-  background-position: center;
-  backdrop-filter: blur(10px);
-  position: fixed;
-  width: 100%;
-  z-index: 999;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  align-items: center;
-}
-
-.navbar a {
-  text-decoration: none;
-  color: white;
-}
-
-.navbar a:hover {
-  text-decoration: none;
-  color: rgb(246, 145, 253);
+.custom-navbar {
+  position: fixed; /* Stick the navbar to the top of the page */
+  width: 90%;
+  background-color: #563d7c; /* Set the background color */
 }
 
 .navbar-logo {
-  height: 40px;
+  height: 50px;
+  width: auto;
+  margin-right: 15px;
 }
 
-.nav-item {
-  list-style: none;
+.navbar-title {
+  font-size: 28px;
+  font-weight: bold;
+  font-family: Segoe Script;
+  margin-right: 150px;
 }
 
-.navbar-nav {
-  display: flex;
-  align-items: center;
+.nav-link {
+  font-size: 30px;
+  margin-left: 45px;
 }
 
-.navbar-right-items {
-  display: flex;
-  align-items: center;
+.nav-link:hover {
+  text-decoration: underline;
 }
 
-.dropdown-item {
-  width: inherit;
-  background-color: inherit;
+.navbar-brand,
+.nav-link,
+.btn-outline-light {
+  color: white !important;
 }
 
-.dropdown-toggle {
-  white-space: nowrap;
-  margin-right: 50px;
-  margin-left: 20px;
+.nav-link:hover,
+.navbar-brand:hover,
+.btn-outline-light:hover {
+  color: #DDA0DD !important;
+  background-color: transparent !important;
 }
 
-.dropdown-menu {
-  --bs-dropdown-min-width: 100px !important;
-  background-color: inherit !important;
+.btn-outline-light {
+  border-color: white;
 }
 
-@media (max-width: 692px) {
-  .navbar-nav {
-    flex-direction: column;
-    align-items: center;
+.btn-outline-light:hover {
+  background-color: #DDA0DD;
+  border-color: #DDA0DD;
+  color: #fff;
+}
+
+.btn-outline-light:focus {
+  background-color: #DDA0DD;
+  border-color: #DDA0DD;
+  color: #fff;
+  box-shadow: 0 0 0 0.25rem rgba(221, 160, 221, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .navbar-title {
+    margin-right: 0;
+  }
+
+  .nav-link {
+    margin-left: 0;
+  }
+
+  .nav-item {
+    text-align: center;
+    margin-bottom: 15px;
   }
 
   .navbar-collapse {
     justify-content: center;
   }
 
-  .navbar-nav .nav-item {
-    margin: 10px 0;
+  .d-flex {
+    margin-top: 15px;
   }
 
-  .dropdown-toggle {
-    margin: 10px 0; /* Adjust margin for better spacing */
+  .navbar-toggler {
+    margin-right: 15px;
   }
-}
-
-/* make nave fixed  */
-.fixed-nav {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  z-index: 1000 !important; /* Ensure it's above other content */
-  /* Add any other styles you need */
 }
