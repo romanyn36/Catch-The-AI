@@ -11,3 +11,4 @@ admin.site.register(DataHistory)
 
 # customizing the admin panel
 admin.site.site_header = "AI Media Detection"
+admin.site.site_title = "AI Media Detection"
