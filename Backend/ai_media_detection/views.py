@@ -5,6 +5,8 @@ from django.contrib.auth.hashers import check_password, make_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.core.serializers import serialize
+from django.core.serializers.json import DjangoJSONEncoder
+import json
 # add the path to the project root directory
 import sys
 # sys.path.append('images_model/')
@@ -107,6 +109,7 @@ def register(request):
                 # create the user
                 user=Users(name=name,username=username,email=email,password=password,age=age,country=country)
                 user.save()
+                user_role(request,'user','set')
                 return JsonResponse({'message':'successfully registered'})
             
         except ValidationError:
@@ -198,11 +201,14 @@ def get_user_history(request):
     based on the type that we get from the session we will get the user history from the database
     """
     if request.method=="GET":
+        user_role(request,'admin','set')
         # get username from params
         username=request.GET['username']
         # get user from the database
         role=user_role(request,option='get')
-        if role=='user':
+        print(role) 
+        role='user'
+        if role=='admin':
             user=User.objects.filter(username=username).first()
             history=DataHistory.objects.filter(user=user).first()
             hist={
@@ -214,22 +220,26 @@ def get_user_history(request):
                 'modelResult':history.modelResult,
                 'media_size':history.media_size
             }
+            hist={'history':hist}
             
             return JsonResponse(hist)
-        elif role=='admin':
-            user=Users.objects.filter(username=username).first()
-            history=DataHistory.objects.filter(user=user).first()
-            hist={
-                'media_name':history.media_name,
-                'image':history.image.url,
-                'audio':history.audio.url,
-                'text':history.text,
-                'attemptTime':history.attemptTime,
-                'modelResult':history.modelResult,
-                'media_size':history.media_size
-            }
-        
-        return JsonResponse(hist)
+        elif role == 'user':
+            user = Users.objects.filter(username=username).first()
+            history = DataHistory.objects.filter(user=user)
+            hist = []
+            for h in history:
+                hist.append({
+                    'media_name': h.media_name,
+                    'image': h.image.url,
+                    'audio': h.audio.url,
+                    'text': h.text,
+                    'attemptTime': h.attemptTime,
+                    'modelResult': h.modelResult,
+                    'media_size': h.media_size
+                })
+            hist={'history':hist}
+            print(hist)
+            return JsonResponse(hist)
     return HttpResponse('error')
 
 def user_role(request,role='user',option='set'):
