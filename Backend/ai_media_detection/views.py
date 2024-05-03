@@ -5,7 +5,6 @@ from django.contrib.auth.hashers import check_password, make_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.core.serializers import serialize
-from django.core.serializers.json import DjangoJSONEncoder
 import json
 # add the path to the project root directory
 import sys
@@ -13,7 +12,7 @@ import sys
 # from .ai_generated_media import load_AI_model,predict_AI_generated_media
 # import static
 from django.templatetags.static import static
-from .models import Users,DataHistory
+from .models import Users,DataHistory,Subscription
 import re
 # Create your views here.
 
@@ -129,6 +128,7 @@ def get_user_info(request):
             username=request.GET['username']
             # get user from the database
             role=user_role(request,option='get')
+            role='user'
             print(role)
             if role=='user':
                 user=Users.objects.filter(username=username)
@@ -139,10 +139,11 @@ def get_user_info(request):
                         'email':user.email,
                         'age':user.age,
                         'address':user.country,
-                        # 'subscription':user.subscription.name,
+                        'subscription':Subscription.objects.filter(pk=user.subscription.pk).first().plan_name,
                         'subscription_start_date':user.subscription_start_date,
                         'subscription_end_date':user.subscription_end_date,
-                        'remain_attempts':user.remain_attempts
+                        'remain_attempts':user.remain_attempts,
+                        'image':user.image.url
                     }
                     return JsonResponse(user_info)
             elif role=='admin':
@@ -242,7 +243,43 @@ def get_user_history(request):
             return JsonResponse(hist)
     return HttpResponse('error')
 
-def user_role(request,role='user',option='set'):
+def edit_profile(request):
+    """
+    This function is used to edit the user info
+    we have two types of users (admin and normal user)
+    based on the type that we get from the session we will edit the user info in the database
+    """
+    if request.method=="POST":
+        user_role(request)
+        role='user'
+        name=request.POST['name'].strip()
+        username=request.POST['username'].strip()
+        new_username=request.POST['new_username'].strip()
+        email=request.POST['email'].strip()
+        current_password=request.POST['current_password'].strip()
+        new_password=request.POST['new_password'].strip()
+        image=request.FILES['image']
+    
+        if '' in [name,username,new_username,email,current_password,new_password]:
+            return JsonResponse({'message':'all fields are required'})
+        user=Users.objects.filter(username=username)
+        if user.exists():
+            user=user[0]
+            if user.password==current_password:
+                user.username=new_username
+                user.email=email
+                user.password=new_password
+                user.image=image
+                user.save()
+                return JsonResponse({'message':'successfully edited'})
+            else:
+                return JsonResponse({'message':'wrong password'})
+        else:
+            return JsonResponse({'message':'user not found'})
+    return HttpResponse('you have to use post method to edit the profile')
+
+
+def user_role(request,role='user',option='get'):
     """
     This function is used to store the role of the user in the session
     we use the role to determine the user type (admin or user)
@@ -252,4 +289,3 @@ def user_role(request,role='user',option='set'):
         request.session['role'] = role  # Store role in session
     elif option=='get':
         return request.session.get('role', 'user')  # Get role from session
-
