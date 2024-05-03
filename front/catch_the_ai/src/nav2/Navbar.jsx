@@ -1,6 +1,6 @@
 import React from 'react'
 import './navbar2.css'
-function Navbar() {
+function NavbarLoggedIn() {
   return (
     <>
         <nav class="navbar  bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
@@ -56,4 +56,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default NavbarLoggedIn

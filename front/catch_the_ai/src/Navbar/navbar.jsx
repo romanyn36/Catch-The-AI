@@ -1,11 +1,26 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import './navbar.css';
+import NavbarLoggedIn from '../nav2/Navbar.jsx';
 
 export class Navbar extends Component {
+  nav=1;
   render() {
+    if (this.nav === 1) {
+      return <NavbarLoggedOut />;
+    }
+    else {
     return (
-      <nav className="navbar navbar-expand-lg fixed-top" style={{ backgroundColor: '#241440' }}>
+      <NavbarLoggedIn></NavbarLoggedIn>
+    
+    );
+  }}
+}
+
+function NavbarLoggedOut() {
+  return (
+    <>
+       <nav className="navbar navbar-expand-lg fixed.-top" >
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <span className="navbar-title">Catch The AI</span>
@@ -38,8 +53,7 @@ export class Navbar extends Component {
           </div>
         </div>
       </nav>
-    );
-  }
+    </>
+  )
 }
-
 export default Navbar;

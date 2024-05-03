@@ -2,7 +2,8 @@
   align-items: center;
   max-width: 50%;
   border: 5px solid rgba(187, 107, 217, 1);
-  background-color: rgba(223, 213, 241, 0.521);
+  background-color: rgb(255, 255, 255,.9) ;
+  
   border-radius: 50px;
   display: flex;
   flex-direction: column;

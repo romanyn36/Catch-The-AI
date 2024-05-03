@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from './Navbar/navbar';
-import { Home } from './Home/Home';
 import { ImageDetector } from './image_detector/image-detector';
 import { AudioDetector } from './audio_detector/audio_detector';
 import { TextDetector } from './text_detector/text-detector';
@@ -14,6 +13,10 @@ import './App.css';
 import SignUp from './Sign_Up/SignUp';
 import Admin from './Admin/admin'
 import Sign_In from './Sign-In/Sign_In';
+import UserProfile from './profile/UserProfile';
+import UpdateProfile from './profile/UpdateProfile';
+import AdminProfile from './profile/AdminProfile';
+import Home from './Home/Home';
 
 export default class App extends Component {
   render() {
@@ -23,7 +26,7 @@ export default class App extends Component {
 
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home/>} />
             <Route path="/image-detector" element={<ImageDetector />} />
             <Route path="/Pricing" element={<Pricing />} />
             <Route path="/audio-detector" element={<AudioDetector />} />
@@ -35,6 +38,9 @@ export default class App extends Component {
             <Route path="/Sign-Up" element={<SignUp />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/footer" element={<Footer />} />
+            <Route index path="/UserProfile" element={<UserProfile />} />
+            <Route  path="/UpdateProfile" element={<UpdateProfile />} />
+            <Route path="/AdminProfile" element={<AdminProfile />} />
 
           </Routes>
           <Footer />
