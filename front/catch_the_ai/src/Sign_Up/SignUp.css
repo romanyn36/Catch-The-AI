@@ -117,3 +117,12 @@
 .INN{
   color: rgba(187, 107, 217, 1) !important;
 }
+.error {
+  color: rgb(225, 5, 5);
+  font-family: cursive;
+}
+::placeholder {
+  font-family: cursive;
+  font-size: 15px;
+  text-align: left;
+}

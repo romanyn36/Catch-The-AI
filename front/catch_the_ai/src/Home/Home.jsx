@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './Home.css';
-import TextDetector from '../text_detector/text-detector';
+import TextDetector from '../Navbar/text_detector/text-detector';
 import Pricing from "../pricing/pricing";
 
 class Home extends Component {

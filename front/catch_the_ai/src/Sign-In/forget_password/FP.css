@@ -1,0 +1,86 @@
+.fp-container {
+    max-width: 400px; 
+    margin: 20px auto; 
+    padding: 20px; 
+    background-color: #f9f9f9;
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+}
+
+h2 {
+    color: #333; 
+    text-align: center; 
+    font-size: 22px;
+    font-family: CoolFont;
+    font-weight: bolder;
+}
+
+p {
+    color: #666; 
+    text-align: center; 
+}
+
+form {
+    margin-top: 20px; }
+
+.form-group {
+    margin-bottom: 20px; 
+}
+
+label {
+    display: block; 
+    margin-bottom: 5px; 
+    color: #333; 
+}
+
+input[type="email"] {
+    width: 100%; 
+    padding: 10px; 
+    border: 3px solid #f4f4f4; 
+    border-radius: 5px; 
+    font-size: 16px; 
+}
+
+.btn1 {
+    display: block; 
+    width: 100%; 
+    padding: 10px;
+    background-color: rgba(187, 107, 217, 1); 
+    color: #000000;
+    border: none; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.7s; 
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Button hover effect */
+.btn1:hover {
+    background-color: #7e1bf6; /* Hover background color */
+}
+
+/* Back to sign-in link styling */
+.back-to-signin {
+    display: block; /* Block display */
+    margin: 20px auto; /* Center horizontally with top and bottom margin */
+    color: purple; /* Text color */
+    cursor: pointer; /* Cursor style */
+    text-align: center; /* Center alignment */
+    text-decoration: underline; /* Underline text */
+    font-weight: bold;
+}
+
+/* Back to sign-in link hover effect */
+.back-to-signin:hover {
+    color: #7e1bf6; /* Hover text color */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .fp-container {
+        max-width: 90%; /* Adjusted maximum width for smaller screens */
+    }
+}

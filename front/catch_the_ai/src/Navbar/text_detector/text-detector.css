@@ -1,0 +1,133 @@
+@media (min-width: 320px) and (max-width: 480px) {
+  .media-type-button {
+    padding: 16px 32px;
+  }
+
+  .main-container {
+    padding: 5px 20px 80px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .media-type-button {
+    padding: 16px 48px;
+  }
+
+  .main-container {
+    padding: 5px 40px 80px;
+  }
+}
+
+@media (min-width: 769px) {
+  .main-container {
+    padding: 5px 64px 80px;
+  }
+}
+
+.media-type-button {
+  font-family: Manrope, sans-serif;
+  justify-content: center;
+  align-items: center;
+  border-radius: 99px;
+  padding: 16px 110px;
+  border: none;
+  cursor: pointer;
+  background-color: #ccc; /* Gray color for default state */
+  animation: none; /* Remove animation by default */
+}
+
+.pulsating {
+  animation: pulse 1s infinite; /* Apply animation only when the button has the 'pulsating' class */
+}
+
+@keyframes pulse {
+  0% {
+    background: linear-gradient(135deg, #bb6bd9 0%, #1bfed5 100%);
+  }
+  100% {
+    background: linear-gradient(135deg, #1bfed5 0%, #bb6bd9 100%);
+  }
+}
+
+/* Existing CSS styles for other elements */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.media-type-heading {
+  color: #fff;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font: Sans-serif bold;
+}
+
+.media-type-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.drag-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  border: 5px dashed rgb(168, 163, 163);
+  background-color: rgba(149, 148, 148, 0.8);
+  font-weight: 800;
+  padding: 60px 80px;
+}
+
+.label,
+.txt {
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.txt1 {
+  color: gainsboro;
+}
+
+.text-area-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.text-area {
+  width: 150%; /* Adjusted width */
+  height: 300px;
+  padding: 10px;
+  margin-top: 10px;
+  border: 5px dashed rgb(168, 163, 163);
+  background-color: rgba(149, 148, 148, 0.8);
+  font-size: 26px;
+  resize: vertical;
+  text-align: center; /* Center-align text within textarea */
+}
+
+.text-area::placeholder {
+  color: white;
+  opacity: 1;
+  padding: 100px 80px;
+}
+
+.submit-button {
+  border-radius: 99px;
+  background-color: #bb6bd9;
+  color: #fff;
+  text-align: center;
+  padding: 16px 48px; /* Increased padding */
+  font-family: "Lucida Console", Courier, monospace;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  animation: colorGradient pulse 1s infinite;
+}
+
