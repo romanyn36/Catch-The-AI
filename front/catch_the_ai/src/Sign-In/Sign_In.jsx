@@ -15,7 +15,8 @@ const MyForm = () => {
 
 
     // Use the useFetch hook to handle API requests
-    const { post, response, error } = useFetch('http://127.0.0.1:8000/login/');
+    // const { post, response, error } = useFetch('http://127.0.0.1:8000/login/');
+    const { post, response, error } = useFetch('https://romanyn36.pythonanywhere.com/login/');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -29,7 +30,7 @@ const MyForm = () => {
             // Redirect to another page
             var message = responseData.message;
             if (message === "successfully login") {
-                // window.location.href = "/";
+                window.location.href = "/";
                 localStorage.setItem('token', response.data.token);
 
             }

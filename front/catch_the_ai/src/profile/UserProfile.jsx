@@ -4,7 +4,10 @@ import useFetchData from '../utils/useFetchData';
 import './profile.css';
 
 function UserProfile() {
-  const domain = 'http://127.0.0.1:8000';
+  // get the root domain
+  // const domain = 'http://127.0.0.1:8000';
+  const domain = 'https://romanyn36.pythonanywhere.com';
+
   const [imageurl, setImageurl] = useState('images/user.svg');
   const [userData, setUserData] = useState({
     name: "name ",
@@ -31,7 +34,8 @@ const options = [
      null,
     headers,
 ]; 
-  const { data, loading, error } = useFetchData('http://127.0.0.1:8000/get_user_info/',options);
+  // const { data, loading, error } = useFetchData('http://127.0.0.1:8000/get_user_info/',options);
+  const { data, loading, error } = useFetchData('https://romanyn36.pythonanywhere.com/get_user_info/',options);
 
   useEffect(() => {
     if (data) {
