@@ -1,6 +1,5 @@
 .formDiv {
-    width: 90%;
-    margin: auto;
+ 
     margin-top: 80px;
     padding: 20px;
     border-radius: 10px;
@@ -176,6 +175,7 @@
   
     .differ input {
         width: 300px;
+        
   
     }
   

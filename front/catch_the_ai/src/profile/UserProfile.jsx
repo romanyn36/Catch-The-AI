@@ -1,88 +1,136 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './profile.css'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import useFetchData from '../utils/useFetchData';
+import './profile.css';
+
 function UserProfile() {
+  const domain = 'http://127.0.0.1:8000';
+  const [imageurl, setImageurl] = useState('images/user.svg');
+  const [userData, setUserData] = useState({
+    name: "name ",
+    username: "username",
+    email: "romany@gmail.com",
+    age: -8,
+    address: "Egypt",
+    subscription: "Basic",
+    subscription_start_date: null,
+    subscription_end_date: null,
+    remain_attempts: 5,
+    image: "/media/user_Romani%20Nasrat%20Shawqi/PicsArt_07-18-01.11.49.jpg"
+  });
+
+  // session token
+const token = localStorage.getItem('token');
+const headers = {
+    'Authorization': `Bearer ${token}`,
+};
+
+// Create the options object
+const options = [
+    'GET',
+     null,
+    headers,
+]; 
+  const { data, loading, error } = useFetchData('http://127.0.0.1:8000/get_user_info/',options);
+
+  useEffect(() => {
+    if (data) {
+      setUserData(data);
+      setImageurl(domain + image);
+      console.log("data", imageurl);
+    }
+    
+  }, [data]);
+
+  console.log("my user data", userData);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  const { name, username, email, age, address, subscription, subscription_start_date, subscription_end_date, remain_attempts, image } = userData;
+
   return (
-    
-        <>
-          <div class="formDiv secondDivv">
-            <form>
-              <h3>User Profile</h3>
-    
-              <div class="profile">
-                <img src="images/user.svg" alt="" />
-    
-                <div>
-                  <h5>User</h5>
-                  <p>Team Lead</p>
-                </div>
-              </div>
-              <h3>User Info</h3>
-    
-              <div class="profileContent">
-                <div class="mb-3">
-                  <label class="form-label">First Name: </label>
-                  <h4>User</h4>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Last Name: </label>
-                  <h4>User</h4>
-                </div>
-              </div>
-              <div class="profileContent">
-                <div class="mb-3">
-                  <label class="form-label">User Name: </label>
-                  <h4>User</h4>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Email: </label>
-                  <h4>User@gmail.com</h4>
-                </div>
-              </div>
-              <button type="submit" class="btn editBtn">
-              <Link to="/UpdateProfile">Edit Profile <i class="fa-regular fa-pen-to-square"></i></Link>
-              </button>
-    
-              <div class="borderDiv"></div>
-    
-              <h3> Subscription Info</h3>
-              <div class="profileContent">
-                <div class="mb-3">
-                  <label for="FnameEmail1" class="form-label">
-                    Plan Name:{" "}
-                  </label>
-                  <h4>Professional</h4>
-                </div>
-                <div class="mb-3">
-                  <label for="LnameEmail1" class="form-label">
-                    Remain Attembts:{" "}
-                  </label>
-                  <h4>10</h4>
-                </div>
-              </div>
-              <div class="profileContent">
-                <div class="mb-3">
-                  <label for="FnameEmail1" class="form-label">
-                    Start Date:{" "}
-                  </label>
-                  <h4>20/3/2020</h4>
-                </div>
-                <div class="mb-3">
-                  <label for="LnameEmail1" class="form-label">
-                    End Date:{" "}
-                  </label>
-                  <h4>30/2/2021</h4>
-                </div>
-              </div>
-              <div class="d-flex justify-content-end">
-                <button type="button" class="btn deleteBtn2">
-                  Change Plan
-                </button>
-              </div>
-            </form>
+    <div className="container p-0 formDiv secondDivv">
+      <form>
+        <h3>User Profile</h3>
+
+        <div className="profile">
+          <img src={imageurl} alt="" />
+          <div>
+            <h5>User Role:</h5>
+            <p>user</p>
           </div>
-        </>
-  )
+        </div>
+        <h3>User Info</h3>
+
+        <div className="row profileContent">
+          <div className="col-md-6 mb-3">
+            <label className="form-label">First Name: </label>
+            <h4>{name}</h4>
+          </div>
+          <div className="col-md-6 mb-3">
+            <label className="form-label">Last Name: </label>
+            <h4>{name}</h4>
+          </div>
+        </div>
+        <div className="row profileContent">
+          <div className="col-md-6 mb-3">
+            <label className="form-label">Username: </label>
+            <h4>{username}</h4>
+          </div>
+          <div className="col-md-6 mb-3">
+            <label className="form-label">Email: </label>
+            <h4>{email}</h4>
+          </div>
+        </div>
+        <button type="submit" className="btn editBtn">
+          <Link to="/UpdateProfile">Edit Profile <i className="fa-regular fa-pen-to-square"></i></Link>
+        </button>
+
+        <div className="borderDiv"></div>
+
+        <h3> Subscription Info</h3>
+        <div className="profileContent">
+          <div className="mb-3">
+            <label htmlFor="FnameEmail1" className="form-label">
+              Plan Name:
+            </label>
+            <h4>{subscription}</h4>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="LnameEmail1" className="form-label">
+              Remain Attempts:
+            </label>
+            <h4>{remain_attempts}</h4>
+          </div>
+        </div>
+        <div className="profileContent">
+          <div className="mb-3">
+            <label htmlFor="FnameEmail1" className="form-label">
+              Start Date:
+            </label>
+            <h4>{subscription_start_date}</h4>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="LnameEmail1" className="form-label">
+              End Date:{" "}
+            </label>
+            <h4>{subscription_end_date}</h4>
+          </div>
+        </div>
+        <div className="d-flex justify-content-end">
+          <button type="button" className="btn deleteBtn2">
+            Change Plan
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default UserProfile;
