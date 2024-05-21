@@ -13,11 +13,11 @@ import sys
 # import static
 from django.templatetags.static import static
 from .models import Users,DataHistory,Subscription
-import re
-# Create your views here.
+from .session_management import create_session,get_user_id_from_token
 
 # initialize the model
 # image_model = load_AI_model()
+
 
 def login(request):
     """
@@ -26,9 +26,13 @@ def login(request):
     if user is normal user the role will be stored in the database
     no need explicit ask for the role"""
     if request.method=="POST":
+        # for react app
+        data = json.loads(request.body.decode('utf-8'))
+        # if not react app
+        # data=data
         # get username and password from params
-        username=request.POST['username'].strip()
-        password=request.POST['password'].strip()
+        username=data['username'].strip()
+        password=data['password'].strip()
         
         if '' in [username,password]:
             return JsonResponse({'message':'all fields are required'})
@@ -41,7 +45,9 @@ def login(request):
             if user.exists():
                 user=user[0]
                 if user.password==password:
-                    return JsonResponse({'message':'successfully login'})
+                    # generate token
+                    token=create_session(user)
+                    return JsonResponse({'message':'successfully login','role':'user','token':token})
                 else:
                     return JsonResponse({'message':'wrong password'})
             
@@ -50,21 +56,22 @@ def login(request):
             if user.exists():
                 user=user[0]
                 if user.password==password:
-                    user_role(request,'admin','set')
-                    return JsonResponse({'message':'successfully login'})
+                  
+                    return JsonResponse({'message':'successfully login','role':'admin'})
                 else:
                     return JsonResponse({'message':'wrong password'})
             else:
                 return JsonResponse({'message':'user not found'})
 
-
+        # if user used username to login
         except ValidationError:
             # user login
             user=Users.objects.filter(username=username)
             if user.exists():
                 user=user[0]
                 if user.password==password:
-                    return JsonResponse({'message':'successfully login'})
+                    token=create_session(user)
+                    return JsonResponse({'message':'successfully login','role':'user','token':token})
                 else:
                     return JsonResponse({'message':'wrong password'})
             #admin login
@@ -74,7 +81,7 @@ def login(request):
             
                 #
                 if user.check_password(password):
-                    user_role(request,'admin','set')
+                  
                     return JsonResponse({'message':'successfully login'})
                 else:
                     return JsonResponse({'message':'wrong password'})
@@ -85,13 +92,14 @@ def login(request):
 
 def register(request):
     if request.method=="POST":
+        data = json.loads(request.body.decode('utf-8'))
         # get user data from params
-        name=request.POST['name'].strip()
-        username=request.POST['username'].strip()
-        email=request.POST['email'].strip()
-        password=request.POST['password'].strip()
-        age=request.POST['age'].strip()
-        country=request.POST['country'].strip()
+        name=data['name'].strip()
+        username=data['username'].strip()
+        email=data['email'].strip()
+        password=data['password'].strip()
+        age=data['age'].strip()
+        country=data['country'].strip()
         # ensure all fields are filled
         if ''  in [username,email,password,age,country]:
             return JsonResponse({'message':'all fields are required'})
@@ -108,8 +116,8 @@ def register(request):
                 # create the user
                 user=Users(name=name,username=username,email=email,password=password,age=age,country=country)
                 user.save()
-                user_role(request,'user','set')
-                return JsonResponse({'message':'successfully registered'})
+                token=create_session(user)
+                return JsonResponse({'message':'successfully registered','role':'user','token':token})
             
         except ValidationError:
             return JsonResponse({'message':'invalid email'})
@@ -124,17 +132,21 @@ def get_user_info(request):
     based on the type that we get from the session we will get the user info from the database"""
 
     if request.method=="GET":
-            # get username from params
-            username=request.GET['username']
-            # get user from the database
-            role=user_role(request,option='get')
+            # get token from the header
+            auth_header = request.headers.get('Authorization')
+            token = auth_header.split(" ")[1]
+            print("token ",token)
+            # get username from the token
+            usee_id=get_user_id_from_token(token)
+        
             role='user'
             print(role)
             if role=='user':
-                user=Users.objects.filter(username=username)
+                user=Users.objects.filter(id=usee_id)
                 if user.exists():
                     user=user[0]
                     user_info={
+                        'name':user.name,
                         'username':user.username,
                         'email':user.email,
                         'age':user.age,
@@ -167,9 +179,10 @@ def predict_media(request):
     """
     """
     if request.method == 'POST':
-        media_type=request.POST['media_type']
+        data = json.loads(request.body.decode('utf-8'))
+        media_type=data['media_type']
         data=request.FILES['data']
-        text=request.POST['text']
+        text=data['text']
         if media_type=='image':
             # save the image
             path ='D:/Graduation-project/Backend/media/test_images/'+data.name
@@ -202,11 +215,11 @@ def get_user_history(request):
     based on the type that we get from the session we will get the user history from the database
     """
     if request.method=="GET":
-        user_role(request,'admin','set')
+        
         # get username from params
         username=request.GET['username']
         # get user from the database
-        role=user_role(request,option='get')
+        role='user'
         print(role) 
         role='user'
         if role=='admin':
@@ -250,14 +263,14 @@ def edit_profile(request):
     based on the type that we get from the session we will edit the user info in the database
     """
     if request.method=="POST":
-        user_role(request)
+        data = json.loads(request.body.decode('utf-8'))
         role='user'
-        name=request.POST['name'].strip()
-        username=request.POST['username'].strip()
-        new_username=request.POST['new_username'].strip()
-        email=request.POST['email'].strip()
-        current_password=request.POST['current_password'].strip()
-        new_password=request.POST['new_password'].strip()
+        name=data['name'].strip()
+        username=data['username'].strip()
+        new_username=data['new_username'].strip()
+        email=data['email'].strip()
+        current_password=data['current_password'].strip()
+        new_password=data['new_password'].strip()
         image=request.FILES['image']
     
         if '' in [name,username,new_username,email,current_password,new_password]:
@@ -279,13 +292,3 @@ def edit_profile(request):
     return HttpResponse('you have to use post method to edit the profile')
 
 
-def user_role(request,role='user',option='get'):
-    """
-    This function is used to store the role of the user in the session
-    we use the role to determine the user type (admin or user)
-    profile page will be different for each user type
-    """
-    if option=='set':
-        request.session['role'] = role  # Store role in session
-    elif option=='get':
-        return request.session.get('role', 'user')  # Get role from session
