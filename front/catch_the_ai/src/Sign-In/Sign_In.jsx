@@ -10,15 +10,8 @@ const MyForm = () => {
         username: '',
         password: '' }
     );
-    // // handle empty form submission
-    // if (formData.username === '' ) {
-    
-    // }
-    // if (formData.password === '' ) {
-    // }
+  
 
-    
-// 
 
 
     // Use the useFetch hook to handle API requests
