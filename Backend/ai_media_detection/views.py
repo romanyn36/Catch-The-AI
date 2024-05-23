@@ -135,7 +135,7 @@ def get_user_info(request):
             # get token from the header
             auth_header = request.headers.get('Authorization')
             token = auth_header.split(" ")[1]
-            print("token ",token)
+            # print("token ",token)
             # get username from the token
             usee_id=get_user_id_from_token(token)
         
@@ -179,34 +179,68 @@ def predict_media(request):
     """
     """
     if request.method == 'POST':
-        data = json.loads(request.body.decode('utf-8'))
-        media_type=data['media_type']
+        # data = json.loads(request.body.decode('utf-8'))
+        req = request.POST
+        media_type=req['media_type']
         data=request.FILES['data']
-        text=data['text']
-        if media_type=='image':
-            # save the image
-            path ='D:/Graduation-project/Backend/media/test_images/'+data.name
-            with open(path, 'wb+') as destination:
-                for chunk in data.chunks():
-                    destination.write(chunk)
-            result=predict_AI_generated_media(path,image_model)
-            print(result)
+        text=req['text']
+        user=Users.objects.filter(username='romanyn36').first()
+        remain_attempets=calculate_remaining_attempts(user)
+        if remain_attempets==0:
+            return JsonResponse({'message':'you have no attempts left'})
+        else:
+            if media_type=='image':
+                # save the image
+                path ='D:/Graduation-project/Backend/media/test_images/'+data.name
+                with open(path, 'wb+') as destination:
+                    for chunk in data.chunks():
+                        destination.write(chunk)
+                # result=predict_AI_generated_media(path,image_model)
+                result='we predicted the image for you'+f" {remain_attempets} attempts left"
+                media_history=DataHistory(user=user,media_name=data.name,image=data,attemptTime=datetime.now(),modelResult=result,media_size=data.size)
+                media_history.save()
 
 
-        elif media_type=='audio':
-            path ='D:/Graduation-project/Backend/media/test_images/'+data.name
-            save_path=path
-            with open(save_path, 'wb+') as destination:
-                for chunk in data.chunks():
-                    destination.write(chunk)
-    
-            result='we played the audio file for you'
+            elif media_type=='audio':
+                path ='D:/Graduation-project/Backend/media/test_images/'+data.name
+                save_path=path
+                with open(save_path, 'wb+') as destination:
+                    for chunk in data.chunks():
+                        destination.write(chunk)
         
-        elif media_type=='text':
-            result='you entered: '+text
+                result='we played the audio file for you'+f" {remain_attempets} attempts left"
+                media_history=DataHistory(user=user,media_name=data.name,audio=data,attemptTime=datetime.now(),modelResult=result,media_size=data.size)
+                media_history.save()
+            
+            elif media_type=='text':
+                result='you entered: '+text
 
-        return HttpResponse("The media is: "+result)
+            return HttpResponse("The media is: "+result)
+    return HttpResponse('this get method is not allowed')
 
+from datetime import datetime
+def calculate_remaining_attempts(user:Users):
+    """
+    This function is used to calculate the remaining attempts for the user
+    """
+    remain=user.remain_attempts
+    start=user.subscription_start_date
+    end=user.subscription_end_date
+    # check if the subscription is expired
+    if end is not None:
+        if end<start:
+            current_date=datetime.now().date()
+            if current_date>end:
+                return 0
+    if remain>0:
+        remain-=1
+        user.remain_attempts=remain
+        user.save()
+        return remain
+    else:
+        return 0
+
+    
 
 def get_user_history(request):
     """
@@ -225,11 +259,13 @@ def get_user_history(request):
         if role=='admin':
             user=User.objects.filter(username=username).first()
             history=DataHistory.objects.filter(user=user).first()
+            print(history.audio.url)
             hist={
+              
                 'media_name':history.media_name,
-                'image':history.image.url,
-                'audio':history.audio.url,
-                'text':history.text,
+                'image':history.image.url if history.image is not None else "",
+                'audio':history.audio.url if history.audio is not None else " ",
+                'text':history.text if history.text else " ",
                 'attemptTime':history.attemptTime,
                 'modelResult':history.modelResult,
                 'media_size':history.media_size
@@ -244,15 +280,15 @@ def get_user_history(request):
             for h in history:
                 hist.append({
                     'media_name': h.media_name,
-                    'image': h.image.url,
-                    'audio': h.audio.url,
-                    'text': h.text,
+                    'image': h.image.url if h.image else "",  # Check if h.image is not None
+                    'audio': h.audio.url if h.audio else "",  # Check if h.audio is not None
+                    'text': h.text if h.text else "",  # Check if h.text is not None
                     'attemptTime': h.attemptTime,
                     'modelResult': h.modelResult,
                     'media_size': h.media_size
                 })
             hist={'history':hist}
-            print(hist)
+            # print(hist)
             return JsonResponse(hist)
     return HttpResponse('error')
 
