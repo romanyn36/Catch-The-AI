@@ -1,128 +1,143 @@
-.romani{
-
+body {
+  font-family: cursive;
 }
-.signup-container {
-  background-color: rgba(223, 213, 241, 0.521);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 50%;
-  padding: 20px;
-  border: 5px solid rgba(187, 107, 217, 1);
-  border-radius: 50px;
- 
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 20px auto;
-
+.custom-font {
+  font-family:Marker Felt, fantasy;
 }
 
-.signup-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
+
+.img-fluid {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
 }
-.UP{
-  margin-top: 10px;
-  margin-bottom: 30px;
+
+.shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-primary {
   color: #530870 !important;
-  text-align: center !important;
 }
 
-.ff {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.text-danger {
+  color: #e30505 !important;
 }
 
-/* Social login button styles */
-.google-login {
-
-  width: 50%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  background-color: rgb(215, 127, 241);
-  transition: background-color 0.3s ease;
-  margin-bottom: 20px;
+.text-success {
+  color: green !important;
 }
 
-.google-login:hover {
-  background-color: #530870;
+.text-primary {
+  color: rgb(55, 28, 165) !important;
 }
 
-/* Icon styles */
-.google-login img {
-  width: 20px;
-  height: 20px;
+.text-danger {
+  color: red !important;
 }
 
-.info {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+.bg-white {
+  background-color: rgba(255, 255, 255, 0.9) !important;
 }
 
-.info>div {
-  margin: 10px;
-  width: fit-content;
-}
-
-
-
-.signup_form_group {
-  width: 100%;
-  margin-bottom: 5px;
-
-}
-.signup_form_group label {
-  display: block;
+.password-strength {
   font-weight: bold;
 }
 
-.signup_form_group input[type="text"],
-.signup_form_group input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  color: #530870;
+/* Media Query for responsiveness */
+@media screen and (max-width: 768px) {
+  .col-lg-6 {
+    padding: 20px !important;
+  }
+  
+  .rounded-start {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    border-bottom-left-radius: 0;
+  }
+  
+  .img-fluid {
+    max-height: 300px;
+  }
+}
+#name ,#username, #email, #password, #password2, #country, #age {
+  width: 100%; 
+  max-width: 700px;
+  padding: 10px; 
+  margin: 10px auto;
+  font-family: cursive;
+  color: #000000;
   background-color: rgb(247, 243, 249);
-  border: 3px solid rgba(187, 107, 217, 1);
-  border-radius: 5px;
-}
-
-
-.formsubmit {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-}
-.formsubmit button[type="submit"] {
-  width: 50%;
-  padding: 10px;
-  background-color: #530870;
-  color: #fff;
-  border-radius: 5px;
-}
-
-.IN{
-  color: #530870;
-}
-
-.INN{
-  color: rgba(187, 107, 217, 1) !important;
-}
-.error {
-  color: rgb(225, 5, 5);
-  font-family: cursive;
-}
-::placeholder {
-  font-family: cursive;
-  font-size: 15px;
+  border: 3px solid rgb(247, 243, 249);
+  border-radius: 30px; 
   text-align: left;
+}
+.custom-label {
+  font-family: cursive;
+  font-weight: bold;
+}
+.btn-purple {
+  background-color: #a77ff1;
+  border-color: #6f42c1;
+}
+
+.btn-purple:hover {
+  background-color: #5a3b89;
+  border-color: #5a3b89;
+}
+body {
+  font-family: cursive;
+}
+
+.img-fluid {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-primary {
+  color: #530870 !important;
+}
+
+.text-danger {
+  color: #e30505 !important;
+}
+
+.text-success {
+  color: green !important;
+}
+
+.text-primary {
+  color: rgb(55, 28, 165) !important;
+}
+
+.text-danger {
+  color: red !important;
+}
+
+.bg-white {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.password-strength {
+  font-weight: bold;
+}
+
+/* Media Query for responsiveness */
+@media screen and (max-width: 768px) {
+  .col-lg-6 {
+    padding: 20px !important;
+  }
+  
+  .rounded-start {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    border-bottom-left-radius: 0;
+  }
+  
+  .img-fluid {
+    max-height: 300px;
+  }
 }

@@ -3,6 +3,7 @@ import './Sign_In.css';
 import img1 from "./img1.jpg"; // Import the image
 import { Footer } from "../Footer/Footer";
 import { useFetch } from 'use-http'; // Import the useFetch hook from use-http
+import {BASE_DOMAIN_URL} from '../index';
 
 // Functional component for the form
 const MyForm = () => {
@@ -15,8 +16,8 @@ const MyForm = () => {
 
 
     // Use the useFetch hook to handle API requests
-    // const { post, response, error } = useFetch('http://127.0.0.1:8000/login/');
-    const { post, response, error } = useFetch('https://romanyn36.pythonanywhere.com/login/');
+    const { post, response, error } = useFetch(BASE_DOMAIN_URL+'/login/');
+    // const { post, response, error } = useFetch(BASE_DOMAIN_URL+'/login/');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
