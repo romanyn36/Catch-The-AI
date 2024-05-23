@@ -3,14 +3,6 @@
   text-decoration: none;
 }
 
-/* .terms-of-service {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-  background-color: gainsboro;
-
-} */
 
 .terms-of-service h2 {
   color: #000000; 
@@ -54,4 +46,14 @@
   width: 60%;
  margin-left: 300px;
  margin-bottom: 20px;
+}
+@media screen and (max-width: 768px) {
+  .about_TOS {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .about_TOS h3 {
+    margin-top: 20px;
+  }
 }
