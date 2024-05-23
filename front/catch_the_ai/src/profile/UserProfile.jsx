@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useFetchData from '../utils/useFetchData';
 import './profile.css';
+import { BASE_DOMAIN_URL} from '../index';
 
 function UserProfile() {
-  // get the root domain
-  // const domain = 'http://127.0.0.1:8000';
-  const domain = 'https://romanyn36.pythonanywhere.com';
+  console.log("BASE_URL", BASE_DOMAIN_URL);
 
-  const [imageurl, setImageurl] = useState('images/user.svg');
   const [userData, setUserData] = useState({
     name: "name ",
     username: "username",
@@ -19,7 +17,7 @@ function UserProfile() {
     subscription_start_date: null,
     subscription_end_date: null,
     remain_attempts: 5,
-    image: "/media/user_Romani%20Nasrat%20Shawqi/PicsArt_07-18-01.11.49.jpg"
+    image: "images/user.svg"
   });
 
   // session token
@@ -34,14 +32,11 @@ const options = [
      null,
     headers,
 ]; 
-  // const { data, loading, error } = useFetchData('http://127.0.0.1:8000/get_user_info/',options);
-  const { data, loading, error } = useFetchData('https://romanyn36.pythonanywhere.com/get_user_info/',options);
+  const { data, loading, error } = useFetchData(BASE_DOMAIN_URL + '/get_user_info/', options);
 
   useEffect(() => {
     if (data) {
       setUserData(data);
-      setImageurl(domain + image);
-      console.log("data", imageurl);
     }
     
   }, [data]);
@@ -64,7 +59,7 @@ const options = [
         <h3>User Profile</h3>
 
         <div className="profile">
-          <img src={imageurl} alt="" />
+          <img src={BASE_DOMAIN_URL+ userData.image} alt="" />
           <div>
             <h5>User Role:</h5>
             <p>user</p>
