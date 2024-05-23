@@ -56,15 +56,15 @@ export class Pricing extends Component {
             </button>
           </div>
         </div>
-        <div className="row text-center">
+        <div className="row text-center ">
           {/* Basic Plan */}
-          <div className="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
-            <div className="basic flex-fill">
+          <div className="col-md-4 d-flex align-items-stretch " data-aos="fade-up">
+            <div className="basic flex-fill ">
               <div className="card mb-4 shadow-sm ">
-                <div className="card-header">
-                  <h4 className="my-0 font-weight-normal">Basic</h4>
+                <div className="card-header ">
+                  <h4 className="my-0 font-weight-normal ">Basic</h4>
                 </div>
-                <div className="card-body">
+                <div className="card-body ">
                   <h1 className="card-title pricing-card-title">{basicPrice} <small className="text-muted"></small></h1>
                   <ul className="list-unstyled mt-3 mb-4">
                     <li><i className="fa fa-check-circle"></i> Default features with limited access</li>

@@ -32,21 +32,21 @@ export class Footer extends Component {
               </div>
             </div>
 
-            <div className="col" id="services">
+            {/* <div className="col" id="services">
               <h3>Services</h3>
               <div className="links">
               <Link to="/text-detector">Text detection</Link>
               <Link to="/audio-detector">Audio detection</Link>
               <Link to="/image-detector">Image detection</Link>
             </div>
-            </div>
+            </div> */}
 
             <div className="col" id="useful-links">
               <h3>Help</h3>
               <div className="links" id="Help">
               <Link to="/FAQs">FAQs</Link>
               <Link to="/privacy-policy">Our Policy</Link>
-              <Link to="/terms-of-service">Services </Link>
+              <Link to="/terms-of-service">Terms-of-service </Link>
               </div>
             </div>
 

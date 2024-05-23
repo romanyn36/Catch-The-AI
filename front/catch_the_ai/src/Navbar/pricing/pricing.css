@@ -12,7 +12,8 @@
 .btn-toggle-monthly:hover,
 .btn-toggle-yearly:hover {
   background-color: rgba(187, 107, 217, 1);
-  color: black; /* Adjust text color as needed */
+  color: black; 
+  
 }
 
 .btn-toggle-monthly:active,
@@ -86,6 +87,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  
 }
 
 .card-body {
@@ -189,4 +192,5 @@
 
 body.hide-footer .Footer {
   display: none;
+  
 }
