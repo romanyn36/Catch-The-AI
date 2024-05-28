@@ -30,6 +30,7 @@
   }
   
   .formDiv .profile img {
+    
     width: 180px;
     height: 180px;
     border-radius: 50%;
@@ -88,12 +89,16 @@
     padding: 0 100px;
   }
   
-  .formDiv .profileContent input {
-    width: 500px;
-  }
+
   
   .formDiv input {
+    text-align: left;
+    padding: 10px;
+    width: 500px;
     border: 1px solid #202542;
+    /* background-color: tomato; */
+    background-color: aliceblue;
+    height: 50px
     
   
   } 
@@ -115,7 +120,6 @@
   }
   
   .formDiv .submitBtn {
-    background-color: #202542;
     display: block;
     margin-right: 100px;
   

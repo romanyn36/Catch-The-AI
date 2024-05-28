@@ -1,12 +1,12 @@
 body {
   font-family: cursive;
 }
-.custom-font {
+.customFont {
   font-family:Marker Felt, fantasy;
 }
 
 
-.img-fluid {
+.imgFluid {
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }
@@ -49,7 +49,7 @@ body {
     padding: 20px !important;
   }
   
-  .rounded-start {
+  .roundedStart {
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
     border-bottom-left-radius: 0;
@@ -59,23 +59,23 @@ body {
     max-height: 300px;
   }
 }
-#name ,#username, #email, #password, #password2, #country, #age {
+.inputField {
   width: 100%; 
   max-width: 700px;
   padding: 10px; 
   margin: 10px auto;
   font-family: cursive;
   color: #000000;
-  background-color: rgb(247, 243, 249);
+  background-color: #ad49e0 ;
   border: 3px solid rgb(247, 243, 249);
-  border-radius: 30px; 
+  /* border-radius: 30px;  */
   text-align: left;
 }
-.custom-label {
+.customLabel {
   font-family: cursive;
   font-weight: bold;
 }
-.btn-purple {
+.btnPurple {
   background-color: #a77ff1;
   border-color: #6f42c1;
 }

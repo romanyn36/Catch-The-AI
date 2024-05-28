@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './Sign_In.css';
+import style from "./Sign_In.module.css";
 import img1 from "./img1.jpg"; // Import the image
 import { Footer } from "../Footer/Footer";
 import { useFetch } from 'use-http'; // Import the useFetch hook from use-http
@@ -31,8 +31,9 @@ const MyForm = () => {
             // Redirect to another page
             var message = responseData.message;
             if (message === "successfully login") {
-                window.location.href = "/";
                 localStorage.setItem('token', response.data.token);
+                window.location.href = "/";
+                
 
             }
             if (message === "wrong password") {
@@ -56,21 +57,21 @@ const MyForm = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="form-group">
+            <div className={style.formGroup}>
                 <label htmlFor="username">Email</label><br />
 
                 <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} placeholder="Enter your Email" />
                 {/* {emailError && <span style={{ color: 'red', fontFamily: 'cursive' }}>{emailError}</span>} */}
             </div>
-            <div className="form-group">
+            <div className={style.formGroup}>
                 <label htmlFor="password">Password</label><br />
                 <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" />
             </div>
-            <div className="form-g">
+            <div className={style.formG}>
                 <label><input type="checkbox" name="remember-me" /> Remember Me</label>
                 <a href="/FP" className="forgot-password-link">Forgot Password?</a>
             </div>
-            <div className="form-g">
+            <div className={style.formG}>
                 <button type="submit">Login</button>
             </div>
         </form>
@@ -87,22 +88,22 @@ class Sign_In extends React.Component {
     render() {
         return (
             <>
-                <div className="page-container">
-                    <div className="signin-container">
-                        <div className="ff">
-                            <h2 className="title5">Sign In</h2>
+                <div className={style.pageContainer}>
+                    <div className={style.signinContainer}>
+                        <div className={style.ff}>
+                            <h2 className={style.title5}>Sign In</h2>
                             <p>Hi, Welcome back</p>
-                            <button className="google-login" onClick={this.handleGoogleLogin}>
+                            <button className={style.googleLogin} onClick={this.handleGoogleLogin}>
                                 Login with Google
                             </button>
                             <p>or login with email</p>
                             <MyForm /> {/* Render the form component */}
                             <div className="">
-                                <p className="IN">Not Registered Yet? <a href="/sign-up" className="INN">Sign Up</a></p>
+                                <p className={style.IN}>Not Registered Yet? <a href="/sign-up" className={style.INN}>Sign Up</a></p>
                             </div>
                         </div>
-                        <div className="image-container">
-                            <img className="img1" src={img1} alt="Sign in" />
+                        <div className={style.imageContainer}>
+                            <img className={style.imh1} src={img1} alt="Sign in" />
                         </div>
                     </div>
                 </div>

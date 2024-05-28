@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEnvelope, faLock, faHome, } from "@fortawesome/free-solid-svg-icons";
 // import signupImage from "./signup.jpg";
 import signupImage from "./sign-up2.jpeg";
-import "./SignUp.css";
+import style from "./SignUp.module.css";
 import{BASE_DOMAIN_URL} from '../index';
 
 
@@ -147,19 +147,19 @@ function SignUp() {
         <div className="row justify-content-center">
           <div className="col-lg-10 col-md-12 d-flex flex-wrap bg-white rounded shadow">
             <div className="col-lg-6 d-flex align-items-center justify-content-center p-0">
-              <img src={signupImage} alt="Signup" className="img-fluid" />
+              <img src={signupImage} alt="Signup" className={style.imgFluid} />
             </div>
             <div className="col-lg-6 p-4">
               <form onSubmit={handleSubmit}>
-                <h2 className="text-center display-6 custom-font mb-4">Sign Up</h2>
+                <h2 className={`text-center display-6 ${style.customFont} mb-4`}>Sign Up</h2>
                 <div className="form-group mb-3">
-                  <label htmlFor="name" className="custom-label">
+                  <label htmlFor="name" className="customLabel">
                     <FontAwesomeIcon icon={faUser} className="me-2" />
                     Name
                   </label>
                   <input
                     type="text"
-                    className="form-control custom-input"
+                    className={`form-control ${style.inputField }`}
                     id="name"
                     name="name"
                     value={name}
@@ -169,13 +169,13 @@ function SignUp() {
                   {errors.name && <div className="text-danger">{errors.name}</div>}
                 </div>
                 <div className="form-group mb-3">
-                  <label htmlFor="email" className="custom-label">
+                  <label htmlFor="email" className="customLabel">
                     <FontAwesomeIcon icon={faEnvelope} className="me-2" />
                     Email
                   </label>
                   <input
                     type="email"
-                    className="form-control custom-input"
+                    className={`form-control ${style.inputField }`}
                     id="email"
                     name="email"
                     value={email}
@@ -185,13 +185,13 @@ function SignUp() {
                   {errors.email && <div className="text-danger">{errors.email}</div>}
                 </div>
                 <div className="form-group mb-3">
-                  <label htmlFor="username" className="custom-label">
+                  <label htmlFor="username" className="customLabel">
                     <FontAwesomeIcon icon={faUser} className="me-2" />
                     Username
                   </label>
                   <input
                     type="text"
-                    className="form-control custom-input"
+                    className={`form-control ${style.inputField}`}
                     id="username"
                     name="username"
                     value={username}
@@ -201,32 +201,32 @@ function SignUp() {
                   {errors.username && <div className="text-danger">{errors.username}</div>}
                 </div>
                 <div className="form-group mb-3">
-                  <label htmlFor="password" className="custom-label">
+                  <label htmlFor="password" className="customLabel">
                     <FontAwesomeIcon icon={faLock} className="me-2" />
                     Password
                   </label>
                   <input
                     type="password"
-                    className="form-control custom-input"
+                    className={`form-control ${style.inputField }`}
                     id="password"
                     name="password"
                     value={password}
                     placeholder="Enter your password"
                     onChange={handleChange}
                   />
-                  {errors.password && <div className="text-danger">{errors.password}</div>}
+                  {errors.password && <div className="text-danger ">{errors.password}</div>}
                   <div className={`mt-1 ${getPasswordStrengthClass()}`}>
                     {getPasswordStrength()}
                   </div>
                 </div>
                 <div className="form-group mb-3">
-                  <label htmlFor="password2" className="custom-label">
+                  <label htmlFor="password2" className="customLabel">
                     <FontAwesomeIcon icon={faLock} className="me-2" />
                     Confirm Password
                   </label>
                   <input
                     type="password"
-                    className="form-control custom-input"
+                    className={`form-control ${style.inputField }`}
                     id="password2"
                     name="password2"
                     value={password2}
@@ -236,13 +236,13 @@ function SignUp() {
                   {errors.password2 && <div className="text-danger">{errors.password2}</div>}
                 </div>
                 <div className="form-group mb-3">
-                  <label htmlFor="country" className="custom-label">
+                  <label htmlFor="country" className="customLabel">
                     <FontAwesomeIcon icon={faHome} className="me-2" />
                     Country
                   </label>
                   <input
                     type="text"
-                    className="form-control custom-input"
+                    className={`form-control ${style.inputField }`}
                     id="country"
                     name="country"
                     value={country}
@@ -252,12 +252,12 @@ function SignUp() {
                   {errors.country && <div className="text-danger">{errors.country}</div>}
                 </div>
                 <div className="form-group mb-3">
-                  <label htmlFor="age" className="custom-label">
+                  <label htmlFor="age" className="customLabel">
                     <FontAwesomeIcon icon={faUser} className="me-2" />
                     Age
                   </label>
                   <select
-                    className="form-select custom-input"
+                    className="form-select "
                     id="age"
                     name="age"
                     value={age}
@@ -282,7 +282,7 @@ function SignUp() {
                   </label>
                 </div>
                 <div className="form-group mb-3 text-center">
-                  <button type="submit" className="btn btn-purple w-50">Sign Up</button>
+                  <button type="submit" className={`btn  w-50 ${style.btnPurple}` }>Sign Up</button>
                 </div>
                 <p className="text-center">
                   Do you have an account?{" "}

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom"; 
-import './FP.css';
+import './FP.module.css';
 
 class FP extends Component {
     constructor(props) {

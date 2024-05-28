@@ -117,7 +117,7 @@ export class Pricing extends Component {
             <div className="company flex-fill">
               <div className="card mb-4 shadow-sm">
                 <div className="card-header">
-                  <h4 className="my-0 font-weight-normal">Company</h4>
+                  <h4 className="my-0 font-weight-normal">Enterprise</h4>
                 </div>
                 <div className="card-body">
                   <h1 className="card-title pricing-card-title">{premiumPrice} <small className="text-muted"></small></h1>

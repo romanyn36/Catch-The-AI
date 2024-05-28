@@ -44,6 +44,9 @@ function NavbarLoggedOut() {
               <li className="nav-item">
                 <Link className="nav-link" to="/AboutUs">About Us</Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/UserProfile">profile</Link>
+              </li>
             </ul>
             <div className="d-flex">
               <Link className="btn btn-outline-light me-3 rounded-pill" to="/sign-up">Sign Up</Link>
