@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const useFetchData = (url, options = []) => {
     // console.log("my parms", options);
     const [ method = 'GET', body = null, headers = {} ] = options;
-    console.log("my splited parms", method, body, headers);
+    // console.log("my splited parms", method, body, headers);
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -22,7 +22,7 @@ const useFetchData = (url, options = []) => {
                 })
                 .then((data) => {
                     setData(data);
-                    console.log("data", data);
+                    // console.log("data", data);
                     setLoading(false);
                 })
                 .catch((error) => {
@@ -34,7 +34,7 @@ const useFetchData = (url, options = []) => {
         fetchData();
         // return ()=>{}
     }
-        , [url]);
+        , []);
 
     return { data, loading, error };
 };
