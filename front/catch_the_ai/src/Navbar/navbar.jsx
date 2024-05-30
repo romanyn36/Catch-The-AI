@@ -1,26 +1,62 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import './navbar.css';
-import NavbarLoggedIn from '../nav2/Navbar.jsx';
+import { BASE_DOMAIN_URL } from '../index';
+
 
 export class Navbar extends Component {
-  state = {
-    isLoggedIn: false, 
-  };
 
-  handleLogin = () => {
-    this.setState({ isLoggedIn: true });
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false,
+      userData: null,
+      imageurl: "images/prof.png"
+      // "images/user.svg"
+    };
+  }
+
+  componentDidMount() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.setState({ isLoggedIn: true });
+      this.fetchUserData(token);
+    }
+  }
+  fetchUserData = async (token) => {
+    try {
+      const response = await fetch(BASE_DOMAIN_URL + '/get_user_info/', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        const img = `${BASE_DOMAIN_URL}/${data.image}`
+        // console.log("image", img)
+        this.setState({ userData: data, imageurl: img });
+
+        // console.log('User data:', data);
+      } else {
+        console.error('Failed to fetch user data');
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  }
+
 
   handleLogout = () => {
+    localStorage.removeItem('token');
     this.setState({ isLoggedIn: false });
   };
 
   render() {
-    const { isLoggedIn } = this.state;
+    const { isLoggedIn,_,  imageurl} = this.state;
 
     return (
-      <nav className="navbar navbar-expand-lg fixed-top">
+      <nav className="navbar navbar-expand-lg ">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <span className="navbar-title">Catch The AI</span>
@@ -47,13 +83,13 @@ export class Navbar extends Component {
               {!isLoggedIn ? (
                 <>
                   <Link className="btn btn-outline-light me-3 rounded-pill" to="/sign-up">Sign Up</Link>
-                  <Link className="btn btn-outline-light me-3 rounded-pill" style={{ backgroundColor: "#c34da9", color: 'white' }} to="/sign-in" onClick={this.handleLogin}>Sign In</Link>
+                  <Link className="btn btn-outline-light me-3 rounded-pill" style={{ backgroundColor: "#c34da9", color: 'white' }} to="/sign-in">Sign In</Link>
                 </>
               ) : (
                 <>
                   <ul className="navbar-nav mb-2 mb-lg-0">
                     <li className="nav-item">
-                      <a className="nav-link" aria-current="page" href="#" onClick={this.handleLogout}>Logout</a>
+                      <a className="nav-link" aria-current="page" href="/" onClick={this.handleLogout}>Logout</a>
                     </li>
                     <li className="nav-item dropdown">
                       <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -66,8 +102,8 @@ export class Navbar extends Component {
                       </ul>
                     </li>
                     <li className="nav-item d-flex">
-                      <a className="nav-link" aria-current="page" href="#">User</a>
-                      <img src="images/user.svg" alt="" className="profileImg" />
+                      <Link className="nav-link" to="/UserProfile">User</Link>
+                      <a href="/UserProfile" ><img src={imageurl} alt="" className="profileImg" /></a>
                     </li>
                   </ul>
                 </>

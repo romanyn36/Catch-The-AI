@@ -1,7 +1,7 @@
-.custom-navbar {
+.customNavbar {
   position: fixed; /* Stick the navbar to the top of the page */
   width: 90%;
-  background-color: #4d3670; /* Set the background color */
+   background-color: #202542 !important;
   
 
 }
@@ -85,3 +85,10 @@
     margin-right: 15px;
   }
 }
+
+.profileImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
