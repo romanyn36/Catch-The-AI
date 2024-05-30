@@ -4,10 +4,17 @@ import os
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    try:
-        return f'user_{instance.user.name}/{filename}'
-    except:
-        return f'user_{instance.name}/{filename}'
+    # check inistane type
+    if isinstance(instance, Users):
+         # in case of user or user and admin table 
+        return f'user__{instance.pk}_{instance.name}/{filename}'
+    elif isinstance(instance, Admin):
+        # in case of admin table
+        return f'{instance.role}_{instance.pk}_{instance.name}/{filename}'
+    elif isinstance(instance, DataHistory):
+        # in data history table
+        return f'user_{instance.pk}_{instance.user.name}/{filename}'
+       
 
 class Subscription(models.Model):
     plan_name = models.CharField(max_length=100)
@@ -43,12 +50,13 @@ class Users(models.Model):
         # Check if a new image was uploaded
         if self.pk:
             try:
-                old_course = Users.objects.get(pk=self.pk)
-                if old_course.image != self.image:
-                    if old_course.image.name != 'default.jpg':
+                old_user = Users.objects.get(pk=self.pk)
+           
+                if old_user.image != self.image :
+                    if old_user.image.name != 'default.png':
                         # Delete the old image file if it exists
-                        if os.path.isfile(old_course.image.path):
-                            os.remove(old_course.image.path)
+                        if os.path.isfile(old_user.image.path):
+                            os.remove(old_user.image.path)
             except Users.DoesNotExist:
                 pass
         super().save(*args, **kwargs)
@@ -63,7 +71,23 @@ class Admin(models.Model):
     username = models.CharField(max_length=100)
     email = models.EmailField()
     password = models.CharField(max_length=50)
-    permission = models.CharField(max_length=50)
+    role = models.CharField(max_length=50,default='staff')
+    image=models.ImageField(upload_to=user_directory_path,default='default.png')
+     # replace the image if alreeady exist
+    def save(self, *args, **kwargs):
+        # Check if a new image was uploaded
+        if self.pk:
+            try:
+                old_admin = Admin.objects.get(pk=self.pk)
+                if old_admin.image != self.image:
+                    if old_admin.image.name != 'default.png':
+                        # Delete the old image file if it exists
+                        if os.path.isfile(old_admin.image.path) :
+                            os.remove(old_admin.image.path)
+            except Users.DoesNotExist:
+                pass
+        super().save(*args, **kwargs)
+
 
     def __str__(self):
         return self.name

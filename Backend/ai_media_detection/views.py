@@ -5,6 +5,9 @@ from django.contrib.auth.hashers import check_password, make_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.core.serializers import serialize
+from django.core.serializers.json import DjangoJSONEncoder
+import base64
+from django.core.files.base import ContentFile
 import json
 # add the path to the project root directory
 import sys
@@ -12,8 +15,9 @@ import sys
 # from .ai_generated_media import load_AI_model,predict_AI_generated_media
 # import static
 from django.templatetags.static import static
-from .models import Users,DataHistory,Subscription
+from .models import Users,DataHistory,Subscription,Admin
 from .session_management import create_session,get_user_id_from_token
+from urllib.parse import urlparse
 
 # initialize the model
 # image_model = load_AI_model()
@@ -46,18 +50,19 @@ def login(request):
                 user=user[0]
                 if user.password==password:
                     # generate token
-                    token=create_session(user)
+                    token=create_session(user,'user')
                     return JsonResponse({'message':'successfully login','role':'user','token':token})
                 else:
                     return JsonResponse({'message':'wrong password'})
             
             #admin login
-            user=User.objects.filter(email=username)
+            user=Admin.objects.filter(email=username)
             if user.exists():
                 user=user[0]
-                if user.password==password:
-                  
-                    return JsonResponse({'message':'successfully login','role':'admin'})
+                if user.password == password:
+                    # generate token
+                    token=create_session(user,'admin')
+                    return JsonResponse({'message':'successfully login','role':'admin','token':token})
                 else:
                     return JsonResponse({'message':'wrong password'})
             else:
@@ -70,19 +75,19 @@ def login(request):
             if user.exists():
                 user=user[0]
                 if user.password==password:
-                    token=create_session(user)
+                    token=create_session(user,'user')
                     return JsonResponse({'message':'successfully login','role':'user','token':token})
                 else:
                     return JsonResponse({'message':'wrong password'})
             #admin login
-            user=User.objects.filter(username=username)
+            user=Admin.objects.filter(username=username)
             if user.exists():
                 user=user[0]
             
                 #
-                if user.check_password(password):
-                  
-                    return JsonResponse({'message':'successfully login'})
+                if user.password == password:
+                    token=create_session(user,'admin')
+                    return JsonResponse({'message':'successfully login','role':'admin','token':token})
                 else:
                     return JsonResponse({'message':'wrong password'})
             else:
@@ -116,7 +121,7 @@ def register(request):
                 # create the user
                 user=Users(name=name,username=username,email=email,password=password,age=age,country=country)
                 user.save()
-                token=create_session(user)
+                token=create_session(user,'user')
                 return JsonResponse({'message':'successfully registered','role':'user','token':token})
             
         except ValidationError:
@@ -137,12 +142,10 @@ def get_user_info(request):
             token = auth_header.split(" ")[1]
             # print("token ",token)
             # get username from the token
-            usee_id=get_user_id_from_token(token)
-        
-            role='user'
-            print(role)
+            user_id,role=get_user_id_from_token(token)
+            print("extracted role ",role)
             if role=='user':
-                user=Users.objects.filter(id=usee_id)
+                user=Users.objects.filter(id=user_id)
                 if user.exists():
                     user=user[0]
                     user_info={
@@ -155,16 +158,20 @@ def get_user_info(request):
                         'subscription_start_date':user.subscription_start_date,
                         'subscription_end_date':user.subscription_end_date,
                         'remain_attempts':user.remain_attempts,
-                        'image':user.image.url
+                        'image':user.image.url,
+                        'role':role
                     }
                     return JsonResponse(user_info)
             elif role=='admin':
-                user=User.objects.filter(username=username)
+                user=Admin.objects.filter(id=user_id)
                 if user.exists():
                     user=user[0]
                     user_info={
+                        'name':user.name,
                         'username':user.username,
                         'email':user.email,
+                        'image':user.image.url,
+                        'role':user.role
                     }
                     return JsonResponse(user_info)
                 else:
@@ -299,32 +306,67 @@ def edit_profile(request):
     based on the type that we get from the session we will edit the user info in the database
     """
     if request.method=="POST":
-        data = json.loads(request.body.decode('utf-8'))
-        role='user'
+        data = request.POST
         name=data['name'].strip()
-        username=data['username'].strip()
-        new_username=data['new_username'].strip()
+        new_username=data['username'].strip()
         email=data['email'].strip()
         current_password=data['current_password'].strip()
         new_password=data['new_password'].strip()
-        image=request.FILES['image']
-    
-        if '' in [name,username,new_username,email,current_password,new_password]:
+        image=request.FILES.get('image')
+        try:
+            # print('no image uploaded')
+            image=data['image'].strip()
+            
+        except:
+            # print('image uploaded')
+            image=request.FILES.get('image')
+        # print('image: ',image)
+
+        # get token from the header
+        auth_header = request.headers.get('Authorization')
+        token = auth_header.split(" ")[1]
+        # get username from the token
+        user_id,role=get_user_id_from_token(token)
+        if '' in [name,new_username,email]:
             return JsonResponse({'message':'all fields are required'})
-        user=Users.objects.filter(username=username)
-        if user.exists():
-            user=user[0]
-            if user.password==current_password:
+        
+        # get token from the header
+        else:
+            if role=='user':
+                user=Users.objects.filter(id=user_id)
+            else:
+                user=Admin.objects.filter(id=user_id)
+            if user.exists():
+                user=user[0]
+                user.name=name
                 user.username=new_username
                 user.email=email
-                user.password=new_password
-                user.image=image
-                user.save()
-                return JsonResponse({'message':'successfully edited'})
+                if image is not None:
+                    try:
+                        # replace the %20 with space if the image is just a string for the image path
+                        image= image.replace('%20',' ')
+                        # in case the user removed the image
+                        if image == 'default.png':
+                            user.image='default.png'
+                        elif f'{role}_{user.name}' in image:
+                            # incase the user didn't upload an image 
+                            user.image=image
+
+                    except:
+                        # incase the user uploaded an image
+                        user.image=image
+                    
+                if current_password=='' and new_password=='':
+                    user.save()
+                    return JsonResponse({'message':'successfully edited','status':1})
+                elif user.password==current_password:
+                    user.password=new_password
+                    user.save()
+                    return JsonResponse({'message':'successfully edited','status':1})
+                else:
+                    return JsonResponse({'message':'wrong password','status':0})
             else:
-                return JsonResponse({'message':'wrong password'})
-        else:
-            return JsonResponse({'message':'user not found'})
+                return JsonResponse({'message':'user not found','status':0})
     return HttpResponse('you have to use post method to edit the profile')
 
 

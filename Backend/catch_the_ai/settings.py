@@ -141,5 +141,9 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 # allow all origins
 CORS_ALLOW_ALL_ORIGINS = True
+# List of allowed origins (e.g., 'http://example.com', 'https://example.com')
+CORS_ALLOWED_ORIGINS = [
+    # 'http://localhost:3000',
+]
 
 

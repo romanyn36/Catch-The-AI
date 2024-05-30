@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from rest_framework.exceptions import AuthenticationFailed
 from .models import Users
 
-def create_session(user: Users) -> str:
+def create_session(user,user_type) -> str:
     """Create a session for the user and return the token
     Args:
         user (Users): The user for which the session is to be created
@@ -16,7 +16,8 @@ def create_session(user: Users) -> str:
     payload = {
         'user_id': user.id,
         'exp': datetime.now() + timedelta(days=1),
-        'iat': datetime.now()
+        'iat': datetime.now(),
+        'type': user_type
     }
     token = jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
     token = token.decode('utf-8')
@@ -26,12 +27,15 @@ def get_user_id_from_token(token):
         # Decode the token using the secret key
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
         user_id = payload['user_id']
-        return user_id
+        user_type = payload['type']
+        return user_id,user_type
     except jwt.ExpiredSignatureError:
         # Handle token expiration error
-        print("Token has expired.")
-        return None
+        message = "Token expired."
+        print(message)
+        return message
     except jwt.InvalidTokenError:
         # Handle invalid token error
-        print("Invalid token.")
-        return None
+        message = "Invalid token."
+        print(message)
+        return message
