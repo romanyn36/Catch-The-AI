@@ -4,10 +4,12 @@ import style from "./UpdateProfile.module.css";
 import { useState, useEffect } from 'react';
 import useFetchData from '../utils/useFetchData';
 import { BASE_DOMAIN_URL } from '../index';
-function UpdateProfile() {
 
+function UpdateProfile() {
   const [userData, setUserData] = useState({
     name: "name ",
+    firstname: "firstname",
+    lastname: "lastname",
     username: "username",
     email: "empty@gmail.com",
     age: -8,
@@ -18,10 +20,14 @@ function UpdateProfile() {
     remain_attempts: 5,
     image: "images/user.svg",
     role: "user",
+    newPassword: "",
+    confirmPassword: "",
+    currentPassword: "",
   });
 
   // session token
   const token = localStorage.getItem('token');
+  console.log("token", token);
   const headers = {
     'Authorization': `Bearer ${token}`,
   };
@@ -38,6 +44,21 @@ function UpdateProfile() {
     // console.log("getdata", data);
     if (data) {
       setUserData(data);
+      // set firstname and lastname
+      const { name, ...rest } = data;
+      // split until the first space  and take the first part as the first name and the rest as the last name
+      const [firstname, ...lastnameParts] = name.split(' ');
+      const lastname = lastnameParts.join(' ');
+      console.log("firstname", firstname);
+      console.log("lastname", lastname);
+      setUserData((prevUserData) => ({
+        ...prevUserData,
+        firstname: firstname,
+        lastname: lastname,
+        newPassword: "",
+        confirmPassword: "",
+        currentPassword: "",
+      }));
     }
 
   }, [data]);
@@ -50,16 +71,12 @@ function UpdateProfile() {
     return <div>Error: {error.message}</div>;
   }
 
-  const { name, username, email, age, address, subscription, subscription_start_date, subscription_end_date, remain_attempts, image, role } = userData;
-  const firstname = name.split(" ")[0];
-  const lastname = name.split(" ")[1];
+  const { name, firstname, lastname, username, email,
+    age, address, subscription, subscription_start_date,
+    subscription_end_date, remain_attempts, image, role, newPassword, confirmPassword, currentPassword } = userData;
 
   const handleSaveChanges = (e) => {
     e.preventDefault();
-
-    const newPassword = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confPassword').value;
-    const currentPassword = document.getElementById('currPassword').value;
     const inputfile = document.getElementById('fileInput').files[0];
 
     // get the image data
@@ -81,9 +98,10 @@ function UpdateProfile() {
       console.log("Passwords do not match");
       return;
     }
+
     // create a form data object to send the data to the server
     var body = new FormData();
-    body.append('name', name);
+    body.append('name', firstname + ' ' + lastname);
     body.append('username', username);
     body.append('email', email);
     body.append('new_password', newPassword);
@@ -113,7 +131,7 @@ function UpdateProfile() {
       if (response.ok) {
         const data = await response.json();
 
-        console.log('User data:', data);
+        // console.log('User data:', data);
         // if the user data is updated successfully
         if (data.status === 1) {
           // redirect the user to the profile page
@@ -127,9 +145,14 @@ function UpdateProfile() {
     }
   }
   const handleChange = (e) => {
-    // const { name,id, value } = e.target;
-    // setUserData({ ...userData, [name]: value });
-  }
+    const { id, value } = e.target;
+    // console.log(id, value);
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      [id]: value || '',
+    }));
+  };
+
   const deleteImage = () => {
     console.log("delete image");
     const image = document.getElementById('profile_image');
@@ -139,6 +162,7 @@ function UpdateProfile() {
     const fileInput = document.getElementById('fileInput');
     fileInput.value = null;
   }
+
   const editImage = () => {
     //open the file dialog
     const fileInput = document.getElementById('fileInput');
@@ -188,45 +212,45 @@ function UpdateProfile() {
       <form onSubmit={handleSaveChanges}>
         <div className={style.profileContent}>
           <div className="mb-5">
-            <label htmlFor="FnameEmail1" className="form-label">First Name</label>
-            <input type="text" className="form-control" id="FnameEmail1" value={firstname} onChange={handleChange} placeholder="User" />
+            <label htmlFor="firstname" className="form-label">First Name</label>
+            <input type="text" className="form-control" id="firstname" value={firstname} onChange={handleChange} placeholder="User" />
           </div>
           <div className="mb-5">
-            <label htmlFor="LnameEmail1" className="form-label">Last Name</label>
-            <input type="text" className="form-control" id="LnameEmail1" value={lastname} onChange={handleChange} placeholder="User" />
+            <label htmlFor="lastname" className="form-label">Last Name</label>
+            <input type="text" className="form-control" id="lastname" value={lastname} onChange={handleChange} placeholder="User" />
           </div>
         </div>
         <div className={style.profileContent}>
           <div className="mb-5">
-            <label htmlFor="UnameEmail1" className="form-label">User Name</label>
-            <input type="text" className="form-control" id="UnameEmail1" value={username} onChange={handleChange} placeholder="User" />
+            <label htmlFor="username" className="form-label">UserName</label>
+            <input type="text" className="form-control" id="username" value={username} onChange={handleChange} placeholder="User" />
           </div>
           <div className="mb-5">
-            <label htmlFor="emailEmail1" className="form-label">Email</label>
-            <input type="email" className="form-control" id="emailEmail1" value={email} onChange={handleChange} placeholder="User@" />
+            <label htmlFor="email" className="form-label">Email</label>
+            <input type="email" className="form-control" id="email" value={email} onChange={handleChange} placeholder="User@" />
           </div>
         </div>
         <div className="borderDiv"></div>
 
         <div className={style.profileContent}>
           <div className="mb-5">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input type="password" className="form-control" onChange={handleChange} id="password" />
+            <label htmlFor="newPassword" className="form-label">New Password</label>
+            <input type="password" className="form-control" id="newPassword" value={newPassword} onChange={handleChange} />
           </div>
-          <div className="mb-5">
-            <label htmlFor="confPassword" className="form-label">Confirm Password</label>
-            <input type="password" className="form-control" onChange={handleChange} id="confPassword" />
+          <div className="mb-5 ">
+            <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+            <input type="password" className="form-control" id="confirmPassword" value={confirmPassword} onChange={handleChange} />
           </div>
         </div>
         <div className={`mb-5 ${style.differ}`}>
-          <label htmlFor="currPassword" className="form-label">Current Password</label>
-          <input type="password" className="form-control" onChange={handleChange} id="currPassword" />
+          <label htmlFor="currentPassword" className="form-label">Current Password</label>
+          <input type="password" className="form-control" id="currentPassword" value={currentPassword} onChange={handleChange} />
         </div>
         <div className="d-flex justify-content-end">
-          <button type="button" className={`btn btn-primary ${style.deleteBtn2}`}>
+          <button type="button" className={`btn btn-dark ${style.deleteBtn2}`}>
             <Link to="/UserProfile">Cancel</Link></button>
 
-          <button type="submit" className={`btn btn-primary ${style.submitBtn}`}>Save Changes</button>
+          <button type="submit" className={`btn ${style.submitBtn}`} style={{ backgroundColor: "#384D6C",color:'white'}}>Save Changes</button>
         </div>
       </form>
 
