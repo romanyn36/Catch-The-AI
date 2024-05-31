@@ -22,6 +22,8 @@ from urllib.parse import urlparse
 # initialize the model
 # image_model = load_AI_model()
 
+def home(request):
+    return render(request,'home.html')
 
 def login(request):
     """
@@ -256,13 +258,30 @@ def get_user_history(request):
     based on the type that we get from the session we will get the user history from the database
     """
     if request.method=="GET":
-        
         # get username from params
-        username=request.GET['username']
+        auth_header = request.headers.get('Authorization')
+        token = auth_header.split(" ")[1]
+        user_id,role=get_user_id_from_token(token)
         # get user from the database
-        role='user'
-        print(role) 
-        role='user'
+        print("extracted role: ",role) 
+        if role == 'user':
+            user = Users.objects.filter(id=user_id).first()
+            history = DataHistory.objects.filter(user=user)
+            hist = []
+            for h in history:
+                hist.append({
+                    'media_id': h.id,
+                    'media_name': h.media_name,
+                    'image': h.image.url if h.image else "",  # Check if h.image is not None
+                    'audio': h.audio.url if h.audio else "",  # Check if h.audio is not None
+                    'text': h.text if h.text else "",  # Check if h.text is not None
+                    'attemptTime': h.attemptTime,
+                    'modelResult': h.modelResult,
+                    'media_size': h.media_size
+                })
+            hist={'history':hist}
+            # print(hist)
+            return JsonResponse(hist)
         if role=='admin':
             user=User.objects.filter(username=username).first()
             history=DataHistory.objects.filter(user=user).first()
@@ -280,25 +299,32 @@ def get_user_history(request):
             hist={'history':hist}
             
             return JsonResponse(hist)
-        elif role == 'user':
-            user = Users.objects.filter(username=username).first()
-            history = DataHistory.objects.filter(user=user)
-            hist = []
-            for h in history:
-                hist.append({
-                    'media_name': h.media_name,
-                    'image': h.image.url if h.image else "",  # Check if h.image is not None
-                    'audio': h.audio.url if h.audio else "",  # Check if h.audio is not None
-                    'text': h.text if h.text else "",  # Check if h.text is not None
-                    'attemptTime': h.attemptTime,
-                    'modelResult': h.modelResult,
-                    'media_size': h.media_size
-                })
-            hist={'history':hist}
-            # print(hist)
-            return JsonResponse(hist)
+        
     return HttpResponse('error')
-
+def get_detected_media(request):
+    if request.method=="GET":
+        # get username from params
+        auth_header = request.headers.get('Authorization')
+        token = auth_header.split(" ")[1]
+        # get mdeia id from the params
+        media_id=request.GET.get('media_id')
+        user_id,role=get_user_id_from_token(token)
+        # get user from the database
+        user = Users.objects.filter(id=user_id).first()
+        # print("username: ",user.username,"media_id: ",media_id)
+        h = DataHistory.objects.filter(user=user,id=media_id).first()
+        history={
+                'media_id': h.id,
+                'media_name': h.media_name,
+                'image': h.image.url if h.image else "",  # Check if h.image is not None
+                'audio': h.audio.url if h.audio else "",  # Check if h.audio is not None
+                'text': h.text if h.text else "",  # Check if h.text is not None
+                'attemptTime': h.attemptTime,
+                'modelResult': h.modelResult,
+                'media_size': h.media_size
+            }
+        hist={'history':history}
+        return JsonResponse(hist)
 def edit_profile(request):
     """
     This function is used to edit the user info
@@ -313,6 +339,7 @@ def edit_profile(request):
         current_password=data['current_password'].strip()
         new_password=data['new_password'].strip()
         image=request.FILES.get('image')
+        print(f" new password {new_password} current password {current_password}")
         try:
             # print('no image uploaded')
             image=data['image'].strip()
