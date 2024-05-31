@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom"; 
-import './FP.module.css';
+import style from "./FP.module.css";
 
 class FP extends Component {
     constructor(props) {
@@ -43,13 +43,14 @@ class FP extends Component {
 
     render() {
         return (
-            <div className="fp-container">
-                <h2>Forgot your password?</h2>
-                <p>No worries! Enter your email below and we’ll send you a link to reset your password.</p>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input
+            <div className={style.fpContainer}>
+
+                <h2 className={style.h2}>Forgot your password?</h2>
+                <p className={style.p} >No worries! Enter your email below and we’ll send you a link to reset your password.</p>
+                <form className={style.form } onSubmit={this.handleSubmit}>
+                    <div className={style.formGroup}>
+                        <label className={style.label} htmlFor="email">Email</label>
+                        <input className={style.input}
                             type="email"
                             id="email"
                             placeholder="user@example.com"
@@ -58,9 +59,10 @@ class FP extends Component {
                             required
                         />
                     </div>
-                    <Link to="/VP" className="btn1">Send Code to Reset</Link>
+                    <Link to="/VP" className={style.btn1}
+                    >Send Code to Reset</Link>
                 </form>
-                <a href="/sign-in" className="back-to-signin">Back to Sign-in</a>
+                <a href="/sign-in" className="backToSignin">Back to Sign-in</a>
             </div>
         );
     }
