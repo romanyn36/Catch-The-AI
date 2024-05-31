@@ -5,7 +5,6 @@ from django.contrib.auth.hashers import check_password, make_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.core.serializers import serialize
-from django.core.serializers.json import DjangoJSONEncoder
 import base64
 from django.core.files.base import ContentFile
 import json
