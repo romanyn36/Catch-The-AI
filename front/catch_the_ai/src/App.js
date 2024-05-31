@@ -11,15 +11,16 @@ import FAQs from './FAQs/FAQs';
 import { PrivacyPolicy } from './Footer/PrivacyPolicy';
 import './App.css';
 import SignUp from './Sign_Up/SignUp';
-import Admin from './Admin/admin'
 import Sign_In from './Sign-In/Sign_In';
 import FP from './Sign-In/forget_password/FP';
 import VP from './Sign-In/password_verification/VP';
 import UserProfile from './profile/UserProfile';
 import UpdateProfile from './profile/UpdateProfile';
-import AdminProfile from './profile/AdminProfile';
 import Home from './Home/Home';
 import { AboutUs } from './Navbar/AboutUs/AboutUs';
+import UserHistory from './profile/history/UserHistory';  // Correctly imports the default export
+import DetectedMedia from './profile/history/DetectedMedia';
+
 
 
 export default class App extends Component {
@@ -30,7 +31,7 @@ export default class App extends Component {
 
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home/>} />
+            <Route path="/" element={<Home />} />
             <Route path="/image-detector" element={<ImageDetector />} />
             <Route path="/Pricing" element={<Pricing />} />
             <Route path="/audio-detector" element={<AudioDetector />} />
@@ -43,12 +44,14 @@ export default class App extends Component {
             <Route path="/VP" element={<VP />} />
 
             <Route path="/Sign-Up" element={<SignUp />} />
-            <Route path="/admin" element={<Admin />} />
             <Route path="/footer" element={<Footer />} />
             <Route index path="/UserProfile" element={<UserProfile />} />
-            <Route  path="/UpdateProfile" element={<UpdateProfile />} />
-            <Route path="/AdminProfile" element={<AdminProfile />} />
-            <Route path ="/AboutUs" element={<AboutUs />} />
+            <Route path="/UpdateProfile" element={<UpdateProfile />} />
+            <Route path="/AboutUs" element={<AboutUs />} />
+            <Route path="/AboutUs" element={<AboutUs />} />
+            <Route path="/UserHistory" element={<UserHistory />} />
+            <Route path="/DetectedMedia/:media_id" element={<DetectedMedia />} />
+            <Route path="*" element={<div className='container' style={{ backgroundColor: "#e6d1d0" }}><h1>this page Not Found</h1></div>} />
 
           </Routes>
           <Footer />
