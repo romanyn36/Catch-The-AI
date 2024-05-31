@@ -53,7 +53,7 @@ export class Navbar extends Component {
   };
 
   render() {
-    const { isLoggedIn,_,  imageurl} = this.state;
+    const { isLoggedIn, _, imageurl } = this.state;
 
     return (
       <nav className="navbar navbar-expand-lg ">
@@ -91,18 +91,30 @@ export class Navbar extends Component {
                     <li className="nav-item">
                       <a className="nav-link" aria-current="page" href="/" onClick={this.handleLogout}>Logout</a>
                     </li>
+
                     <li className="nav-item dropdown">
                       <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i className="fa-regular fa-bell"></i>
                       </a>
                       <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                        <li><a className="dropdown-item" href="#">noticfication from romany...</a></li>
                         <li><hr className="dropdown-divider" /></li>
-                        <li><a className="dropdown-item" href="#">Something else here</a></li>
+                        <li><a className="dropdown-item" href="#">subscripe now and get mo....</a></li>
                       </ul>
                     </li>
-                    <li className="nav-item d-flex">
-                      <Link className="nav-link" to="/UserProfile">User</Link>
+                    <li className="nav-item dropdown d-flex">
+                      <a className="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i className="bi bi-person-circle me-2"></i>
+                        <span>user</span>
+                      </a>
+                      <ul className="dropdown-menu">
+                        <li><Link className="nav-link text-body-secondary" to="/UserProfile">profile</Link></li>
+                        <li><hr className="dropdown-divider" /></li>
+                        <li><Link className="nav-link text-body-secondary" to="/UserHistory">History</Link></li>
+                      </ul>
+                    </li>
+
+                    <li className="nav-item ">
                       <a href="/UserProfile" ><img src={imageurl} alt="" className="profileImg" /></a>
                     </li>
                   </ul>
@@ -111,7 +123,7 @@ export class Navbar extends Component {
             </div>
           </div>
         </div>
-      </nav>
+      </nav >
     );
   }
 }
