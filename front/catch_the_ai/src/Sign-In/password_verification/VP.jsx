@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './VP.css';
+import style from "./VP.module.css";
 
 export class VP extends Component {
     constructor(props) {
@@ -27,14 +27,15 @@ export class VP extends Component {
 
     render() {
         return (
-            <div className="verification-container">
-                <h2 className="t1">Verification</h2>
-                <p className="p1">A verification code has been sent to your email. Please enter the code below:</p>
+            <div className={style.verificationContainer}>
+                <h2 className={style.t1}>Verification</h2>
+                <p className={style.p1}>A verification code has been sent to your email. Please enter the code below:</p>
                 <form onSubmit={this.handleSubmit}>
-                    <div className="verification-code">
+                    <div className={style.verificationCode}>
                         {/* Map over each digit of the code and render a square input */}
                         {this.state.code.map((digit, index) => (
-                            <input
+                            <input 
+                            className={style.inputField}
                                 key={index}
                                 type="text"
                                 maxLength="1"
@@ -44,7 +45,7 @@ export class VP extends Component {
                             />
                         ))}
                     </div>
-                    <button type="submit" className="btn6">Verify</button>
+                    <button type="submit" className={style.btn6}>Verify</button>
                 </form>
             </div>
         );
