@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useFetchData from '../utils/useFetchData';
-import './profile.css';
+import style from './UserProfile.module.css';
 import { BASE_DOMAIN_URL } from '../index';
 
 function UserProfile() {
@@ -54,86 +54,107 @@ function UserProfile() {
 
   const { name, username, email, age, address, subscription, subscription_start_date, subscription_end_date, remain_attempts, image, role } = userData;
   console.log("role", role)
-  const firstname = name.split(" ")[0];
-  const lastname = name.split(" ")[1];
+  const [firstname, ...lastnameParts] = name.split(' ');
+  const lastname = lastnameParts.join(' ');
   return (
-    <div className="container p-0 formDiv secondDivv">
-      <form>
-        <h3>User Profile</h3>
+    <div className={`container  ${style.formDiv} ${style.secondDivv}`}>
 
-        <div className="profile">
-          <img src={BASE_DOMAIN_URL + image} alt="" />
-          <div>
-            <h5>{name}</h5>
-            {role !== 'user' ? <p>{role}</p> : null}
-          </div>
+      <div className='row p-2  w-100 justify-content-top align-items-start'>
+        <div className="col-lg-12 d-flex flex-column  justify-content-center align-items-center">
+          <h3 className=" d-inline">User Profile</h3>
+          <img src={BASE_DOMAIN_URL + image} style={{ width: "170px", height: "170px", borderRadius: "50%", padding: "2px" }} alt="" />
+          <h3>{name}</h3>
+          {role !== 'user' ? <p>Role: {role}</p> : null}
         </div>
-        <h3>User Info</h3>
+        <div className="col-lg-12 pt-3">
+          <div className='row p-2  w-100 justify-content-top align-items-start'>
 
-        <div className="row profileContent">
-          <div className="col-md-6 mb-3">
-            <label className="form-label">First Name: </label>
-            <h4>{firstname}</h4>
-          </div>
-          <div className="col-md-6 mb-3">
-            <label className="form-label">Last Name: </label>
-            <h4>{lastname}</h4>
-          </div>
-        </div>
-        <div className="row profileContent">
-          <div className="col-md-6 mb-3">
-            <label className="form-label">Username: </label>
-            <h4>{username}</h4>
-          </div>
-          <div className="col-md-6 mb-3">
-            <label className="form-label">Email: </label>
-            <h4>{email}</h4>
-          </div>
-        </div>
-        <button type="submit" className="btn editBtn">
-          <Link to="/UpdateProfile">Edit Profile <i className="fa-regular fa-pen-to-square"></i></Link>
-        </button>
-
-
-        {role == 'user' ? (
-          <div>
-            <div className="borderDiv"></div>
-            <h3> Subscription Info</h3>
-            <div className="profileContent">
-              <div className="mb-3">
-                <label htmlFor="FnameEmail1" className="form-label">
-                  Plan Name:
-                </label>
-                <h4>{subscription}</h4>
+            <div className="col-lg-3  justify-content-top align-items-start">
+              <div className='mb-lg-5'>
+                {/* <h3>{name}</h3>
+                {role !== 'user' ? <p>Role: {role}</p> : null} */}
               </div>
-              <div className="mb-3">
-                <label htmlFor="LnameEmail1" className="form-label">
-                  Remain Attempts:
-                </label>
-                <h4>{remain_attempts}</h4>
+              
+              {role == 'user' ? <h3>User Info</h3> : null}
+            </div>
+            <div className='col-lg-9  justify-content-top align-items-start'>
+              <div className={`row ${style.profileContent}`}>
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">First Name: </label>
+                  <h4 className='bg-white border border-3 rounded p-2'>{firstname}</h4>
+                </div>
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Last Name: </label>
+                  <h4 className='bg-white border border-3 rounded p-2'>{lastname}</h4>
+                </div>
+              </div>
+              <div className={`row ${style.profileContent}`}>
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Username: </label>
+                  <h4 className='bg-white border border-3 rounded p-2'>{username}</h4>
+                </div>
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Email: </label>
+                  <h4 className='bg-white border border-3 rounded p-2'>{email}</h4>
+                </div>
+              </div>
+              <div className=" d-flex justify-content-center">
+                <button className="btn " style={{ backgroundColor: "#384D6C", color: 'white' }}>
+                  <Link to="/UpdateProfile" style={{ color: 'white' }}>Edit Profile <i className="ms-2 fa-regular fa-pen-to-square"></i></Link>
+                </button>
               </div>
             </div>
-            <div className="profileContent">
-              <div className="mb-3">
-                <label htmlFor="FnameEmail1" className="form-label">
-                  Start Date:
-                </label>
-                <h4>{subscription_start_date}</h4>
+          </div>
+          {role == 'user' ? (
+            <div>
+              <div style={{ width: "95%", height: "4px", backgroundColor: "#86867e", margin: "20px auto" }}></div>
+              <div className='row p-2  w-100 justify-content-top align-items-start'>
+                <div className="col-lg-3 justify-content-top align-items-start">
+                  <h3> Subscription Info</h3>
+                </div>
+                <div className="col-lg-9  justify-content-top align-items-start">
+                  <div className="row p-2  w-100 justify-content-top align-items-start">
+
+                    <div className="col-md-6 mb-3">
+                      <label htmlFor="FnameEmail1" className="form-label">
+                        Plan Name:
+                      </label>
+                      <h4 className='bg-white border border-3 rounded p-2'>{subscription}</h4>
+                    </div>
+                    <div className="col-md-6 mb-3">
+                      <label htmlFor="LnameEmail1" className="form-label">
+                        Remain Attempts:
+                      </label>
+                      <h4 className='bg-white border border-3 rounded p-2'>{remain_attempts}</h4>
+                    </div>
+                  </div>
+                  <div className="row p-2  w-100 justify-content-top align-items-start">
+                    <div className="col-md-6 mb-3">
+                      <label htmlFor="FnameEmail1" className="form-label">
+                        Start Date:
+                      </label>
+                      <h4 className='bg-white border border-3 rounded p-2'>{subscription_start_date}</h4>
+                    </div>
+                    <div className="col-md-6 mb-3">
+                      <label htmlFor="LnameEmail1" className="form-label">
+                        End Date:{" "}
+                      </label>
+                      <h4 className='bg-white border border-3 rounded p-2'>{subscription_end_date}</h4>
+                    </div>
+
+
+                  </div>
+                  <div className="d-flex   justify-content-center">
+                    <button className="btn " style={{ backgroundColor: "#384D6C", color: 'white' }}>
+                      <Link to="/UpdateProfile" style={{ color: 'white' }}>Change Plan<i className="ms-2 fa-regular fa-pen-to-square"></i></Link>
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="mb-3">
-                <label htmlFor="LnameEmail1" className="form-label">
-                  End Date:{" "}
-                </label>
-                <h4>{subscription_end_date}</h4>
-              </div>
-            </div>
-            <div className="d-flex justify-content-end">
-              <button type="button" className="btn deleteBtn2">
-                Change Plan
-              </button>
-            </div>
-          </div>) : null}
-      </form>
+            </div>) : null}
+
+        </div>
+      </div>
     </div>
   );
 }
