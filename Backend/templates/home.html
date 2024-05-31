@@ -1,0 +1,16 @@
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Home</h1>
+            <button id="website_btn" >Go to Main page </button>
+        </div>
+    </div>
+</div>
+<script>
+    console.log('Home');
+    document.getElementById('website_btn').addEventListener('click', function(){
+        window.location.href = 'http://localhost:3000/';
+    });
+</script>
+{% endblock %}
