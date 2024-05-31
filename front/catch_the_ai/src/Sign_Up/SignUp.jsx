@@ -7,7 +7,7 @@ import { faUser, faEnvelope, faLock, faHome, } from "@fortawesome/free-solid-svg
 // import signupImage from "./signup.jpg";
 import signupImage from "./sign-up2.jpeg";
 import style from "./SignUp.module.css";
-import{BASE_DOMAIN_URL} from '../index';
+import { BASE_DOMAIN_URL } from '../index';
 
 
 
@@ -112,7 +112,7 @@ function SignUp() {
 
   const { name, email, username, country, age, password, password2, rememberMe, errors, } = userInfo;
 
-  const { post, response, error } = useFetch(BASE_DOMAIN_URL+'/register/');
+  const { post, response, error } = useFetch(BASE_DOMAIN_URL + '/register/');
   const register = async () => {
     const registerInfo = { name, email, username, country, age, password };
     // const options = ['POST', registerInfo];
@@ -146,43 +146,41 @@ function SignUp() {
       <div className="container my-5">
         <div className="row justify-content-center">
           <div className="col-lg-10 col-md-12 d-flex flex-wrap bg-white rounded shadow">
-            <div className="col-lg-6 d-flex align-items-center justify-content-center p-0">
+            <div className="col-lg-6 d-flex align-items-center justify-content-center p-5">
               <img src={signupImage} alt="Signup" className={style.imgFluid} />
             </div>
             <div className="col-lg-6 p-4">
               <form onSubmit={handleSubmit}>
                 <h2 className={`text-center display-6 ${style.customFont} mb-4`}>Sign Up</h2>
-                <div className="form-group mb-3">
-                  <label htmlFor="name" className="customLabel">
-                    <FontAwesomeIcon icon={faUser} className="me-2" />
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    className={`form-control ${style.inputField }`}
-                    id="name"
-                    name="name"
-                    value={name}
-                    placeholder="Enter your Name"
-                    onChange={handleChange}
-                  />
-                  {errors.name && <div className="text-danger">{errors.name}</div>}
-                </div>
-                <div className="form-group mb-3">
-                  <label htmlFor="email" className="customLabel">
-                    <FontAwesomeIcon icon={faEnvelope} className="me-2" />
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className={`form-control ${style.inputField }`}
-                    id="email"
-                    name="email"
-                    value={email}
-                    placeholder="Enter your Email"
-                    onChange={handleChange}
-                  />
-                  {errors.email && <div className="text-danger">{errors.email}</div>}
+                <div className="row">
+                  <div className="form-group mb-3">
+                    <label htmlFor="name" className="customLabel">
+                      <FontAwesomeIcon icon={faUser} className="me-2" />
+                      Name
+                    </label>
+                    <input type="text"
+                      className={`form-control ${style.inputField}`}
+                      id="name" name="name" value={name} placeholder="Enter your Name" onChange={handleChange}
+                    />
+                    {errors.name && <div className="text-danger">{errors.name}</div>}
+                  </div>
+                  <div className="form-group mb-3">
+                    <label htmlFor="email" className="customLabel">
+                      <FontAwesomeIcon icon={faEnvelope} className="me-2" />
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      className={`form-control ${style.inputField}`}
+                      id="email"
+                      name="email"
+                      value={email}
+                      placeholder="Enter your Email"
+                      onChange={handleChange}
+                    />
+
+                    {errors.email && <div className="text-danger">{errors.email}</div>}
+                  </div>
                 </div>
                 <div className="form-group mb-3">
                   <label htmlFor="username" className="customLabel">
@@ -207,7 +205,7 @@ function SignUp() {
                   </label>
                   <input
                     type="password"
-                    className={`form-control ${style.inputField }`}
+                    className={`form-control ${style.inputField}`}
                     id="password"
                     name="password"
                     value={password}
@@ -226,7 +224,7 @@ function SignUp() {
                   </label>
                   <input
                     type="password"
-                    className={`form-control ${style.inputField }`}
+                    className={`form-control ${style.inputField}`}
                     id="password2"
                     name="password2"
                     value={password2}
@@ -242,7 +240,7 @@ function SignUp() {
                   </label>
                   <input
                     type="text"
-                    className={`form-control ${style.inputField }`}
+                    className={`form-control ${style.inputField}`}
                     id="country"
                     name="country"
                     value={country}
@@ -282,7 +280,7 @@ function SignUp() {
                   </label>
                 </div>
                 <div className="form-group mb-3 text-center">
-                  <button type="submit" className={`btn  w-50 ${style.btnPurple}` }>Sign Up</button>
+                  <button type="submit" className={`btn  w-50 ${style.btnPurple}`}>Sign Up</button>
                 </div>
                 <p className="text-center">
                   Do you have an account?{" "}

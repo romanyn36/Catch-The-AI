@@ -16,27 +16,27 @@ body {
 }
 
 .text-primary {
-  color: #530870 !important;
+  color: #530870 ;
 }
 
 .text-danger {
-  color: #e30505 !important;
+  color: #e30505 ;
 }
 
 .text-success {
-  color: green !important;
+  color: green ;
 }
 
 .text-primary {
-  color: rgb(55, 28, 165) !important;
+  color: rgb(55, 28, 165) ;
 }
 
 .text-danger {
-  color: red !important;
+  color: red ;
 }
 
 .bg-white {
-  background-color: rgba(255, 255, 255, 0.9) !important;
+  background-color: rgba(255, 255, 255, 0.9) ;
 }
 
 .password-strength {
@@ -66,9 +66,8 @@ body {
   margin: 10px auto;
   font-family: cursive;
   color: #000000;
-  background-color: #ad49e0 ;
+  background-color: #f6e4ff ;
   border: 3px solid rgb(247, 243, 249);
-  /* border-radius: 30px;  */
   text-align: left;
 }
 .customLabel {
@@ -80,15 +79,13 @@ body {
   border-color: #6f42c1;
 }
 
-.btn-purple:hover {
+.btnPurple:hover {
   background-color: #5a3b89;
   border-color: #5a3b89;
 }
-body {
-  font-family: cursive;
-}
 
-.img-fluid {
+
+.imgFluid {
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }

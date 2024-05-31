@@ -17,7 +17,6 @@ const MyForm = () => {
 
     // Use the useFetch hook to handle API requests
     const { post, response, error } = useFetch(BASE_DOMAIN_URL+'/login/');
-    // const { post, response, error } = useFetch(BASE_DOMAIN_URL+'/login/');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
