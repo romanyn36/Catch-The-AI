@@ -15,7 +15,7 @@ def create_session(user,user_type) -> str:
     """
     payload = {
         'user_id': user.id,
-        'exp': datetime.now() + timedelta(days=1),
+        'exp': datetime.now() + timedelta(days=30),
         'iat': datetime.now(),
         'type': user_type
     }

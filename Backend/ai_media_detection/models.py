@@ -7,13 +7,18 @@ def user_directory_path(instance, filename):
     # check inistane type
     if isinstance(instance, Users):
          # in case of user or user and admin table 
-        return f'user__{instance.pk}_{instance.name}/{filename}'
+        return f'user_{instance.pk}/{filename}'
     elif isinstance(instance, Admin):
         # in case of admin table
-        return f'{instance.role}_{instance.pk}_{instance.name}/{filename}'
+        return f'staff_{instance.pk}/{filename}'
     elif isinstance(instance, DataHistory):
         # in data history table
-        return f'user_{instance.pk}_{instance.user.name}/{filename}'
+        # cjeck the media type that is not null or empty
+        if instance.image:
+            media_type = 'image'
+        elif instance.audio:
+            media_type = 'audio'
+        return f'user_{instance.user.pk}/{media_type}/{filename}'
        
 
 class Subscription(models.Model):
