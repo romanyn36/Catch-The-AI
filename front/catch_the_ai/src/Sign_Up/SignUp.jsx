@@ -112,7 +112,7 @@ function SignUp() {
 
   const { name, email, username, country, age, password, password2, rememberMe, errors, } = userInfo;
 
-  const { post, response, error } = useFetch(BASE_DOMAIN_URL + '/register/');
+  const { post, response, error } = useFetch(BASE_DOMAIN_URL + '/users/register/');
   const register = async () => {
     const registerInfo = { name, email, username, country, age, password };
     // const options = ['POST', registerInfo];

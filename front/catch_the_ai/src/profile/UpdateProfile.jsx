@@ -34,7 +34,7 @@ function UpdateProfile() {
 
   // Create the options object
 
-  const { data, loading, error } = useFetchData(BASE_DOMAIN_URL + '/get_user_info/', [
+  const { data, loading, error } = useFetchData(BASE_DOMAIN_URL + '/users/get_user_info/', [
     'GET',
     null,
     headers,
@@ -121,7 +121,7 @@ function UpdateProfile() {
   }
   const fetchUserData = async (body) => {
     try {
-      const response = await fetch(BASE_DOMAIN_URL + '/edit_profile/', {
+      const response = await fetch(BASE_DOMAIN_URL + '/users/edit_profile/', {
         method: 'POST',
         body: body, //with form data
         headers: {

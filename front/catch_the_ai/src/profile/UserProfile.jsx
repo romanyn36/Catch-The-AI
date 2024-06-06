@@ -33,7 +33,7 @@ function UserProfile() {
     null,
     headers,
   ];
-  const { data, loading, error } = useFetchData(BASE_DOMAIN_URL + '/get_user_info/', options);
+  const { data, loading, error } = useFetchData(BASE_DOMAIN_URL + '/users/get_user_info/', options);
 
   useEffect(() => {
     if (data) {

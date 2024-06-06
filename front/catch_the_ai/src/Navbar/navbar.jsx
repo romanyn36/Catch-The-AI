@@ -25,7 +25,7 @@ export class Navbar extends Component {
   }
   fetchUserData = async (token) => {
     try {
-      const response = await fetch(BASE_DOMAIN_URL + '/get_user_info/', {
+      const response = await fetch(BASE_DOMAIN_URL + '/users/get_user_info/', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
