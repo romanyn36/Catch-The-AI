@@ -20,6 +20,7 @@ import Home from './Home/Home';
 import { AboutUs } from './Navbar/AboutUs/AboutUs';
 import UserHistory from './profile/history/UserHistory';  // Correctly imports the default export
 import DetectedMedia from './profile/history/DetectedMedia';
+import EmailActivation from './Sign_Up/EmailActivation/EmailActivation';
 
 
 
@@ -45,12 +46,13 @@ export default class App extends Component {
 
             <Route path="/Sign-Up" element={<SignUp />} />
             <Route path="/footer" element={<Footer />} />
-            <Route index path="/UserProfile" element={<UserProfile />} />
+            <Route index path="/UserProfile/:usename" element={<UserProfile />} />
             <Route path="/UpdateProfile" element={<UpdateProfile />} />
             <Route path="/AboutUs" element={<AboutUs />} />
             <Route path="/AboutUs" element={<AboutUs />} />
             <Route path="/UserHistory" element={<UserHistory />} />
             <Route path="/DetectedMedia/:media_id" element={<DetectedMedia />} />
+            <Route path="/EmailActivation" element={<EmailActivation />} />
             <Route path="*" element={<div className='container' style={{ backgroundColor: "#e6d1d0" }}><h1>this page Not Found</h1></div>} />
 
           </Routes>

@@ -135,7 +135,7 @@ function UpdateProfile() {
         // if the user data is updated successfully
         if (data.status === 1) {
           // redirect the user to the profile page
-          window.location.href = '/UserProfile';
+          window.location.href = '/UserProfile/'+username;
         }
       } else {
         console.error('Failed to fetch user data');

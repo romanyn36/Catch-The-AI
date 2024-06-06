@@ -11,7 +11,8 @@ export class Navbar extends Component {
     this.state = {
       isLoggedIn: false,
       userData: null,
-      imageurl: "images/prof.png"
+      imageurl: "images/prof.png",
+      username: "username",
       // "images/user.svg"
     };
   }
@@ -34,8 +35,9 @@ export class Navbar extends Component {
       if (response.ok) {
         const data = await response.json();
         const img = `${BASE_DOMAIN_URL}/${data.image}`
+      
         // console.log("image", img)
-        this.setState({ userData: data, imageurl: img });
+        this.setState({ userData: data, imageurl: img , username: data.username});
 
         // console.log('User data:', data);
       } else {
@@ -108,14 +110,14 @@ export class Navbar extends Component {
                         <span>user</span>
                       </a>
                       <ul className="dropdown-menu">
-                        <li><Link className="nav-link text-body-secondary" to="/UserProfile">profile</Link></li>
+                        <li><Link className="nav-link text-body-secondary" to={"/UserProfile/"+this.state.username}>profile</Link></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li><Link className="nav-link text-body-secondary" to="/UserHistory">History</Link></li>
                       </ul>
                     </li>
 
                     <li className="nav-item ">
-                      <a href="/UserProfile" ><img src={imageurl} alt="" className="profileImg" /></a>
+                      <a href={"/UserProfile/"+this.state.username} ><img src={imageurl} alt="" className="profileImg" /></a>
                     </li>
                   </ul>
                 </>

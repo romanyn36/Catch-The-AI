@@ -18,6 +18,7 @@ function UserProfile() {
     subscription_end_date: null,
     remain_attempts: 5,
     role: "user",
+    is_activated: true,
     image: "images/user.svg"
   });
 
@@ -51,8 +52,52 @@ function UserProfile() {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
+  const verfiy_email = () => {
+    document.getElementById('verfiy_link').remove();
+    const url = BASE_DOMAIN_URL + '/users/send_activation_email/'
+    console.log("url", url)
+    fetch(url, {
+      method: 'GET',
+      headers: { 'Authorization': `Bearer ${token}` },
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Network response was not ok');
+    }).then((data) => {
+      console.log(data);
+      if (data.status === 1) {
+        // destroy this element
+        appendAlert('great, check your email ', 'success')
+        
+      }
+      else {
+        appendAlert('something went wrong, please try again later', 'danger')
+      }
 
-  const { name, username, email, age, address, subscription, subscription_start_date, subscription_end_date, remain_attempts, image, role } = userData;
+    }).catch((error) => {
+      console.error('There has been a problem with your fetch operation:', error);
+    }
+    );
+  }
+
+  // add alert for verfication email
+  const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+  const appendAlert = (message, type) => {
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = [
+      `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+      `   <div>${message}</div>`,
+      '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+      '</div>'
+    ].join('')
+
+    alertPlaceholder.append(wrapper)
+  }
+
+  
+
+  const { name, username, email, age, address, subscription, subscription_start_date, subscription_end_date, remain_attempts, image, role, is_activated } = userData;
   console.log("role", role)
   const [firstname, ...lastnameParts] = name.split(' ');
   const lastname = lastnameParts.join(' ');
@@ -65,6 +110,21 @@ function UserProfile() {
           <img src={BASE_DOMAIN_URL + image} style={{ width: "170px", height: "170px", borderRadius: "50%", padding: "2px" }} alt="" />
           <h3>{name}</h3>
           {role !== 'user' ? <p>Role: {role}</p> : null}
+          <div>
+            {is_activated ? null :
+              <div id='liveAlertPlaceholder'>
+                <div id='verfiy_link' class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>yor account isn't verfied</strong> please click <button onClick={verfiy_email}  class="btn btn-link" style={{ textDecoration: "underline" }}>here</button> to send a new verfication email
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+
+
+                </div>
+
+
+              </div>
+            }
+          </div>
         </div>
         <div className="col-lg-12 pt-3">
           <div className='row p-2  w-100 justify-content-top align-items-start'>
@@ -74,7 +134,7 @@ function UserProfile() {
                 {/* <h3>{name}</h3>
                 {role !== 'user' ? <p>Role: {role}</p> : null} */}
               </div>
-              
+
               {role == 'user' ? <h3>User Info</h3> : null}
             </div>
             <div className='col-lg-9  justify-content-top align-items-start'>
@@ -155,7 +215,9 @@ function UserProfile() {
 
         </div>
       </div>
-    </div>
+
+    </div >
+
   );
 }
 
