@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Activate Your Account</title>
+</head>
+
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+    <table role="presentation"
+        style="width: 100%; border-collapse: collapse; border: 0; border-spacing: 0; background-color: #ffffff;">
+        <tr>
+            <td style="padding: 20px; text-align: center;">
+                <h3 style="color: #333333;">Activate Your Account</h3>
+                <p style="color: #555555;">Hi <span style="color: red;">{{ user.username }}</span>,</p>
+                <p style="color: #555555;">Thank you for registering. Please click the link below to activate your
+                    account:</p>
+                <p><a href="{{ activation_url }}"
+                        style="display: inline-block; padding: 10px 20px; color: #ffffff; background-color: #007bff; text-decoration: none; border-radius: 5px;">Activate
+                        your account</a></p>
+                <p style="color: #555555;">If you didn't register for this account, please ignore this email.</p>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

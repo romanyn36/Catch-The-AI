@@ -46,6 +46,7 @@ class Users(models.Model):
     password = models.CharField(max_length=50)
     age = models.IntegerField()
     country = models.CharField(max_length=100)
+    is_activated = models.BooleanField(default=False)
     basic_blan_id=Subscription.objects.filter(plan_name='Basic').first().id
     subscription = models.ForeignKey(Subscription,on_delete=models.CASCADE,default=basic_blan_id)
     subscription_start_date = models.DateField(null=True,blank=True)

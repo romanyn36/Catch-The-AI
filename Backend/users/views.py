@@ -1,13 +1,81 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
+from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
 from django.http import JsonResponse
 from django.core.validators import validate_email
 from django.contrib.auth.hashers import check_password, make_password
 from django.core.exceptions import ValidationError
+from django.conf import settings
 import json
 from .models import Users,Admin,Subscription
-# for session authentication
-from .session_management import create_session,get_user_id_from_token
+from .session_management import create_session,get_user_id_from_token,account_activation_token
+from django.core.mail import EmailMessage,EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.contrib.sites.shortcuts import get_current_site
 # Create your views here.
+def activate_account(request,uidb64,token):
+    """
+    This function is used to activate the user account
+    the user will receive an email with a link to activate his account
+    the link will contain the user id and the token
+    the token will be checked if it is valid or not
+    if the token is valid the user account will be activated"""
+    if request.method=="GET":
+        try:
+            uid=urlsafe_base64_decode(uidb64).decode()
+            user=Users.objects.get(pk=uid)
+            print(user.name)
+        except:
+            return JsonResponse({'message':'user not found'})
+        # check if the token is valid
+        if user.is_activated:
+            url='http://localhost:3000/EmailActivation'
+            return redirect(url)
+            return JsonResponse({'message':'account already activated','status':1})
+        if account_activation_token.check_token(user,token):
+            user.is_activated=True
+            user.save()
+            url='http://localhost:3000/EmailActivation'
+            return redirect(url)
+            return JsonResponse({'message':'account activated','status':1})      
+        else:
+            return JsonResponse({'message':'account not activated','status':0})  
+
+        
+
+def send_activation_email(request):
+    if request.method=="GET":
+        # get the username from the token
+        auth_header = request.headers.get('Authorization')
+        token = auth_header.split(" ")[1]
+        user_id,role=get_user_id_from_token(token)
+
+        user=Users.objects.get(id=user_id)
+        # setup the activation url
+        domain=get_current_site(request)
+        protocol='https' if request.is_secure() else 'http'
+        activation_token=account_activation_token.make_token(user)
+        uid=urlsafe_base64_encode(str(user.pk).encode())
+        activation_url=f'{protocol}://{domain}/users/activate_account/{uid}/{activation_token}/'
+        
+        email=user.email
+        if email is None or email=='':
+            return JsonResponse({'message':'email not found'})
+        context={'user':user,'activation_url':activation_url}
+        # get the email body template
+        email_body_template=render_to_string('send_activation_email.html',context)
+    
+        # send the email
+        email=EmailMultiAlternatives(subject='activate your account',body=email_body_template,to=[email])
+        email.attach_alternative(email_body_template,"text/html") # emsure email is sent as html if clients support it
+        # emsure email is sent as html
+        # email.content_subtype = "html"  # incase EmailMessage is used 
+    
+        if email.send():
+            return JsonResponse({'message':'email sent','status':1})
+        else:
+            return JsonResponse({'message':'email not sent','status':0})
+        
 
 def login(request):
     """
@@ -140,6 +208,7 @@ def get_user_info(request):
                         'email':user.email,
                         'age':user.age,
                         'address':user.country,
+                        'is_activated':user.is_activated,
                         'subscription':Subscription.objects.filter(pk=user.subscription.pk).first().plan_name,
                         'subscription_start_date':user.subscription_start_date,
                         'subscription_end_date':user.subscription_end_date,

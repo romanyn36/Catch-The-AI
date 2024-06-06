@@ -1,6 +1,7 @@
 import jwt
 from datetime import datetime, timedelta
 from django.conf import settings
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 def create_session(user,user_type) -> str:
     """Create a session for the user and return the token
     Args:
@@ -35,3 +36,12 @@ def get_user_id_from_token(token):
         message = "Invalid token."
         print(message)
         return message
+    
+
+# account activation email
+class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
+    def _make_hash_value(self, user, timestamp):
+        return (
+            str(user.pk) + str(timestamp) + str(user.is_activated)
+        )
+account_activation_token = AccountActivationTokenGenerator()
