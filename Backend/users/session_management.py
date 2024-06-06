@@ -1,10 +1,6 @@
 import jwt
 from datetime import datetime, timedelta
 from django.conf import settings
-from django.contrib.auth.models import User
-from rest_framework.exceptions import AuthenticationFailed
-from .models import Users
-
 def create_session(user,user_type) -> str:
     """Create a session for the user and return the token
     Args:
