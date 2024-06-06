@@ -151,3 +151,19 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
+
+# setup email verification
+"""
+this is for sending email verification to the user to verify their email
+"""
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'romanyyy36dr99@gmail.com'
+EMAIL_HOST_PASSWORD = 'vhvh yiva jvhl lnuo'
+# reset time out
+PASSWORD_RESET_TIMEOUT_MINUTES = 10
+
+
+
