@@ -55,7 +55,7 @@ export class Navbar extends Component {
   };
 
   render() {
-    const { isLoggedIn, _, imageurl } = this.state;
+    const { isLoggedIn, _,username, imageurl } = this.state;
 
     return (
       <nav className="navbar navbar-expand-lg ">
@@ -106,8 +106,7 @@ export class Navbar extends Component {
                     </li>
                     <li className="nav-item dropdown d-flex">
                       <a className="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i className="bi bi-person-circle me-2"></i>
-                        <span>user</span>
+                        <span>{username}</span>
                       </a>
                       <ul className="dropdown-menu">
                         <li><Link className="nav-link text-body-secondary" to={"/UserProfile/"+this.state.username}>profile</Link></li>

@@ -12,7 +12,7 @@ import { PrivacyPolicy } from './Footer/PrivacyPolicy';
 import './App.css';
 import SignUp from './Sign_Up/SignUp';
 import Sign_In from './Sign-In/Sign_In';
-import FP from './Sign-In/forget_password/FP';
+import FP from './Sign-In/forget_password/ForgetPassword';
 import VP from './Sign-In/password_verification/VP';
 import UserProfile from './profile/UserProfile';
 import UpdateProfile from './profile/UpdateProfile';
@@ -21,6 +21,9 @@ import { AboutUs } from './Navbar/AboutUs/AboutUs';
 import UserHistory from './profile/history/UserHistory';  // Correctly imports the default export
 import DetectedMedia from './profile/history/DetectedMedia';
 import EmailActivation from './Sign_Up/EmailActivation/EmailActivation';
+import ResetPassword from './Sign-In/ResetPassword/ResetPassword';
+import SuccessfullyResetPassword from './Sign-In/ResetPassword/SuccessfullyResetPassword';
+
 
 
 
@@ -53,6 +56,8 @@ export default class App extends Component {
             <Route path="/UserHistory" element={<UserHistory />} />
             <Route path="/DetectedMedia/:media_id" element={<DetectedMedia />} />
             <Route path="/EmailActivation" element={<EmailActivation />} />
+            <Route path="/ResetPassword" element={<ResetPassword />} />
+            <Route path="/SuccessfullyResetPassword" element={<SuccessfullyResetPassword />} />
             <Route path="*" element={<div className='container' style={{ backgroundColor: "#e6d1d0" }}><h1>this page Not Found</h1></div>} />
 
           </Routes>
