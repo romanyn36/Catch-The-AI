@@ -12,6 +12,7 @@ from django.core.mail import EmailMessage,EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.contrib.sites.shortcuts import get_current_site
+from django.utils import timezone
 # Create your views here.
 def activate_account(request,uidb64,token):
     """
@@ -76,7 +77,94 @@ def send_activation_email(request):
         else:
             return JsonResponse({'message':'email not sent','status':0})
         
+def forgot_password(request):
+    if request.method=="POST":
+        # data = request.POST
+        data = json.loads(request.body.decode('utf-8'))
+        email=data['email'].strip()
+        if email=='':
+            return JsonResponse({'message':'email is required'})
+        try:
+            validate_email(email)
+            user=Users.objects.filter(email=email)
+            if user.exists():
+                user=user[0]
+                # generate code to reset the password
+                user.generate_reset_code()
+                context={'username':user.username,'reset_code':user.reset_code}
+                # get the email body template
+                email_body_template=render_to_string('forgot_password_email.html',context)
+                email_body_template_text=render_to_string('forgot_password_email_text.html',context)
+                # send the email
+                email=EmailMultiAlternatives(subject='reset your password',body=email_body_template_text,to=[email])
+                email.attach_alternative(email_body_template,"text/html") # emsure email is sent as html if clients support it
+                
+                if email.send():
+                    return JsonResponse({'message':'email sent','status':1})
+                else:
+                    return JsonResponse({'message':'email not sent','status':0})
+            else:
+                return JsonResponse({'message':'user not found'})
+        except ValidationError:
+            return JsonResponse({'message':'invalid email'})
+    return HttpResponse('you have to use post method to reset the password')
 
+def reset_password_activate(request):
+    if request.method=="POST":
+        # data = request.POST
+        data = json.loads(request.body.decode('utf-8'))
+        reset_code=data['reset_code'].strip()
+        email=data['email'].strip()
+        if '' in [reset_code,email]:
+            return JsonResponse({'message':'all fields are required'})
+        try:
+            validate_email(email)
+            user=Users.objects.filter(email=email)
+            if user.exists():
+                user=user[0]
+                if user.reset_code==reset_code and user.reset_expire>timezone.now():
+                    user.reset_code=''
+                    user.reset_expire=None
+                    user.save()
+                    # generate token to ensure the user is the same user who requested the password reset
+                    token=create_session(user,'user')
+                    return JsonResponse({'message':'reset code is correct','status':1,'token':token})
+                else:
+                    return JsonResponse({'message':'wrong reset code or expired','status':0})
+            else:
+                return JsonResponse({'message':'user not found','status':0})
+        except ValidationError:
+            return JsonResponse({'message':'invalid email'})
+    return HttpResponse('you have to use post method to reset the password')
+def reset_password(request):
+    if request.method=="POST":
+        # data = request.POST
+        data = json.loads(request.body.decode('utf-8'))
+        email=data['email'].strip()
+        new_password=data['new_password'].strip()
+        auth_header = request.headers.get('Authorization')
+        token = auth_header.split(" ")[1]
+        user_id,role=get_user_id_from_token(token)
+        # print(user_id,role)
+        if '' in [email,new_password]:
+            return JsonResponse({'message':'all fields are required'})
+        try:
+            validate_email(email)
+            print(email)
+            # ensure the user is the same user who requested the password reset
+            user=Users.objects.filter(email=email,pk=user_id)
+            if user.exists():
+                user=user[0]
+                print(user.name)
+                user.password=new_password
+                user.save()
+                return JsonResponse({'message':'password reset successfully','status':1})
+            else:
+                return JsonResponse({'message':'user not found','status':0} )
+        except ValidationError:
+            return JsonResponse({'message':'invalid email'})
+    return HttpResponse('you have to use post method to reset the password')
+    
 def login(request):
     """
     note that the user can login using username or email 
