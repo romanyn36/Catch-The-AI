@@ -1,5 +1,6 @@
 from django.db import models
-
+from datetime import timedelta, datetime
+from django.utils import timezone
 # Create your models here.
 from django.db import models
 import os
@@ -53,6 +54,19 @@ class Users(models.Model):
     subscription_end_date = models.DateField(null=True,blank=True)
     remain_attempts = models.IntegerField(default=5)
     image=models.ImageField(upload_to=user_directory_path,default='default.png')
+    reset_code=models.CharField(max_length=50,blank=True,null=True)
+    reset_expire=models.DateTimeField(blank=True,null=True)
+
+    def generate_reset_code(self):
+        import random
+        import string
+        code = ''.join(random.choices(string.digits , k=6))
+        self.reset_code = code
+        # set expire time to 1 hour
+        self.reset_expire = timezone.now() + timedelta(minutes=15)
+        self.save()
+        return code,self.reset_expire
+        
 
     # replace the image if alreeady exist
     def save(self, *args, **kwargs):
