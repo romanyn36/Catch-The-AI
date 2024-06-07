@@ -30,13 +30,15 @@ def activate_account(request,uidb64,token):
             return JsonResponse({'message':'user not found'})
         # check if the token is valid
         if user.is_activated:
-            url='http://localhost:3000/EmailActivation'
+            # url='http://localhost:3000/EmailActivation'
+            url='https://catch-the-ai.vercel.app/EmailActivation'
             return redirect(url)
             return JsonResponse({'message':'account already activated','status':1})
         if account_activation_token.check_token(user,token):
             user.is_activated=True
             user.save()
-            url='http://localhost:3000/EmailActivation'
+            url='https://catch-the-ai.vercel.app/EmailActivation'
+            # url='http://localhost:3000/EmailActivation'
             return redirect(url)
             return JsonResponse({'message':'account activated','status':1})      
         else:

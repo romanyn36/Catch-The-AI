@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-_no=x4shzgo*=b*z&&k=h8$yppy*0po=)qa(&2en5a4!0$%sb_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['romanyn36.pythonanywhere.com']
 
 
 # Application definition
@@ -147,7 +147,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 # List of allowed origins (e.g., 'http://example.com', 'https://example.com')
 CORS_ALLOWED_ORIGINS = [
     # 'http://localhost:3000',
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "https://catch-the-ai.vercel.app"
+
 ]
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
