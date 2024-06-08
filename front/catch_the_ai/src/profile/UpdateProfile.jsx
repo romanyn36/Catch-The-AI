@@ -248,7 +248,7 @@ function UpdateProfile() {
         </div>
         <div className="d-flex justify-content-end">
           <button type="button" className={`btn btn-dark ${style.deleteBtn2}`}>
-            <Link to="/UserProfile">Cancel</Link></button>
+            <Link to={`/UserProfile/${username}`}>Cancel</Link></button>
 
           <button type="submit" className={`btn ${style.submitBtn}`} style={{ backgroundColor: "#384D6C",color:'white'}}>Save Changes</button>
         </div>
