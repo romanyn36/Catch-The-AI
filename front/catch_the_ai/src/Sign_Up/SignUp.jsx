@@ -5,7 +5,7 @@ import { useFetch } from "use-http";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEnvelope, faLock, faHome, } from "@fortawesome/free-solid-svg-icons";
 // import signupImage from "./signup.jpg";
-import signupImage from "./sign-up2.jpeg";
+import signupImage from "./images/sign-up2.jpeg";
 import style from "./SignUp.module.css";
 import { BASE_DOMAIN_URL } from '../index';
 
