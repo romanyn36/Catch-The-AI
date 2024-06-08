@@ -64,7 +64,7 @@ export class Pricing extends Component {
                 <div className="card-header ">
                   <h4 className="my-0 font-weight-normal ">Basic</h4>
                 </div>
-                <div className="card-body ">
+                <div className="card-body "  style={{height:"430px"}}>
                   <h1 className="card-title pricing-card-title">{basicPrice} <small className="text-muted"></small></h1>
                   <ul className="list-unstyled mt-3 mb-4">
                     <li><i className="fa fa-check-circle"></i> Default features with limited access</li>
@@ -91,7 +91,7 @@ export class Pricing extends Component {
                   <h4 className="my-0 font-weight-normal">Professional</h4>
                   <span className="most-popular">MOST POPULAR</span>
                 </div>
-                <div className="card-body">
+                <div className="card-body  " style={{height:"430px"}}>
                   <h1 className="card-title pricing-card-title">{proPrice} <small className="text-muted"></small></h1>
                   <ul className="list-unstyled mt-3 mb-4">
                     <li><i className="fa fa-check-circle"></i> Advanced features with more access</li>
