@@ -58,7 +58,7 @@ export class Navbar extends Component {
     const { isLoggedIn, _,username, imageurl } = this.state;
 
     return (
-      <nav className="navbar navbar-expand-lg ">
+      <nav className="navbar navbar-expand-lg " data-bs-theme="dark">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <span className="navbar-title">Catch The AI</span>
