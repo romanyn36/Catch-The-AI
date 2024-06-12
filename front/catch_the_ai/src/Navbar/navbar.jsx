@@ -35,9 +35,9 @@ export class Navbar extends Component {
       if (response.ok) {
         const data = await response.json();
         const img = `${BASE_DOMAIN_URL}/${data.image}`
-      
+
         // console.log("image", img)
-        this.setState({ userData: data, imageurl: img , username: data.username});
+        this.setState({ userData: data, imageurl: img, username: data.username });
 
         // console.log('User data:', data);
       } else {
@@ -55,13 +55,13 @@ export class Navbar extends Component {
   };
 
   render() {
-    const { isLoggedIn, _,username, imageurl } = this.state;
+    const { isLoggedIn, _, username, imageurl } = this.state;
 
     return (
       <nav className="navbar navbar-expand-lg " data-bs-theme="dark">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            <span className="navbar-title">Catch The AI</span>
+        <div className="container-fluid ">
+          <Link className="navbar-brand m-0" to="/">
+            <span className="navbar-title me-0">Catch The AI</span>
           </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -90,11 +90,9 @@ export class Navbar extends Component {
               ) : (
                 <>
                   <ul className="navbar-nav mb-2 mb-lg-0">
-                    <li className="nav-item">
-                      <a className="nav-link" aria-current="page" href="/" onClick={this.handleLogout}>Logout</a>
-                    </li>
 
-                    <li className="nav-item dropdown">
+
+                    {/* <li className="nav-item dropdown">
                       <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i className="fa-regular fa-bell"></i>
                       </a>
@@ -103,20 +101,22 @@ export class Navbar extends Component {
                         <li><hr className="dropdown-divider" /></li>
                         <li><a className="dropdown-item" href="#">subscripe now and get mo....</a></li>
                       </ul>
-                    </li>
+                    </li> */}
                     <li className="nav-item dropdown d-flex">
                       <a className="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span>{username}</span>
                       </a>
                       <ul className="dropdown-menu">
-                        <li><Link className="nav-link text-body-secondary" to={"/UserProfile/"+this.state.username}>profile</Link></li>
+                        <li><Link className="nav-link text-body-secondary" to={"/UserProfile/" + this.state.username}>profile</Link></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li><Link className="nav-link text-body-secondary" to="/UserHistory">History</Link></li>
+                        <li><Link className="nav-link text-body-secondary" onClick={this.handleLogout} to="/">Logout</Link></li>
+
                       </ul>
                     </li>
 
                     <li className="nav-item ">
-                      <a href={"/UserProfile/"+this.state.username} ><img src={imageurl} alt="" className="profileImg" /></a>
+                      <a href={"/UserProfile/" + this.state.username} ><img src={imageurl} alt="" className="profileImg" /></a>
                     </li>
                   </ul>
                 </>
