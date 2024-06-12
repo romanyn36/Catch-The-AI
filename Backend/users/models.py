@@ -129,7 +129,7 @@ class DataHistory(models.Model):
     text = models.TextField(null=True, blank=True)
     attemptTime = models.DateTimeField(auto_now_add=True)
     modelResult = models.CharField(max_length=100)
-    media_size = models.IntegerField()
+    media_size = models.CharField(max_length=100,default='0 KB')
 
     def __str__(self):
         return self.media_name
