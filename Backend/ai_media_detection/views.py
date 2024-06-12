@@ -29,13 +29,15 @@ def predict_media(request):
     """
     """
     if request.method == 'POST':
-        # data = json.loads(request.body.decode('utf-8'))
+        print("post method : detect media") 
         req = request.POST
         media_type=req['media_type']
-        data=request.FILES['data']
-        text=req['text']
+        data=request.FILES.get('media',None)
+        text=req['text'].strip()
         user=Users.objects.filter(username='romanyn36').first()
         remain_attempets=calculate_remaining_attempts(user)
+        remain_attempets=100
+        print(media_type)
         if remain_attempets==0:
             return JsonResponse({'message':'you have no attempts left'})
         else:
@@ -47,7 +49,8 @@ def predict_media(request):
                         destination.write(chunk)
                 # result=predict_AI_generated_media(path,image_model)
                 result='we predicted the image for you'+f" {remain_attempets} attempts left"
-                media_history=DataHistory(user=user,media_name=data.name,image=data,attemptTime=datetime.now(),modelResult=result,media_size=data.size)
+                size=format_size(data.size)
+                media_history=DataHistory(user=user,media_name=data.name,image=data,attemptTime=datetime.now(),modelResult=result,media_size=size)
                 media_history.save()
 
 
@@ -59,15 +62,34 @@ def predict_media(request):
                         destination.write(chunk)
         
                 result='we played the audio file for you'+f" {remain_attempets} attempts left"
-                media_history=DataHistory(user=user,media_name=data.name,audio=data,attemptTime=datetime.now(),modelResult=result,media_size=data.size)
+                size=format_size(data.size)
+                media_history=DataHistory(user=user,media_name=data.name,audio=data,attemptTime=datetime.now(),modelResult=result,media_size=size)
                 media_history.save()
             
             elif media_type=='text':
-                result='you entered: '+text
+                result='your text: '+text
+                size=format_size(len(text))
+                media_history=DataHistory(user=user,media_name=f"text: {text.split(' ')[0]}",text=text,attemptTime=datetime.now(),modelResult=result,media_size=size)
+                media_history.save()
 
-            return HttpResponse("The media is: "+result)
+            return JsonResponse({'result':result})
     return HttpResponse('this get method is not allowed')
 
+
+def format_size(size):
+    """
+    Converts a size in bytes to a human-readable format (bytes, KB, MB).
+    Parameters:
+    size (int): The size in bytes to be converted.
+    Returns:
+    str: The human-readable format of the size.
+    """
+    if size < 1024:
+        return f"{size} bytes"
+    elif size < 1024 * 1024:
+        return f"{size / 1024:.2f} KB"
+    else:
+        return f"{size / (1024 * 1024):.2f} MB"
 def calculate_remaining_attempts(user:Users):
     """
     This function is used to calculate the remaining attempts for the user
