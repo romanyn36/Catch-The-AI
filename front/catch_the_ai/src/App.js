@@ -23,6 +23,7 @@ import DetectedMedia from './profile/history/DetectedMedia';
 import EmailActivation from './Sign_Up/EmailActivation/EmailActivation';
 import ResetPassword from './Sign-In/ResetPassword/ResetPassword';
 import SuccessfullyResetPassword from './Sign-In/ResetPassword/SuccessfullyResetPassword';
+import AudioRecorderUploader from './Navbar/text_detector/AudioRecorderUploader';
 
 
 
@@ -55,9 +56,12 @@ export default class App extends Component {
             <Route path="/AboutUs" element={<AboutUs />} />
             <Route path="/UserHistory" element={<UserHistory />} />
             <Route path="/DetectedMedia/:media_id" element={<DetectedMedia />} />
-            <Route path="/EmailActivation" element={<EmailActivation />} />
+            <Route path="/EmailActivation/:username" element={<EmailActivation />} />
             <Route path="/ResetPassword" element={<ResetPassword />} />
             <Route path="/SuccessfullyResetPassword" element={<SuccessfullyResetPassword />} />
+            <Route path="/AudioRecorderUploader" element={<AudioRecorderUploader />} />
+
+
             <Route path="*" element={<div className='container' style={{ backgroundColor: "#e6d1d0" }}><h1>this page Not Found</h1></div>} />
 
           </Routes>
