@@ -1,37 +1,23 @@
-.customNavbar {
-  position: fixed; /* Stick the navbar to the top of the page */
-  width: 90%;
-   background-color: #202542 !important;
-  
-
-}
-
-.navbar-logo {
-  height: 50px;
-  width: auto;
-  margin-right: 15px;
+.navbar {
+  background-color: transparent !important;
 }
 
 .navbar-title {
-  font-size: 28px;
+  font-size: 34px; 
   font-weight: bold;
   font-family: Segoe Script;
-  margin-right: 150px;
+  margin-right: 300px; 
 }
 
 .nav-link {
-  font-size: 30px;
-  margin-left: 45px;
-}
-
-.nav-link:hover {
-  text-decoration: underline;
+  font-size: 35px; 
 }
 
 .navbar-brand,
 .nav-link,
 .btn-outline-light {
-  color: white !important;
+  color: white !important; 
+  padding-left: 10px;
 }
 
 .nav-link:hover,
@@ -87,8 +73,7 @@
 }
 
 .profileImg {
-  width: 50px;
-  height: 50px;
+  width: 50px; 
+  height: 50px; 
   border-radius: 50%;
 }
-
