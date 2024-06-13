@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import './TOS.css';
+import { Container } from 'reactstrap';
+import './TOS&PRIVACY.css'; 
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 export class TOS extends Component {
   render() {
     return (
-      <div className="terms-of-service">
-        <h1 className="title text-white">Terms of Service</h1>
-        <div className="about_TOS">
+      <Container className="terms-of-service container my-5">
+        <h1 className="title text-white text-center mb-4">Terms of Service</h1>
+        <div className="about_TOS bg-white border rounded shadow p-4 mx-auto">
           <p><strong>Last Updated: 13th April 2024</strong></p>
 
           <h3><i className="bi bi-info-circle-fill"></i> Introduction</h3>
@@ -43,7 +44,7 @@ export class TOS extends Component {
           <h3><i className="bi bi-envelope-fill"></i> Contact Information</h3>
           <p>If you have any questions about these Terms, please contact us at contact@catchtheai.com.</p>
         </div>
-      </div>
+      </Container>
     );
   }
 }
