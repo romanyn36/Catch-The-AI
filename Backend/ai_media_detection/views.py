@@ -18,12 +18,14 @@ import json
 from django.templatetags.static import static
 from users.models import Users,DataHistory
 from users.session_management import create_session,get_user_id_from_token
+from users.utils import BASE_DOMAIN_URL
 
 # # initialize the model
 # # image_model = load_AI_model()
 
 def home(request):
-    return render(request,'home.html')
+    baseurl=BASE_DOMAIN_URL
+    return render(request,'home.html',{'baseurl':baseurl})
 
 def predict_media(request):
     """
