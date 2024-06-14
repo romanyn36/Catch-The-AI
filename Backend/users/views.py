@@ -13,6 +13,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils import timezone
+from .utils import BASE_DOMAIN_URL
 # Create your views here.
 def activate_account(request,uidb64,token):
     """
@@ -30,15 +31,13 @@ def activate_account(request,uidb64,token):
             return JsonResponse({'message':'user not found'})
         # check if the token is valid
         if user.is_activated:
-            # url='http://localhost:3000/EmailActivation'
-            url='https://catch-the-ai.vercel.app/EmailActivation'
+            url=BASE_DOMAIN_URL+'/EmailActivation/'+user.username
             return redirect(url)
             return JsonResponse({'message':'account already activated','status':1})
         if account_activation_token.check_token(user,token):
             user.is_activated=True
             user.save()
-            url='https://catch-the-ai.vercel.app/EmailActivation'
-            # url='http://localhost:3000/EmailActivation'
+            url=BASE_DOMAIN_URL+'/EmailActivation/'+user.username
             return redirect(url)
             return JsonResponse({'message':'account activated','status':1})      
         else:
