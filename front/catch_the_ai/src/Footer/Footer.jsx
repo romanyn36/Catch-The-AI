@@ -63,14 +63,7 @@ export class Footer extends Component {
             </div>
           </div>
 
-          <div className="row">
-            <div className="form">
-              <form action="">
-                <input type="text" placeholder="Email here..." />
-                <button className='BTN'><i className="fa fa-paper-plane"></i></button>
-              </form>
-            </div>
-          </div>
+         
 
         <div className="col-md-12 text-center">
           <p className='copyright'>&copy; 2024 Catch the AI. All rights reserved.</p>

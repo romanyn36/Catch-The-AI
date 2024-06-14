@@ -4,7 +4,10 @@ import './Home.css';
 import TextDetector from '../Navbar/text_detector/text-detector';
 import Pricing from '../Navbar/pricing/pricing'
 import { Link } from 'react-router-dom';
-import aiImage from './ai.jpg'; // Adjust path as per your file structure
+// import aiImage from './ai.jpg'; // Adjust path as per your file structure
+import aiImage from './home.png'; // Adjust path as per your file structure
+import AboutUs from "../Navbar/AboutUs/AboutUs";
+import ContactUs from "../Navbar/ContactUs/ContactUs";
 
 class Home extends Component {
   render() {
@@ -13,6 +16,8 @@ class Home extends Component {
         <MyComponent />
         <TextDetector />
         <Pricing />
+        <AboutUs />
+        <ContactUs />
       </div>
     );
   }

@@ -41,11 +41,11 @@ class DAIGT:
         Queries the Hugging Face API endpoints for DeBERTa and RoBERTa models.
         Parameters:
             retries (int): Number of retry attempts if errors occur during API query (default is 5).
-            wait_time (int): Time to wait (in seconds) between retry attempts (default is 7).
+            wait_time  (int): Time to wait (in seconds) between retry attempts (default is 7).
         Returns:
             tuple: Tuple containing the API responses for DeBERTa and RoBERTa models.
         """
-        for _ in range(retries):
+        for _ in range(5):
             # DeBERTa
             deberta_text = str(TextCleaner(self.txt))
             deberta = self.query({"inputs": deberta_text}, api_url=self.api_url_deberta)
