@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
 import { BASE_DOMAIN_URL } from '../../index';
 import AudioRecorderUploader from './AudioRecorderUploader';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const mediaData = [
   { id: 1, name: "Image" },
@@ -13,15 +14,14 @@ const mediaData = [
 
 export class TextDetector extends Component {
   state = {
-    selectedMediaType: "Image", // Set default media type to "Image"
-    pulsatingMediaType: "Image", // Keep track of the currently pulsating media type
+    selectedMediaType: "Image", // Set default media  "Image"
+    pulsatingMediaType: "Image", 
     text: "",
     image: null,
     result: ""
   };
 
   componentDidMount() {
-    // Initialize by calling handleFileSelect to ensure default behavior
     this.handleFileSelect("Image");
   }
 
@@ -33,11 +33,9 @@ export class TextDetector extends Component {
   handleAudioUpload = (e) => {
     const file = e.target.files[0];
     console.log("Selected audio file:", file);
-    // Here you can add further logic to handle the uploaded audio file
   };
 
   handleStartRecording = () => {
-    // Implement logic to start recording audio
     console.log("Recording started...");
   };
 
@@ -94,13 +92,13 @@ export class TextDetector extends Component {
     const { selectedMediaType, pulsatingMediaType, result } = this.state;
 
     return (
-      <div className="main-container">
-        <h2 className="media-type-heading">Select Media Type</h2>
-        <div className="media-type-buttons row">
+      <div className="container container-custom">
+        <h2 className="media-type-heading text-center">Select Media Type</h2>
+        <div className="media-type-buttons row justify-content-center">
           {mediaData.map((media) => (
-            <div key={media.id} className="col-md-3 mb-2">
+            <div key={media.id} className="col-auto mb-2">
               <button
-                className={`media-type-button ${pulsatingMediaType === media.name ? 'pulsating' : ''}`}
+                className={`media-type-button ${pulsatingMediaType === media.name ? '' : ''}`}
                 onClick={() => this.handleFileSelect(media.name)}
               >
                 {media.name}<br />
@@ -109,10 +107,10 @@ export class TextDetector extends Component {
           ))}
         </div>
 
-        <div className="row bg-dark w-100 mt-4 p-2">
+        <div className="row w-100 mt-4 p-2">
           <div className="col-md-9">
-            {selectedMediaType === 'Image' && this.image == null && (
-              <div className="w-100 border text-center p-4">
+            {selectedMediaType === 'Image' && (
+              <div className="media-container">
                 <label htmlFor="file-upload" className="label">Drag and Drop</label>
                 <p className='txt'>Or</p>
                 <label htmlFor="file-upload" className="label">Upload Your Media</label>
@@ -121,20 +119,20 @@ export class TextDetector extends Component {
               </div>
             )}
             {selectedMediaType === 'Text' && (
-              <div className="text-area-container w-100 p-4">
-                <textarea className="text-area form-control bg-light" style={{color:'black'}} placeholder="Enter your text here" value={this.state.text} onChange={this.handleTextChange}></textarea>
+              <div className="media-container">
+                <textarea className="text-area form-control" placeholder="Enter Your Text Here" value={this.state.text} onChange={this.handleTextChange}></textarea>
               </div>
             )}
             {selectedMediaType === 'Audio' && (
-              <div className="w-100 p-4">
+              <div className="media-container">
                 <AudioRecorderUploader />
               </div>
             )}
           </div>
           <div className="col-md-3">
-            <h3 className="text-white">Result:</h3>
-            <p className="text-white">{result}</p>
-            <button className="btn btn-outline-light submit-button mt-2 mb-2" onClick={() => this.predict_media(pulsatingMediaType)}>AI or Human ?</button>
+            <h3 className="media-type-heading">Result:</h3>
+            <p className="media-type-heading">{result}</p>
+            <button className="btn btn-outline- submit-button mt-2 mb-2" onClick={() => this.predict_media(pulsatingMediaType)}>AI or Human?</button>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { BsRecordCircle, BsCloudUpload } from 'react-icons/bs'; // Import Bootstrap icons
 
 const AudioRecorderUploader = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -55,42 +56,109 @@ const AudioRecorderUploader = () => {
     event.preventDefault();
   };
 
+  const handleButtonClick = () => {
+    document.getElementById('audio-upload').click();
+  };
+
   return (
-    <div className="container mt-5 w-100">
-      <div className="mb-3 ">
-        <button
-          className={`btn ${isRecording ? 'btn-danger' : 'btn-primary'} me-2`}
-          onClick={isRecording ? stopRecording : startRecording}
-        >
-          {isRecording ? 'Stop Recording' : 'Start Recording'}
-        </button>
-       
-        <input
-          id="audio-upload"
-          type="file"
-          accept="audio/*"
-          className="form-control-file ms-1"
-          onChange={handleUpload}
-          style={{ display: 'none' }}
-        />
+    <div className="container mt-5">
+      <div className="row">
+        {/* Left column for recording */}
+        <div className="col-md-6">
+          <div
+            className="border p-4 mt-4 mt-md-0"
+            onClick={handleButtonClick}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            style={{
+              backgroundColor: '#ffffff',
+              border: '2px dashed #000000',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center', 
+              textAlign: 'center', 
+            }}
+          >
+            <button
+              className={`btn ${isRecording ? 'btn-danger' : 'btn-primary'} me-2 mt-3 text-center text-dark align-center`}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#ffffff',
+                color: '#000000',
+                cursor: 'pointer',
+                borderRadius: '4px',
+                border: '2px dashed #000000',
+                display: 'inline-block', 
+                textAlign: 'center', 
+              }}
+              onClick={isRecording ? stopRecording : startRecording}
+            >
+              {isRecording ? (
+                <>Stop Recording</>
+              ) : (
+                <>
+                  <BsRecordCircle className="me-1" /> Start Recording
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+        
+        {/* Right column for upload */}
+        <div className="col-md-6">
+          <div
+            className="border p-4 mt-4 mt-md-0"
+            onClick={handleButtonClick}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            style={{
+              backgroundColor: '#ffffff',
+              border: '2px dashed #000000',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center', 
+              textAlign: 'center', 
+            }}
+          >
+            <button
+              className="btn"
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#ffffff',
+                color: '#000000',
+                cursor: 'pointer',
+                borderRadius: '4px',
+                border: '2px dashed #000000', 
+                display: 'inline-block', 
+                textAlign: 'center', 
+              }}
+              onClick={handleButtonClick}
+            >
+              <BsCloudUpload className="me-1" /> Upload / Drag & Drop Audio file here
+            </button>
+          </div>
+        </div>
       </div>
-      <div
-        className="drop-zone mt-1 bg-dark p-5"
-        onClick={() => document.getElementById('audio-upload').click()}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        style={{color:'white', width: "100%", height: "100%", border: '2px dashed #ccc', borderRadius: '10px', textAlign: 'center' }}
-      >
-        Upload 
-        <br />
-        or
-        Drag & Drop audio file here
-      </div>
+
+      <input
+        id="audio-upload"
+        type="file"
+        accept="audio/*"
+        onChange={handleUpload}
+        style={{ display: 'none' }}
+      />
+
       {audioURL && (
         <div className="mt-4">
-          <h3 style={{color:"white"}}>Preview:</h3>
+          <h3>Preview File:</h3>
           <audio src={audioURL} controls />
-          <p className="mt-2">File: {audioFile ? audioFile.name : 'Recorded audio'}</p>
+          <p className="mt-2">{audioFile ? audioFile.name : 'Recorded audio'}</p>
         </div>
       )}
     </div>
