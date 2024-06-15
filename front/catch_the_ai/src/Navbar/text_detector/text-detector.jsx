@@ -122,7 +122,7 @@ export class TextDetector extends Component {
               </div>
             )}
             {selectedMediaType === 'Audio' && (
-              <div className="media-container bg-info">
+              <div className="media-container ">
                 <AudioRecorderUploader />
               </div>
             )}
