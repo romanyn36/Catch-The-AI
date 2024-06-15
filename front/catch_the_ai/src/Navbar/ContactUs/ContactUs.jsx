@@ -43,7 +43,7 @@ function ContactUs() {
                                 <textarea className="form-control" name="" id="" rows="5" placeholder="Your message"></textarea>
                             </div>
                             <div className=" text-center">
-                                <button type="submit" className="btn text-center btn-danger " style={{ width: "150px" }}><i
+                                <button type="submit" className="btn text-center  " style={{backgroundColor:"#DDA0DD", width: "150px" }}><i
                                     className="bi bi-send"> Send</i></button>
                             </div>
                         </form>

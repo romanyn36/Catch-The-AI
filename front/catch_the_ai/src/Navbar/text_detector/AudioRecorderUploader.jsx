@@ -29,9 +29,17 @@ const AudioRecorderUploader = () => {
   };
 
   const stopRecording = () => {
-    mediaRecorderRef.current.stop();
-    setIsRecording(false);
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+  
+      const stream = mediaRecorderRef.current.stream;
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+    }
   };
+  
 
   const handleUpload = event => {
     const file = event.target.files[0];
@@ -67,7 +75,6 @@ const AudioRecorderUploader = () => {
         <div className="col-md-6">
           <div
             className="border p-4 mt-4 mt-md-0"
-            onClick={handleButtonClick}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             style={{

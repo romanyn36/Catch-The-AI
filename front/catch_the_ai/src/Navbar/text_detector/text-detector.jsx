@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './text-detector.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
 import { BASE_DOMAIN_URL } from '../../index';
 import AudioRecorderUploader from './AudioRecorderUploader';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const mediaData = [
   { id: 1, name: "Image" },
@@ -108,7 +106,7 @@ export class TextDetector extends Component {
         </div>
 
         <div className="row w-100 mt-4 p-2">
-          <div className="col-md-9">
+          <div className="col-md-9 ">
             {selectedMediaType === 'Image' && (
               <div className="media-container">
                 <label htmlFor="file-upload" className="label">Drag and Drop</label>
@@ -124,7 +122,7 @@ export class TextDetector extends Component {
               </div>
             )}
             {selectedMediaType === 'Audio' && (
-              <div className="media-container">
+              <div className="media-container bg-info">
                 <AudioRecorderUploader />
               </div>
             )}

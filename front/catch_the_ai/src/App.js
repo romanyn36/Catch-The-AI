@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from './Navbar/navbar';
-import { ImageDetector } from './image_detector/image-detector';
-import { AudioDetector } from './audio_detector/audio_detector';
 import { TextDetector } from './Navbar/text_detector/text-detector';
 import { Pricing } from './Navbar/pricing/pricing';
 import { Footer } from './Footer/Footer';
@@ -38,9 +36,7 @@ export default class App extends Component {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/image-detector" element={<ImageDetector />} />
             <Route path="/Pricing" element={<Pricing />} />
-            <Route path="/audio-detector" element={<AudioDetector />} />
             <Route path="/text-detector" element={<TextDetector />} />
             <Route path="/terms-of-service" element={<TOS />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
