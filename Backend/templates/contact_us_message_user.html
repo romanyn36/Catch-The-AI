@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .header {
+            text-align: center;
+            padding: 10px 0;
+        }
+        .header h3 {
+            margin: 0;
+            color: #4CAF50;
+        }
+        .content {
+            padding: 20px 0;
+        }
+        .content p {
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h3>Contact Us Submission</h3>
+        </div>
+        <div class="content">
+            <p>Hi <span style="font-weight: bolder; color: red;"> {{ first_name }}</span>,</p>
+            <p>We have received your message:</p>
+            <p><strong>Name:</strong> {{ name }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Message:</strong></p>
+            <p style="padding: 15px;font-size: larger;margin-bottom: 15px;">{{ message }}</p>
+            <p>Thank you for reaching out to us. We will get back to you as soon as possible.</p>
+            <p>Best regards,</p>
+            <p>The Catch the AI Team</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Catch the AI. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
