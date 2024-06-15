@@ -1,15 +1,9 @@
-import React, { Component } from "react";
-import { useEffect, useState } from "react";
-import useFetchData from "../utils/useFetchData";
+import React, { useState } from "react";
 import { useFetch } from "use-http";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faEnvelope, faLock, faHome, } from "@fortawesome/free-solid-svg-icons";
-// import signupImage from "./signup.jpg";
-import signupImage from "./images/sign-up2.jpeg";
+import { faUser, faEnvelope, faLock, faHome } from "@fortawesome/free-solid-svg-icons";
 import style from "./SignUp.module.css";
 import { BASE_DOMAIN_URL } from '../index';
-
-
 
 function SignUp() {
   const [userInfo, setUserInfo] = useState({
@@ -24,57 +18,30 @@ function SignUp() {
     errors: {},
   });
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const { name, email, username, country, age, password, password2 } = userInfo;
     const errors = {};
-    if (!name) {
-      errors.name = "Name is required";
-    }
-    if (!email) {
-      errors.email = "Email is required";
-    } else if (!email.includes("@") || !email.endsWith(".com")) {
-      errors.email = "This email is not valid ";
-    }
-    if (!country) {
-      errors.country = "Country is required";
-    }
-    if (!age) {
-      errors.age = "Age is required";
-    }
-    if (!password) {
-      errors.password = "Password is required";
-    } else if (password.length < 4) {
-      errors.password = "Password must be at least 4 characters long";
-    } else if (!/(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])/.test(password)) {
-      errors.password =
-        "Password must include numbers, characters, and symbols";
-    }
-    if (!password2) {
-      errors.password2 = "Confirm Password is required";
-    }
-    if (password !== password2) {
-      errors.password2 = "Passwords do not match";
-    }
-    if (!username) {
-      errors.username = "Username is required";
-    }
-    // make sure the username have no special characters
-    if (!/^[a-zA-Z0-9_]*$/.test(username)) {
-      errors.username = "Username must contain only letters, numbers and underscores";
-    }
+    if (!name) errors.name = "Name is required";
+    if (!email) errors.email = "Email is required";
+    else if (!email.includes("@") || !email.endsWith(".com")) errors.email = "This email is not valid ";
+    if (!country) errors.country = "Country is required";
+    if (!age) errors.age = "Age is required";
+    if (!password) errors.password = "Password is required";
+    else if (password.length < 4) errors.password = "Password must be at least 4 characters long";
+    else if (!/(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])/.test(password)) errors.password = "Password must include numbers, characters, and symbols";
+    if (!password2) errors.password2 = "Confirm Password is required";
+    if (password !== password2) errors.password2 = "Passwords do not match";
+    if (!username) errors.username = "Username is required";
+    if (!/^[a-zA-Z0-9_]*$/.test(username)) errors.username = "Username must contain only letters, numbers and underscores";
 
     if (Object.keys(errors).length > 0) {
       setUserInfo({ ...userInfo, errors });
     } else {
       register();
       console.log("Form submitted successfully");
-
     }
   };
-
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -84,57 +51,38 @@ function SignUp() {
 
   const getPasswordStrength = () => {
     const { password } = userInfo;
-    if (password.length >= 8) {
-      return "Excellent";
-    } else if (password.length >= 6) {
-      return "Good";
-    } else if (password.length >= 4) {
-      return "Weak";
-    } else {
-      return "";
-    }
+    if (password.length >= 8) return "Excellent";
+    else if (password.length >= 6) return "Good";
+    else if (password.length >= 4) return "Weak";
+    else return "";
   };
 
   const getPasswordStrengthClass = () => {
     const strength = getPasswordStrength();
     switch (strength) {
-      case "Excellent":
-        return "text-success";
-      case "Good":
-        return "text-primary";
-      case "Weak":
-        return "text-danger";
-      default:
-        return "";
+      case "Excellent": return "text-success";
+      case "Good": return "text-primary";
+      case "Weak": return "text-danger";
+      default: return "";
     }
   };
 
-
-  const { name, email, username, country, age, password, password2, rememberMe, errors, } = userInfo;
-
+  const { name, email, username, country, age, password, password2, rememberMe, errors } = userInfo;
   const { post, response, error } = useFetch(BASE_DOMAIN_URL + '/users/register/');
+
   const register = async () => {
     const registerInfo = { name, email, username, country, age, password };
-    // const options = ['POST', registerInfo];
-    // const response = useFetchData(BASE_DOMAIN_URL+'/register/', options);
     const respnse = await post(registerInfo);
     if (response.ok) {
       console.log(response.data);
-      // window.location.href = "/sign-in";
       var token = response.data.token;
       localStorage.setItem('token', token);
-
       console.log("Form submitted successfully ", response);
-      // redirect to the home page
       window.location.href = "/";
-
     } else {
       console.error('There was a problem with your fetch operation:', error);
     }
-  }
-
-
-
+  };
 
   const ageOptions = [];
   for (let i = 16; i <= 80; i++) {
@@ -142,160 +90,91 @@ function SignUp() {
   }
 
   return (
-    <>
-      <div className="container my-5">
-        <div className="row justify-content-center">
-          <div className="col-lg-10 col-md-12 d-flex flex-wrap bg-white rounded shadow">
-            <div className="col-lg-6 d-flex align-items-center justify-content-center p-5">
-              <img src={signupImage} alt="Signup" className={style.imgFluid} />
-            </div>
-            <div className="col-lg-6 p-4">
-              <form onSubmit={handleSubmit}>
-                <h2 className={`text-center display-6 ${style.customFont} mb-4`}>Sign Up</h2>
-                <div className="row">
-                  <div className="form-group mb-3">
-                    <label htmlFor="name" className="customLabel">
-                      <FontAwesomeIcon icon={faUser} className="me-2" />
-                      Name
-                    </label>
-                    <input type="text"
-                      className={`form-control ${style.inputField}`}
-                      id="name" name="name" value={name} placeholder="Enter your Name" onChange={handleChange}
-                    />
-                    {errors.name && <div className="text-danger">{errors.name}</div>}
-                  </div>
-                  <div className="form-group mb-3">
-                    <label htmlFor="email" className="customLabel">
-                      <FontAwesomeIcon icon={faEnvelope} className="me-2" />
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      className={`form-control ${style.inputField}`}
-                      id="email"
-                      name="email"
-                      value={email}
-                      placeholder="Enter your Email"
-                      onChange={handleChange}
-                    />
-
-                    {errors.email && <div className="text-danger">{errors.email}</div>}
-                  </div>
-                </div>
-                <div className="form-group mb-3">
-                  <label htmlFor="username" className="customLabel">
+    <div className={`container my-5 ${style.signUpContainer}`}>
+      <div className="row justify-content-center">
+        <div className={`col-lg-10 col-md-12 d-flex flex-wrap ${style.frameContainer}`}>
+          <div className="col-lg-6 p-4 mx-auto">
+            <form onSubmit={handleSubmit}>
+              <h2 className={`text-center display-6 ${style.customFont} mb-4`}>Sign Up</h2>
+              <div className="row">
+                <div className="form-group mb-3 text-left font-weight-bold">
+                  <label htmlFor="name" className="customLabel">
                     <FontAwesomeIcon icon={faUser} className="me-2" />
-                    Username
+                    Name
                   </label>
-                  <input
-                    type="text"
-                    className={`form-control ${style.inputField}`}
-                    id="username"
-                    name="username"
-                    value={username}
-                    placeholder="Enter your username"
-                    onChange={handleChange}
-                  />
-                  {errors.username && <div className="text-danger">{errors.username}</div>}
+                  <input type="text" className={`form-control ${style.inputField}`} id="name" name="name" value={name} placeholder="Enter your Name" onChange={handleChange} />
+                  {errors.name && <div className="text-danger">{errors.name}</div>}
                 </div>
-                <div className="form-group mb-3">
-                  <label htmlFor="password" className="customLabel">
-                    <FontAwesomeIcon icon={faLock} className="me-2" />
-                    Password
+                <div className="form-group mb-3 text-left">
+                  <label htmlFor="email" className="customLabel">
+                    <FontAwesomeIcon icon={faEnvelope} className="me-2" />
+                    Email
                   </label>
-                  <input
-                    type="password"
-                    className={`form-control ${style.inputField}`}
-                    id="password"
-                    name="password"
-                    value={password}
-                    placeholder="Enter your password"
-                    onChange={handleChange}
-                  />
-                  {errors.password && <div className="text-danger ">{errors.password}</div>}
-                  <div className={`mt-1 ${getPasswordStrengthClass()}`}>
-                    {getPasswordStrength()}
-                  </div>
+                  <input type="email" className={`form-control ${style.inputField}`} id="email" name="email" value={email} placeholder="Enter your Email" onChange={handleChange} />
+                  {errors.email && <div className="text-danger">{errors.email}</div>}
                 </div>
-                <div className="form-group mb-3">
-                  <label htmlFor="password2" className="customLabel">
-                    <FontAwesomeIcon icon={faLock} className="me-2" />
-                    Confirm Password
-                  </label>
-                  <input
-                    type="password"
-                    className={`form-control ${style.inputField}`}
-                    id="password2"
-                    name="password2"
-                    value={password2}
-                    placeholder="Confirm Your Password"
-                    onChange={handleChange}
-                  />
-                  {errors.password2 && <div className="text-danger">{errors.password2}</div>}
-                </div>
-                <div className="form-group mb-3">
-                  <label htmlFor="country" className="customLabel">
-                    <FontAwesomeIcon icon={faHome} className="me-2" />
-                    Country
-                  </label>
-                  <input
-                    type="text"
-                    className={`form-control ${style.inputField}`}
-                    id="country"
-                    name="country"
-                    value={country}
-                    placeholder="Enter your country"
-                    onChange={handleChange}
-                  />
-                  {errors.country && <div className="text-danger">{errors.country}</div>}
-                </div>
-                <div className="form-group mb-3">
-                  <label htmlFor="age" className="customLabel">
-                    <FontAwesomeIcon icon={faUser} className="me-2" />
-                    Age
-                  </label>
-                  <select
-                    className="form-select "
-                    id="age"
-                    name="age"
-                    value={age}
-                    onChange={handleChange}
-                  >
-                    <option value="">Select Age</option>
-                    {ageOptions}
-                  </select>
-                  {errors.age && <div className="text-danger">{errors.age}</div>}
-                </div>
-                <div className="form-check mb-3">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id="rememberMe"
-                    name="rememberMe"
-                    checked={rememberMe}
-                    onChange={handleChange}
-                  />
-                  <label className="form-check-label" htmlFor="rememberMe">
-                    Remember Me
-                  </label>
-                </div>
-                <div className="form-group mb-3 text-center">
-                  <button type="submit" className={`btn  w-50 ${style.btnPurple}`}>Sign Up</button>
-                </div>
-                <p className="text-center">
-                  Do you have an account?{" "}
-                  <a href="/sign-in" className="text-danger font-weight-bold">
-                    Sign In
-                  </a>
-                </p>
-              </form>
-            </div>
+              </div>
+              <div className="form-group mb-3 text-left">
+                <label htmlFor="username" className="customLabel">
+                  <FontAwesomeIcon icon={faUser} className="me-2 " />
+                  Username
+                </label>
+                <input type="text" className={`form-control ${style.inputField}`} id="username" name="username" value={username} placeholder="Enter your username" onChange={handleChange} />
+                {errors.username && <div className="text-danger">{errors.username}</div>}
+              </div>
+              <div className="form-group mb-3 text-left">
+                <label htmlFor="password" className="customLabel">
+                  <FontAwesomeIcon icon={faLock} className="me-2" />
+                  Password
+                </label>
+                <input type="password" className={`form-control ${style.inputField}`} id="password" name="password" value={password} placeholder="Enter your password" onChange={handleChange} />
+                {errors.password && <div className="text-danger">{errors.password}</div>}
+                <div className={`mt-1 ${getPasswordStrengthClass()}`}>{getPasswordStrength()}</div>
+              </div>
+              <div className="form-group mb-3 text-left">
+                <label htmlFor="password2" className="customLabel">
+                  <FontAwesomeIcon icon={faLock} className="me-2" />
+                  Confirm Password
+                </label>
+                <input type="password" className={`form-control ${style.inputField}`} id="password2" name="password2" value={password2} placeholder="Confirm Your Password" onChange={handleChange} />
+                {errors.password2 && <div className="text-danger">{errors.password2}</div>}
+              </div>
+              <div className="form-group mb-3 text-left">
+                <label htmlFor="country" className="customLabel">
+                  <FontAwesomeIcon icon={faHome} className="me-2" />
+                  Country
+                </label>
+                <input type="text" className={`form-control ${style.inputField}`} id="country" name="country" value={country} placeholder="Enter your country" onChange={handleChange} />
+                {errors.country && <div className="text-danger">{errors.country}</div>}
+              </div>
+              <div className="form-group mb-3 text-left">
+                <label htmlFor="age" className="customLabel">
+                  <FontAwesomeIcon icon={faUser} className="me-2" />
+                  Age
+                </label>
+                <select className="form-select" id="age" name="age" value={age} onChange={handleChange}>
+                  <option value="">Select Age</option>
+                  {ageOptions}
+                </select>
+                {errors.age && <div className="text-danger">{errors.age}</div>}
+              </div>
+              <div className="form-check mb-3 text-left">
+                <input type="checkbox" className="form-check-input" id="rememberMe" name="rememberMe" checked={rememberMe} onChange={handleChange} />
+                <label className="form-check-label" htmlFor="rememberMe">Remember Me</label>
+             
+              </div>
+              <div className="form-group mb-3 text-center">
+                <button type="submit" className={`btn w-50 ${style.btnPurple}`}>Sign Up</button>
+              </div>
+              <p className="text-left text-dark">
+                Do you have an account? <a href="/sign-in" className="text-dark font-weight-bold">Sign In</a>
+              </p>
+            </form>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
 export default SignUp;
-

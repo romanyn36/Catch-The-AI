@@ -25,19 +25,22 @@
 }
 
 .media-type-button {
-  font-family: Manrope, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   justify-content: center;
   align-items: center;
-  border-radius: 99px;
+  border-radius: 100px;
   padding: 16px 110px;
   border: none;
   cursor: pointer;
-  background-color: #ccc; /* Gray color for default state */
-  animation: none; /* Remove animation by default */
+  background-color: #bb6bd9; /*  لو حد حابب يغير لون الزراير  */
+  color: #000000; 
+  font-weight: bolder;
+  font-size: larger;
+  transition: background 0.5s; 
 }
 
-.pulsating {
-  animation: pulse 1s infinite; /* Apply animation only when the button has the 'pulsating' class */
+.media-type-button:hover {
+  animation: pulse 2s infinite; /* اللي عاوز يسرع ويبطأ يتفضل يغير ال2 */
 }
 
 @keyframes pulse {
@@ -49,18 +52,20 @@
   }
 }
 
-/* Existing CSS styles for other elements */
 .main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 500px;
 }
 
 .media-type-heading {
-  color: #fff;
+  color: #000; 
   margin-top: 30px;
-  margin-bottom: 15px;
-  font: Sans-serif bold;
+  margin-bottom: 20px;
+  font-weight: bold; 
+  font-size: 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .media-type-buttons {
@@ -68,49 +73,81 @@
   gap: 20px;
 }
 
-
-
 .label,
 .txt {
-  color: white;
+  color: #000;
   font-size: 26px;
   cursor: pointer;
 }
 
 .txt1 {
-  color: gainsboro;
+  color: rgb(131, 128, 128);
+}
+
+.media-container {
+  width: 100%;
+  height: 300px; 
+  border: 5px solid #000; /* جرب كذا بوردر اخي ف الله  */
+/* solid/double/dashed/groove/inset/outset */
+    padding: 20px;
+  border-radius: 60px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .text-area-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 5px;
+  border-radius: 60px; 
+
 }
 
 .text-area {
-  width: 100%; /* Adjusted width */
-  height: 300px;
+  width: 100%;
+  height: 100%; 
   padding: 10px;
   margin-top: 10px;
-  background-color: rgba(255, 255, 255, 0.8) ;
-  font-size: 26px;
-  resize: vertical;
-  text-align: left; /* Center-align text within textarea */
+  font-size: 36px;
+  resize: none; 
+  text-align: left;
+  color: black;
+  background-color: #f8f9fa; 
 }
 
 .text-area::placeholder {
-  color: white;
+  color: gray;
   opacity: 1;
-  padding: 100px 80px;
+  padding: 10px;
+  font-size: 25px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
 }
 
 .submit-button {
-  border-radius: 99px !important;
-  background-color: #bb6bd9 !important; 
-  
-}
-.submit-button:hover {
-  scale: 1.1;
+  border-radius: 100px;
+  background-color: #bb6bd9!important; 
+  color: #000000 !important; 
+  transition: transform 0.2s;
+  width: 80%; 
+  text-align: center; 
+  font-family: 'Times New Roman', Times, serif;
+  padding: 16px 110px;
+  border: none;
+
 }
 
+.submit-button:hover {
+  transform: scale(1.1);
+}
+
+.container-custom {
+  background-color: white;
+  border-radius: 100px; 
+  padding: 25px;
+  margin-top: 20px;
+  
+}

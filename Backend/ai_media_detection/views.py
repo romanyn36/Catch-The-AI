@@ -1,14 +1,11 @@
 from django.shortcuts import render,HttpResponse
 from django.http import JsonResponse
-from django.core.validators import validate_email
-from django.contrib.auth.hashers import check_password, make_password
-from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
-from django.core.serializers import serialize
-from django.core.serializers.json import DjangoJSONEncoder
 from datetime import datetime
-import base64
-from django.core.files.base import ContentFile
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.conf import settings
 import json
 # add the path to the project root directory
 # import sys
@@ -16,7 +13,7 @@ import json
 # # from .ai_generated_media import load_AI_model,predict_AI_generated_media
 # # import static
 from django.templatetags.static import static
-from users.models import Users,DataHistory
+from users.models import Users,DataHistory,ContactMessage
 from users.session_management import create_session,get_user_id_from_token
 from users.utils import BASE_DOMAIN_URL
 
@@ -189,3 +186,51 @@ def get_detected_media(request):
             }
         hist={'history':history}
         return JsonResponse(hist)
+
+def send_contact_us_email(request):
+    if request.method=="POST":
+        data=json.loads(request.body)
+        message=data['message']
+        name=data['name']
+        from_email=data['email']
+        first_name=name.split(' ')[0].title()
+        supject='Contact us Message from '+first_name
+        
+        to_email = 'romanyyy36dr99@gmail.com' # our email
+        # to_email = settings.EMAIL_HOST_USER # our email # this is the email that will receive the message
+        context = {
+            'message': message,
+            'name': name,
+            'first_name': first_name,
+            'email': from_email
+        }
+        # # send email to the team
+        # # render the message template
+        # message_body_template = render_to_string('contact_us_message_team.html', context)
+        # # strip the html tags from the message
+        # text_content = strip_tags(message_body_template)
+
+        # msg = EmailMultiAlternatives(supject,body=text_content,to=[to_email])
+        # msg.attach_alternative(message_body_template, "text/html")
+
+        # send email to the user
+        # render the message template
+        message_body_template = render_to_string('contact_us_message_user.html', context)
+        # strip the html tags from the message
+        text_content = strip_tags(message_body_template)
+        msg2 = EmailMultiAlternatives(supject,body=text_content,to=[from_email])
+        msg2.attach_alternative(message_body_template, "text/html")
+        # print(name,from_email,message)
+        
+        if msg2.send() :
+            message=ContactMessage(name=name,email=from_email,message=message)
+            message.save()
+            return JsonResponse({'message':'email sent successfully','status':1})
+        else:
+            return JsonResponse({'message':'error while sending the email','status':0})
+    return HttpResponse('you are not allowed to use this method')
+        
+
+
+
+
