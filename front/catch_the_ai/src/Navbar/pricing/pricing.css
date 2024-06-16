@@ -1,51 +1,25 @@
 /* styles.css */
-.title {
-  font-size: 32px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-  font-weight: bolder;
-}
-.quote {
-  font-size: 18px;
-  text-align: center;
-  margin-bottom: 40px;
-  color: black;
-}
-.pricing-container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-family: 'Times New Roman', Times, serif;
-  background-image: url('bg.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 50px;
-}
+
 .btn-toggle {
   font-weight: bold;
   border-radius: 30px;
   padding: 12px 24px;
   font-size: 20px;
   cursor: pointer;
-  transition: background-color s ease;
+  transition: background-color 0.3s ease;
 }
 
 .btn-toggle-monthly:hover,
 .btn-toggle-yearly:hover {
   background-color: rgba(187, 107, 217, 1);
-  color: rgb(0, 0, 0); 
+  color: black; 
   
 }
 
 .btn-toggle-monthly:active,
 .btn-toggle-yearly:active {
   background-color: rgba(187, 107, 217, 1);
-  color: rgb(255, 255, 255); /* Adjust text color as needed */
+  color: black; /* Adjust text color as needed */
 }
 
 
@@ -55,20 +29,43 @@
   margin: 0 10px;
 }
 
+.pricing-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url('bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50px;
+}
 
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
 
-
-
-
+.quote {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 40px;
+  color: black;
+}
 
 .card {
-  transition: transform 5s ease-in-out,
-    box-shadow 5s ease-in-out,
+  transition: transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out,
     background-color transparent,
-    background-color 5s ease,
-    color 5s ease;
+    background-color 0.3s ease,
+    color 0.3s ease;
   margin-bottom: 30px;
-  height: 500px; 
+  height: 500px; /* Set a fixed height for all cards */
   flex-direction: column;
 }
 
@@ -80,8 +77,8 @@
 }
 
 .card:hover button {
-  background-color: rgb(0, 0, 0);
-  color: #ffffff;
+  background-color: rgba(255, 255, 255, 1);
+  color: #563d7c;
   background-color: rgba(187, 107, 217, 1);
 }
 
@@ -100,11 +97,8 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
-  
 }
-.fa{
-  margin-right: 20px;
-}
+
 .btn-outline-primary {
   border-color: #563d7c;
   color: #563d7c;
@@ -112,7 +106,7 @@
 
 .btn-outline-primary:hover {
   background-color: #563d7c;
-  color: #000000;
+  color: #fff;
 }
 
 .btn-primary,
@@ -122,7 +116,6 @@
 .btn-primary:focus {
   background-color: #563d7c;
   border-color: #563d7c;
-  color: #000000;
 }
 
 .custom-control-label:before,
@@ -131,7 +124,10 @@
   background-color: #563d7c;
 }
 
-
+.pricing-card-title {
+  font-size: 2rem;
+  color: #333;
+}
 
 .col-md-4 {
   display: flex;
@@ -171,9 +167,7 @@
 .pro {
   text-align: left;
 }
-.btn{
-  color: #000000;
-}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .card {
@@ -181,9 +175,10 @@
   }
 }
 
+/* AOS animation styles */
 [data-aos="fade-up"] {
   opacity: 0;
-  transform: translate3d(0, 300px, 0);
+  transform: translate3d(0, 100px, 0);
 }
 
 [data-aos="fade-up"].aos-animate {
