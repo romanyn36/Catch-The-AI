@@ -38,10 +38,10 @@ on [Google Drive](https://drive.google.com/drive/folders/1MVqODc8gP812yRJD0h6yDs
   - BERT as Embedding laye .
   - biuld model From scratch.
 ```
-Links :
-[Model | DAIGT](https://www.kaggle.com/code/zeyadusf/model-daigt)
-[Create DataSet](https://www.kaggle.com/code/zeyadusf/create-dataset)
-[DAIGT | All data For Model.](https://www.kaggle.com/datasets/zeyadusf/daigt-all-data-for-competition)
+Links :<br>
+* [Model | DAIGT](https://www.kaggle.com/code/zeyadusf/model-daigt)<br>
+* [Create DataSet](https://www.kaggle.com/code/zeyadusf/create-dataset)<br>
+* [DAIGT | All data For Model.](https://www.kaggle.com/datasets/zeyadusf/daigt-all-data-for-competition)<br>
 
 
 #### 📍 Second Step:
@@ -78,8 +78,8 @@ Links:<br>
 🌵Eighth attempt : [take batch or take my life|DAIGT](https://www.kaggle.com/code/zeyadusf/take-batch-or-take-my-life-daigt)<br>
 🌵 Ninth attempt : [test_2_batchTaker](https://www.kaggle.com/code/oknomore/test-2-batchtaker)
 
-Code Create Folds :  [CreateFolds | DAIGT](https://www.kaggle.com/code/zeyadusf/createfolds-daigt)<br>
-DataSet After Make it [Folds_102 | DAIGT](https://www.kaggle.com/code/zeyadusf/createfolds-daigt)
+* Code Create Folds :  [CreateFolds | DAIGT](https://www.kaggle.com/code/zeyadusf/createfolds-daigt)<br>
+* DataSet After Make it [Folds_102 | DAIGT](https://www.kaggle.com/code/zeyadusf/createfolds-daigt)<br>
 
 
 #### 📍 Third Step:
@@ -95,17 +95,45 @@ DataSet After Make it [Folds_102 | DAIGT](https://www.kaggle.com/code/zeyadusf/c
   - BERT.
 ```
 Links:<br>
-[RoBERTa](https://www.kaggle.com/code/abdelrahman020/roberta)<br>
-[DistilBERT](https://www.kaggle.com/code/oknomore/distilbert)<br>
-[BBERT](https://www.kaggle.com/code/oknomore/bbert)<br>
-[DeBERTa-V2](https://www.kaggle.com/code/abdelrahman020/debert-v2)<br>
+* [RoBERTa](https://www.kaggle.com/code/abdelrahman020/roberta)<br>
+* [DistilBERT](https://www.kaggle.com/code/oknomore/distilbert)<br>
+* [BBERT](https://www.kaggle.com/code/oknomore/bbert)<br>
+* [DeBERTa-V2](https://www.kaggle.com/code/abdelrahman020/debert-v2)<br>
 
 
-#### 📍 fourth Step:
+#### 📍 fourth Step: What is your model?
+ ```
+> Test each model individual:
+   - MakeUrDecision.
+   - MakePipline | DAIGT
+> FeedForward Or Average probabilities:
+   - NowCanUSayWhatHappen | DAIGT
+> FeedForward with RoBERTa & DeBERTa:
+   - DataSet Merge Models | DAIGT
+   - FF-MergeModels
+   - FF-Model Merge Models | DAIGT
+   - FF-model
+   - FF-Ro-DeBERTa | DAIGTMs
+> BenchMark:
+  - Models Analysis | DAIGT
+```
+Links :
+<br>
+
+  - [MakeUrDecision](https://www.kaggle.com/code/zeyadusf/makeurdecision)<br>
+  - [MakePipline | DAIGT](https://www.kaggle.com/code/zeyadusf/makepipline-daigt)<br>
+  - [NowCanUSayWhatHappen | DAIGT](https://www.kaggle.com/code/zeyadusf/nowcanusaywhathappen-daigt)<br>
+  - [DataSet Merge Models |DAIGT](https://www.kaggle.com/code/zeyadusf/dataset-merge-models-daigt)<br>
+  - [FF-MergeModels](https://www.kaggle.com/datasets/zeyadusf/ff-mergemodels)<br>
+  - [FF-Model Merge Models | DAIGT](https://www.kaggle.com/code/zeyadusf/ff-model-merge-models-daigt)<br>
+  - [FF-model](https://www.kaggle.com/models/zeyadusf/ff-model)<br>
+  - [FF-Ro-DeBERTa | DAIGTMs](https://www.kaggle.com/code/zeyadusf/ff-ro-deberta-daigtms)<br>
+  - [Models Analysis | DAIGT](https://www.kaggle.com/code/zeyadusf/models-analysis-daigt)<br>
+    
+#### 📍The fifth step:
+
 ```
 🚧 Announcement will be made after completion ....
 ```
 
-
-
-7 may.
+17 Jun
