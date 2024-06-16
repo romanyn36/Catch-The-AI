@@ -51,7 +51,7 @@ export class Navbar extends Component {
     const { isLoggedIn, username, imageurl } = this.state;
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-light"  data-bs-theme="dark">
+      <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid justify-content-center">
           <Link className="navbar-brand me-auto" to="/">
             <span className="navbar-title">Catch The AI</span>
@@ -61,18 +61,23 @@ export class Navbar extends Component {
           </button>
           <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
               <li className="nav-item ms-4"> {/* Add margin to the left of the first item */}
                 <Link className="nav-link" to="/">Home</Link>
               </li>
+
               <li className="nav-item">
-                <Link className="nav-link" to="/text-detector">Start</Link>
+                <a className="nav-link" href="/?scrollTo=text-detector">Start</a>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/pricing">Pricing</Link>
+
+             <li className="nav-item">
+                <a className="nav-link" href="/?scrollTo=pricing">Pricing</a>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/AboutUs">About Us</Link>
+
+             <li className="nav-item">
+               <a className="nav-link" href="/?scrollTo=AboutUs">About Us</a>
               </li>
+      
             </ul>
             <div className="d-flex">
               {!isLoggedIn ? (
