@@ -7,9 +7,10 @@ body {
 .MainContainer {
   border-radius: 30px;
   padding: 5px 15px; /* Adjusted padding for better responsiveness */
-  
   background-color: #cdc5ce;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
+  color: #fcfcfc;
+  margin-bottom: 30px;
 }
 
 .HeroSection {
@@ -19,7 +20,6 @@ body {
 }
 
 .HeroTitle {
-  /* color: #ffffff; */
   color: #000000;
   font-size: 36px;
   line-height: 1.5;
@@ -31,8 +31,7 @@ body {
 .HeroDescription {
   font-size: 18px;
   line-height: 1.6;
-  /* color: #c8c0c0; */
-  color: #444242;
+  color: #555;
 }
 
 .GetStartedButton {
@@ -52,7 +51,7 @@ body {
 }
 
 .HeroImage {
+  max-width: 100%;
   margin-top: 20px;
   border-radius: 10px;
-  border-radius: 15%;
 }
