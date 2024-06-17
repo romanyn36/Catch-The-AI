@@ -5,12 +5,18 @@ body {
 }
 
 .MainContainer {
-  border-radius: 30px;
-  padding: 5px 15px; /* Adjusted padding for better responsiveness */
+  width: 94vw;
+  max-width: 1500px;
+  height:max-content;
+  padding: 5px 15px;
   background-color: #cdc5ce;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
+  /* background-image: url('back.png'); */
+  /* background-size: cover; */
+  border-radius: 30px;
+  box-shadow: 0 0 15px rgba(255, 219, 219, 0.1); 
   color: #fcfcfc;
   margin-bottom: 30px;
+  margin: 0 ;
 }
 
 .HeroSection {

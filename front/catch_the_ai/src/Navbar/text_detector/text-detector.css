@@ -1,3 +1,18 @@
+
+.MainContainer {
+  width: 94vw;
+  max-width: 1500px;
+  height:max-content;
+  padding: 5px 15px;
+  background-color: #cdc5ce;
+  /* background-image: url('back.png'); */
+  background-size: cover;
+  border-radius: 30px;
+  box-shadow: 0 0 15px rgba(255, 219, 219, 0.1); 
+  color: #fcfcfc;
+  margin-bottom: 30px;
+  margin: auto;
+}
 @media (min-width: 320px) and (max-width: 480px) {
   .media-type-button {
     padding: 16px 32px;
@@ -144,10 +159,3 @@
   transform: scale(1.1);
 }
 
-.container-custom {
-  background-color: white;
-  border-radius: 100px; 
-  padding: 25px;
-  margin-top: 20px;
-  
-}

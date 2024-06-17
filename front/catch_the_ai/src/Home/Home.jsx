@@ -62,12 +62,15 @@ function Home() {
 
 function MyComponent() {
   return (
-    <div className="container RootContainer">
+    <div className="container ">
+    
       <div className="MainContainer text-center">
-        <section className="HeroSection">
+        <div className="container HeroSection">
           <h2 className="HeroTitle">
-            Start Detecting <br />
-           AI-Generated Media
+           {/* <span style={{color:"white"}}>Start Detecting</span>  <br /> */}
+           <span style={{}}>Start Detecting</span>  <br />
+          {/* <span style={{color:"#706AF6"}}>  AI-Generated Media</span> */}
+          <span style={{}}>  AI-Generated Media</span>
           </h2>
           <div className="HeroContent row align-items-center">
             <div className="col-md-6 mb-3 mb-md-0">
@@ -84,10 +87,16 @@ function MyComponent() {
             <img className="HeroImage img-fluid" src={aiImage} alt="AI" />
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </div>
   );
 }
+
+
+
+
+
+
 
 export default Home;

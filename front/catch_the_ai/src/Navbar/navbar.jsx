@@ -52,38 +52,34 @@ export class Navbar extends Component {
 
     return (
       <nav className="navbar navbar-expand-lg navbar-light" data-bs-theme="dark">
-        <div className="container-fluid justify-content-center">
-          <Link className="navbar-brand me-auto" to="/">
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/">
             <span className="navbar-title">Catch The AI</span>
           </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-
-              <li className="nav-item ms-4"> {/* Add margin to the left of the first item */}
-                <Link className="nav-link" to="/">Home</Link>
-              </li>
-
-              <li className="nav-item">
-                <a className="nav-link" href="/?scrollTo=text-detector">Start</a>
-              </li>
-
-             <li className="nav-item">
-                <a className="nav-link" href="/?scrollTo=pricing">Pricing</a>
-              </li>
-
-             <li className="nav-item">
-               <a className="nav-link" href="/?scrollTo=AboutUs">About Us</a>
-              </li>
-      
-              <li className="nav-item">
-               <a className="nav-link" href="/?scrollTo=ContactUs">Contact Us</a>
-              </li>
-
-            </ul>
-            <div className="d-flex">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <div className="navbar-nav-center">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">Home</Link>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/?scrollTo=text-detector">Start</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/?scrollTo=pricing">Pricing</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/?scrollTo=AboutUs">About Us</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/?scrollTo=ContactUs">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+            <div className="ms-auto d-flex">
               {!isLoggedIn ? (
                 <>
                   <Link className="btn btn-outline-light me-3 rounded-pill" to="/sign-up">Sign Up</Link>

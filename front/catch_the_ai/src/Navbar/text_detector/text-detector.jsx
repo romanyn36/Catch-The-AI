@@ -90,7 +90,8 @@ export class TextDetector extends Component {
     const { selectedMediaType, pulsatingMediaType, result } = this.state;
 
     return (
-      <div className="container container-custom">
+      <div className="container ">
+      <div className="container  MainContainer  ">
         <h2 className="media-type-heading text-center">Select Media Type</h2>
         <div className="media-type-buttons row justify-content-center">
           {mediaData.map((media) => (
@@ -118,7 +119,7 @@ export class TextDetector extends Component {
             )}
             {selectedMediaType === 'Text' && (
               <div className="media-container">
-                <textarea className="text-area form-control" placeholder="Enter Your Text Here" value={this.state.text} onChange={this.handleTextChange}></textarea>
+                <textarea className="text-area form-control media-container" style={{backgroundColor:"transparent"}} placeholder="Enter Your Text Here" value={this.state.text} onChange={this.handleTextChange}></textarea>
               </div>
             )}
             {selectedMediaType === 'Audio' && (
@@ -133,6 +134,7 @@ export class TextDetector extends Component {
             <button className="btn btn-outline- submit-button mt-2 mb-2" onClick={() => this.predict_media(pulsatingMediaType)}>AI or Human?</button>
           </div>
         </div>
+      </div>
       </div>
     );
   }
