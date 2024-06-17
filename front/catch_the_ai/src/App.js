@@ -24,6 +24,8 @@ import ResetPassword from './Sign-In/ResetPassword/ResetPassword';
 import SuccessfullyResetPassword from './Sign-In/ResetPassword/SuccessfullyResetPassword';
 import AudioRecorderUploader from './Navbar/text_detector/AudioRecorderUploader';
 import ContactUs from './Navbar/ContactUs/ContactUs';
+import Dashboard from './Dashboard/Dashboard';
+
 
 const App = () => {
   return (
@@ -52,6 +54,7 @@ const App = () => {
           <Route path="/ResetPassword" element={<ResetPassword />} />
           <Route path="/SuccessfullyResetPassword" element={<SuccessfullyResetPassword />} />
           <Route path="/AudioRecorderUploader" element={<AudioRecorderUploader />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="*" element={<div className='container' style={{ backgroundColor: "#e6d1d0" }}><h1>this page Not Found</h1></div>} />
         </Routes>
         <Footer />
