@@ -16,9 +16,12 @@ from django.templatetags.static import static
 from users.models import Users,DataHistory,ContactMessage
 from users.session_management import create_session,get_user_id_from_token
 from users.utils import BASE_DOMAIN_URL
+from ai_media_detection.DeepLearning_models.text_Final_Model_Script.script_daigt import detect_text,init_api
 
 # # initialize the model
 # # image_model = load_AI_model()
+
+text_model=init_api()
 
 def home(request):
     baseurl=BASE_DOMAIN_URL
@@ -66,7 +69,7 @@ def predict_media(request):
                 media_history.save()
             
             elif media_type=='text':
-                result='your text: '+text
+                result=detect_text(text,text_model)
                 size=format_size(len(text))
                 media_history=DataHistory(user=user,media_name=f"text: {text.split(' ')[0]}",text=text,attemptTime=datetime.now(),modelResult=result,media_size=size)
                 media_history.save()

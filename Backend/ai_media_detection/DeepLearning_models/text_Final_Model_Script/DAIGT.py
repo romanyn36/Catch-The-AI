@@ -1,7 +1,7 @@
 import requests
 import time
 import torch
-from TextCleanerDAIGT import TextCleaner
+from .TextCleanerDAIGT import TextCleaner
 
 class DAIGT:
     def __init__(self,  token, api_url_deberta, api_url_roberta, ff_path):
@@ -114,7 +114,7 @@ if __name__ == '__main__':
     token = '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'
     API_URL_DeBERTa = "https://api-inference.huggingface.co/models/zeyadusf/deberta-DAIGT-MODELS"
     API_URL_RoBERTa = "https://api-inference.huggingface.co/models/zeyadusf/roberta-DAIGT-kaggle"
-    ff_path = r'D:\Graduation-project\Models\Text Detector Model\Second Term\Final Model Script\model_scripted.pt'  # set Your Path
+    ff_path = 'model_scripted.pt'  # set Your Path
 
     sample_text = "my teamates misunderstand me and get it wrong , somtimes we wanna to get out of the team ,what the solutions "
     daigt = DAIGT(token, API_URL_DeBERTa, API_URL_RoBERTa, ff_path)
