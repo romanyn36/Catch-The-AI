@@ -16,7 +16,7 @@
 }
 
 .shadow {
-  box-shadow: 0 4px 8px rgb(0, 0, 0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight transparency for better appearance */
 }
 
 .text-primary {
@@ -36,34 +36,37 @@
 }
 
 .inputField {
-  width: 100%;
-  padding: 10px;
-  margin: 0;
-  font-family:'Times New Roman', Times, serif;
+  width: 100%; /* Changed to 100% for better responsiveness */
+  padding: 10px; /* Increased padding for better touch experience */
+  margin: 2.5px 0; /* Adjusted margin to reduce space around input fields to half */
+  font-family: 'Times New Roman', Times, serif;
   color: #000000;
   background-color: #f6e4ff;
   border: 3px solid rgb(247, 243, 249);
+  box-sizing: border-box;
+  font-size: 17px;
 }
 
 .customLabel {
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
-  padding-left: 0px;
   text-align: left;
   display: block;
-  font-weight: bolder;
   color: #000000;
+  margin-bottom: 2.5px; /* Separate label from input to half */
+  font-size: 20px;
 }
 
 .btnPurple {
-  background-color: #000000;
-  border-color: #000000;
-  color: white;
+  background-color: #5a3b89;
+  border-color: #5a3b89; 
+  color: rgb(255, 255, 255); /* Changed to white for better contrast */
 }
 
 .btnPurple:hover {
-  background-color: #5a3b89;
-  border-color: #5a3b89;
+  background-color: #000000;
+  border-color: #000000;
+  color: aliceblue;
 }
 
 @media screen and (max-width: 768px) {
@@ -82,9 +85,35 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%; /* Ensure the form group takes the full width */
+  margin: 0 5px; /* Adjusted margin to 5px from each side */
 }
 
 .form-check {
   display: flex;
   align-items: center;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 5px; /* Space between columns reduced to half */
+}
+
+.col-md-6 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.mb-3 {
+  margin-bottom: 0.5rem !important; /* Margin bottom reduced to half */
+}
+
+.customLabel {
+  margin-left: 0; /* Remove left margin */
+}
+
+.form-group {
+  width: 100%;
 }
