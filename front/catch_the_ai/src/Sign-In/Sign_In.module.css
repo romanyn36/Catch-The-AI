@@ -1,139 +1,109 @@
+
 .pageContainer {
   background-color: #241440;
   height: fit-content;
-  margin: 50px 100px;
+  margin: 50px auto;
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
 .signinContainer {
   margin: auto;
-  border: 5px solid rgba(187, 107, 217, 1);
+  border: 5px solid transparent; /* Replace with desired border color */
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 30px;
-  display: flex;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  max-width: 800px;
-}
-
-.title5 {
-  margin: 0 auto 10px auto;
-  color: #070707;
-  text-align: center;
-}
-
-.ff {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex: 1;
+  font-family: 'Times New Roman', Times, serif;
+  max-width: 40%; /* Adjust as needed */
+  background-image: url('./bg-signin3.jpg'); /* Replace with your background image path */
+  background-size: cover;
+  background-position: center;
   padding: 20px;
 }
 
-.imageContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-}
-
-.img1 {
-  max-width: 100%;
-  max-height: 70%;
-  border-radius: 10px;
-  margin-top: 30px;
+.title5 {
+  margin: 0 auto 10px auto;
+  color: #333;
+  text-align: center;
+  font-family: Marker Felt, fantasy;
+  font-size: 30px;
 }
 
 .googleLogin {
   width: 100%;
+  max-width: 700px; /* Adjust as needed */
   padding: 10px;
   border: none;
   border-radius: 5px;
-  color: #fff;
-  background-color: #530870;
+  background-color: #5a3b89;
+  border-color: #5a3b89; 
+  color: rgb(255, 255, 255); /* Changed to white for better contrast */
   transition: background-color 0.3s ease;
   margin-bottom: 20px;
 }
 
 .googleLogin:hover {
-  background-color: rgb(215, 127, 241);
-}
-
-.googleLogin img {
-  width: 20px;
-  height: 20px;
-}
-
-.info {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.info>div {
-  margin: 10px;
-  width: fit-content;
-}
-
-.formG {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  background-color: #000000;
+  border-color: #000000;
+  color: aliceblue;
 }
 
 .formGroup {
-  width: 100%;
+  width: 70%;
   margin-bottom: 10px;
 }
 
 .formGroup label {
   display: block;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
+  text-align: left;
+  display: block;
+  color: #000000;
+  margin-bottom: 2.5px; /* Separate label from input to half */
+  font-size: 20px;
 }
 
-.formGroup input[type="text"],
-.formGroup input[type="password"] {
+.inputField {
   width: 100%;
-  padding: 10px;
-  color: #530870;
-  background-color: rgb(247, 243, 249);
-  border: 3px solid rgba(187, 107, 217, 1);
-  border-radius: 5px;
+  padding: 10px; /* Add padding of 10px */
+  margin: 2.5px 0; /* Adjusted margin */
+  font-family: 'Times New Roman', Times, serif;
+  color: #000000;
+  background-color: #f6e4ff;
+  border: 3px solid rgb(247, 243, 249);
+  box-sizing: border-box;
+  font-size: 17px;
 }
-/* set place hoder */
-.formGroup input[type="text"]::placeholder,
-.formGroup input[type="password"]::placeholder {
-  font-family:cursive;
+
+.inputField::placeholder {
+  font-family: cursive;
   text-align: left;
   font-size: 15px;
 }
-.formG button[type="submit"] {
-  width: 100%;
-  padding: 10px;
-  background-color: #530870;
-  color: #fff;
-  border-radius: 5px;
-}
+
+
 
 .IN {
-  color: #530870;
+  color: #000000;
 }
 
 .INN {
-  color: rgb(239, 59, 9) !important;
+  color: rgb(0, 0, 0) !important;
 }
 
-/* Adjustments for screens smaller than 767px */
+/* Media query for screens smaller than 767px */
 @media (max-width: 767px) {
   .signinContainer {
-    flex-direction: column;
-  }
-
-  .ff,
-  .imageContainer {
-    width: 100%;
+    max-width: 100%;
   }
 }
-   
+.remember-me,.forgot-password-link{
+  color: #000;
+}
+.forgot-password-link{
+  color: #000;
+}

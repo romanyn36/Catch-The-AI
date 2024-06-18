@@ -91,7 +91,7 @@ export class TextDetector extends Component {
 
     return (
       <div className="container ">
-      <div className="container  MainContainer  ">
+      <div className="container  MainContainer1  ">
         <h2 className="media-type-heading text-center">Select Media Type</h2>
         <div className="media-type-buttons row justify-content-center">
           {mediaData.map((media) => (
