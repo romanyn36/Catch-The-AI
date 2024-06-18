@@ -7,19 +7,10 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
 import json
-# add the path to the project root directory
-# import sys
-# # sys.path.append('images_model/')
-# # from .ai_generated_media import load_AI_model,predict_AI_generated_media
-# # import static
-from django.templatetags.static import static
 from users.models import Users,DataHistory,ContactMessage
 from users.session_management import create_session,get_user_id_from_token
 from users.utils import BASE_DOMAIN_URL
 from ai_media_detection.DeepLearning_models.text_Final_Model_Script.script_daigt import detect_text,init_api
-
-# # initialize the model
-# # image_model = load_AI_model()
 
 text_model=init_api()
 
@@ -49,7 +40,6 @@ def predict_media(request):
                 with open(path, 'wb+') as destination:
                     for chunk in data.chunks():
                         destination.write(chunk)
-                # result=predict_AI_generated_media(path,image_model)
                 result='we predicted the image for you'+f" {remain_attempets} attempts left"
                 size=format_size(data.size)
                 media_history=DataHistory(user=user,media_name=data.name,image=data,attemptTime=datetime.now(),modelResult=result,media_size=size)
