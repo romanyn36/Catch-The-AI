@@ -23,7 +23,7 @@ function SignUp() {
     e.preventDefault();
     const { name, email, username, country, age, gender, password, password2 } = userInfo;
     const errors = {};
-    
+
     if (!name) errors.name = "Name is required";
     if (!email) errors.email = "Email is required";
     else if (!email.includes("@") || !email.endsWith(".com")) errors.email = "Invalid email format";
@@ -95,10 +95,11 @@ function SignUp() {
   return (
     <div className={`container my-5 ${style.signUpContainer}`}>
       <div className="row justify-content-center">
-        <div className={`col-lg-10 col-md-12 d-flex flex-wrap ${style.frameContainer} ${style.shadow} ${style.rounded}`}>
-          <div className="col-lg-6 p-4 mx-auto">
+        <div className={`col-lg-8 col-md-10 col-sm-12 ${style.frameContainer} ${style.shadow} ${style.rounded}`}>
+          <div className="p-4">
             <form onSubmit={handleSubmit}>
-              <h2 className={`text-center display-6 ${style.customFont} mb-4`}>Sign Up</h2>
+              <h2 className={`text-center display-6 ${style.title5} mb-4`}>Explore verified media origins: AI or human. Join us!
+</h2>
               <div className="row">
                 <div className="form-group col-md-6 mb-3">
                   <label htmlFor="name" className={style.customLabel}>
@@ -134,9 +135,6 @@ function SignUp() {
                   {errors.country && <div className="text-danger">{errors.country}</div>}
                 </div>
 
-
-
-           
                 <div className="form-group col-md-6 mb-3">
                   <label htmlFor="password" className={style.customLabel}>
                     <FontAwesomeIcon icon={faLock} className="me-2" />
@@ -154,7 +152,6 @@ function SignUp() {
                   <input type="password" className={`form-control ${style.inputField}`} id="password2" name="password2" value={password2} placeholder="Confirm Your Password" onChange={handleChange} />
                   {errors.password2 && <div className="text-danger">{errors.password2}</div>}
                 </div>
-            
                 <div className="form-group col-md-6 mb-3">
                   <label htmlFor="gender" className={style.customLabel}>
                     <FontAwesomeIcon icon={faVenusMars} className="me-2" />
@@ -167,7 +164,6 @@ function SignUp() {
                   </select>
                   {errors.gender && <div className="text-danger">{errors.gender}</div>}
                 </div>
-             
                 <div className="form-group col-md-6 mb-3">
                   <label htmlFor="age" className={style.customLabel}>
                     <FontAwesomeIcon icon={faUser} className="me-2" />
@@ -179,25 +175,23 @@ function SignUp() {
                   </select>
                   {errors.age && <div className="text-danger">{errors.age}</div>}
                 </div>
-
-
-
-
               </div>
               <div className="form-group mb-3">
                 <div className="form-check">
                   <input type="checkbox" className="form-check-input" id="rememberMe" name="rememberMe" checked={rememberMe} onChange={handleChange} />
-                  <label htmlFor="rememberMe" className="form-check-label">
-                    Remember Me
-                  </label>
+                  <label htmlFor="rememberMe" className="form-check-label fs-5">
+  Remember Me
+</label>
+
                 </div>
               </div>
               <div className="form-group mb-3 text-center">
                 <button type="submit" className={`btn w-100 ${style.btnPurple}`}>Sign Up</button>
               </div>
-              <p className="text-left text-dark">
-                Do you have an account? <a href="/sign-in" className="text-dark font-weight-bold">Sign In</a>
-              </p>
+              <p className="text-center text-dark fs-5">
+  Do you have an account? <a href="/sign-in" className="text-dark font-weight-bold">Sign In</a>
+</p>
+
             </form>
           </div>
         </div>

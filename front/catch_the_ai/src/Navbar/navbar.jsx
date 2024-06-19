@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './navbar.css';
 import { BASE_DOMAIN_URL } from '../index';
 
@@ -10,6 +10,7 @@ export class Navbar extends Component {
       isLoggedIn: false,
       userData: null,
       imageurl: "images/prof.png",
+      brandlink: "images/logo.jpg",
       username: "username",
     };
   }
@@ -48,38 +49,38 @@ export class Navbar extends Component {
   };
 
   render() {
-    const { isLoggedIn, username, imageurl } = this.state;
+    const { isLoggedIn, username, imageurl,brandlink } = this.state;
+    const { darkMode, toggleDarkMode } = this.props;
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-light" data-bs-theme="dark">
+      <nav className={`navbar navbar-expand-lg ${darkMode ? 'dark-mode' : ''}`} data-bs-theme="dark">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            <span className="navbar-title">Catch The AI</span>
+          <Link className="navbar-brand d-flex align-items-center" to="/">
+            <img src={brandlink} alt="Logo" className={`navbar-logo ${darkMode ? 'dark-mode' : ''}`} />
+            <span className={`navbar-title ${darkMode ? 'dark-mode' : ''}`}>Catch The AI</span>
           </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <div className="navbar-nav-center">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <Link className="nav-link" to="/">Home</Link>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/?scrollTo=text-detector">Start</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/?scrollTo=pricing">Pricing</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/?scrollTo=AboutUs">About Us</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/?scrollTo=ContactUs">Contact Us</a>
-                </li>
-              </ul>
-            </div>
-            <div className="ms-auto d-flex">
+          <div className="collapse navbar-collapse justify-content-center align-items-center" id="navbarSupportedContent">
+            <ul className="navbar-nav ">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">Home</Link>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/?scrollTo=text-detector">Start</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link  " href="/?scrollTo=pricing">Pricing</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/?scrollTo=AboutUs">About Us</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/?scrollTo=ContactUs">Contact Us</a>
+              </li>
+            </ul>
+            <div className="ms-auto d-flex align-items-center">
               {!isLoggedIn ? (
                 <>
                   <Link className="btn btn-outline-light me-3 rounded-pill" to="/sign-up">Sign Up</Link>
@@ -101,10 +102,23 @@ export class Navbar extends Component {
                     </li>
                   </ul>
                   <a href={`/UserProfile/${username}`} className="nav-link">
-                    <img src={imageurl} alt="" className="profileImg" />
+                    <img src={imageurl} alt="" className={`profileImg ${darkMode ? 'dark-mode' : ''}`} />
                   </a>
                 </>
               )}
+              {/* Dark mode switch */}
+              <div className="form-check form-switch ms-3">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="darkModeSwitch"
+                  checked={darkMode}
+                  onChange={toggleDarkMode}
+                />
+                <label className={`form-check-label ${darkMode ? 'text-light' : ''}`} htmlFor="darkModeSwitch">
+                  {darkMode ? 'Dark Mode' : 'Light'}
+                </label>
+              </div>
             </div>
           </div>
         </div>

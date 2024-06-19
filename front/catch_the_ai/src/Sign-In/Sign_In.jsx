@@ -3,7 +3,7 @@ import style from "./Sign_In.module.css";
 import { Footer } from "../Footer/Footer";
 import { useFetch } from 'use-http'; // Import the useFetch hook from use-http
 import { BASE_DOMAIN_URL } from '../index';
-import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import FontAwesomeIcon
 
 class Sign_In extends React.Component {
@@ -11,14 +11,21 @@ class Sign_In extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            rememberMe: false // Add rememberMe state
         };
     }
 
     handleInputChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
+        if (event.target.name === 'rememberMe') {
+            this.setState(prevState => ({
+                rememberMe: !prevState.rememberMe
+            }));
+        } else {
+            this.setState({
+                [event.target.name]: event.target.value
+            });
+        }
     };
 
     handleFormSubmit = async (event) => {
@@ -66,57 +73,67 @@ class Sign_In extends React.Component {
     };
 
     render() {
+        const { username, password, rememberMe } = this.state;
+
         return (
             <>
                 <div className={style.pageContainer}>
                     <div className={style.signinContainer}>
-                        <div className={style.ff}>
-                            <h2 className={style.title5}>Sign In</h2>
-                            <p>Hi, Welcome back</p>
-                            <button className={style.googleLogin} onClick={this.handleGoogleLogin}>
-                                <i className="bi bi-google"></i> Login with Google
-                            </button>
-                            <p>or login with email</p>
-                            <form onSubmit={this.handleFormSubmit}>
-                                <div className={style.formGroup}>
-                                    <label htmlFor="username" className="customLabel">
-                                        <i className="bi bi-envelope-fill"></i> Email
-                                    </label><br />
-                                    <input 
-                                        type="text" 
-                                        id="username" 
-                                        name="username" 
-                                        value={this.state.username} 
-                                        onChange={this.handleInputChange} 
-                                        placeholder="Enter your Email" 
-                                        className={`inputField ${style.inputWithIcon}`} // Apply inputField class
-                                    />
-                                </div>
-                                <div className={style.formGroup}>
-                                    <label htmlFor="password" className="customLabel">
-                                        <FontAwesomeIcon icon={faLock} className="me-2" /> Password
-                                    </label><br />
-                                    <input 
-                                        type="password" 
-                                        id="password" 
-                                        name="password" 
-                                        value={this.state.password} 
-                                        onChange={this.handleInputChange} 
-                                        placeholder="Enter your password" 
-                                        className={`inputField ${style.inputWithIcon}`} // Apply inputField class
-                                    />
-                                </div>
-                                <div className={style.formG}>
-                                    <label>
-                                        <input type="checkbox" className="remember-me" /> Remember Me
-                                    </label>
-                                    <a href="/FP" className="forgot-password-link">Forgot Password?</a>
-                                </div>
-                                <button type="submit" className={`${style.googleLogin} loginbtn`}>Login</button>
-                            </form>
-                            <div className="">
-                                <p className={style.IN}>Not Registered Yet? <a href="/sign-up" className={style.INN}>Sign Up</a></p>
+                        <h2 className={style.title5}>Discover the magic of AI! Sign in to find out if your media was crafted by artificial intelligence.</h2>
+              
+                        <form onSubmit={this.handleFormSubmit} className={style.formContainer}>
+                            <div className={style.formGroup}>
+                                <label htmlFor="username" className={style.customLabel}>
+                                    <FontAwesomeIcon icon={faEnvelope} className={style.icon} /> Email
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="username" 
+                                    name="username" 
+                                    value={username} 
+                                    onChange={this.handleInputChange} 
+                                    placeholder="Enter your Email" 
+                                    className={`${style.inputField}`} 
+                                />
                             </div>
+                            <div className={style.formGroup}>
+                                <label htmlFor="password" className={style.customLabel}>
+                                    <FontAwesomeIcon icon={faLock} className={style.icon} /> Password
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    value={password} 
+                                    onChange={this.handleInputChange} 
+                                    placeholder="Enter your password" 
+                                    className={`${style.inputField}`} 
+                                />
+                            </div>
+                            <div className={style.rememberMe}>
+                                <label>
+                                    <input 
+                                        type="checkbox" 
+                                        name="rememberMe" 
+                                        checked={rememberMe} 
+                                        onChange={this.handleInputChange} 
+                                        className={style.checkbox} 
+                                    /> Remember Me
+                                </label>
+                            </div>
+                            <div className={style.formG}>
+                                <button type="submit" className={`${style.loginButton}`}>Login</button><br/>
+                                <button className={style.googleLogin} onClick={this.handleGoogleLogin}>
+                            <i className="bi bi-google"></i>
+                            <span>Login with Google</span>
+                        </button>
+
+                            </div>
+                        </form>
+                        <div className={style.registerLink}>           
+                          <a href="/FP" className={style.forgotPasswordLink}>Forgot Password?</a>
+
+                            <p className={style.IN}>Not Registered Yet? <a href="/sign-up" className={style.INN}>Sign Up</a></p>
                         </div>
                     </div>
                 </div>
