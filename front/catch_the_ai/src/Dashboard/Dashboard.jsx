@@ -1,11 +1,15 @@
 import * as React from "react";
-import styled from "styled-components";
-
+import { useEffect, useState } from 'react';
+import Sidebar from "./Sidebar";
 function Dashboard() {
-
     return (
-        <div>
-            <h1>Dashboard</h1>
+        <div className="bg-light">
+
+            <div className="dashboard">
+                <Sidebar />
+                <div className="content">
+                </div>
+            </div>
         </div>
     );
 }
