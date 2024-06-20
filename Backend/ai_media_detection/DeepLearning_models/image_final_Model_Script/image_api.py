@@ -1,14 +1,16 @@
 import os
-import subprocess
 import requests
 import cv2
 from mtcnn import MTCNN
-import matplotlib.pyplot as plt
 import time
 
-detector = MTCNN()
-def detect_and_crop_faces(image_path):
+
+def init_model():
+    detector = MTCNN()
+    return detector
+def detect_and_crop_faces(image_path, detector):
     # Load the image
+    # print(image_path)
     image = cv2.imread(image_path)
     # Convert to RGB
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -25,8 +27,8 @@ def detect_and_crop_faces(image_path):
     
     return cropped_faces
 
-def preprocess_images(image_path):
-    cropped_faces = detect_and_crop_faces(image_path)
+def preprocess_images(image_path,detector):
+    cropped_faces = detect_and_crop_faces(image_path, detector)
     temp_image_paths = []
     for i, cropped_face in enumerate(cropped_faces):
         temp_image_path = f"temp_cropped_image_{i}.jpg"
@@ -52,28 +54,33 @@ def query_huggingface_api(api_url, file_path, api_token, max_retries=5, delay=20
         else:
             return response_json
     
-    return {"error": "Max retries exceeded"}
+    return ["error Max retries exceeded"]
 
-image_path = r"c:\Users\user\Downloads\WhatsApp Image 2024-06-18 at 06.34.16_da018d0f.jpg   "
-# Preprocess the image
-preprocessed_image_paths, cropped_faces = preprocess_images(image_path)
-
-# Display the cropped faces
-for cropped_face in cropped_faces:
-    plt.imshow(cropped_face)
-    plt.axis('off')  # Hide the axis
-    plt.show()
- 
- # Query Hugging Face API
-API_URL = "https://api-inference.huggingface.co/models/Skullly/results"
-API_TOKEN = "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"  # Replace with your Hugging Face API token
-    
-responses = []
-for preprocessed_image_path in preprocessed_image_paths:
-    response = query_huggingface_api(API_URL, preprocessed_image_path, API_TOKEN)
-    responses.append(response)
-    print(response)
-
-# Clean up the temporary files
-for preprocessed_image_path in preprocessed_image_paths:
-    os.remove(preprocessed_image_path)
+def format_results_with_messages(responses):
+    results = []
+    for i, result in enumerate(responses):
+        print("result format ",result)
+        result=result[0]
+        label = result['label'].replace('r', 'Real Image').replace('f', 'Fake Image')
+        score = result['score']
+        message = f"{label}"#+f" with score {score:.2f}"
+        results.append(message)
+    return results
+def predict_image(image_path,detector):
+    # Preprocess the image
+    preprocessed_image_paths, cropped_faces = preprocess_images(image_path,detector) 
+    # print (preprocessed_image_paths)
+    if cropped_faces == []:
+        return ["No faces detected"]
+    # Query Hugging Face API
+    API_URL = "https://api-inference.huggingface.co/models/Skullly/DeepFake-EN-B6"
+    API_TOKEN = "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"  # Replace with your Hugging Face API token
+        
+    responses = []
+    for preprocessed_image_path in preprocessed_image_paths:
+        response = query_huggingface_api(API_URL, preprocessed_image_path, API_TOKEN)
+        responses.append(response)
+    # Clean up the temporary files
+    # for preprocessed_image_path in preprocessed_image_paths:
+        os.remove(preprocessed_image_path)
+    return format_results_with_messages(responses)
