@@ -7,12 +7,15 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
 import json
-from users.models import Users,DataHistory,ContactMessage
+import os
+from django.utils import timezone
+from users.models import Users,DataHistory,ContactMessage,AnonymousAttempt
 from users.session_management import create_session,get_user_id_from_token
 from users.utils import BASE_DOMAIN_URL
 from ai_media_detection.DeepLearning_models.text_Final_Model_Script.script_daigt import detect_text,init_api
-
+from ai_media_detection.DeepLearning_models.image_final_Model_Script.image_api import init_model,predict_image
 text_model=init_api()
+cropped_faces_model=init_model()
 
 def home(request):
     baseurl=BASE_DOMAIN_URL
@@ -22,49 +25,86 @@ def predict_media(request):
     """
     """
     if request.method == 'POST':
-        print("post method : detect media") 
+        # print("post method : detect media") 
         req = request.POST
         media_type=req['media_type']
         data=request.FILES.get('media',None)
         text=req['text'].strip()
-        user=Users.objects.filter(username='romanyn36').first()
-        remain_attempets=calculate_remaining_attempts(user)
-        remain_attempets=100
-        print(media_type)
-        if remain_attempets==0:
-            return JsonResponse({'message':'you have no attempts left'})
+
+        # initialize the user and the anonymous flag
+        remain_attempets=0
+        anonymous=False
+        user=None
+        # get the the auth token from the headers if it exists
+        auth_header = request.headers.get('Authorization')
+        print("auth_header: ",auth_header)
+        token = auth_header.split(" ")[1]
+        if token!='null':
+            
+            # print("token: ",token)
+            try:
+                user_id,role=get_user_id_from_token(token)
+                user=Users.objects.filter(id=user_id).first()
+            except Exception as e:
+                error=get_user_id_from_token(token)
+                return JsonResponse({'result':error})
+        
+        if user:
+            remain_attempets=calculate_remaining_attempts(user)
+            # print(media_type)
+            if remain_attempets==0:
+                return JsonResponse({'result':'you have no attempts left'})
         else:
-            if media_type=='image':
-                # save the image
-                path ='D:/Graduation-project/Backend/media/test_images/'+data.name
-                with open(path, 'wb+') as destination:
-                    for chunk in data.chunks():
-                        destination.write(chunk)
-                result='we predicted the image for you'+f" {remain_attempets} attempts left"
-                size=format_size(data.size)
+            anonymous=True
+            user_ip = request.META.get('REMOTE_ADDR')
+            # Check for existing anonymous attempt
+            anonymous_attempt = AnonymousAttempt.objects.filter(ip_address=user_ip).first()
+            # Create a new attempt if it doesn't exist
+            if not anonymous_attempt:
+                anonymous_attempt = AnonymousAttempt.objects.create(ip_address=user_ip)
+            # Check if the user can make a request (has attempts left)
+            if not anonymous_attempt.can_make_request():
+                return JsonResponse({'result': 'You have no attempts left'})
+
+
+            
+        # return JsonResponse({'result':'success'})
+            
+        if media_type=='image':
+            # save the image
+            save_path=f'media/test_images/{data.name}'
+            with open(save_path,'wb') as f:
+                for chunk in data.chunks():
+                    f.write(chunk)
+
+            result='\n'.join(predict_image(save_path,cropped_faces_model))#+str(remain_attempets)+' attempts left'
+            size=format_size(data.size)
+            if not anonymous:
                 media_history=DataHistory(user=user,media_name=data.name,image=data,attemptTime=datetime.now(),modelResult=result,media_size=size)
                 media_history.save()
 
+            os.remove(save_path)
 
-            elif media_type=='audio':
-                path ='D:/Graduation-project/Backend/media/test_images/'+data.name
-                save_path=path
-                with open(save_path, 'wb+') as destination:
-                    for chunk in data.chunks():
-                        destination.write(chunk)
-        
-                result='we played the audio file for you'+f" {remain_attempets} attempts left"
-                size=format_size(data.size)
+
+        elif media_type=='audio':        
+            result='we played the audio file for you'+f" {remain_attempets} attempts left"
+            size=format_size(data.size)
+            if not anonymous:
                 media_history=DataHistory(user=user,media_name=data.name,audio=data,attemptTime=datetime.now(),modelResult=result,media_size=size)
                 media_history.save()
-            
-            elif media_type=='text':
-                result=detect_text(text,text_model)
-                size=format_size(len(text))
+
+        
+        elif media_type=='text':
+            result=detect_text(text,text_model)
+            size=format_size(len(text))
+            if not anonymous:
                 media_history=DataHistory(user=user,media_name=f"text: {text.split(' ')[0]}",text=text,attemptTime=datetime.now(),modelResult=result,media_size=size)
                 media_history.save()
 
-            return JsonResponse({'result':result})
+
+        return JsonResponse({'result':result})
+       
+
     return HttpResponse('this get method is not allowed')
 
 
@@ -82,6 +122,8 @@ def format_size(size):
         return f"{size / 1024:.2f} KB"
     else:
         return f"{size / (1024 * 1024):.2f} MB"
+    
+
 def calculate_remaining_attempts(user:Users):
     """
     This function is used to calculate the remaining attempts for the user
@@ -117,7 +159,7 @@ def get_user_history(request):
         token = auth_header.split(" ")[1]
         user_id,role=get_user_id_from_token(token)
         # get user from the database
-        print("extracted role: ",role) 
+        # print("extracted role: ",role) 
         if role == 'user':
             user = Users.objects.filter(id=user_id).first()
             history = DataHistory.objects.filter(user=user)
