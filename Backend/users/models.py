@@ -117,9 +117,26 @@ class Admin(models.Model):
     
 
 
+class AnonymousAttempt(models.Model):
+    ip_address = models.CharField(max_length=40)  # Store user's IP address
+    attempts_left = models.PositiveIntegerField(default=5)  # Number of attempts allowed
+    last_attempt = models.DateTimeField(default=timezone.now)  # Timestamp of last attempt
 
+    def __str__(self):
+        return f"Anonymous User (IP: {self.ip_address}) - Attempts Left: {self.attempts_left}"
 
-
+    def can_make_request(self):
+        # reset the attempts if the last attempt was more than 1 minute ago
+        # Check if the attempt date is older than today
+        if self.last_attempt.date() < timezone.now().date():
+            self.attempts_left = 5  # Reset attempts if a new day
+            self.last_attempt = timezone.now()
+        if self.attempts_left > 0:
+            self.attempts_left -= 1
+            self.last_attempt = timezone.now()
+            self.save()
+            return True
+        return False
 
 class DataHistory(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
