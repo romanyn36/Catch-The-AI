@@ -1,52 +1,33 @@
 import os
-import subprocess
-import requests
 import time
+import requests
 from typing import List, Dict
+import mimetypes
 
-class AudioProcessor:
-    def __init__(self, api_url: str, api_token: str):
-        self.api_url = api_url
+class MediaClassifier:
+    def __init__(self, api_token: str, api_url: str):
         self.api_token = api_token
-        self.ffmpeg_path = self.get_ffmpeg_path()
+        self.api_url = api_url
 
-    def get_ffmpeg_path(self) -> str:
-        try:
-            path = subprocess.run(['which', 'ffmpeg'], capture_output=True, text=True).stdout.strip()
-            if not path:
-                raise FileNotFoundError("ffmpeg not found in system path.")
-            return path
-        except Exception as e:
-            print(f"Error finding ffmpeg: {e}")
-            return None
-
-    def convert_to_wav(self, input_path: str, output_path: str) -> None:
-        try:
-            if not os.path.isfile(input_path):
-                raise FileNotFoundError(f"Input file '{input_path}' not found.")
-            
-            output_dir = os.path.dirname(output_path)
-            if output_dir and not os.path.exists(output_dir):
-                os.makedirs(output_dir)
-
-            command = [
-                self.ffmpeg_path, '-i', input_path, '-vn', '-acodec', 'pcm_s16le', 
-                '-ar', '16000', '-ac', '1', output_path
-            ]
-
-            process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            
-            if process.returncode != 0:
-                error_message = process.stderr
-                print(f"ffmpeg command: {' '.join(command)}")
-                print(f"ffmpeg stderr: {error_message}")
-                raise subprocess.CalledProcessError(process.returncode, command, error_message)
-            
-            print(f"Conversion successful: {output_path}")
-        except subprocess.CalledProcessError as e:
-            print(f"An error occurred during the conversion: {e.stderr}")
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}")
+    def validate_audio_file(self, file_path: str) -> bool:
+        audio_mime_types = [
+            'audio/mpeg',    # .mp3, .mp2
+            'audio/wav',     # .wav
+            'audio/ogg',     # .ogg
+            'audio/x-flac',  # .flac
+            'audio/opus',    # .opus
+            'audio/aac',     # .aac
+            'audio/mp4',     # .m4a
+            'audio/aiff',    # .aiff
+            'audio/x-ms-wma',# .wma
+            'audio/amr',     # .amr
+            'audio/3gpp',    # .3gp
+            'audio/x-caf',   # .caf
+            'audio/basic',   # .au
+            'audio/midi'     # .mid, .midi
+        ]
+        mime_type, _ = mimetypes.guess_type(file_path)
+        return mime_type in audio_mime_types
 
     def query_huggingface_api(self, file_path: str, retries: int = 5, wait_time: int = 7) -> List[Dict[str, float]]:
         headers = {
@@ -71,13 +52,12 @@ class AudioProcessor:
 
     def process_and_classify(self, input_path: str) -> str:
         try:
-            output_wav = os.path.join('/tmp', f"{os.path.splitext(os.path.basename(input_path))[0]}.wav")
-            
-            # Convert the file to WAV format
-            self.convert_to_wav(input_path, output_wav)
+            # Validate the file format
+            if not self.validate_audio_file(input_path):
+                raise ValueError("The provided file is not a valid audio file.")
 
             # Query the Hugging Face API
-            response = self.query_huggingface_api(output_wav)
+            response = self.query_huggingface_api(input_path)
             print(f"API Response: {response}")
 
             # Get the label with the highest score
@@ -89,15 +69,16 @@ class AudioProcessor:
             print(f"An error occurred: {e}")
             return ""
 
-# Testing the functions
+# Example usage
 if __name__ == "__main__":
-    api_url = "https://api-inference.huggingface.co/models/motheecreator/wav2vec2-base-finetuned-finetuned"
-    api_token = "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"  
+    api_url = "https://api-inference.huggingface.co/models/motheecreator/Deepfake-audio-detection"
+    api_token = "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"  # Replace with your Hugging Face API token
 
-    processor = AudioProcessor(api_url, api_token)
+    classifier = MediaClassifier(api_token, api_url)
 
+    # Example input file
+    input_file = '/kaggle/input/video-files-test/Politician-UltraFast-recording-05-27-2024-22-13-58.mp3'  # Update with your input file path
     
-    input_file = 'input file path'  # Update with your input file path
-    
-    label = processor.process_and_classify(input_file)
+    # Process and classify the input file
+    label = classifier.process_and_classify(input_file)
     print(f"Final Label: {label}")
