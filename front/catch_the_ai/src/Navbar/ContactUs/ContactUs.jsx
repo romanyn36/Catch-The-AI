@@ -119,7 +119,7 @@ function ContactUs() {
                                 </div>
                             </div>
                             <div className=" text-center">
-                                <button className="btn text-center" disabled={isSubmitting} onClick={handleSubmit} style={{ backgroundColor: "#DDA0DD", width: "150px" }}><i
+                                <button className="btn text-center text-light" disabled={isSubmitting} onClick={handleSubmit} style={{ backgroundColor: "#c34da9", width: "150px" }}><i
                                     className="bi bi-send"> Send</i></button>
                             </div>
                         </div>
