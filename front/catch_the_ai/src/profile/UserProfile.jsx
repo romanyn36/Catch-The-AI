@@ -70,7 +70,7 @@ function UserProfile() {
       if (data.status === 1) {
         // destroy this element
         appendAlert('great, we have sent a new verfication email\n please check your email', 'success')
-        
+
       }
       else {
         appendAlert('something went wrong, please try again later', 'danger')
@@ -96,7 +96,7 @@ function UserProfile() {
     alertPlaceholder.append(wrapper)
   }
 
-  
+
 
   const { name, username, email, age, address, subscription, subscription_start_date, subscription_end_date, remain_attempts, image, role, is_activated } = userData;
   console.log("role", role)
@@ -115,7 +115,7 @@ function UserProfile() {
             {is_activated ? null :
               <div id='liveAlertPlaceholder'>
                 <div id='verfiy_link' class="alert alert-warning alert-dismissible fade show" role="alert">
-                  <strong>yor account isn't verfied</strong> please click <button onClick={verfiy_email}  class="btn btn-link" style={{ textDecoration: "underline" }}>here</button> to send a new verfication email
+                  <strong>yor account isn't verfied</strong> please click <button onClick={verfiy_email} class="btn btn-link" style={{ textDecoration: "underline" }}>here</button> to send a new verfication email
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
 
@@ -194,13 +194,16 @@ function UserProfile() {
                       <label htmlFor="FnameEmail1" className="form-label">
                         Start Date:
                       </label>
-                      <h4 className='bg-white border border-3 rounded p-2'>{subscription_start_date}</h4>
+                      <h4 className={`bg-white border border-3 rounded p-2 ${style.profileLabel}`}>
+                        {subscription_start_date}</h4>
                     </div>
                     <div className="col-md-6 mb-3">
                       <label htmlFor="LnameEmail1" className="form-label">
                         End Date:{" "}
                       </label>
-                      <h4 className='bg-white border border-3 rounded p-2'>{subscription_end_date}</h4>
+                      <h4 className={` bg-white border border-3 rounded p-2 form-label ${style.profileLabel}`}>
+                      
+                        {subscription_end_date}</h4>
                     </div>
 
 
