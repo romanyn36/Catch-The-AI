@@ -73,15 +73,15 @@ function ContactUs() {
         alertPlaceholder.append(wrapper)
     }
     return (
-        <div className="container mb-5">
+        <div className="container mb-5 mt-5">
             <h3 className="mb-4 text-light" style={{}}>Contact Us</h3>
             <div className=" mt-0 w-100">
                 <div className="row">
                     {/*  first column */}
-                    <div className="col-12 col-sm-4">
-                        <p>Contact me</p>
-                        <p><i className="bi bi-geo-alt"> Cairo, Egypt</i></p>
-                        <p><i className="bi bi-phone"> +20 105 584 098</i></p>
+                    <div className="col-12 col-sm-4 " >
+                        <p className="text-light">Contact me</p>
+                        <p><i className="bi bi-geo-alt text-light"> Cairo, Egypt</i></p>
+                        <p><i className="bi bi-phone text-light"> +20 105 584 098</i></p>
                         <p><i className="bi bi-envelope"> <a className="text-light"
                             href="mailto:catchtheai@gmail.com">catchtheai@gmail.com</a></i></p>
                     </div>
