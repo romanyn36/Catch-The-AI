@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './text-detector.css';
 import { BASE_DOMAIN_URL } from '../../index';
 import { TailSpin } from 'react-loader-spinner';
 import { BsRecordCircle, BsCloudUpload } from 'react-icons/bs';
-import { useRef } from 'react';
-
 
 const mediaData = [
   { id: 1, name: "Image" },
@@ -20,6 +18,14 @@ const TextDetector = () => {
   const [result, setResult] = useState("");
   const [isClicked, setIsClicked] = useState(false);
   const [file, setFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+
+  // Audio state and refs
+  const [isRecording, setIsRecording] = useState(false);
+  const [audioURL, setAudioURL] = useState('');
+  const [audioFile, setAudioFile] = useState(null);
+  const mediaRecorderRef = useRef(null);
+  const audioChunksRef = useRef([]);
 
   useEffect(() => {
     handleFileSelect("Image");
@@ -33,25 +39,25 @@ const TextDetector = () => {
   const handleImageFile = (e) => {
     const file = e.target.files[0];
     setFile(file);
+    const fileUrl = URL.createObjectURL(file);
+    setPreviewUrl(fileUrl);
   };
 
   const handleTextChange = (e) => {
     setText(e.target.value);
+    // set result to empty when text is changed
+    setResult("");
   };
 
   const predictMedia = (mediaType) => {
     console.log(`Predicting media type for ${mediaType}...`);
 
     if (mediaType === 'Image') {
-      // console.log('Image');
       fetchDetectionSystem(mediaType);
     } else if (mediaType === 'Text') {
-      // console.log('Text');
       fetchDetectionSystem(mediaType);
     } else if (mediaType === 'Audio') {
-      // console.log('Audio');
       fetchDetectionAudio();
-      
     }
   };
 
@@ -83,12 +89,6 @@ const TextDetector = () => {
         setIsClicked(false);
       });
   };
-  // audio
-  const [isRecording, setIsRecording] = useState(false);
-  const [audioURL, setAudioURL] = useState('');
-  const [audioFile, setAudioFile] = useState(null);
-  const mediaRecorderRef = useRef(null);
-  const audioChunksRef = useRef([]);
 
   const startRecording = async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -102,7 +102,6 @@ const TextDetector = () => {
     mediaRecorderRef.current.onstop = () => {
       const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' });
       const audioUrl = URL.createObjectURL(audioBlob);
-
 
       setAudioURL(audioUrl);
       setAudioFile(audioBlob);
@@ -123,7 +122,6 @@ const TextDetector = () => {
       }
     }
   };
-
 
   const handleUpload = event => {
     const file = event.target.files[0];
@@ -151,6 +149,7 @@ const TextDetector = () => {
   const handleButtonClick = () => {
     document.getElementById('audio-upload').click();
   };
+
   const fetchDetectionAudio = () => {
     setResult("");
     setIsClicked(true);
@@ -161,9 +160,7 @@ const TextDetector = () => {
     formData.append('media', audioFile);
     console.log("audio file ", audioFile.type)
 
-    // get token from local storage if it exists
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-    // fetch the data from the server using fetch
     const url = `${BASE_DOMAIN_URL}/predict_media/`;
     fetch(url, {
       method: 'POST',
@@ -175,21 +172,15 @@ const TextDetector = () => {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-
         setResult(data.result);
         setIsClicked(false);
-
-
-
       })
       .catch((error) => {
         console.error('Error:', error);
         setIsClicked(false);
-        
-
       });
+  };
 
-  }
   return (
     <div className="container">
       <div className="container MainContainer1">
@@ -210,12 +201,24 @@ const TextDetector = () => {
         <div className="row w-100 mt-4 p-2">
           <div className="col-md-9">
             {selectedMediaType === 'Image' && (
-              <div className="media-container">
-                <label htmlFor="file-upload" className="label">Drag and Drop</label>
-                <p className='txt'>Or</p>
-                <label htmlFor="file-upload" className="label">Upload Your Media</label>
-                <input id="file-upload" type="file" style={{ display: "none" }} onChange={handleImageFile} />
-                <p className="txt1">Maximum size 10 Mb</p>
+              <div className="media-container d-flex ">
+                <div className=" d-flex flex-column align-items-center" >
+                  <label htmlFor="file-upload" className="label">Drag and Drop</label>
+                  <p className='txt'>Or</p>
+                  <label htmlFor="file-upload" className="label">Upload Your Media</label>
+                  <input id="file-upload" type="file" style={{ display: "none" }} onChange={handleImageFile} />
+                  <p className="txt1">Maximum size 10 Mb</p>
+                </div>
+                {file ? (
+                  <div>
+                    <img src={previewUrl} alt="uploaded" style={{ width: "220px", height: "245px" }} />
+                    <p className="txt1">{file.name}</p>
+                  </div>
+                ) : (
+                  <div>
+                    <p className="txt1">No file selected</p>
+                  </div>
+                )}
               </div>
             )}
             {selectedMediaType === 'Text' && (
@@ -330,12 +333,12 @@ const TextDetector = () => {
           </div>
           <div className="col-md-3">
             <h3 className="media-type-heading">Result:</h3>
-            {isClicked ? 
-              <div className="loader-container" style={{height:"90px"}}>
+            {isClicked ?
+              <div className="loader-container" style={{ height: "90px" }}>
                 <TailSpin color="#00BFFF" height={50} width={50} timeout={3000} />
                 <p className="text-dark">Loading...</p>
               </div>
-            : <p className="media-type-heading" style={{height:"90px"}}>{result}</p>
+              : <p className="media-type-heading" style={{ height: "90px" }}>{result}</p>
             }
             <button className="btn btn-outline submit-button mt-2 mb-2" disabled={isClicked} onClick={() => predictMedia(pulsatingMediaType)}>AI or Human?</button>
           </div>

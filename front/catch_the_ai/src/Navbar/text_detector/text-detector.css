@@ -1,18 +1,18 @@
-
 .MainContainer1 {
   width: 94vw;
   max-width: 1500px;
-  height:max-content;
+  height: max-content;
   padding: 5px 15px;
-  background-color: #cdc5ce;
+  background-color: #f5fdeb;
   /* background-image: url('back.png'); */
   background-size: cover;
   border-radius: 30px;
-  box-shadow: 0 0 15px rgba(255, 219, 219, 0.1); 
+  box-shadow: 0 0 15px rgba(255, 219, 219, 0.1);
   color: #fcfcfc;
   margin-bottom: 30px;
   margin: auto;
 }
+
 @media (min-width: 320px) and (max-width: 480px) {
   .media-type-button {
     padding: 16px 32px;
@@ -47,21 +47,24 @@
   padding: 16px 110px;
   border: none;
   cursor: pointer;
-  background-color: #bb6bd9; /*  لو حد حابب يغير لون الزراير  */
+  background-color: #bb6bd9;
+  /*  لو حد حابب يغير لون الزراير  */
   color: white !important;
   font-weight: bolder;
   font-size: larger;
-  transition: background 0.5s; 
+  transition: background 0.5s;
 }
 
 .media-type-button:hover {
-  animation: pulse 2s infinite; /* اللي عاوز يسرع ويبطأ يتفضل يغير ال2 */
+  animation: pulse 2s infinite;
+  /* اللي عاوز يسرع ويبطأ يتفضل يغير ال2 */
 }
 
 @keyframes pulse {
   0% {
     background: linear-gradient(135deg, #bb6bd9 0%, #1bfed5 100%);
   }
+
   100% {
     background: linear-gradient(135deg, #1bfed5 0%, #bb6bd9 100%);
   }
@@ -75,10 +78,10 @@
 }
 
 .media-type-heading {
-  color: #000; 
+  color: #000;
   margin-top: 30px;
   margin-bottom: 20px;
-  font-weight: bold; 
+  font-weight: bold;
   font-size: 30px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -101,15 +104,20 @@
 
 .media-container {
   width: 100%;
-  height: 300px; 
-  border: 5px solid #000; /* جرب كذا بوردر اخي ف الله  */
-/* solid/double/dashed/groove/inset/outset */
-    padding: 20px;
-  border-radius: 60px; 
+  height: 300px;
+  border: 5px solid #000;
+  padding: 20px;
+  border-radius: 60px;
   display: flex;
-  flex-direction: column;
+
   justify-content: center;
   align-items: center;
+}
+/* make media container 500px high in mobile view */
+@media (max-width: 480px) {
+  .media-container {
+    height: 500px;
+  }
 }
 
 .text-area-container {
@@ -117,20 +125,20 @@
   flex-direction: column;
   align-items: center;
   margin-top: 5px;
-  border-radius: 60px; 
+  border-radius: 60px;
 
 }
 
 .text-area {
   width: 100%;
-  height: 100%; 
+  height: 100%;
   padding: 10px;
   margin-top: 10px;
   font-size: 36px;
-  resize: none; 
+  resize: none;
   text-align: left;
   color: black;
-  background-color: #f8f9fa; 
+  background-color: #f8f9fa;
 }
 
 .text-area::placeholder {
@@ -139,16 +147,16 @@
   padding: 10px;
   font-size: 25px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  
+
 }
 
 .submit-button {
   border-radius: 100px;
-  background-color: #bb6bd9!important; 
-  color: white !important; 
+  background-color: #bb6bd9 !important;
+  color: white !important;
   transition: transform 0.2s;
-  width: 80%; 
-  text-align: center; 
+  width: 80%;
+  text-align: center;
   font-family: 'Times New Roman', Times, serif;
   padding: 16px 110px;
   border: none;
@@ -158,4 +166,3 @@
 .submit-button:hover {
   transform: scale(1.1);
 }
-
