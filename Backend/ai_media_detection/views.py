@@ -14,8 +14,10 @@ from users.session_management import create_session,get_user_id_from_token
 from users.utils import BASE_DOMAIN_URL
 from ai_media_detection.DeepLearning_models.text_Final_Model_Script.script_daigt import detect_text,init_api
 from ai_media_detection.DeepLearning_models.image_final_Model_Script.image_api import init_model,predict_image
+from ai_media_detection.DeepLearning_models.audio_final_Model_Script.AudioMediaClassifier import AudioMediaClassifier
 text_model=init_api()
 cropped_faces_model=init_model()
+audio_model=AudioMediaClassifier()
 
 def home(request):
     baseurl=BASE_DOMAIN_URL
@@ -37,7 +39,7 @@ def predict_media(request):
         user=None
         # get the the auth token from the headers if it exists
         auth_header = request.headers.get('Authorization')
-        print("auth_header: ",auth_header)
+        # print("auth_header: ",auth_header)
         token = auth_header.split(" ")[1]
         if token!='null':
             
@@ -72,7 +74,7 @@ def predict_media(request):
             
         if media_type=='image':
             # save the image
-            save_path=f'media/test_images/{data.name}'
+            save_path=f'media/temp/{data.name}'
             with open(save_path,'wb') as f:
                 for chunk in data.chunks():
                     f.write(chunk)
@@ -87,11 +89,25 @@ def predict_media(request):
 
 
         elif media_type=='audio':        
-            result='we played the audio file for you'+f" {remain_attempets} attempts left"
+            # save the audio
+            save_path=f'media/temp/{data.name}'
+            # save audio in correct format
+            with open(save_path,'wb') as f:
+                for chunk in data.chunks():
+                    f.write(chunk)
+            # add .wav extension to the file if name doesn't have it
+            if not save_path.endswith('.wav'):
+                os.rename(save_path, save_path + '.wav')
+                save_path += '.wav'
+            result=audio_model.process_and_classify(save_path)
+            
+                    
             size=format_size(data.size)
             if not anonymous:
                 media_history=DataHistory(user=user,media_name=data.name,audio=data,attemptTime=datetime.now(),modelResult=result,media_size=size)
                 media_history.save()
+
+            os.remove(save_path)
 
         
         elif media_type=='text':
