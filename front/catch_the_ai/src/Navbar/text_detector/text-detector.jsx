@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './text-detector.css';
 import { BASE_DOMAIN_URL } from '../../index';
-import AudioRecorderUploader from './AudioRecorderUploader';
 import { TailSpin } from 'react-loader-spinner';
 import { BsRecordCircle, BsCloudUpload } from 'react-icons/bs';
 import { useRef } from 'react';
