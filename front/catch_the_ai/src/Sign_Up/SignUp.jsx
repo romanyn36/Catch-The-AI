@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useFetch } from "use-http";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEnvelope, faLock, faHome, faVenusMars } from "@fortawesome/free-solid-svg-icons";
 import style from "./SignUp.module.css";
@@ -42,7 +41,7 @@ function SignUp() {
       setUserInfo({ ...userInfo, errors });
     } else {
       register();
-      console.log("Form submitted successfully");
+      // console.log("Form submitted successfully");
     }
   };
 
@@ -71,28 +70,57 @@ function SignUp() {
   };
 
   const { name, email, username, country, age, gender, password, password2, rememberMe, errors } = userInfo;
-  const { post, response, error } = useFetch(BASE_DOMAIN_URL + '/users/register/');
+  const url = BASE_DOMAIN_URL + '/users/register/';
 
   const register = async () => {
     const registerInfo = { name, email, username, country, age, gender, password };
-    const response = await post(registerInfo);
-    if (response.ok) {
-      console.log(response.data);
-      var token = response.data.token;
-      if (rememberMe) localStorage.setItem('token', token);
-      else sessionStorage.setItem('token', token);
-      console.log("Form submitted successfully ", response);
-      window.location.href = "/";
-    } else {
-      console.error('There was a problem with your fetch operation:', error);
-    }
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(registerInfo)
+    }).then(response => response.json())
+      .then(data => {
+        if (data.token) {
+          appendAlert('Registration successful! Redirecting to sign in page...', 'success');
+          // save token in local storage if rememberMe is checked
+          if (rememberMe) localStorage.setItem('token', data.token);
+          // save token in session storage if rememberMe is not checked
+          else sessionStorage.setItem('token', data.token);
+        
+
+          window.location.href = '/sign-in';
+        } else {
+          appendAlert('Registration failed! Please try again.'+data.message, 'danger');
+        }
+      }).catch(error => {
+        // console.error('There was an error!', error);
+        appendAlert('Registration failed! Please try again.', 'danger');
+      });
   };
+
+
+
+
 
   const ageOptions = [];
   for (let i = 16; i <= 80; i++) {
     ageOptions.push(<option key={i} value={i}>{i}</option>);
   }
 
+  const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+  const appendAlert = (message, type) => {
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = [
+      `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+      `   <div>${message}</div>`,
+      '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+      '</div>'
+    ].join('')
+
+    alertPlaceholder.append(wrapper)
+  }
   return (
     <div className={`container my-5 ${style.signUpContainer}`}>
       <div className="row justify-content-center">
@@ -100,7 +128,7 @@ function SignUp() {
           <div className="p-4">
             <form onSubmit={handleSubmit}>
               <h2 className={`text-center display-6 ${style.title5} mb-4`}>Explore verified media origins: AI or human. Join us!
-</h2>
+              </h2>
               <div className="row">
                 <div className="form-group col-md-6 mb-3">
                   <label htmlFor="name" className={style.customLabel}>
@@ -181,17 +209,20 @@ function SignUp() {
                 <div className="form-check">
                   <input type="checkbox" className="form-check-input" id="rememberMe" name="rememberMe" checked={rememberMe} onChange={handleChange} />
                   <label htmlFor="rememberMe" className="form-check-label fs-5">
-  Remember Me
-</label>
+                    Remember Me
+                  </label>
 
                 </div>
               </div>
               <div className="form-group mb-3 text-center">
+                <div id='liveAlertPlaceholder'>
+
+                </div>
                 <button type="submit" className={`btn w-100 ${style.btnPurple}`}>Sign Up</button>
               </div>
               <p className="text-center text-dark fs-5">
-  Do you have an account? <a href="/sign-in" className="text-dark font-weight-bold">Sign In</a>
-</p>
+                Do you have an account? <a href="/sign-in" className="text-dark font-weight-bold">Sign In</a>
+              </p>
 
             </form>
           </div>
