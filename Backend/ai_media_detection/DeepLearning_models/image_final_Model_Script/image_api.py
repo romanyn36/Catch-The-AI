@@ -10,7 +10,7 @@ def init_model():
     return detector
 def detect_and_crop_faces(image_path, detector):
     # Load the image
-    # print(image_path)
+    print(image_path)
     image = cv2.imread(image_path)
     # Convert to RGB
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
