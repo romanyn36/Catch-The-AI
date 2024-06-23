@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './AboutUs.css';
 import m1Image from './m1.jpg'; // Import the image file
 import img3 from './m1.jpg'; // Import the image file for Our Values
+import vision from './vision.jpg'; // Import the image file
+import m from './m.jpg'; // Import the image file
 
 export class AboutUs extends Component {
   render() {
@@ -16,7 +18,7 @@ export class AboutUs extends Component {
             <p>We envision leading the way in digital content verification, making the internet a safer space. We see a future where people trust digital content, empowering them to make informed decisions online. Through innovation and collaboration, we strive to promote media integrity and literacy, fostering a positive digital landscape for all.</p>
           </div>
           <div className="right">
-            <img src={m1Image} alt="Vision Image" /> {/* Use the imported image */}
+            <img src={vision} alt="Vision Image" /> {/* Use the imported image */}
           </div>
         </div>
         <div className="content">
@@ -40,7 +42,7 @@ export class AboutUs extends Component {
             </ul>
           </div>
           <div className="right">
-            <img src={img3} alt="Values Image" /> {/* Use the imported image */}
+            <img src={m} alt="Values Image" /> {/* Use the imported image */}
           </div>
         </div>
       </div>
