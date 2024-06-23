@@ -73,7 +73,7 @@ function ContactUs() {
         alertPlaceholder.append(wrapper)
     }
     return (
-        <div className="container ">
+        <div className="container mb-5">
             <h3 className="mb-4 text-light" style={{}}>Contact Us</h3>
             <div className=" mt-0 w-100">
                 <div className="row">
