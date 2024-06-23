@@ -2,7 +2,12 @@
 .navbar {
   background-color: transparent !important;
 }
-
+.brandImage{
+  width: 130px;
+  height: 55px;
+  /* margin: 20px; */
+  
+}
 .navbar-title {
   font-size: 33px;
   font-weight: bold;

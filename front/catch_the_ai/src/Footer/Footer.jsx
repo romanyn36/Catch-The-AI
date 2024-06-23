@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import LogoIcon from "./logo2.png";
+import LogoIcon from "./logoc1.png";
+// import LogoIcon from "./logo2.png";
 import './Footer.css';
 
 export class Footer extends Component {
@@ -14,7 +15,7 @@ export class Footer extends Component {
             <div className="col">
               <div className="logo-title">
                 <img src={LogoIcon} alt="Logo" className="logo" />
-                <p>Catch the AI</p>
+                
               </div>
             </div>
 

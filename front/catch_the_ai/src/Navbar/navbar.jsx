@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';
 import { BASE_DOMAIN_URL } from '../index';
-import Logo from './images/logo.jpg';
+import Logo from '../Footer/logoc1.png';
+
 
 export class Navbar extends Component {
   constructor(props) {
@@ -59,8 +60,8 @@ export class Navbar extends Component {
       <nav className={`navbar navbar-expand-lg ${darkMode ? 'dark-mode' : ''}`} data-bs-theme="dark">
         <div className="container-fluid">
           <Link className="navbar-brand  align-items-center" to="/">
-            <img src={Logo} alt="Logo" className={`navbar-logo ${darkMode ? 'dark-mode' : ''}`} />
-            <span className={`navbar-title me-0 ${darkMode ? 'dark-mode' : ''}`}>Catch The AI</span>
+              <img src={Logo} alt="Logo" className={`navbar-logos brandImage ${darkMode ? 'dark-mode' : ''}`} />
+            {/* <span className={`navbar-title me-0 ${darkMode ? 'dark-mode' : ''}`}>Catch The AI</span> */}
           </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
