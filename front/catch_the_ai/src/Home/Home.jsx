@@ -3,8 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 import TextDetector from '../Navbar/text_detector/text-detector';
 import Pricing from '../Navbar/pricing/pricing';
-// import aiImage from './ai.jpg'; // Adjust path as per your file structure
-import aiImage from './home.png'; // Adjust path as per your file structure
+import aiImage from './back2g.jpg'; // Adjust path as per your file structure
+// import aiImage from './home.png'; // Adjust path as per your file structure
 import { useLocation } from 'react-router-dom';
 import AboutUs from "../Navbar/AboutUs/AboutUs";
 import ContactUs from "../Navbar/ContactUs/ContactUs";
