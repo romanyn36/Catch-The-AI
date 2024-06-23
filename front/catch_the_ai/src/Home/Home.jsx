@@ -80,7 +80,7 @@ function MyComponent() {
                 AI and human-authored media in images and text.
               </p>
               <button className="btn GetStartedButton mt-4">
-                <Link to="/text-detector" className="text-white">Get Started</Link>
+                <Link to="?scrollTo=text-detector" className="text-white">Get Started</Link>
               </button>
             </div>
             <div className="col-md-6">
