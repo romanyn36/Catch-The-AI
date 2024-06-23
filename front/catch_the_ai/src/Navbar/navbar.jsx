@@ -110,7 +110,7 @@ export class Navbar extends Component {
                 </>
               )}
               {/* Dark mode switch */}
-              <div className="form-check form-switch ms-3">
+              {/* <div className="form-check form-switch ms-3">
                 <input
                   className="form-check-input"
                   type="checkbox"
@@ -121,7 +121,7 @@ export class Navbar extends Component {
                 <label className={`form-check-label ${darkMode ? 'text-light' : ''}`} htmlFor="darkModeSwitch">
                   {darkMode ? 'Dark Mode' : 'Light'}
                 </label>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
