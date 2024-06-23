@@ -48,7 +48,7 @@
   border: none;
   cursor: pointer;
   background-color: #bb6bd9; /*  لو حد حابب يغير لون الزراير  */
-  color: #000000; 
+  color: white !important;
   font-weight: bolder;
   font-size: larger;
   transition: background 0.5s; 
@@ -145,7 +145,7 @@
 .submit-button {
   border-radius: 100px;
   background-color: #bb6bd9!important; 
-  color: #000000 !important; 
+  color: white !important; 
   transition: transform 0.2s;
   width: 80%; 
   text-align: center; 
