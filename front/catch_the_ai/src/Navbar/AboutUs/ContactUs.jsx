@@ -48,7 +48,7 @@ export class ContactUs extends Component {
                     <div className="col-lg-8">
                         <div className="contact-container">
                             <div className="contact-info">
-                                <h3>Contact Information</h3>
+                                <h3 className="contact-title">Contact Information</h3>
                                 <p><FaEnvelope /> Email: CatchTheAi@gmail.com</p>
                                 <p><FaPhone /> Phone: 0114539888139</p>
                                 <p><FaMapMarkerAlt /> Address: 123 Main St, Cairo, Egypt</p>
