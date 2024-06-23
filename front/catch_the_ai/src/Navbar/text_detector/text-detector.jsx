@@ -330,13 +330,13 @@ const TextDetector = () => {
           </div>
           <div className="col-md-3">
             <h3 className="media-type-heading">Result:</h3>
-            {isClicked && (
-              <div className="loader-container">
+            {isClicked ? 
+              <div className="loader-container" style={{height:"90px"}}>
                 <TailSpin color="#00BFFF" height={50} width={50} timeout={3000} />
                 <p className="text-dark">Loading...</p>
               </div>
-            )}
-            <p className="media-type-heading">{result}</p>
+            : <p className="media-type-heading" style={{height:"90px"}}>{result}</p>
+            }
             <button className="btn btn-outline submit-button mt-2 mb-2" disabled={isClicked} onClick={() => predictMedia(pulsatingMediaType)}>AI or Human?</button>
           </div>
         </div>
