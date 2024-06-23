@@ -53,7 +53,10 @@ class AudioMediaClassifier:
     def process_and_classify(self, input_path: str) -> str:
         try:
             # Validate the file format
-            if not self.validate_audio_file(input_path):
+            # if not self.validate_audio_file(input_path):
+                # return "The provided file is not a valid audio file."
+            # check if the file is mp3, or wav or ogg 
+            if not input_path.endswith('.mp3') and not input_path.endswith('.wav') and not input_path.endswith('.ogg'):
                 return "The provided file is not a valid audio file."
 
             # Query the Hugging Face API
