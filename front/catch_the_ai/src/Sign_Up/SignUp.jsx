@@ -79,7 +79,8 @@ function SignUp() {
     if (response.ok) {
       console.log(response.data);
       var token = response.data.token;
-      localStorage.setItem('token', token);
+      if (rememberMe) localStorage.setItem('token', token);
+      else sessionStorage.setItem('token', token);
       console.log("Form submitted successfully ", response);
       window.location.href = "/";
     } else {

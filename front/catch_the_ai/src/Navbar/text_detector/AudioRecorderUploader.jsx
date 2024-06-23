@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { BsRecordCircle, BsCloudUpload } from 'react-icons/bs'; // Import Bootstrap icons
+import { BASE_DOMAIN_URL } from '../../index';
 
 const AudioRecorderUploader = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -20,6 +21,8 @@ const AudioRecorderUploader = () => {
     mediaRecorderRef.current.onstop = () => {
       const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' });
       const audioUrl = URL.createObjectURL(audioBlob);
+   
+
       setAudioURL(audioUrl);
       setAudioFile(audioBlob);
     };
@@ -67,7 +70,40 @@ const AudioRecorderUploader = () => {
   const handleButtonClick = () => {
     document.getElementById('audio-upload').click();
   };
+  const fetchDetectionSystem = () => {
+    
+  
+    console.log(`Predicting media type for audio...`);
+    const formData = new FormData();
+    formData.append('media_type', 'audio');
+    formData.append('text', '');
+    formData.append('media', audioFile);
+    console.log("audio file ",  audioFile.type)
 
+    // get token from local storage if it exists
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    // fetch the data from the server using fetch
+    const url = `${BASE_DOMAIN_URL}/predict_media/`;
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+      body: formData
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      
+
+
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        
+      });
+
+  }
   return (
     <div className="container mt-5">
       <div className="row">
@@ -78,7 +114,7 @@ const AudioRecorderUploader = () => {
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             style={{
-              backgroundColor: '#ffffff',
+              backgroundColor: 'transparent',
               border: '2px dashed #000000',
               padding: '8px 16px',
               borderRadius: '4px',
@@ -93,7 +129,7 @@ const AudioRecorderUploader = () => {
               className={`btn ${isRecording ? 'btn-danger' : 'btn-primary'} me-2 mt-3 text-center text-dark align-center`}
               style={{
                 padding: '8px 16px',
-                backgroundColor: '#ffffff',
+                backgroundColor: 'white',
                 color: '#000000',
                 cursor: 'pointer',
                 borderRadius: '4px',
@@ -122,7 +158,7 @@ const AudioRecorderUploader = () => {
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             style={{
-              backgroundColor: '#ffffff',
+              backgroundColor: 'transparent',
               border: '2px dashed #000000',
               padding: '8px 16px',
               borderRadius: '4px',
@@ -137,7 +173,7 @@ const AudioRecorderUploader = () => {
               className="btn"
               style={{
                 padding: '8px 16px',
-                backgroundColor: '#ffffff',
+                backgroundColor: 'white',
                 color: '#000000',
                 cursor: 'pointer',
                 borderRadius: '4px',
@@ -145,7 +181,7 @@ const AudioRecorderUploader = () => {
                 display: 'inline-block', 
                 textAlign: 'center', 
               }}
-              onClick={handleButtonClick}
+              
             >
               <BsCloudUpload className="me-1" /> Upload / Drag & Drop Audio file here
             </button>
@@ -168,6 +204,7 @@ const AudioRecorderUploader = () => {
           <p className="mt-2">{audioFile ? audioFile.name : 'Recorded audio'}</p>
         </div>
       )}
+      <button className="btn btn-primary mt-3" onClick={fetchDetectionSystem}>Submit</button>
     </div>
   );
 };

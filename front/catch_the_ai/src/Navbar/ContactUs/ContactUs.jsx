@@ -49,6 +49,7 @@ function ContactUs() {
                         email: "",
                         message: "",
                     });
+                    appendAlert("Message sent successfully", "success");
 
                 }
                 else {
@@ -58,6 +59,18 @@ function ContactUs() {
             }
             )
             .catch((err) => console.log(err));
+    }
+    const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+    const appendAlert = (message, type) => {
+        const wrapper = document.createElement('div')
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+            '</div>'
+        ].join('')
+
+        alertPlaceholder.append(wrapper)
     }
     return (
         <div className="container ">
@@ -73,9 +86,12 @@ function ContactUs() {
                             href="mailto:catchtheai@gmail.com">catchtheai@gmail.com</a></i></p>
                     </div>
 
-
+                    
                     {/*  second column  */}
                     <div className="col-12 col-sm-8 ">
+                    <div className="container m-0 p-0 mb-3" id="liveAlertPlaceholder">
+                        
+                    </div>
                         <div >
                             {/* <!-- nested row  --> */}
                             <div className="row ">
@@ -93,7 +109,7 @@ function ContactUs() {
                                             aria-describedby="basic-addon1" />
                                     </div>
                                 </div>
-                                
+
                             </div>
 
                             <div className="row mb-3  ">

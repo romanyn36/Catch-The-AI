@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';
 import { BASE_DOMAIN_URL } from '../index';
+import Logo from './images/logo.jpg';
 
 export class Navbar extends Component {
   constructor(props) {
@@ -10,13 +11,14 @@ export class Navbar extends Component {
       isLoggedIn: false,
       userData: null,
       imageurl: "images/prof.png",
-      brandlink: "images/logo.jpg",
       username: "username",
     };
   }
 
   componentDidMount() {
-    const token = localStorage.getItem('token');
+    // get token from local storage or session storage
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+
     if (token) {
       this.setState({ isLoggedIn: true });
       this.fetchUserData(token);
@@ -45,19 +47,20 @@ export class Navbar extends Component {
 
   handleLogout = () => {
     localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     this.setState({ isLoggedIn: false });
   };
 
   render() {
-    const { isLoggedIn, username, imageurl,brandlink } = this.state;
+    const { isLoggedIn, username, imageurl } = this.state;
     const { darkMode, toggleDarkMode } = this.props;
 
     return (
       <nav className={`navbar navbar-expand-lg ${darkMode ? 'dark-mode' : ''}`} data-bs-theme="dark">
         <div className="container-fluid">
-          <Link className="navbar-brand d-flex align-items-center" to="/">
-            <img src={brandlink} alt="Logo" className={`navbar-logo ${darkMode ? 'dark-mode' : ''}`} />
-            <span className={`navbar-title ${darkMode ? 'dark-mode' : ''}`}>Catch The AI</span>
+          <Link className="navbar-brand  align-items-center" to="/">
+            <img src={Logo} alt="Logo" className={`navbar-logo ${darkMode ? 'dark-mode' : ''}`} />
+            <span className={`navbar-title me-0 ${darkMode ? 'dark-mode' : ''}`}>Catch The AI</span>
           </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>

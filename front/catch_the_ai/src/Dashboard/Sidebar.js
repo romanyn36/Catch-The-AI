@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import './style1.css';
+import './Sidbar.module.css';
 import Overview from './Overview';
 import UserList from './UserList';
 import MessageList from './MessageList';

@@ -23,7 +23,7 @@ function UserProfile() {
   });
 
   // session token
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token') || sessionStorage.getItem('token');
   const headers = {
     'Authorization': `Bearer ${token}`,
   };
@@ -54,6 +54,7 @@ function UserProfile() {
   }
   const verfiy_email = () => {
     document.getElementById('verfiy_link').remove();
+    appendAlert('sending verfication email...', 'info')
     const url = BASE_DOMAIN_URL + '/users/send_activation_email/'
     console.log("url", url)
     fetch(url, {
@@ -68,7 +69,7 @@ function UserProfile() {
       console.log(data);
       if (data.status === 1) {
         // destroy this element
-        appendAlert('great, check your email ', 'success')
+        appendAlert('great, we have sent a new verfication email\n please check your email', 'success')
         
       }
       else {
