@@ -113,18 +113,13 @@ function UserProfile() {
           {role !== 'user' ? <p>Role: {role}</p> : null}
           <div>
             {is_activated ? null :
-              <div id='liveAlertPlaceholder'>
-                <div id='verfiy_link' class="alert alert-warning alert-dismissible fade show" role="alert">
-                  <strong>yor account isn't verfied</strong> please click <button onClick={verfiy_email} class="btn btn-link" style={{ textDecoration: "underline" }}>here</button> to send a new verfication email
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-
-
-                </div>
-
-
+              <div id='verfiy_link' class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>yor account isn't verfied</strong> please click <button onClick={verfiy_email} class="btn btn-link" style={{ textDecoration: "underline" }}>here</button> to send a new verfication email
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             }
+            <div id='liveAlertPlaceholder'>
+            </div>
           </div>
         </div>
         <div className="col-lg-12 pt-3">
@@ -202,7 +197,7 @@ function UserProfile() {
                         End Date:{" "}
                       </label>
                       <h4 className={` bg-white border border-3 rounded p-2 form-label ${style.profileLabel}`}>
-                      
+
                         {subscription_end_date}</h4>
                     </div>
 
