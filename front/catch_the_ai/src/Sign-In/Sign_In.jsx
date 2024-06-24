@@ -140,10 +140,10 @@ class Sign_In extends React.Component {
                             </div>
                             <div className={style.formG}>
                                 <button type="submit" className={`${style.loginButton}`}>Login</button><br />
-                                <button className={style.googleLogin} onClick={this.handleGoogleLogin}>
+                                {/* <button className={style.googleLogin} onClick={this.handleGoogleLogin}>
                                     <i className="bi bi-google"></i>
                                     <span>Login with Google</span>
-                                </button>
+                                </button> */}
 
                             </div>
                         </form>
