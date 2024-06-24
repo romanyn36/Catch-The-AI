@@ -154,7 +154,7 @@ class Sign_In extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
+                
             </>
         );
     }
