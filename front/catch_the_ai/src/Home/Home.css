@@ -9,11 +9,8 @@ body {
   max-width: 1500px;
   height:max-content;
   padding: 5px 15px;
-  /* background-color: #cdc5ce; */
   /* background-image: url('back.png'); */
-  /* background-size: cover; */
-  /* border-radius: 30px; */
-  /* box-shadow: 0 0 15px rgba(255, 219, 219, 0.1);  */
+  background-size: cover;
   color: #fcfcfc;
   margin: 0 ;
   margin-bottom: 60px;

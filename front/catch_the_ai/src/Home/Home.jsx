@@ -46,6 +46,7 @@ function Home() {
       <div id="text-detector">
         <TextDetector />
       </div>
+      <div style={{height:"25px"}}></div>
       <div id="pricing">
         <Pricing />
       </div>
