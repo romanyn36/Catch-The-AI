@@ -232,18 +232,17 @@ const TextDetector = () => {
             )}
             {selectedMediaType === 'Audio' && (
               <div className="media-container">
-                <div className="container mt-5">
+                <div className=" ">
                   <div className="row">
                     {/* Left column for recording */}
                     <div className="col-md-6">
                       <div
-                        className="border p-4 mt-4 mt-md-0"
+                        className="border mt-4 mt-md-0"
                         onDrop={handleDrop}
                         onDragOver={handleDragOver}
                         style={{
                           backgroundColor: 'transparent',
                           border: '2px dashed #000000',
-                          padding: '8px 16px',
                           borderRadius: '4px',
                           cursor: 'pointer',
                           display: 'flex',
@@ -280,7 +279,7 @@ const TextDetector = () => {
                     {/* Right column for upload */}
                     <div className="col-md-6">
                       <div
-                        className="border p-4 mt-4 mt-md-0"
+                        className="border mt-4 mt-md-0"
                         onClick={handleButtonClick}
                         onDrop={handleDrop}
                         onDragOver={handleDragOver}
@@ -325,9 +324,9 @@ const TextDetector = () => {
                   />
 
                   {audioURL && (
-                    <div className="mt-4">
+                    <div className="mt-4" style={{width: "85%",maxWidth:"350px"}}>
                       <h3>Preview File:</h3>
-                      <audio src={audioURL} controls />
+                      <audio src={audioURL} controls style={{ width: "270px" }}></audio>
                       <p className="mt-2">{audioFile ? audioFile.name : 'Recorded audio'}</p>
                     </div>
                   )}
