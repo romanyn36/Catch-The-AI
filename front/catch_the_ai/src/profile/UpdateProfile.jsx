@@ -213,21 +213,21 @@ function UpdateProfile() {
         <div className={style.profileContent}>
           <div className="mb-5">
             <label htmlFor="firstname" className="form-label">First Name</label>
-            <input type="text" className="form-control" id="firstname" value={firstname} onChange={handleChange} placeholder="User" />
+            <input type="text" className="form-control" id="firstname" value={firstname} onChange={handleChange} placeholder="first name" />
           </div>
           <div className="mb-5">
             <label htmlFor="lastname" className="form-label">Last Name</label>
-            <input type="text" className="form-control" id="lastname" value={lastname} onChange={handleChange} placeholder="User" />
+            <input type="text" className="form-control" id="lastname" value={lastname} onChange={handleChange} placeholder="last name" />
           </div>
         </div>
         <div className={style.profileContent}>
           <div className="mb-5">
             <label htmlFor="username" className="form-label">UserName</label>
-            <input type="text" className="form-control" id="username" value={username} onChange={handleChange} placeholder="User" />
+            <input type="text" className="form-control" id="username" value={username} onChange={handleChange} placeholder="username" />
           </div>
           <div className="mb-5">
             <label htmlFor="email" className="form-label">Email</label>
-            <input type="email" className="form-control" id="email" value={email} onChange={handleChange} placeholder="User@" />
+            <input type="email" className="form-control" id="email" value={email} onChange={handleChange} placeholder="email" />
           </div>
         </div>
         <div className="borderDiv"></div>
