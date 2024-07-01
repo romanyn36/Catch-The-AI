@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Navbar/navbar';
 
 import TextDetector from './Navbar/text_detector/text-detector';
 import Pricing from './Navbar/pricing/pricing';
-import {Footer} from './Footer/Footer';
+import { Footer } from './Footer/Footer';
 import TOS from './Footer/TOS';
 import FAQs from './FAQs/FAQs';
 import PrivacyPolicy from './Footer/PrivacyPolicy';
@@ -22,16 +22,20 @@ import DetectedMedia from './profile/history/DetectedMedia';
 import EmailActivation from './Sign_Up/EmailActivation/EmailActivation';
 import ResetPassword from './Sign-In/ResetPassword/ResetPassword';
 import SuccessfullyResetPassword from './Sign-In/ResetPassword/SuccessfullyResetPassword';
-import AudioRecorderUploader from './Navbar/text_detector/AudioRecorderUploader';
 import ContactUs from './Navbar/ContactUs/ContactUs';
 import Dashboard from './Dashboard/Dashboard';
 
-
 const App = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(prevDarkMode => !prevDarkMode);
+  };
+
   return (
     <Router>
-      <>
-        <Navbar />
+      <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
+        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Pricing" element={<Pricing />} />
@@ -53,12 +57,11 @@ const App = () => {
           <Route path="/EmailActivation/:username" element={<EmailActivation />} />
           <Route path="/ResetPassword" element={<ResetPassword />} />
           <Route path="/SuccessfullyResetPassword" element={<SuccessfullyResetPassword />} />
-          <Route path="/AudioRecorderUploader" element={<AudioRecorderUploader />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="*" element={<div className='container' style={{ backgroundColor: "#e6d1d0" }}><h1>this page Not Found</h1></div>} />
         </Routes>
         <Footer />
-      </>
+      </div>
     </Router>
   );
 };

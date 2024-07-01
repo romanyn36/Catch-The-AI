@@ -182,7 +182,7 @@ def login(request):
         password=data['password'].strip()
         
         if '' in [username,password]:
-            return JsonResponse({'message':'all fields are required'})
+            return JsonResponse({'message':'all fields are required','status':0})
         # if user used email to login  
         try: 
             validate_email(username)
@@ -194,9 +194,9 @@ def login(request):
                 if user.password==password:
                     # generate token
                     token=create_session(user,'user')
-                    return JsonResponse({'message':'successfully login','role':'user','token':token})
+                    return JsonResponse({'message':'successfully login','role':'user','token':token,'status':1})
                 else:
-                    return JsonResponse({'message':'wrong password'})
+                    return JsonResponse({'message':'wrong password','status':0})
             
             #admin login
             user=Admin.objects.filter(email=username)
@@ -205,12 +205,11 @@ def login(request):
                 if user.password == password:
                     # generate token
                     token=create_session(user,'admin')
-                    return JsonResponse({'message':'successfully login','role':'admin','token':token})
+                    return JsonResponse({'message':'successfully login','role':'admin','token':token,'status':1})
                 else:
-                    return JsonResponse({'message':'wrong password'})
+                    return JsonResponse({'message':'wrong password','status':0})
             else:
                 return JsonResponse({'message':'user not found'})
-
         # if user used username to login
         except ValidationError:
             # user login
@@ -219,9 +218,9 @@ def login(request):
                 user=user[0]
                 if user.password==password:
                     token=create_session(user,'user')
-                    return JsonResponse({'message':'successfully login','role':'user','token':token})
+                    return JsonResponse({'message':'successfully login','role':'user','token':token,'status':1})
                 else:
-                    return JsonResponse({'message':'wrong password'})
+                    return JsonResponse({'message':'wrong password','status':0})
             #admin login
             user=Admin.objects.filter(username=username)
             if user.exists():
@@ -230,11 +229,11 @@ def login(request):
                 #
                 if user.password == password:
                     token=create_session(user,'admin')
-                    return JsonResponse({'message':'successfully login','role':'admin','token':token})
+                    return JsonResponse({'message':'successfully login','role':'admin','token':token,'status':1})
                 else:
-                    return JsonResponse({'message':'wrong password'})
+                    return JsonResponse({'message':'wrong password','status':0})
             else:
-             return JsonResponse({'message':'user not found'})
+             return JsonResponse({'message':'user not found','status':0})
       
     return HttpResponse('broo you have to use post method to login ')
 

@@ -1,74 +1,77 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Footer.css'; // Make sure you have Footer.css file for styling
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'; // Import social media icons from Font Awesome
-import LogoIcon from "./IMG-20240309-WA0012.jpg"; 
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import LogoIcon from "./logoc1.png";
+// import LogoIcon from "./logo2.png";
+import './Footer.css';
 
 export class Footer extends Component {
   render() {
     return (
-      <footer className="Footer" id="Footer">
+      <footer className="Footer">
         <div className="container">
           <div className="row">
-            <div className="col" id="company">
-            <div className='describe'>
-            <img src={LogoIcon}alt="Logo" className="logo" />
-              <p className='f_text'>
-                We are specialized in detecting <br />
-                 " Real and AI Generated content " <br />
-                 Check your work ! <br />
-                Try our premium services^.^
-              </p>
-            </div>
-              <div className="social">
-                {/* Facebook icon */}
-                <a href="https://web.facebook.com"><FaFacebook className="social-icon" /></a>
-                {/* Instagram icon */}
-                <a href="https://www.instagram.com"><FaInstagram className="social-icon" /></a>
-                {/* Twitter icon */}
-                <a href="https://www.twitter.com"><FaTwitter className="social-icon" /></a>
-                {/* LinkedIn icon */}
-                <a href="https://www.linkedin.com"><FaLinkedin className="social-icon" /></a>
+            {/* Column 1: Logo and Title */}
+            <div className="col">
+              <div className="logo-title">
+                <img src={LogoIcon} alt="Logo" className="logo" />
+                
               </div>
             </div>
 
-            {/* <div className="col" id="services">
-              <h3>Services</h3>
+            {/* Column 2: Description */}
+            <div className="col">
+              <blockquote className="f_text">
+                <p>
+                  Specializing in the detection of <br />
+                  real and AI-generated content. <br />
+                  Ensure the authenticity of your work. <br />
+                  Try our premium services today!
+                </p>
+              </blockquote>
+            </div>
+
+            {/* Column 3: Legal */}
+            <div className="col">
+              <h3>Legal</h3>
               <div className="links">
-              <Link to="/text-detector">Text detection</Link>
-              <Link to="/audio-detector">Audio detection</Link>
-              <Link to="/image-detector">Image detection</Link>
-            </div>
-            </div> */}
-
-            <div className="col" id="useful-links">
-              <h3>Help</h3>
-              <div className="links" id="Help">
-              <Link to="/FAQs">FAQs</Link>
-              <Link to="/privacy-policy">Our Policy</Link>
-              <Link to="/terms-of-service">Terms-of-service </Link>
+                <Link to="/FAQs">FAQs</Link>
+                <Link to="/privacy-policy">Privacy Policy</Link>
+                <Link to="/terms-of-service">Terms of Service</Link>
               </div>
             </div>
 
-            <div className="col" id="contact">
-              <h3>Contact</h3>
-              <div className="contact-details">
-                <i className="fa fa-location"></i>
-                <p>BFCAI <br /> Egypt</p>
-              </div>
-              <div className="contact-details">
-                <i className="fa fa-phone"></i>
-                <p>+20102081180</p>
-              </div>
+            {/* Column 4: Contact */}
+            <div className="col text-white p-3">
+  <h3>Contact</h3>
+  <div className="contact-details">
+    <Link to="/ContactUs" className="text-white"><FaEnvelope /> Contact Us</Link>
+  </div>
+  <div className="contact-details">
+    <i className="fa fa-location"></i>
+    <p>BFCAI <br /> Egypt</p>
+  </div>
+  <div className="contact-details">
+    <i className="fa fa-phone"></i>
+    <p>+010111100</p>
+  </div>
+</div>
+
+
+            {/* Column 5: Social Media */}
+            <div className="col">
+              <h3>Social Media</h3>
+              <a href="https://web.facebook.com"><FaFacebook className="social-icon" /></a>
+              <a href="https://www.instagram.com"><FaInstagram className="social-icon" /></a>
+              <a href="https://www.twitter.com"><FaTwitter className="social-icon" /></a>
+              <a href="https://www.linkedin.com"><FaLinkedin className="social-icon" /></a>
             </div>
           </div>
-
-         
-
-        <div className="col-md-12 text-center">
-          <p className='copyright'>&copy; 2024 Catch the AI. All rights reserved.</p>
         </div>
         
+        {/* Copyright Section */}
+        <div className="copy-right">
+          <p>&copy; 2024 Catch the AI. All rights reserved.</p>
         </div>
       </footer>
     );

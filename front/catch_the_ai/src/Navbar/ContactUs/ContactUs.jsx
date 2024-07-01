@@ -49,6 +49,7 @@ function ContactUs() {
                         email: "",
                         message: "",
                     });
+                    appendAlert("Message sent successfully", "success");
 
                 }
                 else {
@@ -59,23 +60,38 @@ function ContactUs() {
             )
             .catch((err) => console.log(err));
     }
+    const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+    const appendAlert = (message, type) => {
+        const wrapper = document.createElement('div')
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+            '</div>'
+        ].join('')
+
+        alertPlaceholder.append(wrapper)
+    }
     return (
-        <div className="container ">
+        <div className="container mb-5 mt-5">
             <h3 className="mb-4 text-light" style={{}}>Contact Us</h3>
             <div className=" mt-0 w-100">
                 <div className="row">
                     {/*  first column */}
-                    <div className="col-12 col-sm-4">
-                        <p>Contact me</p>
-                        <p><i className="bi bi-geo-alt"> Cairo, Egypt</i></p>
-                        <p><i className="bi bi-phone"> +20 105 584 098</i></p>
+                    <div className="col-12 col-sm-4 " >
+                        <p className="text-light">Contact me</p>
+                        <p><i className="bi bi-geo-alt text-light"> Cairo, Egypt</i></p>
+                        <p><i className="bi bi-phone text-light"> +20 105 584 098</i></p>
                         <p><i className="bi bi-envelope"> <a className="text-light"
                             href="mailto:catchtheai@gmail.com">catchtheai@gmail.com</a></i></p>
                     </div>
 
-
+                    
                     {/*  second column  */}
                     <div className="col-12 col-sm-8 ">
+                    <div className="container m-0 p-0 mb-3" id="liveAlertPlaceholder">
+                        
+                    </div>
                         <div >
                             {/* <!-- nested row  --> */}
                             <div className="row ">
@@ -93,7 +109,7 @@ function ContactUs() {
                                             aria-describedby="basic-addon1" />
                                     </div>
                                 </div>
-                                
+
                             </div>
 
                             <div className="row mb-3  ">
@@ -103,7 +119,7 @@ function ContactUs() {
                                 </div>
                             </div>
                             <div className=" text-center">
-                                <button className="btn text-center" disabled={isSubmitting} onClick={handleSubmit} style={{ backgroundColor: "#DDA0DD", width: "150px" }}><i
+                                <button className="btn text-center text-light" disabled={isSubmitting} onClick={handleSubmit} style={{ backgroundColor: "#c34da9", width: "150px" }}><i
                                     className="bi bi-send"> Send</i></button>
                             </div>
                         </div>

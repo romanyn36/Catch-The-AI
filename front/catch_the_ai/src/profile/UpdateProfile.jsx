@@ -26,7 +26,7 @@ function UpdateProfile() {
   });
 
   // session token
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token') || sessionStorage.getItem('token');
   console.log("token", token);
   const headers = {
     'Authorization': `Bearer ${token}`,
@@ -135,7 +135,7 @@ function UpdateProfile() {
         // if the user data is updated successfully
         if (data.status === 1) {
           // redirect the user to the profile page
-          window.location.href = '/UserProfile/'+username;
+          window.location.href = '/UserProfile/' + username;
         }
       } else {
         console.error('Failed to fetch user data');
@@ -194,7 +194,7 @@ function UpdateProfile() {
   // render components
   return (
 
-    <div className={style.formDiv}>
+    <div className={`container ${style.formDiv}`} >
       <div className={style.profile}>
         <img id="profile_image" className={style.img} src={BASE_DOMAIN_URL + image} alt="" />
         <div className={style.profileDiv}>
@@ -241,16 +241,17 @@ function UpdateProfile() {
             <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
             <input type="password" className="form-control" id="confirmPassword" value={confirmPassword} onChange={handleChange} />
           </div>
+
+          <div className={`mb-5 w-100 `}>
+            <label htmlFor="currentPassword" className="form-label">Current Password</label>
+            <input type="password" className="form-control w-100" id="currentPassword" value={currentPassword} onChange={handleChange} />
+          </div>
         </div>
-        <div className={`mb-5 ${style.differ}`}>
-          <label htmlFor="currentPassword" className="form-label">Current Password</label>
-          <input type="password" className="form-control" id="currentPassword" value={currentPassword} onChange={handleChange} />
-        </div>
-        <div className="d-flex justify-content-end">
+        <div className=" justify-content-center d-flex ">
           <button type="button" className={`btn btn-dark ${style.deleteBtn2}`}>
             <Link to={`/UserProfile/${username}`}>Cancel</Link></button>
 
-          <button type="submit" className={`btn ${style.submitBtn}`} style={{ backgroundColor: "#384D6C",color:'white'}}>Save Changes</button>
+          <button type="submit" className={`btn ${style.submitBtn}`} style={{ backgroundColor: "#384D6C", color: 'white' }}>Save Changes</button>
         </div>
       </form>
 

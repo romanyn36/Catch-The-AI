@@ -1,23 +1,35 @@
+/* Default colored mode */
 .navbar {
   background-color: transparent !important;
 }
-
+.brandImage{
+  width: 130px;
+  height: 55px;
+  /* margin: 20px; */
+  
+}
 .navbar-title {
-  font-size: 34px; 
+  font-size: 33px;
   font-weight: bold;
   font-family: Segoe Script;
-  margin-right: 300px; 
+  margin-left: 10px;
+  margin-right: 250px;
 }
-
+.navbar-nav{
+  font-size: 17px;
+  align-items: center;
+}
 .nav-link {
-  font-size: 35px; 
+  font-size: 38px;
+
 }
 
 .navbar-brand,
 .nav-link,
 .btn-outline-light {
-  color: white !important; 
+  color: white !important;
   padding-left: 10px;
+  font-size: 28px;
 }
 
 .nav-link:hover,
@@ -44,36 +56,131 @@
   box-shadow: 0 0 0 0.25rem rgba(221, 160, 221, 0.5);
 }
 
+.navbar-logo {
+  width: 50px;
+  height: 50px;
+}
+
+.profileImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+/* Dark mode */
+.navbar.dark-mode {
+  background-color: #222 !important;
+}
+
+.navbar-title.dark-mode {
+  color: white;
+}
+
+.nav-link.dark-mode {
+  color: white !important;
+}
+
+.nav-link.dark-mode:hover,
+.navbar-brand.dark-mode:hover,
+.btn-outline-light.dark-mode:hover {
+  color: #DDA0DD !important;
+  background-color: transparent !important;
+}
+
+.btn-outline-light.dark-mode {
+  border-color: white;
+}
+
+.btn-outline-light.dark-mode:hover {
+  background-color: #DDA0DD;
+  border-color: #DDA0DD;
+  color: #fff;
+}
+
+.btn-outline-light.dark-mode:focus {
+  background-color: #DDA0DD;
+  border-color: #DDA0DD;
+  color: #fff;
+  box-shadow: 0 0 0 0.25rem rgba(221, 160, 221, 0.5);
+}
+
+.navbar-logo.dark-mode {
+  filter: invert(1); /* Invert the logo colors for dark mode */
+}
+
+.profileImg.dark-mode {
+  filter: invert(1); /* Invert the profile image colors for dark mode */
+}
+
 /* Responsive adjustments */
 @media (max-width: 992px) {
   .navbar-title {
-    margin-right: 0;
-  }
-
-  .nav-link {
-    margin-left: 0;
-  }
-
-  .nav-item {
-    text-align: center;
-    margin-bottom: 15px;
+    font-size: 24px; /* Decreased font size for mobiles */
+    margin-left: 10px;
   }
 
   .navbar-collapse {
-    justify-content: center;
+    justify-content: flex-start;
+    margin-top: 15px;
+  }
+
+  .navbar-nav {
+    display: none;
+  }
+
+  .btn-outline-light {
+    margin-bottom: 10px;
   }
 
   .d-flex {
-    margin-top: 15px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .navbar-toggler {
     margin-right: 15px;
   }
-}
 
-.profileImg {
-  width: 50px; 
-  height: 50px; 
-  border-radius: 50%;
+  /* Responsive adjustments for dark mode */
+  .navbar.dark-mode .navbar-title {
+    color: white;
+  }
+
+  .navbar.dark-mode .nav-link {
+    color: white !important;
+  }
+
+  .navbar.dark-mode .nav-link:hover,
+  .navbar.dark-mode .navbar-brand:hover,
+  .navbar.dark-mode .btn-outline-light:hover {
+    color: #DDA0DD !important;
+    background-color: transparent !important;
+  }
+
+  .navbar.dark-mode .btn-outline-light {
+    border-color: white;
+  }
+
+  .navbar.dark-mode .btn-outline-light:hover {
+    background-color: #DDA0DD;
+    border-color: #DDA0DD;
+    color: #fff;
+  }
+
+  .navbar.dark-mode .btn-outline-light:focus {
+    background-color: #DDA0DD;
+    border-color: #DDA0DD;
+    color: #fff;
+    box-shadow: 0 0 0 0.25rem rgba(221, 160, 221, 0.5);
+  }
+}
+.dark-mode body {
+  background-color: #000000;
+  color: #ffffff;
 }

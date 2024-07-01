@@ -3,8 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 import TextDetector from '../Navbar/text_detector/text-detector';
 import Pricing from '../Navbar/pricing/pricing';
-// import aiImage from './ai.jpg'; // Adjust path as per your file structure
-import aiImage from './home.png'; // Adjust path as per your file structure
+import aiImage from './back2g.jpg'; // Adjust path as per your file structure
+// import aiImage from './home.png'; // Adjust path as per your file structure
 import { useLocation } from 'react-router-dom';
 import AboutUs from "../Navbar/AboutUs/AboutUs";
 import ContactUs from "../Navbar/ContactUs/ContactUs";
@@ -67,10 +67,10 @@ function MyComponent() {
       <div className="MainContainer text-center">
         <div className="container HeroSection">
           <h2 className="HeroTitle">
-           {/* <span style={{color:"white"}}>Start Detecting</span>  <br /> */}
-           <span style={{}}>Start Detecting</span>  <br />
-          {/* <span style={{color:"#706AF6"}}>  AI-Generated Media</span> */}
-          <span style={{}}>  AI-Generated Media</span>
+           <span style={{color:"white"}}>Start Detecting</span>  <br />
+          <span style={{color:"#706AF6"}}>  AI-Generated Media</span>
+           {/* <span style={{}}>Start Detecting</span>  <br /> */}
+          {/* <span style={{}}>  AI-Generated Media</span> */}
           </h2>
           <div className="HeroContent row align-items-center">
             <div className="col-md-6 mb-3 mb-md-0">
@@ -80,7 +80,7 @@ function MyComponent() {
                 AI and human-authored media in images and text.
               </p>
               <button className="btn GetStartedButton mt-4">
-                <Link to="/text-detector" className="text-white">Get Started</Link>
+                <Link to="?scrollTo=text-detector" className="text-white">Get Started</Link>
               </button>
             </div>
             <div className="col-md-6">
