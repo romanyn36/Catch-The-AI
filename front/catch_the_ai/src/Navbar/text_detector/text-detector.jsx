@@ -186,7 +186,7 @@ const TextDetector = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container mt-5 mb-5">
       <div className="container MainContainer1">
         <h2 className="media-type-heading text-center">Select Media Type</h2>
         <div className="media-type-buttons row justify-content-center">
