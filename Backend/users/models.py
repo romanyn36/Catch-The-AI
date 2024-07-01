@@ -4,6 +4,7 @@ from django.utils import timezone
 # Create your models here.
 from django.db import models
 import os
+import shutil
 
 
 def user_directory_path(instance, filename):
@@ -67,6 +68,12 @@ class Users(models.Model):
         self.save()
         return code,self.reset_expire
         
+    def delete(self, *args, **kwargs):
+        user_folder_path = f'media/user_{self.pk}'
+        if os.path.isdir(user_folder_path):
+            # Force delete the folder even if it is not empty
+            shutil.rmtree(user_folder_path)
+        super().delete(*args, **kwargs)
 
     # replace the image if alreeady exist
     def save(self, *args, **kwargs):
@@ -111,6 +118,12 @@ class Admin(models.Model):
                 pass
         super().save(*args, **kwargs)
 
+    def delete(self, *args, **kwargs):
+        admin_folder_path = f'media/staff_{self.pk}'
+        if os.path.isdir(admin_folder_path):
+            # Force delete the folder even if it is not empty
+            shutil.rmtree(admin_folder_path)
+        super().delete(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -150,6 +163,15 @@ class DataHistory(models.Model):
 
     def __str__(self):
         return self.media_name
+    # make when delete the record delete the file from the media
+    def delete(self, *args, **kwargs):
+        if self.image:
+            if os.path.isfile(self.image.path):
+                os.remove(self.image.path)
+        if self.audio:
+            if os.path.isfile(self.audio.path):
+                os.remove(self.audio.path)
+        super().delete(*args, **kwargs)
     
     class Meta:
         ordering = ['-attemptTime']
