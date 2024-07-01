@@ -14,7 +14,6 @@ const TextDetector = () => {
   const [selectedMediaType, setSelectedMediaType] = useState("Image"); // Set default media "Image"
   const [pulsatingMediaType, setPulsatingMediaType] = useState("Image");
   const [text, setText] = useState("");
-  const [image, setImage] = useState(null);
   const [result, setResult] = useState("");
   const [isClicked, setIsClicked] = useState(false);
   const [file, setFile] = useState(null);
@@ -81,8 +80,13 @@ const TextDetector = () => {
     })
       .then(response => response.json())
       .then(data => {
+        // console.log(data);
         setResult(data.result);
+        // set result image 
+        setPreviewUrl(BASE_DOMAIN_URL + data.previewUrl);
         setIsClicked(false);
+      // 
+
       })
       .catch((error) => {
         console.error('Error:', error);
