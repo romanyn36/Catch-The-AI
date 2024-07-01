@@ -7,7 +7,10 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
 import json
+import base64
 import os
+import cv2
+from django.core.files.base import ContentFile
 from django.utils import timezone
 from users.models import Users,DataHistory,ContactMessage,AnonymousAttempt
 from users.session_management import create_session,get_user_id_from_token
@@ -54,8 +57,9 @@ def predict_media(request):
         if user:
             remain_attempets=calculate_remaining_attempts(user)
             # print(media_type)
-            if remain_attempets==0:
-                return JsonResponse({'result':'you have no attempts left'})
+            # disable this for now
+            # if remain_attempets==0:
+            #     return JsonResponse({'result':'you have no attempts left'})
         else:
             anonymous=True
             user_ip = request.META.get('REMOTE_ADDR')
@@ -64,9 +68,10 @@ def predict_media(request):
             # Create a new attempt if it doesn't exist
             if not anonymous_attempt:
                 anonymous_attempt = AnonymousAttempt.objects.create(ip_address=user_ip)
-            # Check if the user can make a request (has attempts left)
-            if not anonymous_attempt.can_make_request():
-                return JsonResponse({'result': 'You have no attempts left'})
+            # # Check if the user can make a request (has attempts left)
+            # disable this for now
+            # if not anonymous_attempt.can_make_request():
+            #     return JsonResponse({'result': 'You have no attempts left'})
 
 
             
@@ -78,14 +83,18 @@ def predict_media(request):
             with open(save_path,'wb') as f:
                 for chunk in data.chunks():
                     f.write(chunk)
-
-            result='\n'.join(predict_image(save_path,cropped_faces_model))#+str(remain_attempets)+' attempts left'
+            results,processed_img= predict_image(save_path,cropped_faces_model)
+            # handle image to suitable format # Convert processed image to bytes
+            _, img_encoded = cv2.imencode('.jpg', processed_img)
+            img_bytes = img_encoded.tobytes()
+            processed_img = ContentFile(img_bytes, name=data.name)
+            result='\n'.join(results)
             size=format_size(data.size)
             if not anonymous:
-                media_history=DataHistory(user=user,media_name=data.name,image=data,attemptTime=datetime.now(),modelResult=result,media_size=size)
+                media_history=DataHistory(user=user,media_name=data.name,
+                                          image=processed_img
+                                          ,attemptTime=datetime.now(),modelResult=result,media_size=size)
                 media_history.save()
-
-            os.remove(save_path)
 
 
         elif media_type=='audio':        
@@ -118,7 +127,7 @@ def predict_media(request):
                 media_history.save()
 
 
-        return JsonResponse({'result':result})
+        return JsonResponse({'result':result,'previewUrl':media_history.image.url})
        
 
     return HttpResponse('this get method is not allowed')
