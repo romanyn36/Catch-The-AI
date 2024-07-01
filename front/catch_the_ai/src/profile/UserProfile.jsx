@@ -123,25 +123,20 @@ function UserProfile() {
           </div>
         </div>
         <div className="col-lg-12 pt-3">
-          <div className='row p-2  w-100 justify-content-top align-items-start'>
+          <div className='row p-2  justify-content-top align-items-start'>
 
             <div className="col-lg-3  justify-content-top align-items-start">
-              <div className='mb-lg-5'>
-                {/* <h3>{name}</h3>
-                {role !== 'user' ? <p>Role: {role}</p> : null} */}
-              </div>
-
-              {role == 'user' ? <h3>User Info</h3> : null}
+            {role == 'user' ? <h3>User Info</h3> : null}
             </div>
             <div className='col-lg-9  justify-content-top align-items-start'>
               <div className={`row ${style.profileContent}`}>
                 <div className="col-md-6 mb-3">
                   <label className="form-label">First Name: </label>
-                  <h4 className='bg-white border border-3 rounded p-2'>{firstname}</h4>
+                  <h4 className='bg-white border border-3 rounded p-2'>{firstname?firstname:'-'} </h4>
                 </div>
                 <div className="col-md-6 mb-3">
                   <label className="form-label">Last Name: </label>
-                  <h4 className='bg-white border border-3 rounded p-2'>{lastname}</h4>
+                  <h4 className='bg-white border border-3 rounded p-2'>{lastname?lastname:'-'}</h4>
                 </div>
               </div>
               <div className={`row ${style.profileContent}`}>
