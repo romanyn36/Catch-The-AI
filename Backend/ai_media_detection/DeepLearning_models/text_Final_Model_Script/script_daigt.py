@@ -15,7 +15,7 @@ API_URL_DeBERTa = "https://api-inference.huggingface.co/models/zeyadusf/deberta-
 API_URL_RoBERTa = "https://api-inference.huggingface.co/models/zeyadusf/roberta-DAIGT-kaggle"
 
 # print the current working directory
-print("5555555555555555555555555555 ",os.getcwd())
+# print("text ",os.getcwd())
 
 
 def init_api():

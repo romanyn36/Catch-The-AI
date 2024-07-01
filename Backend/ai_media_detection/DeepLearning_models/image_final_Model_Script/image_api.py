@@ -1,30 +1,15 @@
-<<<<<<< HEAD
-import cv2
-from mtcnn import MTCNN
-import requests
-=======
 import os
-import requests
 import cv2
-from mtcnn import MTCNN
->>>>>>> main
 import time
-import os
-import matplotlib.pyplot as plt
-
-<<<<<<< HEAD
-detector = MTCNN()
-
-def detect_and_crop_faces(image_path):
-=======
+import requests
+from mtcnn import MTCNN
 
 def init_model():
     detector = MTCNN()
     return detector
 def detect_and_crop_faces(image_path, detector):
->>>>>>> main
     # Load the image
-    print(image_path)
+    # print(image_path)
     image = cv2.imread(image_path)
     
     # Convert to RGB
@@ -57,17 +42,12 @@ def detect_and_crop_faces(image_path, detector):
     
     return cropped_faces, face_boxes
 
-<<<<<<< HEAD
-def preprocess_images(image_path):
-    cropped_faces, face_boxes = detect_and_crop_faces(image_path)
-=======
 def preprocess_images(image_path,detector):
-    cropped_faces = detect_and_crop_faces(image_path, detector)
->>>>>>> main
+    cropped_faces, face_boxes= detect_and_crop_faces(image_path, detector)
     temp_image_paths = []
     
     for i, cropped_face in enumerate(cropped_faces):
-        temp_image_path = f"temp_cropped_image_{i}.jpg"
+        temp_image_path = f"media/temp/temp_face_{i}.jpg"
         cv2.imwrite(temp_image_path, cv2.cvtColor(cropped_face, cv2.COLOR_RGB2BGR))
         temp_image_paths.append(temp_image_path)
     
@@ -93,70 +73,60 @@ def query_huggingface_api(api_url, file_path, api_token, max_retries=5, delay=20
     
     return ["error Max retries exceeded"]
 
-<<<<<<< HEAD
 def get_best_label(response):
     if isinstance(response, list):
         best_result = max(response, key=lambda x: x['score'])
-        return best_result['label'], best_result['score']
+        label=best_result['label'].replace('r', 'Real').replace('f', 'Fake')
+        score=best_result['score']
+        return f"{label} ({score*100:.2f}%)"
+    
     return 'Unknown', 0
 
-image_path = r"c:\Users\user\Desktop\F1.jpg"
 
-# Preprocess the image
-preprocessed_image_paths, cropped_faces, face_boxes = preprocess_images(image_path)
+def draw_results_on_image(image_path, responses, face_boxes):
+    """
+    Draws results on the image.
 
-# Query Hugging Face API
-API_URL = "https://api-inference.huggingface.co/models/Skullly/DeepFake-EN-B6"
-API_TOKEN = "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" # Replace with your Hugging Face API token
+    Parameters:
+    - image_path (str): Path to the image file.
+    - responses (list of str): List of response texts to be displayed on the image.
+    - face_boxes (list of tuples): Each tuple contains the coordinates of a face bounding box in the form (x, y, width, height).
+    Returns:
+    - result_image: The image with the results drawn on it.
+    """
+    # Load the image
+    image = cv2.imread(image_path)
 
-responses = []
-for preprocessed_image_path in preprocessed_image_paths:
-    response = query_huggingface_api(API_URL, preprocessed_image_path, API_TOKEN)
-    responses.append(response)
-    print(response)
+    # Check if the image was loaded successfully
+    if image is None:
+        raise FileNotFoundError(f"Image not found at the path: {image_path}")
 
-# Load the original image to draw bounding boxes and labels
-image = cv2.imread(image_path)
+    # Define the font, scale, and color for the text
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    font_scale = 1.0  # Adjust as needed
+    color = (0, 255, 0)  # Green color
+    thickness = 2
+    formated_responses=[]
+    # Draw the response text and face bounding boxes
+    for response, box in zip(responses, face_boxes):
+        x, y, w, h = box
+        # Draw the face bounding box
+        cv2.rectangle(image, (x, y), (x + w, y + h), color, thickness)
+        response=get_best_label(response)
+        formated_responses.append(response)
+        # Calculate text position (centered above the box)
+        text_size, _ = cv2.getTextSize(response, font, font_scale, thickness)
+        text_x = x + (w - text_size[0]) // 2
+        text_y = y - 10  # Place text just above the box
 
-# Draw bounding boxes and labels on the image
-for (x, y, width, height), response in zip(face_boxes, responses):
-    # Draw the bounding box
-    cv2.rectangle(image, (x, y), (x+width, y+height), (255, 0, 0), 2)
-    
-    # Get the best label and score from the response
-    label, accuracy = get_best_label(response)
-    
-    # Prepare the label text
-    text = f"{label} ({accuracy*100:.2f}%)"
-    
-    # Put the label above the bounding box
-    cv2.putText(image, text, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+        # Draw the response text
+        cv2.putText(image, response, (text_x, text_y), font, font_scale, color, thickness, cv2.LINE_AA)
 
-# Convert the image to RGB (for displaying with matplotlib)
-image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    return formated_responses,image
 
-# Display the image with bounding boxes and labels
-plt.imshow(image_rgb)
-plt.axis('off') # Hide the axis
-plt.show()
-
-# Clean up the temporary files
-for preprocessed_image_path in preprocessed_image_paths:
-    os.remove(preprocessed_image_path)
-=======
-def format_results_with_messages(responses):
-    results = []
-    for i, result in enumerate(responses):
-        print("result format ",result)
-        result=result[0]
-        label = result['label'].replace('r', 'Real Image').replace('f', 'Fake Image')
-        score = result['score']
-        message = f"{label}"#+f" with score {score:.2f}"
-        results.append(message)
-    return results
 def predict_image(image_path,detector):
     # Preprocess the image
-    preprocessed_image_paths, cropped_faces = preprocess_images(image_path,detector) 
+    preprocessed_image_paths, cropped_faces, face_boxes = preprocess_images(image_path,detector)
     # print (preprocessed_image_paths)
     if cropped_faces == []:
         return ["No faces detected"]
@@ -168,8 +138,9 @@ def predict_image(image_path,detector):
     for preprocessed_image_path in preprocessed_image_paths:
         response = query_huggingface_api(API_URL, preprocessed_image_path, API_TOKEN)
         responses.append(response)
-    # Clean up the temporary files
-    # for preprocessed_image_path in preprocessed_image_paths:
+        # Clean up the temporary files
         os.remove(preprocessed_image_path)
-    return format_results_with_messages(responses)
->>>>>>> main
+    # Draw the results on the image
+    responses,image = draw_results_on_image(image_path, responses, face_boxes)
+    os.remove(image_path)
+    return  responses,image
