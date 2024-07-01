@@ -104,20 +104,25 @@ def draw_results_on_image(image_path, responses, face_boxes):
     # Define the font, scale, and color for the text
     font = cv2.FONT_HERSHEY_SIMPLEX
     font_scale = 1.0  # Adjust as needed
-    color = (0, 255, 0)  # Green color
+    
+
     thickness = 2
     formated_responses=[]
     # Draw the response text and face bounding boxes
     for response, box in zip(responses, face_boxes):
+        # make the response more readable
+        response=get_best_label(response)
+        formated_responses.append(response)
+        # Green color if the face is real, red if fake
+        color = (0, 255, 0) if 'Real' in response else (0, 0, 255)
         x, y, w, h = box
         # Draw the face bounding box
         cv2.rectangle(image, (x, y), (x + w, y + h), color, thickness)
-        response=get_best_label(response)
-        formated_responses.append(response)
+        
         # Calculate text position (centered above the box)
         text_size, _ = cv2.getTextSize(response, font, font_scale, thickness)
         text_x = x + (w - text_size[0]) // 2
-        text_y = y - 10  # Place text just above the box
+        text_y = y - 10  
 
         # Draw the response text
         cv2.putText(image, response, (text_x, text_y), font, font_scale, color, thickness, cv2.LINE_AA)
