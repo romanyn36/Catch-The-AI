@@ -41,6 +41,7 @@ def predict_media(request):
         anonymous=False
         user=None
         media_history=None
+        mediaURL=None
         # get the the auth token from the headers if it exists
         auth_header = request.headers.get('Authorization')
         # print("auth_header: ",auth_header)
@@ -84,7 +85,10 @@ def predict_media(request):
             with open(save_path,'wb') as f:
                 for chunk in data.chunks():
                     f.write(chunk)
-            results,processed_img= predict_image(save_path,cropped_faces_model)
+            try: # inase the image is not valid
+                results,processed_img= predict_image(save_path,cropped_faces_model)
+            except Exception as e:
+                return JsonResponse({'result':'invalid image, check the image and try again','previewUrl':''})
             # handle image to suitable format # Convert processed image to bytes
             _, img_encoded = cv2.imencode('.jpg', processed_img)
             img_bytes = img_encoded.tobytes()
