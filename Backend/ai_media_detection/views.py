@@ -40,6 +40,7 @@ def predict_media(request):
         remain_attempets=0
         anonymous=False
         user=None
+        media_history=None
         # get the the auth token from the headers if it exists
         auth_header = request.headers.get('Authorization')
         # print("auth_header: ",auth_header)
@@ -95,6 +96,7 @@ def predict_media(request):
                                           image=processed_img
                                           ,attemptTime=datetime.now(),modelResult=result,media_size=size)
                 media_history.save()
+                mediaURL =media_history.image.url
 
 
         elif media_type=='audio':        
@@ -116,6 +118,8 @@ def predict_media(request):
                 media_history=DataHistory(user=user,media_name=data.name,audio=data,attemptTime=datetime.now(),modelResult=result,media_size=size)
                 media_history.save()
 
+
+
             os.remove(save_path)
 
         
@@ -127,7 +131,7 @@ def predict_media(request):
                 media_history.save()
 
 
-        return JsonResponse({'result':result,'previewUrl':media_history.image.url})
+        return JsonResponse({'result':result,'previewUrl':mediaURL})
        
 
     return HttpResponse('this get method is not allowed')
