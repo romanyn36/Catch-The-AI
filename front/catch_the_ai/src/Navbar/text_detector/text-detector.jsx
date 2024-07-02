@@ -227,7 +227,7 @@ const TextDetector = () => {
             )}
             {selectedMediaType === 'Text' && (
               <div className="media-container">
-                <textarea className="text-area form-control media-container" style={{ backgroundColor: "transparent" }} placeholder="Enter Your Text Here" value={text} onChange={handleTextChange}></textarea>
+                <textarea className="text-area  form-control media-container" style={{ backgroundColor: "transparent" }} placeholder="Enter Your Text Here" value={text} onChange={handleTextChange}></textarea>
               </div>
             )}
             {selectedMediaType === 'Audio' && (

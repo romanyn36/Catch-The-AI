@@ -121,32 +121,29 @@
   }
 }
 
-.text-area-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 5px;
-  border-radius: 60px;
 
-}
 
 .text-area {
-  width: 100%;
+  width: 95% !important;
   height: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  font-size: 37px;
+  padding-left: 20px;
+  min-height: 300px !important;
+  margin: 20px !important;
+  font-size: 25px !important;
+  
   resize: none;
   text-align: left;
   color: white !important;
   background-color: #f8f9fa;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 
 .text-area::placeholder {
-  color: rgb(157, 151, 151);
-  opacity: 1;
+  color: rgb(228, 219, 219) !important;
+  opacity: 1; 
   padding: 10px;
-  font-size: 25px;
+  font-size: 25px !important;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 }
