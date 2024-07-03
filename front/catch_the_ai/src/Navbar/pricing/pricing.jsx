@@ -8,6 +8,8 @@ export class Pricing extends Component {
     super(props);
     this.state = {
       isYearly: false,
+      selectedPlan: '', // state to store the selected plan
+      showAlert: false, // state to control the alert visibility
     };
   }
 
@@ -22,15 +24,23 @@ export class Pricing extends Component {
   }
 
   handlePlanSelection = (plan) => {
-    // Implement functionality to handle the selection of the plan
-    console.log(`Selected plan: ${plan}`);
+    // Update the state with the selected plan and show the alert
+    this.setState({
+      selectedPlan: plan,
+      showAlert: true
+    });
+
+    // Hide the alert after a few seconds
+    // setTimeout(() => {
+    //   this.setState({ showAlert: false });
+    // }, 3000);
   }
 
   render() {
-    const { isYearly } = this.state;
+    const { isYearly, selectedPlan, showAlert } = this.state;
     const basicPrice = isYearly ? "$0 / Year" : "$0 / Month";
     const proPrice = isYearly ? "$150 / Year" : "$15 / Month";
-    const premiumPrice = isYearly ? "$500 /Year" : "$50 / Month";
+    const premiumPrice = isYearly ? "$500 / Year" : "$50 / Month";
 
     return (
       <div className="pricing-container my-5">
@@ -56,15 +66,18 @@ export class Pricing extends Component {
             </button>
           </div>
         </div>
-        <div className="row text-center ">
+
+        
+
+        <div className="row text-center">
           {/* Basic Plan */}
-          <div className="col-md-4 d-flex align-items-stretch " data-aos="fade-up">
-            <div className="basic flex-fill ">
-              <div className="card mb-4 shadow-sm ">
-                <div className="card-header ">
-                  <h4 className="my-0 font-weight-normal ">Basic</h4>
+          <div className="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
+            <div className="basic flex-fill">
+              <div className="card mb-4 shadow-sm">
+                <div className="card-header">
+                  <h4 className="my-0 font-weight-normal">Basic</h4>
                 </div>
-                <div className="card-body "  style={{height:"430px"}}>
+                <div className="card-body" style={{ height: "430px" }}>
                   <h1 className="card-title pricing-card-title">{basicPrice} <small className="text-muted"></small></h1>
                   <ul className="list-unstyled mt-3 mb-4">
                     <li><i className="fa fa-check-circle"></i> Default features with limited access</li>
@@ -91,7 +104,7 @@ export class Pricing extends Component {
                   <h4 className="my-0 font-weight-normal">Professional</h4>
                   <span className="most-popular">MOST POPULAR</span>
                 </div>
-                <div className="card-body  " style={{height:"430px"}}>
+                <div className="card-body" style={{ height: "430px" }}>
                   <h1 className="card-title pricing-card-title">{proPrice} <small className="text-muted"></small></h1>
                   <ul className="list-unstyled mt-3 mb-4">
                     <li><i className="fa fa-check-circle"></i> Advanced features with more access</li>
@@ -112,7 +125,7 @@ export class Pricing extends Component {
             </div>
           </div>
 
-          {/* Company Plan */}
+          {/* Enterprise Plan */}
           <div className="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
             <div className="company flex-fill">
               <div className="card mb-4 shadow-sm">
@@ -132,7 +145,7 @@ export class Pricing extends Component {
                   <button
                     type="button"
                     className="btn btn-lg btn-block btn-outline-dark"
-                    onClick={() => this.handlePlanSelection('Company')}
+                    onClick={() => this.handlePlanSelection('Enterprise')}
                   >
                     Choose Plan
                   </button>
@@ -141,6 +154,18 @@ export class Pricing extends Component {
             </div>
           </div>
         </div>
+        {showAlert && (
+          <div className="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Thanks for your interest!</strong> but payment and plans are not available yet due to the fact that this first version of the website is still in development.
+            <br />
+            you can still use the app for free.and support via paypal: <a href="https://www.paypal.me/romanyn36" className="btn btn-danger alert-link text-light">paypal.me/romanyn36</a> to continue the development of the app.
+            <button type="button" className="btn-close" data-dismiss="alert" aria-label="Close" onClick={() => this.setState({ showAlert: false })}>
+              <span aria-hidden="true">&times;</span>
+            </button>
+            
+          </div>
+          
+        )}
       </div>
     );
   }
