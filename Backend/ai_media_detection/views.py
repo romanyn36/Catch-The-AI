@@ -86,11 +86,11 @@ def predict_media(request):
                 for chunk in data.chunks():
                     f.write(chunk)
             try: # inase the image is not valid
-                results,processed_img= predict_image(save_path,cropped_faces_model)
+                results,processed_img_arr= predict_image(save_path,cropped_faces_model)
             except Exception as e:
                 return JsonResponse({'result':'invalid image, check the image and try again','previewUrl':''})
             # handle image to suitable format # Convert processed image to bytes
-            _, img_encoded = cv2.imencode('.jpg', processed_img)
+            _, img_encoded = cv2.imencode('.jpg', processed_img_arr)
             img_bytes = img_encoded.tobytes()
             processed_img = ContentFile(img_bytes, name=data.name)
             result='\n'.join(results)
@@ -101,6 +101,12 @@ def predict_media(request):
                                           ,attemptTime=datetime.now(),modelResult=result,media_size=size)
                 media_history.save()
                 mediaURL =media_history.image.url
+            else:
+                # send the image as a file not as a url
+                # convert the processed image to base64
+                img_base64 = base64.b64encode(img_bytes).decode('utf-8')
+                mediaURL = f"data:image/jpeg;base64,{img_base64}"
+            
 
 
         elif media_type=='audio':        
