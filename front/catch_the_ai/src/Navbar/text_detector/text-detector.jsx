@@ -85,7 +85,7 @@ const TextDetector = () => {
         // set result image 
         if (data.previewUrl !== '') {
           // check if is url 
-          if (data.previewUrl.includes('http')) {
+          if (data.previewUrl.includes('/media/user_')) {
           setPreviewUrl(BASE_DOMAIN_URL + data.previewUrl);
           }
           else {
@@ -94,6 +94,7 @@ const TextDetector = () => {
           // 
         }
         setIsClicked(false);
+        // if result have more
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -355,7 +356,8 @@ const TextDetector = () => {
                 <TailSpin color="#00BFFF" height={50} width={50} timeout={3000} />
                 <p className="text-dark">Loading...</p>
               </div>
-              : <p className="media-type-heading" style={{ height: "90px" }}>{result}</p>
+              : <textarea className="media-type-heading text-dark" style={{ height: "100px", width: "250px" }} readOnly={true}>{result}</textarea>
+
             }
             <button className="btn btn-outline submit-button mt-2 mb-2" disabled={isClicked} onClick={() => predictMedia(pulsatingMediaType)}>AI or Human?</button>
           </div>
