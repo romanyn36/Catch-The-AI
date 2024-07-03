@@ -9,7 +9,7 @@ export class Pricing extends Component {
     this.state = {
       isYearly: false,
       selectedPlan: '', // state to store the selected plan
-      showAlert: false, // state to control the alert visibility
+      showAlert: [false, false, false]
     };
   }
 
@@ -27,8 +27,17 @@ export class Pricing extends Component {
     // Update the state with the selected plan and show the alert
     this.setState({
       selectedPlan: plan,
-      showAlert: true
     });
+    // Show the alert based on the selected plan
+    if (plan === 'Basic') {
+      this.setState({ showAlert: [true, false, false] });
+    }
+    if (plan === 'Professional') {
+      this.setState({ showAlert: [false, true, false] });
+    }
+    if (plan === 'Enterprise') {
+      this.setState({ showAlert: [false, false, true] });
+    }
 
     // Hide the alert after a few seconds
     // setTimeout(() => {
@@ -67,7 +76,7 @@ export class Pricing extends Component {
           </div>
         </div>
 
-        
+
 
         <div className="row text-center">
           {/* Basic Plan */}
@@ -93,6 +102,19 @@ export class Pricing extends Component {
                   </button>
                 </div>
               </div>
+              {showAlert[0]
+               && (
+                <div className="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>Thanks for your interest!</strong> but payment and plans are not available yet due to the fact that this first version of the website is still in development.
+                  <br />
+                  you can still use the app for free.and support via paypal: <a href="https://www.paypal.me/romanyn36" className="btn btn-danger alert-link text-light">paypal.me/romanyn36</a> to continue the development of the app.
+                  <button type="button" className="btn-close" data-dismiss="alert" aria-label="Close" onClick={() => this.setState({ showAlert: false })}>
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+
+                </div>
+
+              )}
             </div>
           </div>
 
@@ -120,8 +142,23 @@ export class Pricing extends Component {
                   >
                     Choose Plan
                   </button>
+
                 </div>
+
+
               </div>
+              {showAlert[1] && (
+                <div className="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>Thanks for your interest!</strong> but payment and plans are not available yet due to the fact that this first version of the website is still in development.
+                  <br />
+                  you can still use the app for free.and support via paypal: <a href="https://www.paypal.me/romanyn36" className="btn btn-danger alert-link text-light">paypal.me/romanyn36</a> to continue the development of the app.
+                  <button type="button" className="btn-close" data-dismiss="alert" aria-label="Close" onClick={() => this.setState({ showAlert: false })}>
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+
+                </div>
+
+              )}
             </div>
           </div>
 
@@ -149,23 +186,26 @@ export class Pricing extends Component {
                   >
                     Choose Plan
                   </button>
+
                 </div>
+
               </div>
+              {showAlert[2] && (
+                <div className="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>Thanks for your interest!</strong> but payment and plans are not available yet due to the fact that this first version of the website is still in development.
+                  <br />
+                  you can still use the app for free.and support via paypal: <a href="https://www.paypal.me/romanyn36" className="btn btn-danger alert-link text-light">paypal.me/romanyn36</a> to continue the development of the app.
+                  <button type="button" className="btn-close" data-dismiss="alert" aria-label="Close" onClick={() => this.setState({ showAlert: false })}>
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+
+                </div>
+
+              )}
             </div>
           </div>
         </div>
-        {showAlert && (
-          <div className="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Thanks for your interest!</strong> but payment and plans are not available yet due to the fact that this first version of the website is still in development.
-            <br />
-            you can still use the app for free.and support via paypal: <a href="https://www.paypal.me/romanyn36" className="btn btn-danger alert-link text-light">paypal.me/romanyn36</a> to continue the development of the app.
-            <button type="button" className="btn-close" data-dismiss="alert" aria-label="Close" onClick={() => this.setState({ showAlert: false })}>
-              <span aria-hidden="true">&times;</span>
-            </button>
-            
-          </div>
-          
-        )}
+
       </div>
     );
   }
