@@ -83,10 +83,17 @@ const TextDetector = () => {
         // console.log(data);
         setResult(data.result);
         // set result image 
-        setPreviewUrl(BASE_DOMAIN_URL + data.previewUrl);
+        if (data.previewUrl !== '') {
+          // check if is url 
+          if (data.previewUrl.includes('http')) {
+          setPreviewUrl(BASE_DOMAIN_URL + data.previewUrl);
+          }
+          else {
+            setPreviewUrl(data.previewUrl);
+          }
+          // 
+        }
         setIsClicked(false);
-      // 
-
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -187,6 +194,13 @@ const TextDetector = () => {
 
   return (
     <div className="container mt-5 mb-5">
+      {/* advise users to sign in for better performance and experience */}
+      { !localStorage.getItem('token') && !sessionStorage.getItem('token') &&
+      <div className="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Heads up!</strong> For better performance, experience,and access your history, please <a href="/login" className="alert-link">sign in</a> to your account.
+        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      }
       <div className="container MainContainer1">
         <h2 className="media-type-heading text-center">Select Media Type</h2>
         <div className="media-type-buttons row justify-content-center">
@@ -324,7 +338,7 @@ const TextDetector = () => {
                   />
 
                   {audioURL && (
-                    <div className="mt-4" style={{width: "85%",maxWidth:"350px"}}>
+                    <div className="mt-4" style={{ width: "85%", maxWidth: "350px" }}>
                       <h3>Preview File:</h3>
                       <audio src={audioURL} controls style={{ width: "270px" }}></audio>
                       <p className="mt-2">{audioFile ? audioFile.name : 'Recorded audio'}</p>
