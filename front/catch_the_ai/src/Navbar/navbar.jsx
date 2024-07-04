@@ -50,6 +50,7 @@ export class Navbar extends Component {
     localStorage.removeItem('token');
     sessionStorage.removeItem('token');
     this.setState({ isLoggedIn: false });
+    window.location.href = '/';
   };
 
   render() {
@@ -60,7 +61,7 @@ export class Navbar extends Component {
       <nav className={`navbar navbar-expand-lg ${darkMode ? 'dark-mode' : ''}`} data-bs-theme="dark">
         <div className="container-fluid">
           <Link className="navbar-brand  align-items-center" to="/">
-              <img src={Logo} alt="Logo" className={`navbar-logos brandImage ${darkMode ? 'dark-mode' : ''}`} />
+            <img src={Logo} alt="Logo" className={`navbar-logos brandImage ${darkMode ? 'dark-mode' : ''}`} />
             {/* <span className={`navbar-title me-0 ${darkMode ? 'dark-mode' : ''}`}>Catch The AI</span> */}
           </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,7 +102,7 @@ export class Navbar extends Component {
                         <li><Link className="dropdown-item" to={`/UserProfile/${username}`}>Profile</Link></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li><Link className="dropdown-item" to="/UserHistory">History</Link></li>
-                        <li><Link className="dropdown-item" onClick={this.handleLogout} to="/">Logout</Link></li>
+                        <li><Link className="dropdown-item"  data-bs-toggle="modal" data-bs-target="#logoutmodel" >Logout</Link></li>
                       </ul>
                     </li>
                   </ul>
@@ -123,6 +124,25 @@ export class Navbar extends Component {
                   {darkMode ? 'Dark Mode' : 'Light'}
                 </label>
               </div> */}
+            </div>
+          </div>
+        </div>
+
+        {/* logout model */}
+        <div className="modal fade " id="logoutmodel" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5  text-light" id="exampleModalLabel">Logout</h1>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body text-light">
+                Are you sure you want to logout?
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-danger" onClick={this.handleLogout}>Logout</button>
+              </div>
             </div>
           </div>
         </div>
