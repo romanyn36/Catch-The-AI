@@ -1,6 +1,9 @@
 /* Default colored mode */
 .navbar {
-  background-color: transparent !important;
+  /* background-color: transparent !important; */
+  background-color: #2d1c4a !important;
+  /* add shadow box */
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 .brandImage{
   width: 130px;
