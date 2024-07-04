@@ -43,6 +43,8 @@ export class Pricing extends Component {
     // setTimeout(() => {
     //   this.setState({ showAlert: false });
     // }, 3000);
+
+
   }
 
   render() {
@@ -53,6 +55,34 @@ export class Pricing extends Component {
 
     return (
       <div className="pricing-container my-5">
+
+
+
+        <div className="modal fade " id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="exampleModalLabel">Payment & Plans</h1>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                <div className="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>Thanks for your interest!</strong> but payment and plans are not available yet due to the fact that this first version of the website is still in development.
+                  <br />
+                  you can still use the app for free. and support via paypal to continue the development of the app.
+
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-primary"><a href="https://www.paypal.me/romanyn36" className=" alert-link text-light">paypal.me/romanyn36</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
         <div className="text-center mb-4">
           <h1 className="title text-dark">Plans & Pricing</h1>
           <p className="quote">Whether you are an individual, developer, or enterprise, we have a plan for you.</p>
@@ -77,12 +107,11 @@ export class Pricing extends Component {
         </div>
 
 
-
         <div className="row text-center">
           {/* Basic Plan */}
           <div className="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
             <div className="basic flex-fill">
-              <div className="card mb-4 shadow-sm">
+              <div className="card basic_card mb-4 shadow-sm">
                 <div className="card-header">
                   <h4 className="my-0 font-weight-normal">Basic</h4>
                 </div>
@@ -96,32 +125,21 @@ export class Pricing extends Component {
                   <button
                     type="button"
                     className="btn btn-lg btn-block btn-outline-dark"
-                    onClick={() => this.handlePlanSelection('Basic')}
+                    // onClick={() => this.handlePlanSelection('Basic')}
+                    data-bs-toggle="modal" data-bs-target="#exampleModal"
                   >
                     Choose Plan
                   </button>
                 </div>
               </div>
-              {showAlert[0]
-               && (
-                <div className="alert alert-success alert-dismissible fade show" role="alert">
-                  <strong>Thanks for your interest!</strong> but payment and plans are not available yet due to the fact that this first version of the website is still in development.
-                  <br />
-                  you can still use the app for free.and support via paypal: <a href="https://www.paypal.me/romanyn36" className="btn btn-danger alert-link text-light">paypal.me/romanyn36</a> to continue the development of the app.
-                  <button type="button" className="btn-close" data-dismiss="alert" aria-label="Close" onClick={() => this.setState({ showAlert: false })}>
-                    <span aria-hidden="true">&times;</span>
-                  </button>
 
-                </div>
-
-              )}
             </div>
           </div>
 
           {/* Professional Plan */}
           <div className="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
             <div className="professional flex-fill">
-              <div className="card mb-4 shadow-sm">
+              <div className="card basic_card mb-4 shadow-sm">
                 <div className="card-header">
                   <h4 className="my-0 font-weight-normal">Professional</h4>
                   <span className="most-popular">MOST POPULAR</span>
@@ -138,34 +156,21 @@ export class Pricing extends Component {
                   <button
                     type="button"
                     className="btn btn-lg btn-block btn-outline-dark"
-                    onClick={() => this.handlePlanSelection('Professional')}
+                    // onClick={() => this.handlePlanSelection('Professional')}
+                    data-bs-toggle="modal" data-bs-target="#exampleModal"
                   >
                     Choose Plan
                   </button>
 
                 </div>
-
-
               </div>
-              {showAlert[1] && (
-                <div className="alert alert-success alert-dismissible fade show" role="alert">
-                  <strong>Thanks for your interest!</strong> but payment and plans are not available yet due to the fact that this first version of the website is still in development.
-                  <br />
-                  you can still use the app for free.and support via paypal: <a href="https://www.paypal.me/romanyn36" className="btn btn-danger alert-link text-light">paypal.me/romanyn36</a> to continue the development of the app.
-                  <button type="button" className="btn-close" data-dismiss="alert" aria-label="Close" onClick={() => this.setState({ showAlert: false })}>
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-
-                </div>
-
-              )}
             </div>
           </div>
 
           {/* Enterprise Plan */}
           <div className="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
             <div className="company flex-fill">
-              <div className="card mb-4 shadow-sm">
+              <div className="card basic_card mb-4 shadow-sm">
                 <div className="card-header">
                   <h4 className="my-0 font-weight-normal">Enterprise</h4>
                 </div>
@@ -182,7 +187,8 @@ export class Pricing extends Component {
                   <button
                     type="button"
                     className="btn btn-lg btn-block btn-outline-dark"
-                    onClick={() => this.handlePlanSelection('Enterprise')}
+                    // onClick={() => this.handlePlanSelection('Enterprise')}
+                    data-bs-toggle="modal" data-bs-target="#exampleModal"
                   >
                     Choose Plan
                   </button>
@@ -190,18 +196,7 @@ export class Pricing extends Component {
                 </div>
 
               </div>
-              {showAlert[2] && (
-                <div className="alert alert-success alert-dismissible fade show" role="alert">
-                  <strong>Thanks for your interest!</strong> but payment and plans are not available yet due to the fact that this first version of the website is still in development.
-                  <br />
-                  you can still use the app for free.and support via paypal: <a href="https://www.paypal.me/romanyn36" className="btn btn-danger alert-link text-light">paypal.me/romanyn36</a> to continue the development of the app.
-                  <button type="button" className="btn-close" data-dismiss="alert" aria-label="Close" onClick={() => this.setState({ showAlert: false })}>
-                    <span aria-hidden="true">&times;</span>
-                  </button>
 
-                </div>
-
-              )}
             </div>
           </div>
         </div>
