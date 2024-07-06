@@ -395,4 +395,29 @@ def edit_profile(request):
                 return JsonResponse({'message':'user not found','status':0})
     return HttpResponse('you have to use post method to edit the profile')
 
-
+def get_team_members(request):
+    """
+    This function is used to get the team members
+    we have two types of users (admin and normal user)
+    based on the type that we get from the session we will get the team members from the database
+    """
+    if request.method=="GET":
+        team_members=Admin.objects.filter(is_team_member=True)
+        team_members_info=[]
+        for member in team_members:
+            member_info={
+                'name':member.name,
+                'title':member.title,
+                'subtitle':member.subtitle,
+                'about':member.about,
+                'social_links':member.social_links,
+                'image':member.image.url
+            }
+            team_members_info.append(member_info)
+            teams={
+                'team_members':team_members_info
+            }
+            print("team members ")
+        return JsonResponse(teams)
+ 
+    return HttpResponse('error')
