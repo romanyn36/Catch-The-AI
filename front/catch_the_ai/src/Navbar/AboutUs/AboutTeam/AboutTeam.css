@@ -1,35 +1,34 @@
 @media screen and (max-width:767px) {
-
     .steps-content__mobile,
     .workflow-slider__content {
         display: block;
         max-width: 100%;
         -webkit-transform: translateX(0);
-        transform: translateX(0)
+        transform: translateX(0);
     }
 
     .steps-content__mobile:not(.active),
     .workflow-slider__content:not(.active) {
         opacity: 1;
         visibility: visible;
-        height: auto !important
+        height: auto !important;
     }
 
     .members .section-header {
-        text-align: center
+        text-align: center;
     }
 }
 
 .steps-content__mobile.active,
 .workflow-slider__content.active {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+    -webkit-transform: translateX(0) !important;
+    transform: translateX(0) !important;
     visibility: visible;
-    opacity: 1;
+    opacity: 1 !important;
     height: auto;
-    display: block;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s
+    display: block !important;
+    -webkit-animation: fadeIn 1s !important;
+    animation: fadeIn 1s;
 }
 
 .steps-content__mobile .subtitle,
@@ -37,38 +36,38 @@
     color: #06c;
     font-size: 14px;
     margin-bottom: 15px;
-    display: inline-block
+    display: inline-block;
 }
 
 .steps-content__mobile .text,
 .workflow-slider__content .text {
     font-size: 1.25rem;
     letter-spacing: .1px;
-    line-height: 1.6
+    line-height: 1.6;
 }
 
 @media screen and (max-width:767px) {
     .team-member__title {
         font-family: "Poppins Semibold";
-        font-size: 14px
+        font-size: 14px;
     }
 
     .team-member__subtitle {
-        font-size: 12px
+        font-size: 12px;
     }
 
     .partners .img-holder {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 50%;
         flex: 0 0 50%;
-        max-width: 50%
+        max-width: 50%;
     }
 }
 
 @media screen and (max-width:767px) {
     .members .section-title {
         max-width: 90%;
-        display: inline-block
+        display: inline-block;
     }
 }
 
@@ -78,8 +77,10 @@
     padding: 15px;
     display: -ms-flexbox;
     -webkit-box-pack: center;
-
-    background-color: aliceblue ;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto 4.25rem;
+    background-color: aliceblue;
 }
 
 .team {
@@ -87,16 +88,17 @@
     display: -webkit-box;
     display: flex;
     -ms-flex-pack: center;
+    -webkit-box-pack: center;
     justify-content: center;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin: 0 auto 4.25rem
+    margin: 0 auto 4.25rem;
 }
 
 @media screen and (max-width:767px) {
     .team {
         max-width: 100%;
-        margin :20px;
+        margin: 20px;
     }
 }
 
@@ -111,7 +113,8 @@
     -webkit-perspective: 1000px;
     perspective: 1000px;
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0)
+    transform: translate3d(0, 0, 0);
+    overflow: hidden;
 }
 
 @media screen and (min-width:992px) and (max-width:1199px) {
@@ -120,7 +123,7 @@
         -webkit-box-flex: 0;
         -ms-flex: 0 0 25%;
         flex: 0 0 25%;
-        padding: 0 8px
+        padding: 0 8px;
     }
 }
 
@@ -130,7 +133,7 @@
         -webkit-box-flex: 0;
         -ms-flex: 0 0 33.33333%;
         flex: 0 0 33.33333%;
-        padding: 0 8px
+        padding: 0 8px;
     }
 }
 
@@ -140,7 +143,7 @@
         -webkit-box-flex: 0;
         -ms-flex: 0 0 33.33333%;
         flex: 0 0 33.33333%;
-        padding: 0 8px
+        padding: 0 8px;
     }
 }
 
@@ -149,31 +152,30 @@
         max-width: 50%;
         -webkit-box-flex: 0;
         -ms-flex: 0 0 50%;
-        flex: 0 0 50%
+        flex: 0 0 50%;
     }
 }
 
 .team-member:hover .card-front {
-    -webkit-transform: rotateY(180deg);
-    transform: rotateY(180deg)
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
 }
 
 .team-member:hover .card-back {
-    -webkit-transform: rotateY(0);
-    transform: rotateY(0)
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
 }
 
 .team-member .card {
     padding: 5px;
     position: relative;
-    /* -webkit-transform-style: preserve-3d; */
-    transform-style: preserve-3d;
+    transform-style: preserve-3d; 
     -webkit-transition: -webkit-transform .6s cubic-bezier(.63, -.32, .4, 1.39);
     transition: -webkit-transform .6s cubic-bezier(.63, -.32, .4, 1.39);
     transition: transform .6s cubic-bezier(.63, -.32, .4, 1.39);
     transition: transform .6s cubic-bezier(.63, -.32, .4, 1.39), -webkit-transform .6s cubic-bezier(.63, -.32, .4, 1.39);
     -webkit-backface-visibility: hidden;
-    backface-visibility: hidden
+    backface-visibility: hidden;
 }
 
 .team-member .card-front {
@@ -183,8 +185,8 @@
     perspective: preserve-3d;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-transform: rotateY(0);
-    transform: rotateY(0)
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
 }
 
 .team-member .card-front img {  
@@ -193,37 +195,36 @@
 
 .team-member .card-back,
 .team-member .card-front {
-    width: 100%
+    width: 100%;
 }
 
 .team-member .card-back {
     position: absolute;
     top: 0;
-    
     -webkit-transition: .6s;
     transition: .6s;
     -webkit-perspective: preserve-3d;
     perspective: preserve-3d;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-transform: rotateY(-180deg);
-    transform: rotateY(-180deg);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     -webkit-transition-property: -webkit-transform;
     transition-property: -webkit-transform;
     transition-property: transform;
-    transition-property: transform, -webkit-transform
+    transition-property: transform, -webkit-transform;
 }
 
 .team-member.advisor {
-    pointer-events: none
+    pointer-events: none;
 }
 
 .team-member__image {
     padding-top: 100%;
     position: relative;
-    margin-bottom: 1.25rem
+    margin-bottom: 1.25rem;
 }
 
 .team-member__image .img-holder {
@@ -231,7 +232,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-    left: 0
+    left: 0;
 }
 
 .team-member__image .img-holder img {
@@ -241,24 +242,16 @@
     -o-object-fit: cover;
     object-fit: cover;
     max-width: 100%;
-    max-height: 100%
+    max-height: 100%;
 }
 
 .team-member__title {
     font-family: "Poppins Bold";
     font-size: 16px;
-    margin-bottom: .25rem
+    margin-bottom: .25rem;
 }
 
 .team-member__subtitle {
     font-size: 14px;
-    color: #8ca5c6
+    color: #8ca5c6;
 }
-
-
-
-
-
-
-
-
