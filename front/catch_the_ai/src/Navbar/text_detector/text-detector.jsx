@@ -354,9 +354,9 @@ const TextDetector = () => {
             {isClicked ?
               <div className="loader-container" style={{ height: "90px" }}>
                 <TailSpin color="#00BFFF" height={50} width={50} timeout={3000} />
-                <p className="text-dark">Loading...</p>
+                <p className="text-light">Loading...</p>
               </div>
-              : <textarea className="media-type-heading text-dark" style={{ height: "100px", width: "250px" }} readOnly={true}>{result}</textarea>
+              : <textarea className="media-type-heading text-light" style={{ height: "100px", width: "250px" ,backgroundColor:"transparent"}} readOnly={true}>{result}</textarea>
 
             }
             <button className="btn btn-outline submit-button mt-2 mb-2" disabled={isClicked} onClick={() => predictMedia(pulsatingMediaType)}>AI or Human?</button>
