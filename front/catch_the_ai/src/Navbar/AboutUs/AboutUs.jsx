@@ -4,6 +4,7 @@ import m1Image from './m1.jpg'; // Import the image file
 import img3 from './m1.jpg'; // Import the image file for Our Values
 import vision from './vision.jpg'; // Import the image file
 import m from './m.jpg'; // Import the image file
+import AboutTeam from './AboutTeam/AboutTeam';
 
 export class AboutUs extends Component {
   render() {
@@ -45,6 +46,8 @@ export class AboutUs extends Component {
             <img src={m} alt="Values Image" /> {/* Use the imported image */}
           </div>
         </div>
+        <div style={{ height: '100px' }}></div> 
+       <AboutTeam />
       </div>
     );
   }
