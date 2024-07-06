@@ -24,6 +24,7 @@ import ResetPassword from './Sign-In/ResetPassword/ResetPassword';
 import SuccessfullyResetPassword from './Sign-In/ResetPassword/SuccessfullyResetPassword';
 import ContactUs from './Navbar/ContactUs/ContactUs';
 import Dashboard from './Dashboard/Dashboard';
+import AboutTeam from './Navbar/AboutUs/AboutTeam/AboutTeam';
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -51,6 +52,7 @@ const App = () => {
           <Route path="/UserProfile/:username" element={<UserProfile />} />
           <Route path="/UpdateProfile" element={<UpdateProfile />} />
           <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/AboutTeam" element={<AboutTeam />} />
           <Route path="/ContactUs" element={<ContactUs />} />
           <Route path="/UserHistory" element={<UserHistory />} />
           <Route path="/DetectedMedia/:media_id" element={<DetectedMedia />} />
