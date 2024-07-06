@@ -54,7 +54,7 @@ function AboutTeam() {
             title={member.title}
             subtitle={member.subtitle}
             userImage={member.image}
-            paragraph={member.paragraph}
+            paragraph={member.about}
             social={member.social_links ? member.social_links.split('\n') : []}
           />
         ))}
@@ -87,7 +87,7 @@ const TeamMember = ({ name, title, subtitle, userImage, paragraph, social }) => 
       <div className="team-member__social">
         {social && social.map((link, index) => (
           <a key={index} href={link} className="ms-1 team-member__social-link">
-            <i className={`fab fa-${index === 0 ? 'github' : 'linkedin'}`}></i>
+            <i className={`fab fa-${index === 0 ? 'github' : 'linkedin'} fs-5`}></i>
           </a>
         ))}
         
