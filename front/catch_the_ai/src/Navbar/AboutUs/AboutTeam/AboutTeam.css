@@ -157,8 +157,8 @@
 }
 
 .team-member:hover .card-front {
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
+    -webkit-transform: translateX(-120%);
+    transform: translateX(-120%);
 }
 
 .team-member:hover .card-back {
@@ -207,8 +207,8 @@
     perspective: preserve-3d;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
+    -webkit-transform: translateX(120%);
+    transform: translateX(120%);
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     -webkit-transition-property: -webkit-transform;
