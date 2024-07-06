@@ -103,6 +103,16 @@ class Admin(models.Model):
     password = models.CharField(max_length=50)
     role = models.CharField(max_length=50,default='staff')
     image=models.ImageField(upload_to=user_directory_path,default='default.png')
+    is_active = models.BooleanField(default=True)
+    is_verified = models.BooleanField(default=False)
+    reset_code=models.CharField(max_length=50,blank=True,null=True)
+    reset_expire=models.DateTimeField(blank=True,null=True)
+    is_team_member = models.BooleanField(default=False)
+    title = models.CharField(max_length=100,blank=True,null=True)
+    subtitle = models.CharField(max_length=100,blank=True,null=True)
+    about = models.TextField(blank=True,null=True)
+    social_links = models.TextField(blank=True,null=True)
+
      # replace the image if alreeady exist
     def save(self, *args, **kwargs):
         # Check if a new image was uploaded
