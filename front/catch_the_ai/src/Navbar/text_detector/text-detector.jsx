@@ -68,7 +68,7 @@ const TextDetector = () => {
     formData.append('text', text);
     formData.append('media', file);
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     const url = `${BASE_DOMAIN_URL}/predict_media/`;
 
     fetch(url, {
