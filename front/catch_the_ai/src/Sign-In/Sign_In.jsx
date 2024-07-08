@@ -150,7 +150,7 @@ class Sign_In extends React.Component {
                         <div className={style.registerLink}>
                             <a href="/FP" className={style.forgotPasswordLink}>Forgot Password?</a>
 
-                            <p className={style.IN}>Not Registered Yet? <a href="/sign-up" className={style.INN}>Sign Up</a></p>
+                            <p className={style.IN}>Not Registered Yet? <a href="/sign-up" className={style.forgotPasswordLink}>Sign Up</a></p>
                         </div>
                     </div>
                 </div>
