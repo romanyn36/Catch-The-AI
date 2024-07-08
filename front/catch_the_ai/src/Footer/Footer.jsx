@@ -15,12 +15,12 @@ export class Footer extends Component {
             <div className="col">
               <div className="logo-title">
                 <img src={LogoIcon} alt="Logo" className="logo" />
-                
+
               </div>
             </div>
 
             {/* Column 2: Description */}
-            <div className="col">
+            <div className="col-12 col-md-6 col-lg-3 col">
               <blockquote className="f_text">
                 <p>
                   Specializing in the detection of <br />
@@ -32,7 +32,7 @@ export class Footer extends Component {
             </div>
 
             {/* Column 3: Legal */}
-            <div className="col">
+            <div className="col-12 col-md-6 col-lg-3 col">
               <h3>Legal</h3>
               <div className="links">
                 <Link to="/FAQs">FAQs</Link>
@@ -42,33 +42,24 @@ export class Footer extends Component {
             </div>
 
             {/* Column 4: Contact */}
-            <div className="col text-white p-3">
-  <h3>Contact</h3>
-  <div className="contact-details">
-    <Link to="/ContactUs" className="text-white"><FaEnvelope /> Contact Us</Link>
-  </div>
-  <div className="contact-details">
-    <i className="fa fa-location"></i>
-    <p>BFCAI <br /> Egypt</p>
-  </div>
-  <div className="contact-details">
-    <i className="fa fa-phone"></i>
-    <p>+010111100</p>
-  </div>
-</div>
-
-
-            {/* Column 5: Social Media */}
-            <div className="col">
-              <h3>Social Media</h3>
-              <a href="https://web.facebook.com"><FaFacebook className="social-icon" /></a>
-              <a href="https://www.instagram.com"><FaInstagram className="social-icon" /></a>
-              <a href="https://www.twitter.com"><FaTwitter className="social-icon" /></a>
-              <a href="https://www.linkedin.com"><FaLinkedin className="social-icon" /></a>
+            <div className="col-12 col-md-6 col-lg-3 col">
+              <h3>Contact</h3>
+              <div className="contact-details">
+                <Link to="/ContactUs" className="text-white"><FaEnvelope /> Contact Us</Link>
+              </div>
+              <div className="contact-details">
+                <i className="fa fa-location"></i>
+                <p>Cairo, Egypt</p>
+              </div>
+              <div className="contact-details">
+                <i className="fa fa-phone"></i>
+                <p>+20 101 558 4098</p>
+              </div>
             </div>
+
           </div>
         </div>
-        
+
         {/* Copyright Section */}
         <div className="copy-right">
           <p>&copy; 2024 Catch the AI. All rights reserved.</p>

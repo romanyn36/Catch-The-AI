@@ -20,6 +20,7 @@
 .f_text {
   font-family: sans-serif;
   line-height: 1.6;
+  text-align: left;
 }
 .logo-title {
   text-align: left; 
@@ -57,15 +58,23 @@
 }
 
 .col {
-  width: calc(25% - 20px); 
+  /* width: calc(25% - 20px);  */
+  height: 180px;
   background-color: transparent;
   padding: 20px;
   margin-bottom: 20px;
   position: relative;
   box-sizing: border-box; 
 }
+/* make width 100%  in large screen  only */
+@media screen and (min-width: 768px) {
+  .col {
+    width: 300px !important;
+  }
+  
+}
 .col:not(:first-child) {
-  border-left: 5px solid #A367B1; 
+  border-left: 5px solid #A367B1 !important;
 }
 .col h3 {
   color:  #A367B1;
