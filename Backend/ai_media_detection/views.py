@@ -264,6 +264,19 @@ def get_detected_media(request):
             }
         hist={'history':history}
         return JsonResponse(hist)
+def delete_media(request,media_id):
+    if request.method=="DELETE":
+        # get username from params
+        auth_header = request.headers.get('Authorization')
+        token = auth_header.split(" ")[1]
+        # get mdeia id from the params
+        user_id,role=get_user_id_from_token(token)
+        # get user from the database
+        user = Users.objects.filter(id=user_id).first()
+        # print("username: ",user.username,"media_id: ",media_id)
+        h = DataHistory.objects.filter(user=user,id=media_id).first()
+        h.delete()
+        return JsonResponse({'message':'media deleted successfully','status':1})
 
 def send_contact_us_email(request):
     if request.method=="POST":
