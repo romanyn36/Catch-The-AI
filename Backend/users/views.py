@@ -404,6 +404,7 @@ def get_team_members(request):
     if request.method=="GET":
         team_members=Admin.objects.filter(is_team_member=True)
         team_members_info=[]
+        teams={}
         for member in team_members:
             member_info={
                 'name':member.name,

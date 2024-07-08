@@ -167,7 +167,7 @@ class DataHistory(models.Model):
     image = models.ImageField(upload_to=user_directory_path, null=True, blank=True)
     audio = models.FileField(upload_to=user_directory_path, null=True, blank=True)
     text = models.TextField(null=True, blank=True)
-    attemptTime = models.DateTimeField(auto_now_add=True)
+    attemptTime = models.CharField(max_length=50,blank=True,null=True,default=datetime.now().strftime("%d/%m/%Y %I:%M %p"))
     modelResult = models.CharField(max_length=100)
     media_size = models.CharField(max_length=100,default='0 KB')
 

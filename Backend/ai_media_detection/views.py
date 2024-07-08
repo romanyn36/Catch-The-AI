@@ -46,6 +46,8 @@ def predict_media(request):
         auth_header = request.headers.get('Authorization')
         # print("auth_header: ",auth_header)
         token = auth_header.split(" ")[1]
+        # day month year hour minute local time
+        attempet_time=datetime.now().strftime("%d/%m/%Y %I:%M %p")
         if token!='null':
             
             # print("token: ",token)
@@ -78,7 +80,7 @@ def predict_media(request):
 
             
         # return JsonResponse({'result':'success'})
-            
+        print("anonymous : ",anonymous)
         if media_type=='image':
             # save the image
             save_path=f'media/temp/{data.name}'
@@ -95,10 +97,12 @@ def predict_media(request):
             processed_img = ContentFile(img_bytes, name=data.name)
             result='\n'.join(results)
             size=format_size(data.size)
+            
             if not anonymous:
+                print("saving image")
                 media_history=DataHistory(user=user,media_name=data.name,
                                           image=processed_img
-                                          ,attemptTime=datetime.now(),modelResult=result,media_size=size)
+                                          ,attemptTime=attempet_time,modelResult=result,media_size=size)
                 media_history.save()
                 mediaURL =media_history.image.url
             else:
@@ -125,7 +129,7 @@ def predict_media(request):
                     
             size=format_size(data.size)
             if not anonymous:
-                media_history=DataHistory(user=user,media_name=data.name,audio=data,attemptTime=datetime.now(),modelResult=result,media_size=size)
+                media_history=DataHistory(user=user,media_name=data.name,audio=data,attemptTime=attempet_time,modelResult=result,media_size=size)
                 media_history.save()
 
 
@@ -137,7 +141,7 @@ def predict_media(request):
             result=detect_text(text,text_model)
             size=format_size(len(text))
             if not anonymous:
-                media_history=DataHistory(user=user,media_name=f"text: {text.split(' ')[0]}",text=text,attemptTime=datetime.now(),modelResult=result,media_size=size)
+                media_history=DataHistory(user=user,media_name=f"text: {text.split(' ')[0]}",text=text,attemptTime=attempet_time,modelResult=result,media_size=size)
                 media_history.save()
 
 
