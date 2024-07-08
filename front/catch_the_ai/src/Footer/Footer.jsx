@@ -4,6 +4,7 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaEnvelope } from 'reac
 import LogoIcon from "./logoc1.png";
 // import LogoIcon from "./logo2.png";
 import './Footer.css';
+import { BASE_phone_number, BASE_email } from '../index';
 
 export class Footer extends Component {
   render() {
@@ -53,7 +54,11 @@ export class Footer extends Component {
               </div>
               <div className="contact-details">
                 <i className="fa fa-phone"></i>
-                <p>+20 101 558 4098</p>
+                <p><a href={` tel:${BASE_phone_number}`}>{BASE_phone_number}</a></p>
+              </div>
+              <div className="contact-details">
+                <i className="fa fa-envelope"></i>
+                <p><a href={` mailto:${BASE_email}`}>{BASE_email}</a></p>
               </div>
             </div>
 

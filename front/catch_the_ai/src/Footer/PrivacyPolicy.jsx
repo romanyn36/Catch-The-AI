@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap'; 
 import './TOS&PRIVACY.css'; 
-
+import { BASE_phone_number, BASE_email } from '../index';
 export class PrivacyPolicy extends Component {
   render() {
     return (
@@ -34,8 +34,9 @@ export class PrivacyPolicy extends Component {
           <h2 className="text-left"><i className="bi bi-envelope-fill"></i> Contact Information</h2>
           <p>If you have any questions, concerns, or comments about our Privacy Policy, you may contact us using the information below:</p>
           <ul>
-            <li>By e-mail: [Catch The Ai @gmail.com]</li>
-            <li>By Phone: [011100]</li>
+            <li>By e-mail: <a className='text-danger' href={` mailto:${BASE_email}`}>{BASE_email}</a></li>
+            <li>By Phone: <a className='text-danger' href={`tel:${BASE_phone_number}`}>{BASE_phone_number}</a></li>
+            <li>or contact us via our <a href="/?scrollTo=ContactUs" className='text-danger'>Contact Page</a></li>
           </ul>
 
           <p>We reserve the right to make changes to this policy. Any changes to this policy will be posted.</p>

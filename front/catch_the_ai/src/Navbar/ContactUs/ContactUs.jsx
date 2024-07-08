@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { BASE_DOMAIN_URL } from '../../index';
+import { BASE_DOMAIN_URL,BASE_phone_number,BASE_email } from '../../index';
 function ContactUs() {
     const [message_, setMessage] = useState({
         name: "",
@@ -81,9 +81,9 @@ function ContactUs() {
                     <div className="col-12 col-sm-4 " >
                         <p className="text-light">Contact me</p>
                         <p><i className="bi bi-geo-alt text-light"> Cairo, Egypt</i></p>
-                        <p><i className="bi bi-phone text-light"> +20 105 584 098</i></p>
+                        <p><i className="bi bi-phone text-light"> <a className="text-light" href="tel:{BASE_phone_number}">{BASE_phone_number}</a></i></p>
                         <p><i className="bi bi-envelope"> <a className="text-light"
-                            href="mailto:catchtheai@gmail.com">catchtheai@gmail.com</a></i></p>
+                            href="mailto:{BASE_email}">{BASE_email}</a></i></p>
                     </div>
 
                     
