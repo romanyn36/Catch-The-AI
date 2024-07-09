@@ -112,6 +112,7 @@ class Admin(models.Model):
     subtitle = models.CharField(max_length=100,blank=True,null=True)
     about = models.TextField(blank=True,null=True)
     social_links = models.TextField(blank=True,null=True)
+    order = models.IntegerField(default=0)
 
      # replace the image if alreeady exist
     def save(self, *args, **kwargs):
