@@ -138,6 +138,9 @@ class Admin(models.Model):
 
     def __str__(self):
         return self.name
+    # order the admin by order
+    class Meta:
+        ordering = ['order']
     
 
 
