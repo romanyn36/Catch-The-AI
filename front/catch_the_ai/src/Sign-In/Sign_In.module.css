@@ -82,7 +82,7 @@
   width: 100%;
   padding: 12px; 
   margin: 5px 0; 
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Times New Roman', Times, serif ;
   color: #000000;
   background-color: #f6e4ff;
   border: 2px solid #ddd;
@@ -92,7 +92,7 @@
 }
 
 .inputField::placeholder {
-  font-family: cursive;
+
   text-align: left;
   font-size: 14px; 
 }
@@ -142,7 +142,7 @@
 }
 
 .INN {
-  color: #000000 !important;
+  color: #b22727 !important;
 }
 
 .registerLink {

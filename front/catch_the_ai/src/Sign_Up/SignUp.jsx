@@ -221,7 +221,7 @@ function SignUp() {
                 <button type="submit" className={`btn w-100 ${style.btnPurple}`}>Sign Up</button>
               </div>
               <p className="text-center text-dark fs-5">
-                Do you have an account? <a href="/sign-in" className="text-dark font-weight-bold">Sign In</a>
+                Do you have an account? <a href="/sign-in" className=" font-weight-bold text-danger">Sign In</a>
               </p>
 
             </form>
