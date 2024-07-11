@@ -90,7 +90,7 @@ function SignUp() {
           else sessionStorage.setItem('token', data.token);
         
 
-          window.location.href = '/sign-in';
+          window.location.href = '/';
         } else {
           appendAlert('Registration failed! Please try again.'+data.message, 'danger');
         }
