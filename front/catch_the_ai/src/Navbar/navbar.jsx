@@ -19,10 +19,19 @@ export class Navbar extends Component {
   componentDidMount() {
     // get token from local storage or session storage
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-
     if (token) {
       this.setState({ isLoggedIn: true });
       this.fetchUserData(token);
+      // remove anonymous user if logged in
+      // localStorage.removeItem('anonymous');
+
+    }
+    else {
+      // check if anonymous user is already created
+      const anonymous = localStorage.getItem('anonymous');
+      if (!anonymous) {
+        localStorage.setItem('anonymous', 3);
+      }
     }
   }
 
@@ -102,7 +111,7 @@ export class Navbar extends Component {
                         <li><Link className="dropdown-item" to={`/UserProfile/${username}`}>Profile</Link></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li><Link className="dropdown-item" to="/UserHistory">History</Link></li>
-                        <li><Link className="dropdown-item"  data-bs-toggle="modal" data-bs-target="#logoutmodel" >Logout</Link></li>
+                        <li><Link className="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutmodel" >Logout</Link></li>
                       </ul>
                     </li>
                   </ul>

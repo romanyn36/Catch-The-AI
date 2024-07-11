@@ -3,6 +3,7 @@ import './text-detector.css';
 import { BASE_DOMAIN_URL } from '../../index';
 import { TailSpin } from 'react-loader-spinner';
 import { BsRecordCircle, BsCloudUpload } from 'react-icons/bs';
+import { Modal } from 'bootstrap';
 
 const mediaData = [
   { id: 1, name: "Image" },
@@ -51,6 +52,20 @@ const TextDetector = () => {
 
   const predictMedia = (mediaType) => {
     console.log(`Predicting media type for ${mediaType}...`);
+    // if no token is found, use anonymous variable 
+    if (!localStorage.getItem('token') && !sessionStorage.getItem('token')) {
+      // check if anonymous is greater than 0
+      if (localStorage.getItem('anonymous') <= 0) {
+        // show modal to sign in
+        const modal = new Modal(document.getElementById('attempetsModel'));
+        modal.show();
+        return;
+      }
+      else {
+        localStorage.setItem('anonymous', localStorage.getItem('anonymous') - 1);
+      }
+    }
+
 
     if (mediaType === 'Image') {
       fetchDetectionSystem(mediaType);
@@ -381,6 +396,26 @@ const TextDetector = () => {
 
             }
             <button className="btn btn-outline submit-button mt-2 mb-2" disabled={isClicked} onClick={() => predictMedia(pulsatingMediaType)}>AI or Human?</button>
+          </div>
+        </div>
+      </div>
+
+      {/* logout model */}
+      <div className="modal fade  " data-bs-theme="dark" id="attempetsModel" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div className="modal-dialog  modal-dialog-centered">
+          <div className="modal-content bg-darxk">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5  text-light" id="exampleModalLabel">Attempts Left</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body text-light">
+              You have {localStorage.getItem('anonymous')} attempts left as an anonymous user.
+              please sign in to continue.
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-success" onClick={() => window.location.href = '/Sign-In/'}>Sign In</button>
+            </div>
           </div>
         </div>
       </div>
