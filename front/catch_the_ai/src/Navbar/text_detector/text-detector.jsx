@@ -37,6 +37,7 @@ const TextDetector = () => {
 
   const handleImageFile = (e) => {
     const file = e.target.files[0];
+    if (!file) return;
     setFile(file);
     const fileUrl = URL.createObjectURL(file);
     setPreviewUrl(fileUrl);
@@ -86,7 +87,7 @@ const TextDetector = () => {
         if (data.previewUrl !== '') {
           // check if is url 
           if (data.previewUrl.includes('/media/user_')) {
-          setPreviewUrl(BASE_DOMAIN_URL + data.previewUrl);
+            setPreviewUrl(BASE_DOMAIN_URL + data.previewUrl);
           }
           else {
             setPreviewUrl(data.previewUrl);
@@ -137,6 +138,7 @@ const TextDetector = () => {
 
   const handleUpload = event => {
     const file = event.target.files[0];
+    console.log(file, file.type);
     if (file) {
       const audioUrl = URL.createObjectURL(file);
       setAudioURL(audioUrl);
@@ -145,17 +147,32 @@ const TextDetector = () => {
   };
 
   const handleDrop = event => {
-    event.preventDefault();
-    const file = event.dataTransfer.files[0];
-    if (file) {
-      const audioUrl = URL.createObjectURL(file);
-      setAudioURL(audioUrl);
-      setAudioFile(file);
+    // check media type
+    if (selectedMediaType === 'Audio') {
+      event.preventDefault();
+      const file = event.dataTransfer.files[0];
+      if (file) {
+        const audioUrl = URL.createObjectURL(file);
+        setAudioURL(audioUrl);
+        setAudioFile(file);
+      }
+    }
+    else {
+      event.preventDefault();
+      const file = event.dataTransfer.files[0];
+      setFile(file);
+      const fileUrl = URL.createObjectURL(file);
+      setPreviewUrl(fileUrl);
     }
   };
 
   const handleDragOver = event => {
     event.preventDefault();
+
+  };
+  // make file-upload clicked when media-upload is clicked
+  const handleImageUploadclicked = () => {
+    document.getElementById('file-upload').click();
   };
 
   const handleButtonClick = () => {
@@ -196,11 +213,11 @@ const TextDetector = () => {
   return (
     <div className="container mt-5 mb-5">
       {/* advise users to sign in for better performance and experience */}
-      { !localStorage.getItem('token') && !sessionStorage.getItem('token') &&
-      <div className="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Heads up!</strong> For better performance, experience,and access your history, please <a href="/Sign-In/" className="alert-link">sign in</a> to your account.
-        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
+      {!localStorage.getItem('token') && !sessionStorage.getItem('token') &&
+        <div className="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Heads up!</strong> For better performance, experience,and access your history, please <a href="/Sign-In/" className="alert-link">sign in</a> to your account.
+          <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
       }
       <div className="container MainContainer1">
         <h2 className="media-type-heading text-center">Select Media Type</h2>
@@ -220,11 +237,15 @@ const TextDetector = () => {
         <div className="row w-100 mt-4 p-2">
           <div className="col-md-9">
             {selectedMediaType === 'Image' && (
-              <div className="media-container d-flex ">
-                <div className=" d-flex flex-column align-items-center" >
-                  <label htmlFor="file-upload" className="label">Drag and Drop</label>
+              <div className="media-container d-flex " >
+                <div id="mdia-upload" className=" me-md-5  d-flex flex-column align-items-center"
+                  onDrop={handleDrop}
+                  onDragOver={handleDragOver}
+                  onClick={handleImageUploadclicked}
+                >
+                  <label htmlFor="" className="label">Drag and Drop</label>
                   <p className='txt'>Or</p>
-                  <label htmlFor="file-upload" className="label">Upload Your Media</label>
+                  <label htmlFor="" className="label">Upload Your Media</label>
                   <input id="file-upload" type="file" style={{ display: "none" }} onChange={handleImageFile} />
                   <p className="txt1">Maximum size 10 Mb</p>
                 </div>
@@ -356,7 +377,7 @@ const TextDetector = () => {
                 <TailSpin color="#00BFFF" height={50} width={50} timeout={3000} />
                 <p className="text-light">Loading...</p>
               </div>
-              : <textarea className="media-type-heading text-light" style={{ height: "100px", width: "250px" ,backgroundColor:"transparent"}} readOnly={true}>{result}</textarea>
+              : <textarea className="media-type-heading text-light" style={{ height: "100px", width: "250px", backgroundColor: "transparent" }} readOnly={true}>{result}</textarea>
 
             }
             <button className="btn btn-outline submit-button mt-2 mb-2" disabled={isClicked} onClick={() => predictMedia(pulsatingMediaType)}>AI or Human?</button>
