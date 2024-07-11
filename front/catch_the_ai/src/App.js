@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Navbar/navbar';
-
 import TextDetector from './Navbar/text_detector/text-detector';
 import Pricing from './Navbar/pricing/pricing';
 import { Footer } from './Footer/Footer';
@@ -32,36 +31,44 @@ const App = () => {
   const toggleDarkMode = () => {
     setDarkMode(prevDarkMode => !prevDarkMode);
   };
+  // add margin to each scroll to avoid navbar blocking the content
+  window.addEventListener('scroll', () => {
+    const contentMain = document.querySelector('.contentMain');
+    if (contentMain) {
+      contentMain.style.marginTop = `${document.querySelector('.navbar').offsetHeight}px`;
+    }
+  });
 
   return (
     <Router>
       <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Pricing" element={<Pricing />} />
-          <Route path="/text-detector" element={<TextDetector />} />
-          <Route path="/terms-of-service" element={<TOS />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/FAQs" element={<FAQs />} />
-          <Route path="/Sign-In" element={<SignIn />} />
-          <Route path="/FP" element={<FP />} />
-          <Route path="/VP" element={<VP />} />
-          <Route path="/Sign-Up" element={<SignUp />} />
-          <Route path="/footer" element={<Footer />} />
-          <Route path="/UserProfile/:username" element={<UserProfile />} />
-          <Route path="/UpdateProfile" element={<UpdateProfile />} />
-          <Route path="/AboutUs" element={<AboutUs />} />
-          <Route path="/AboutTeam" element={<AboutTeam />} />
-          <Route path="/ContactUs" element={<ContactUs />} />
-          <Route path="/UserHistory" element={<UserHistory />} />
-          <Route path="/DetectedMedia/:media_id" element={<DetectedMedia />} />
-          <Route path="/EmailActivation/:username" element={<EmailActivation />} />
-          <Route path="/ResetPassword" element={<ResetPassword />} />
-          <Route path="/SuccessfullyResetPassword" element={<SuccessfullyResetPassword />} />
-          <Route path="/Dashboard" element={<Dashboard />} />
-          <Route path="*" element={<div className='container' style={{ backgroundColor: "#e6d1d0" }}><h1>this page Not Found</h1></div>} />
-        </Routes>
+        <div className="contentMain">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Pricing" element={<Pricing />} />
+            <Route path="/text-detector" element={<TextDetector />} />
+            <Route path="/terms-of-service" element={<TOS />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/FAQs" element={<FAQs />} />
+            <Route path="/Sign-In" element={<SignIn />} />
+            <Route path="/FP" element={<FP />} />
+            <Route path="/VP" element={<VP />} />
+            <Route path="/Sign-Up" element={<SignUp />} />
+            <Route path="/UserProfile/:username" element={<UserProfile />} />
+            <Route path="/UpdateProfile" element={<UpdateProfile />} />
+            <Route path="/AboutUs" element={<AboutUs />} />
+            <Route path="/AboutTeam" element={<AboutTeam />} />
+            <Route path="/ContactUs" element={<ContactUs />} />
+            <Route path="/UserHistory" element={<UserHistory />} />
+            <Route path="/DetectedMedia/:media_id" element={<DetectedMedia />} />
+            <Route path="/EmailActivation/:username" element={<EmailActivation />} />
+            <Route path="/ResetPassword" element={<ResetPassword />} />
+            <Route path="/SuccessfullyResetPassword" element={<SuccessfullyResetPassword />} />
+            <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="*" element={<div className='container' style={{ backgroundColor: "#e6d1d0" }}><h1>this page Not Found</h1></div>} />
+          </Routes>
+        </div>
         <Footer />
       </div>
     </Router>
