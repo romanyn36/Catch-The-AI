@@ -58,7 +58,7 @@ export class Navbar extends Component {
     const { darkMode, toggleDarkMode } = this.props;
 
     return (
-      <nav className={`navbar navbar-expand-lg   ${darkMode ? 'dark-mode' : ''}`} data-bs-theme="dark">
+      <nav className={`navbar navbar-expand-lg  fixed-top ${darkMode ? 'dark-mode' : ''}`} data-bs-theme="dark">
         <div className="container-fluid">
           <Link className="navbar-brand  align-items-center" to="/">
             <img src={Logo} alt="Logo" className={`navbar-logos brandImage ${darkMode ? 'dark-mode' : ''}`} />

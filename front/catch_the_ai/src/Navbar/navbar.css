@@ -188,3 +188,10 @@
   background-color: #000000;
   color: #ffffff;
 }
+
+
+.modal-backdrop {
+  /* make it below modal content */
+  z-index: 0 !important;
+}
+
