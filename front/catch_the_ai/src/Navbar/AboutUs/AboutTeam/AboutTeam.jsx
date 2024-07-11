@@ -37,7 +37,7 @@ function AboutTeam() {
   }
 
   return (
-    <div className='container'>
+    <div className='container p-0 m-0'>
       <h2 className="text-light">Our Team</h2>
       <div className="team" style={{ opacity: 1 }}>
         {loading && (

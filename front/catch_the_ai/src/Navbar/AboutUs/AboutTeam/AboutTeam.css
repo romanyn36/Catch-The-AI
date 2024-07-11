@@ -17,6 +17,10 @@
     .members .section-header {
         text-align: center;
     }
+    /* front card */
+    .team-member .card-front {
+        height: 220px;
+    }
 }
 
 .steps-content__mobile.active,
@@ -98,7 +102,9 @@
 @media screen and (max-width:767px) {
     .team {
         max-width: 100%;
-        margin: 20px;
+        margin: 0;;
+        margin-top: 20px;
+        padding-top: 20px;
     }
 }
 
@@ -196,6 +202,8 @@
 .team-member .card-back,
 .team-member .card-front {
     width: 100%;
+    
+
 }
 
 .team-member .card-back {
