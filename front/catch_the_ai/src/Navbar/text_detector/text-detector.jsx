@@ -410,7 +410,7 @@ const TextDetector = () => {
             </div>
             <div className="modal-body text-light">
               You have {localStorage.getItem('anonymous')} attempts left as an anonymous user.
-              please sign in to continue.
+              please sign in to continue, <strong>%100 free</strong> and <strong>no credit card required</strong>.
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
