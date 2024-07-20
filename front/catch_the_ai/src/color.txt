@@ -1,0 +1,8 @@
+ /* Set the gradient background */
+    background: linear-gradient(
+      to bottom right, /* Direction of the gradient */
+      rgb(155, 138, 220),          /* Color at the top left */
+      #ad36ed        /* Color at the bottom right (light blue in this case) */
+      /* rgb(111, 88, 202),           */
+       /* #046185    */
+    );

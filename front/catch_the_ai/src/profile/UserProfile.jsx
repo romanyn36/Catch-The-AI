@@ -23,7 +23,7 @@ function UserProfile() {
   });
 
   // session token
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token') || sessionStorage.getItem('token');
   const headers = {
     'Authorization': `Bearer ${token}`,
   };
@@ -54,6 +54,7 @@ function UserProfile() {
   }
   const verfiy_email = () => {
     document.getElementById('verfiy_link').remove();
+    appendAlert('sending verfication email...', 'info')
     const url = BASE_DOMAIN_URL + '/users/send_activation_email/'
     console.log("url", url)
     fetch(url, {
@@ -68,8 +69,8 @@ function UserProfile() {
       console.log(data);
       if (data.status === 1) {
         // destroy this element
-        appendAlert('great, check your email ', 'success')
-        
+        appendAlert('great, we have sent a new verfication email\n please check your email', 'success')
+
       }
       else {
         appendAlert('something went wrong, please try again later', 'danger')
@@ -95,7 +96,7 @@ function UserProfile() {
     alertPlaceholder.append(wrapper)
   }
 
-  
+
 
   const { name, username, email, age, address, subscription, subscription_start_date, subscription_end_date, remain_attempts, image, role, is_activated } = userData;
   console.log("role", role)
@@ -112,40 +113,30 @@ function UserProfile() {
           {role !== 'user' ? <p>Role: {role}</p> : null}
           <div>
             {is_activated ? null :
-              <div id='liveAlertPlaceholder'>
-                <div id='verfiy_link' class="alert alert-warning alert-dismissible fade show" role="alert">
-                  <strong>yor account isn't verfied</strong> please click <button onClick={verfiy_email}  class="btn btn-link" style={{ textDecoration: "underline" }}>here</button> to send a new verfication email
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-
-
-                </div>
-
-
+              <div id='verfiy_link' class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>your account isn't verfied</strong> please click <button onClick={verfiy_email} class="btn btn-link" style={{ textDecoration: "underline" }}>here</button> to send a new verfication email
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             }
+            <div id='liveAlertPlaceholder'>
+            </div>
           </div>
         </div>
         <div className="col-lg-12 pt-3">
-          <div className='row p-2  w-100 justify-content-top align-items-start'>
+          <div className='row p-2  justify-content-top align-items-start'>
 
             <div className="col-lg-3  justify-content-top align-items-start">
-              <div className='mb-lg-5'>
-                {/* <h3>{name}</h3>
-                {role !== 'user' ? <p>Role: {role}</p> : null} */}
-              </div>
-
-              {role == 'user' ? <h3>User Info</h3> : null}
+            {role == 'user' ? <h3>User Info</h3> : null}
             </div>
             <div className='col-lg-9  justify-content-top align-items-start'>
               <div className={`row ${style.profileContent}`}>
                 <div className="col-md-6 mb-3">
                   <label className="form-label">First Name: </label>
-                  <h4 className='bg-white border border-3 rounded p-2'>{firstname}</h4>
+                  <h4 className='bg-white border border-3 rounded p-2'>{firstname?firstname:'-'} </h4>
                 </div>
                 <div className="col-md-6 mb-3">
                   <label className="form-label">Last Name: </label>
-                  <h4 className='bg-white border border-3 rounded p-2'>{lastname}</h4>
+                  <h4 className='bg-white border border-3 rounded p-2'>{lastname?lastname:'-'}</h4>
                 </div>
               </div>
               <div className={`row ${style.profileContent}`}>
@@ -193,13 +184,16 @@ function UserProfile() {
                       <label htmlFor="FnameEmail1" className="form-label">
                         Start Date:
                       </label>
-                      <h4 className='bg-white border border-3 rounded p-2'>{subscription_start_date}</h4>
+                      <h4 className={`bg-white border border-3 rounded p-2 ${style.profileLabel}`}>
+                        {subscription_start_date}</h4>
                     </div>
                     <div className="col-md-6 mb-3">
                       <label htmlFor="LnameEmail1" className="form-label">
                         End Date:{" "}
                       </label>
-                      <h4 className='bg-white border border-3 rounded p-2'>{subscription_end_date}</h4>
+                      <h4 className={` bg-white border border-3 rounded p-2 form-label ${style.profileLabel}`}>
+
+                        {subscription_end_date}</h4>
                     </div>
 
 

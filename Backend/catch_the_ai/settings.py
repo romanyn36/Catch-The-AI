@@ -25,6 +25,7 @@ SECRET_KEY = "django-insecure-_no=x4shzgo*=b*z&&k=h8$yppy*0po=)qa(&2en5a4!0$%sb_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+# ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['romanyn36.pythonanywhere.com']
 
 
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework', # for rest api
     "ai_media_detection.apps.AiMediaDetectionConfig",
     "users.apps.UsersConfig",
-    
+
 ]
 
 MIDDLEWARE = [
@@ -147,7 +148,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 # List of allowed origins (e.g., 'http://example.com', 'https://example.com')
 CORS_ALLOWED_ORIGINS = [
     # 'http://localhost:3000',
-    "http://localhost:3000",
+    # "http://localhost:3000",
     "https://catch-the-ai.vercel.app"
 
 ]
@@ -163,9 +164,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'romanyyy36dr99@gmail.com'
-DEFAULT_FROM_EMAIL = 'romanyyy36dr99@gmail.com'
-EMAIL_HOST_PASSWORD = 'vhvh yiva jvhl lnuo'
+EMAIL_HOST_USER = 'catchtheai@gmail.com'
+DEFAULT_FROM_EMAIL = 'catchtheai@gmail.com'
+EMAIL_HOST_PASSWORD = 'pekt sluo iypx zgbm'
 # reset time out
 PASSWORD_RESET_TIMEOUT_MINUTES = 10
 

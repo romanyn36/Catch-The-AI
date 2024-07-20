@@ -38,18 +38,17 @@
 }
 
 .btn6 {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: rgba(187, 107, 217, 1);
-    color: #fff;
+    width: 100%; 
+    padding: 12px;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    background-color: #5a3b89;
+    color: #fff;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 5px; 
 }
 
 .btn6:hover {
-    background-color:#7e1bf6;
+    background-color: #000;
 }

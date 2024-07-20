@@ -1,126 +1,163 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./Sign_In.module.css";
-import img1 from "./img1.jpg"; // Import the image
 import { Footer } from "../Footer/Footer";
 import { useFetch } from 'use-http'; // Import the useFetch hook from use-http
-import {BASE_DOMAIN_URL} from '../index';
-
-// Functional component for the form
-const MyForm = () => {
-    const [formData, setFormData] = useState({
-        username: '',
-        password: '' }
-    );
-  
+import { BASE_DOMAIN_URL } from '../index';
+import { faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import FontAwesomeIcon
 
 
 
-    // Use the useFetch hook to handle API requests
-    const { post, response, error } = useFetch(BASE_DOMAIN_URL+'/users/login/');
+class Sign_In extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+            rememberMe: false, // Add rememberMe state,
+            
+        };
+    }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        console.log(formData);
-
-        // Use the post function from useFetch to send a POST request
-        const responseData = await post(formData);
-
-        if (response.ok) {
-            console.log(responseData); // Assuming the response is JSON data
-            // Redirect to another page
-            var message = responseData.message;
-            if (message === "successfully login") {
-                localStorage.setItem('token', response.data.token);
-                window.location.href = "/";
-                
-
-            }
-            if (message === "wrong password") {
-                // change the color of the password field to red
-                document.getElementById("password").style.borderColor = "red";
-                // set label message to wrong password
-                document.getElementById("password").placeholder = "Wrong Password";
-            }
-
+    handleInputChange = (event) => {
+        if (event.target.name === 'rememberMe') {
+            this.setState(prevState => ({
+                rememberMe: !prevState.rememberMe
+            }));
+            console.log(this.state.rememberMe);
         } else {
-            console.error('There was a problem with your fetch operation:', error);
+            this.setState({
+                [event.target.name]: event.target.value
+            });
         }
     };
 
-    const handleChange = (event) => {
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value
-        });
+    handleFormSubmit = async (event) => {
+        event.preventDefault();
+        const { username, password, rememberMe } = this.state;
+        const url = BASE_DOMAIN_URL + '/users/login/';
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        }).then(response => response.json())
+            .then(data => {
+
+                if (data.status === 1) {
+                    // console.log('rememberMe:', rememberMe);
+                    if (rememberMe) {
+                        localStorage.setItem('token', data.token);
+                    } else {
+                        sessionStorage.setItem('token', data.token);
+                    }
+                    window.location.href = '/';
+                }
+                else {
+                    this.addalert(data.message, 'danger');
+                }
+            }).catch(error => {
+                console.error('There was an error!', error);
+            }
+            );
     };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <div className={style.formGroup}>
-                <label htmlFor="username">Email</label><br />
+    addalert = (message, type) => {
+        // add alert for verfication email
+        const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+        const appendAlert = (message, type) => {
+            const wrapper = document.createElement('div')
+            wrapper.innerHTML = [
+                `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+                `   <div>${message}</div>`,
+                '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                '</div>'
+            ].join('')
 
-                <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} placeholder="Enter your Email" />
-                {/* {emailError && <span style={{ color: 'red', fontFamily: 'cursive' }}>{emailError}</span>} */}
-            </div>
-            <div className={style.formGroup}>
-                <label htmlFor="password">Password</label><br />
-                <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" />
-            </div>
-            <div className={style.formG}>
-                <label><input type="checkbox" name="remember-me" /> Remember Me</label>
-                <a href="/FP" className="forgot-password-link">Forgot Password?</a>
-            </div>
-            <div className={style.formG}>
-                <button type="submit">Login</button>
-            </div>
-        </form>
-    );
-};
-
-class Sign_In extends React.Component {
-    /////////////////  
+            alertPlaceholder.append(wrapper)
+        }
+        appendAlert(message, type);
+    }
     handleGoogleLogin = () => {
         // Redirect to Google OAuth login page
         window.location.href = "https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=email%20profile";
-    }
+    };
 
     render() {
+        const { username, password, rememberMe, auth_error } = this.state;
+
         return (
             <>
                 <div className={style.pageContainer}>
                     <div className={style.signinContainer}>
-                        <div className={style.ff}>
-                            <h2 className={style.title5}>Sign In</h2>
-                            <p>Hi, Welcome back</p>
-                            <button className={style.googleLogin} onClick={this.handleGoogleLogin}>
-                                Login with Google
-                            </button>
-                            <p>or login with email</p>
-                            <MyForm /> {/* Render the form component */}
-                            <div className="">
-                                <p className={style.IN}>Not Registered Yet? <a href="/sign-up" className={style.INN}>Sign Up</a></p>
+                        <h2 className={style.title5}>Discover the magic of AI! Sign in to find out if your media was crafted by artificial intelligence.</h2>
+
+                        <form onSubmit={this.handleFormSubmit} className={style.formContainer}>
+                            <div className={style.formGroup}>
+
+                                <div id='liveAlertPlaceholder'>
+
+                                </div>
+
+                                <label htmlFor="username" className={style.customLabel}>
+                                    <FontAwesomeIcon icon={faEnvelope} className={style.icon} /> Email
+                                </label>
+                                <input
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    value={username}
+                                    onChange={this.handleInputChange}
+                                    placeholder="Enter your Email"
+                                    className={`${style.inputField}`}
+                                />
                             </div>
-                        </div>
-                        <div className={style.imageContainer}>
-                            <img className={style.imh1} src={img1} alt="Sign in" />
+                            <div className={style.formGroup}>
+                                <label htmlFor="password" className={style.customLabel}>
+                                    <FontAwesomeIcon icon={faLock} className={style.icon} /> Password
+                                </label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    value={password}
+                                    onChange={this.handleInputChange}
+                                    placeholder="Enter your password"
+                                    className={`${style.inputField}`}
+                                />
+                            </div>
+                            <div className={style.rememberMe}>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        name="rememberMe"
+                                        checked={rememberMe}
+                                        onChange={this.handleInputChange}
+                                        className={style.checkbox}
+                                    /> Remember Me
+                                </label>
+                            </div>
+                            <div className={style.formG}>
+                                <button type="submit" className={`${style.loginButton}`}>Login</button><br />
+                                {/* <button className={style.googleLogin} onClick={this.handleGoogleLogin}>
+                                    <i className="bi bi-google"></i>
+                                    <span>Login with Google</span>
+                                </button> */}
+
+                            </div>
+                        </form>
+                        <div className={style.registerLink}>
+                            <a href="/FP" className={style.forgotPasswordLink}>Forgot Password?</a>
+
+                            <p className={style.IN}>Not Registered Yet? <a href="/sign-up" className={style.forgotPasswordLink}>Sign Up</a></p>
                         </div>
                     </div>
                 </div>
-                <Footer />
+                
             </>
         );
     }
 }
 
 export default Sign_In;
-
-
-
-
-
-
-
-
-
-
-

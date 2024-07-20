@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import './TOS.css';
+import { Container } from 'reactstrap';
+import './TOS&PRIVACY.css'; 
 import 'bootstrap-icons/font/bootstrap-icons.css';
-
+import { BASE_phone_number, BASE_email } from '../index';
 export class TOS extends Component {
   render() {
     return (
-      <div className="terms-of-service">
-        <h1 className="title text-white">Terms of Service</h1>
-        <div className="about_TOS">
+      <Container className="terms-of-service container my-5">
+        <h1 className="title text-white text-center mb-4">Terms of Service</h1>
+        <div className="about_TOS bg-white border rounded shadow p-4 mx-auto">
           <p><strong>Last Updated: 13th April 2024</strong></p>
 
           <h3><i className="bi bi-info-circle-fill"></i> Introduction</h3>
@@ -38,12 +39,12 @@ export class TOS extends Component {
           <p>CatchTheAI.com reserves the right, at its sole discretion, to modify or replace these Terms at any time. If a revision is material, we will try to provide at least 30 days' notice prior to any new terms taking effect.</p>
 
           <h3><i className="bi bi-globe"></i> Governing Law</h3>
-          <p>These Terms shall be governed and construed in accordance with the laws of [Your Country/State], without regard to its conflict of law provisions. Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.</p>
+          <p>These Terms shall be governed and construed in accordance with the laws of Egypt, without regard to its conflict of law provisions. Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.</p>
 
           <h3><i className="bi bi-envelope-fill"></i> Contact Information</h3>
           <p>If you have any questions about these Terms, please contact us at contact@catchtheai.com.</p>
         </div>
-      </div>
+      </Container>
     );
   }
 }

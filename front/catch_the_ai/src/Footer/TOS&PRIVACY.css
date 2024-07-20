@@ -1,0 +1,10 @@
+terms-of-service container.terms-of-service {
+  color: aliceblue;
+}
+
+terms-of-service container.about_TOS {
+  max-width: 800px;
+}
+.text-left{
+  text-align: left;
+}

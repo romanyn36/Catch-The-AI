@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import style from "./ForgetPassword.module.css";
 import { BASE_DOMAIN_URL } from "../../index";
 import withNavigate from "../../utils/withNavigate";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import FontAwesomeIcon
 
 const FP = ({ navigate }) => {
     const [email, setEmail] = useState('');
@@ -48,8 +50,10 @@ const FP = ({ navigate }) => {
             <p className={style.p} >No worries! Enter your email below and we’ll send you a link to reset your password.</p>
             <form className={style.form} onSubmit={handleSubmit}>
                 <div className={style.formGroup}>
-                    <label className={style.label} htmlFor="email">Email</label>
-                    <input className={style.input}
+                <label htmlFor="username" className={style.customLabel}>
+                     <FontAwesomeIcon icon={faEnvelope} className={style.icon} /> Email
+                          </label>       
+                         <input className={style.input}
                         type="email"
                         id="email"
                         placeholder="user@example.com"
@@ -61,8 +65,8 @@ const FP = ({ navigate }) => {
                 <button type='submit' className={style.btn1} >
                     Send Code to Reset</button>
             </form>
-            <Link to="/sign-in" className="backToSignin">Back to Sign-in</Link>
-        </div>
+            <Link to="/sign-in" className="text-dark">Back to Sign-in</Link>
+            </div>
     );
 }
 

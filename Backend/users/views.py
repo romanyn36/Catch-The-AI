@@ -13,6 +13,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils import timezone
+from .utils import BASE_DOMAIN_URL
 # Create your views here.
 def activate_account(request,uidb64,token):
     """
@@ -30,15 +31,13 @@ def activate_account(request,uidb64,token):
             return JsonResponse({'message':'user not found'})
         # check if the token is valid
         if user.is_activated:
-            # url='http://localhost:3000/EmailActivation'
-            url='https://catch-the-ai.vercel.app/EmailActivation'
+            url=BASE_DOMAIN_URL+'/EmailActivation/'+user.username
             return redirect(url)
             return JsonResponse({'message':'account already activated','status':1})
         if account_activation_token.check_token(user,token):
             user.is_activated=True
             user.save()
-            url='https://catch-the-ai.vercel.app/EmailActivation'
-            # url='http://localhost:3000/EmailActivation'
+            url=BASE_DOMAIN_URL+'/EmailActivation/'+user.username
             return redirect(url)
             return JsonResponse({'message':'account activated','status':1})      
         else:
@@ -183,7 +182,7 @@ def login(request):
         password=data['password'].strip()
         
         if '' in [username,password]:
-            return JsonResponse({'message':'all fields are required'})
+            return JsonResponse({'message':'all fields are required','status':0})
         # if user used email to login  
         try: 
             validate_email(username)
@@ -195,9 +194,9 @@ def login(request):
                 if user.password==password:
                     # generate token
                     token=create_session(user,'user')
-                    return JsonResponse({'message':'successfully login','role':'user','token':token})
+                    return JsonResponse({'message':'successfully login','role':'user','token':token,'status':1})
                 else:
-                    return JsonResponse({'message':'wrong password'})
+                    return JsonResponse({'message':'wrong password','status':0})
             
             #admin login
             user=Admin.objects.filter(email=username)
@@ -206,12 +205,11 @@ def login(request):
                 if user.password == password:
                     # generate token
                     token=create_session(user,'admin')
-                    return JsonResponse({'message':'successfully login','role':'admin','token':token})
+                    return JsonResponse({'message':'successfully login','role':'admin','token':token,'status':1})
                 else:
-                    return JsonResponse({'message':'wrong password'})
+                    return JsonResponse({'message':'wrong password','status':0})
             else:
                 return JsonResponse({'message':'user not found'})
-
         # if user used username to login
         except ValidationError:
             # user login
@@ -220,9 +218,9 @@ def login(request):
                 user=user[0]
                 if user.password==password:
                     token=create_session(user,'user')
-                    return JsonResponse({'message':'successfully login','role':'user','token':token})
+                    return JsonResponse({'message':'successfully login','role':'user','token':token,'status':1})
                 else:
-                    return JsonResponse({'message':'wrong password'})
+                    return JsonResponse({'message':'wrong password','status':0})
             #admin login
             user=Admin.objects.filter(username=username)
             if user.exists():
@@ -231,11 +229,11 @@ def login(request):
                 #
                 if user.password == password:
                     token=create_session(user,'admin')
-                    return JsonResponse({'message':'successfully login','role':'admin','token':token})
+                    return JsonResponse({'message':'successfully login','role':'admin','token':token,'status':1})
                 else:
-                    return JsonResponse({'message':'wrong password'})
+                    return JsonResponse({'message':'wrong password','status':0})
             else:
-             return JsonResponse({'message':'user not found'})
+             return JsonResponse({'message':'user not found','status':0})
       
     return HttpResponse('broo you have to use post method to login ')
 
@@ -397,4 +395,30 @@ def edit_profile(request):
                 return JsonResponse({'message':'user not found','status':0})
     return HttpResponse('you have to use post method to edit the profile')
 
-
+def get_team_members(request):
+    """
+    This function is used to get the team members
+    we have two types of users (admin and normal user)
+    based on the type that we get from the session we will get the team members from the database
+    """
+    if request.method=="GET":
+        team_members=Admin.objects.filter(is_team_member=True)
+        team_members_info=[]
+        teams={}
+        for member in team_members:
+            member_info={
+                'name':member.name,
+                'title':member.title,
+                'subtitle':member.subtitle,
+                'about':member.about,
+                'social_links':member.social_links,
+                'image':member.image.url
+            }
+            team_members_info.append(member_info)
+            teams={
+                'team_members':team_members_info
+            }
+            print("team members ")
+        return JsonResponse(teams)
+ 
+    return HttpResponse('error')

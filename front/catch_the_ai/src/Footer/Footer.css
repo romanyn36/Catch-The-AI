@@ -1,195 +1,142 @@
-.Footer{
+.Footer {
   background-image: url("img.png"); 
   width: 100%;
   background-repeat: no-repeat;
-  background-size: cover; /* Cover the entire background */
-  background-position: center; /* Center the background image */
-  position: absolute;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: 5px;
 }
 
-/* body{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
-} */
-/* footer{
-   background-color: #000000ff;
-   position: relative;
-   width: 100%;
-   min-height: 350px;
-   padding: 3rem 1rem;
-} */
 .container {
   max-width: 1140px;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-
-
 }
 
-.describe{
-  margin-left: -55px;
-  font-size: larger;
+.f_text {
+  font-family: sans-serif;
+  line-height: 1.6;
+  text-align: left;
+}
+.logo-title {
+  text-align: left; 
 }
 
-.f_text{
-  font-family: cursive;
+.logo {
+  width: 150px;
+  height: auto; 
+  margin-right: 20px;
 }
 
-.f_content{
-  display: inline-flex;
+.logo-title p {
+  font-family: monospace;
+  font-size: 28px; 
+  font-weight: bold; 
+  margin-top: 5px; 
+  color: #ffffff
 }
 
-.social{
-margin-left: -55px;
-}
-
-.social-icon{
+.social-icon {
   color: white;
   margin-right: 10px;
   font-size: 2rem;
 }
 
-.social-icon:hover{
+.social-icon:hover {
   color: rgb(216, 112, 214);
 }
 
-.row{
+.row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
-.col{
-  min-width: 250px;
-  color:#f2f2f2f2;
-  font-family: poppins;
-  padding:0 2rem;
+.col {
+  /* width: calc(25% - 20px);  */
+  height: 180px;
+  background-color: transparent;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  box-sizing: border-box; 
 }
-.col .logo{
-  width: 100px;
-  margin-bottom:25px;
-  border-radius: 100px;
+/* make width 100%  in large screen  only */
+@media screen and (min-width: 768px) {
+  .col {
+    width: 300px !important;
+  }
+  
 }
-.col h3{
-  color:rgb(243, 110, 248);
+.col:not(:first-child) {
+  border-left: 5px solid #A367B1 !important;
+}
+.col h3 {
+  color:  #A367B1;
   margin-bottom: 20px;
   position: relative;
   cursor: pointer;
+  text-align: center;
 }
-.col h3::after{
+
+.col h3::after {
   content: '';
-  height:3px;
-  width:0px;
+  height: 3px;
+  width: 0px;
   background-color: rgb(243, 110, 248);
   position: absolute;
-  bottom: 0;
-  left:0;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
   transition: 0.3s ease;
+}
 
+.col:hover h3::after {
+  width: 30px;
 }
-.col h3:hover::after{
-  width:30px
-}
-.col .social a i{
-  color:rgb(243, 110, 248);
-  margin-top:2rem;
-  margin-right: 5px;
-  transition: 0.3s ease;
-}
-.col .social a i:hover{
-  transform: scale(1.5);
-  filter:grayscale(25);
-}
-.col .links a{
+
+.links a {
   display: block;
   text-decoration: none;
-  color:#f2f2f2;
+  color: #ffffff; 
   margin-bottom: 5px;
-  position: relative;
   transition: 0.3s ease;
 }
-.col .links a::before{
-  content:'';
-  height: 16px;
-  width:3px;
-  position: absolute;
-  top:5px;
-  left:-10px;
-  background-color: rgb(243, 110, 248);
-  transition: 0.5s ease;
-  opacity: 0;
-}
-.col .links a:hover::before{
-  opacity: 1;
-}
-.col .links a:hover{
-  transform: translateX(-8px);
-  color:rgb(243, 110, 248);
-}
-.col .contact-details{
-  display: inline-flex;
-  justify-content: space-between;
-  margin-left: 15px;
-}
-.col .contact-details i{
-  margin-right:15px;
-}
-form{
-  display: block;
+
+.links a:hover {
+  color: rgb(243, 110, 248);
 }
 
-.BTN{
-  margin: 3px;
-}
-.row .form{
+.contact-details {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding:2rem 0;
-}
-.row .form input{
-  background-color: white;
-  border:1;
-  outline:none;
-  padding:14px 70px;
-  border-radius: 6px;
-
-}
-.form button{
-  padding:20px;
-  border-radius: 25px;
-  background-color: rgb(243, 110, 248);
-  margin-top: 15px;
+  margin-bottom: 10px;
+  color: #ffffff;
 }
 
-/********** Responsive Design ********/
-@media(max-width:900px)
-{
-.row{
-  flex-direction: column;
-}
-.col{
-  width: 100%;
-  text-align: left;
-  margin-bottom: 25px;
-}
-}
-@media(max-width:768px)
-{
-.row{
-  flex-direction: column;
-}
-.col{
-  width: 100%;
-  text-align: left;
-  margin-bottom: 20px;
-}
+.contact-details i {
+  margin-right: 15px;
 }
 
+.copy-right {
+  margin-top: 20px;
+  color: #ffffff;
+  text-align: center;
+}
 
+@media (max-width: 900px) {
+  .col {
+    width: calc(50% - 20px); 
+  }
+}
+
+@media (max-width: 768px) {
+  .col {
+    width: 100%; 
+  }
+}

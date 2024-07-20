@@ -94,13 +94,11 @@
   .formDiv input {
     text-align: left;
     padding: 10px;
-    width: 500px;
+    width: 400px;
     border: 1px solid #202542;
-    /* background-color: tomato; */
+
     background-color: aliceblue;
-    height: 50px
-    
-  
+    height: 50px ;    
   } 
   
   .formDiv input::placeholder {
@@ -120,8 +118,8 @@
   }
   
   .formDiv .submitBtn {
-    display: block;
-    margin-right: 100px;
+    
+    margin-right: 20px;
   
     padding: 10px 30px;
     font-size: 18px;
@@ -129,7 +127,7 @@
   
   .formDiv .deleteBtn2 {
     background-color: white;
-    display: block;
+    
     color: #000000;
     margin-right: 20px;
     padding: 10px 30px;

@@ -1,66 +1,60 @@
-.MainContainer {
-  border-radius: 44px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 75px 64px;
+
+
+body {
+  font-family: 'Roboto', sans-serif,'Times New Roman', Times, serif; 
 }
 
-.RootContainer {
-  /* background-color: #241440; */
+.MainContainer {
+  width: 94vw;
+  max-width: 1500px;
+  height:max-content;
+  padding: 5px 15px;
+  /* background-image: url('back.png'); */
+  background-size: cover;
+  color: #fcfcfc;
+  margin: 0 ;
+  margin-bottom: 60px;
 }
 
 .HeroSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  max-width: 1450px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px 0;
 }
 
 .HeroTitle {
-  color: white;
-  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  text-transform: capitalize;
-  margin-top: 10px;
-  font: 700 50px/120px Manrope, sans-serif;
+  color: #eae5e5;
+  font-size: 36px;
+  line-height: 1.5;
+  margin-top: 20px;
 }
 
-.ColoredText {
-  color: #a038cc;
-}
 
-.HeroContent {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 82px;
-  color: #fff;
-}
 
 .HeroDescription {
-  font: 700 32px Manrope, sans-serif;
-  max-width: 600px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #e2d9d9;
 }
 
 .GetStartedButton {
-  justify-content: center;
-  border-radius: 99px;
+  border-radius: 50px;
   background-color: #c34da9;
-  margin-top: 30px;
-  margin-left: -360px;
-  margin-bottom: 200px;
-  padding: 13px 15px;
-  font: 600 26px Manrope, sans-serif;
-  color: white;
+  padding: 12px 30px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.GetStartedButton:hover {
+  background-color: #a038cc; /* Darker shade on hover */
 }
 
 .HeroImage {
-  width: 308px;
   max-width: 100%;
-  margin-top: 32px;
-  margin-left: 50px;
+  margin-top: 20px;
+  border-radius: 10px;
 }

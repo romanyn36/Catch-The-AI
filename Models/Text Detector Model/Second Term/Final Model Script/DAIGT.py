@@ -4,7 +4,7 @@ import torch
 from TextCleanerDAIGT import TextCleaner
 
 class DAIGT:
-    def __init__(self, text, token, api_url_deberta, api_url_roberta, ff_path):
+    def __init__(self,  token, api_url_deberta, api_url_roberta, ff_path):
         """
         Initializes a DAIGT object.
         Parameters:
@@ -14,7 +14,6 @@ class DAIGT:
             api_url_roberta (str): The URL of the RoBERTa model API endpoint.
             ff_path (str): The file path to the Feedforward model.
         """
-        self.txt = text 
         self.token = token
         self.api_url_deberta = api_url_deberta
         self.api_url_roberta = api_url_roberta
@@ -36,23 +35,23 @@ class DAIGT:
         response = requests.post(api_url, headers=headers, json=payload)
         return response.json()
 
-    def api_huggingface(self, retries=5, wait_time=7):
+    def api_huggingface(self,text, retries=5, wait_time=7):
         """
         Queries the Hugging Face API endpoints for DeBERTa and RoBERTa models.
         Parameters:
             retries (int): Number of retry attempts if errors occur during API query (default is 5).
-            wait_time (int): Time to wait (in seconds) between retry attempts (default is 7).
+            wait_time  (int): Time to wait (in seconds) between retry attempts (default is 7).
         Returns:
             tuple: Tuple containing the API responses for DeBERTa and RoBERTa models.
         """
-        for _ in range(retries):
+        for _ in range(5):
             # DeBERTa
-            deberta_text = str(TextCleaner(self.txt))
+            deberta_text = str(TextCleaner(text))
             deberta = self.query({"inputs": deberta_text}, api_url=self.api_url_deberta)
             if 'error' in deberta and 'loading' in deberta['error']:
                 time.sleep(wait_time)
             # RoBERTa
-            roberta_text = str(TextCleaner(self.txt, roberta_clean=True))
+            roberta_text = str(TextCleaner(text, roberta_clean=True))
             roberta = self.query({"inputs": roberta_text}, api_url=self.api_url_roberta)
             if 'error' in roberta and 'loading' in roberta['error']:
                 time.sleep(wait_time)
@@ -91,14 +90,14 @@ class DAIGT:
         input_ff = input_ff.view(1, -1)
         return input_ff
 
-    def detect_text(self):
+    def detect_text(self,text):
         """
         Detects whether the input text is generated or human-written using the Feedforward model.
         Returns:
             float: The detection result.
         """
         with torch.no_grad():
-            self.output = self.ff_model(self.generate_ff_input(self.api_huggingface(self.txt)))[0][0].item()
+            self.output = self.ff_model(self.generate_ff_input(self.api_huggingface(text)))[0][0].item()
         return self.output
     
     def __str__(self):
@@ -115,11 +114,11 @@ if __name__ == '__main__':
     token = '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'
     API_URL_DeBERTa = "https://api-inference.huggingface.co/models/zeyadusf/deberta-DAIGT-MODELS"
     API_URL_RoBERTa = "https://api-inference.huggingface.co/models/zeyadusf/roberta-DAIGT-kaggle"
-    ff_path = r'E:\__aGraduation Project\model_scripted.pt'
+    ff_path = r'D:\Graduation-project\Models\Text Detector Model\Second Term\Final Model Script\model_scripted.pt'  # set Your Path
 
     sample_text = "my teamates misunderstand me and get it wrong , somtimes we wanna to get out of the team ,what the solutions "
-    daigt = DAIGT(sample_text,token, API_URL_DeBERTa, API_URL_RoBERTa, ff_path)
-    result = daigt.detect_text() 
+    daigt = DAIGT(token, API_URL_DeBERTa, API_URL_RoBERTa, ff_path)
+    result = daigt.detect_text(sample_text) 
     
     print(result)
     print(daigt)

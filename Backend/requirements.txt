@@ -2,3 +2,4 @@ tensorflow== 2.15.0
 keras== 2.15.0
 django== 5.0.1
 Python== 3.11.5
+torch== 2.2.1+cpu

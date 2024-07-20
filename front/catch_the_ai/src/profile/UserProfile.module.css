@@ -1,8 +1,12 @@
 .formDiv {
   
-  align-items: start;
+  align-items: center;
   margin-top: 70px;
   padding: 20px;
   border-radius: 10px;
   background-color: #e6d1d0;
+}
+.profileLabel{
+  height: 48.63px;
+background-color: antiquewhite;
 }
