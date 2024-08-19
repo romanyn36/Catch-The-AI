@@ -1,0 +1,170 @@
+/* Sign_In.module.css */
+
+.pageContainer {
+  height: fit-content;
+  margin: 50px auto;
+  max-width: 1000px;
+  padding: 0 20px;
+}
+
+.signinContainer {
+  margin: auto;
+  border: 5px solid transparent; 
+  background-color: white; 
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Times New Roman', Times, serif;
+  max-width: 50%;
+  padding: 40px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; 
+}
+
+.title5 {
+  margin: 0 auto 20px auto;
+  color: #333;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px; 
+}
+.googleLogin {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5a3b89;
+  color: #fff;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.googleLogin:hover {
+  background-color: #000;
+}
+
+.googleLogin i {
+  margin-right: 10px;
+}
+
+
+.orLoginWithEmail {
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #666;
+}
+
+.formContainer {
+  width: 100%; }
+
+.formGroup {
+  margin-bottom: 5px;
+}
+
+.formGroup label {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-align: left;
+  display: block;
+  color: #000000;
+  margin-bottom: 5px; 
+  font-size: 18px; 
+}
+
+.inputField {
+  width: 100%;
+  padding: 12px; 
+  margin: 5px 0; 
+  font-family: 'Times New Roman', Times, serif ;
+  color: #000000;
+  background-color: #f6e4ff;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px; 
+}
+
+.inputField::placeholder {
+
+  text-align: left;
+  font-size: 14px; 
+}
+
+.rememberMe {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.checkbox {
+  margin-right: 5px;
+}
+
+.forgotPasswordLink {
+  color: #ed3535;
+  text-decoration: none;
+  font-size: 20px;
+  transition: color 0.3s ease;
+  align-items: center;
+  font-weight: bold;
+}
+
+.forgotPasswordLink:hover {
+  color: #5a3b89;
+}
+
+.loginButton {
+  width: 100%; 
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5a3b89;
+  color: #fff;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 5px; 
+}
+
+.loginButton:hover {
+  background-color: #000;
+}
+
+
+.IN {
+  color: #000000;
+  font-size: 20px;
+}
+
+.INN {
+  color: #b22727 !important;
+}
+
+.registerLink {
+  width: 100%; 
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 767px) {
+  .signinContainer {
+    max-width: 100%;
+  }
+
+  .formGroup {
+    width: 100%;
+  }
+
+  .rememberMe {
+    font-size: 16px; 
+  }
+
+  .formG {
+    flex-direction: column; 
+  }
+}

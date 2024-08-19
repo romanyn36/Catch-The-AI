@@ -1,0 +1,60 @@
+
+
+body {
+  font-family: 'Roboto', sans-serif,'Times New Roman', Times, serif; 
+}
+
+.MainContainer {
+  width: 94vw;
+  max-width: 1500px;
+  height:max-content;
+  padding: 5px 15px;
+  /* background-image: url('back.png'); */
+  background-size: cover;
+  color: #fcfcfc;
+  margin: 0 ;
+  margin-bottom: 60px;
+}
+
+.HeroSection {
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px 0;
+}
+
+.HeroTitle {
+  color: #eae5e5;
+  font-size: 36px;
+  line-height: 1.5;
+  margin-top: 20px;
+}
+
+
+
+.HeroDescription {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #e2d9d9;
+}
+
+.GetStartedButton {
+  border-radius: 50px;
+  background-color: #c34da9;
+  padding: 12px 30px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.GetStartedButton:hover {
+  background-color: #a038cc; /* Darker shade on hover */
+}
+
+.HeroImage {
+  max-width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
+}

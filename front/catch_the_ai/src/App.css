@@ -1,0 +1,22 @@
+body{
+  background-color: #241440 !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.contentMain {
+  flex: 1;
+  margin-top: 80px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+
+}

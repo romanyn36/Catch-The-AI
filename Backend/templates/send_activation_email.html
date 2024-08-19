@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activate Your Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header,
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #4CAF50;
+            color: #ffffff;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .footer {
+            background-color: #827a7a;
+            color: #ffffff;
+            border-radius: 0 0 10px 10px;
+            font-size: 14px;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .content p {
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        .content .username {
+            color: #d9534f;
+            font-weight: bold;
+        }
+
+        .content a {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #ffffff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .content a:hover {
+            background-color: #0056b3;
+        }
+
+        .content .note {
+            color: #555555;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h3 style="margin: 0;">Activate Your Account</h3>
+        </div>
+        <div class="content">
+            <p>Hi <span class="username">{{ user.username }}</span>,</p>
+            <p>Thank you for registering. Please click the link below to activate your account:</p>
+            <p><a href="{{ activation_url }}">Activate your account</a></p>
+            <p class="note">If you didn't register for this account, please ignore this email.</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Catch the AI. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+
+</html>

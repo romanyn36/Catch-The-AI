@@ -1,0 +1,142 @@
+.Footer {
+  background-image: url("img.png"); 
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: 5px;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.f_text {
+  font-family: sans-serif;
+  line-height: 1.6;
+  text-align: left;
+}
+.logo-title {
+  text-align: left; 
+}
+
+.logo {
+  width: 150px;
+  height: auto; 
+  margin-right: 20px;
+}
+
+.logo-title p {
+  font-family: monospace;
+  font-size: 28px; 
+  font-weight: bold; 
+  margin-top: 5px; 
+  color: #ffffff
+}
+
+.social-icon {
+  color: white;
+  margin-right: 10px;
+  font-size: 2rem;
+}
+
+.social-icon:hover {
+  color: rgb(216, 112, 214);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.col {
+  /* width: calc(25% - 20px);  */
+  height: 180px;
+  background-color: transparent;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  box-sizing: border-box; 
+}
+/* make width 100%  in large screen  only */
+@media screen and (min-width: 768px) {
+  .col {
+    width: 300px !important;
+  }
+  
+}
+.col:not(:first-child) {
+  border-left: 5px solid #A367B1 !important;
+}
+.col h3 {
+  color:  #A367B1;
+  margin-bottom: 20px;
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+}
+
+.col h3::after {
+  content: '';
+  height: 3px;
+  width: 0px;
+  background-color: rgb(243, 110, 248);
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 0.3s ease;
+}
+
+.col:hover h3::after {
+  width: 30px;
+}
+
+.links a {
+  display: block;
+  text-decoration: none;
+  color: #ffffff; 
+  margin-bottom: 5px;
+  transition: 0.3s ease;
+}
+
+.links a:hover {
+  color: rgb(243, 110, 248);
+}
+
+.contact-details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.contact-details i {
+  margin-right: 15px;
+}
+
+.copy-right {
+  margin-top: 20px;
+  color: #ffffff;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .col {
+    width: calc(50% - 20px); 
+  }
+}
+
+@media (max-width: 768px) {
+  .col {
+    width: 100%; 
+  }
+}

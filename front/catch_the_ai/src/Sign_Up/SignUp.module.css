@@ -1,0 +1,118 @@
+.title5 {
+  margin: 0 auto 20px auto;
+  color: #333;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 35px; 
+  font-weight: bolder;
+}
+
+.signUpContainer {
+  padding: 5px;
+  border-radius: 25px;
+  max-width: 1100px;
+}
+
+.frameContainer {
+  /* background-image: url('./bg-signup3.jpg'); */
+  background-color: white;
+  background-size: cover;
+  background-position: center;
+  padding: 5px;
+  border-radius: 35px;
+}
+
+.shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight transparency for better appearance */
+}
+
+.text-primary {
+  color: #530870 !important;
+}
+
+.text-danger {
+  color: #e30505 !important;
+}
+
+.text-success {
+  color: green !important;
+}
+
+.password-strength {
+  font-weight: bold;
+}
+
+.inputField {
+  width: 100%; 
+  padding: 10px; 
+  margin: 2.5px 0; 
+  font-family: 'Times New Roman', Times, serif;
+  color: #000000;
+
+  background-color: #f6e4ff;
+  border: 2px solid #ddd;
+  box-sizing: border-box;
+  font-size: 17px;
+}
+
+.customLabel {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-align: left;
+  display: block;
+  color: #000000;
+  margin-bottom: 2.5px; /* Separate label from input to half */
+  font-size: 20px;
+}
+
+.btnPurple {
+  background-color: #5a3b89;
+  border-color: #5a3b89; 
+  color: rgb(255, 255, 255); 
+}
+
+.btnPurple:hover {
+  background-color: #000000;
+  border-color: #000000;
+  color: aliceblue;
+}
+.form-check-label{
+  font-size: large;
+}
+
+
+@media screen and (max-width: 768px) {
+  .col-lg-6 {
+    padding: 10px !important; 
+  }
+
+  .rounded-start {
+    border-radius: 0; 
+  }
+
+  .form-group {
+    width: 90%; 
+    margin: 0 auto 10px auto; 
+  }
+
+  .form-check {
+    justify-content: flex-start; 
+  }
+
+  .row {
+    grid-template-columns: 1fr; /* Single column layout for smaller screens */
+    gap: 10px; /* gap between elements */
+  }
+
+  .col-md-6 {
+    padding: 10px; 
+  }
+
+  .mb-3 {
+    margin-bottom: 1rem !important; 
+  }
+
+  .customLabel {
+    margin: 0;
+  }
+}
