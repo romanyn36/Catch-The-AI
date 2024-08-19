@@ -2,7 +2,7 @@ import requests
 import time
 import torch
 from .TextCleanerDAIGT import TextCleaner
-
+import os
 class DAIGT:
     def __init__(self,  token, api_url_deberta, api_url_roberta, ff_path):
         """
@@ -111,7 +111,7 @@ class DAIGT:
 
 
 if __name__ == '__main__':
-    token = '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'
+    token = os.environ.get('text_HUGGINGFACE_API_TOKEN')
     API_URL_DeBERTa = "https://api-inference.huggingface.co/models/zeyadusf/deberta-DAIGT-MODELS"
     API_URL_RoBERTa = "https://api-inference.huggingface.co/models/zeyadusf/roberta-DAIGT-kaggle"
     ff_path = 'model_scripted.pt'  # set Your Path

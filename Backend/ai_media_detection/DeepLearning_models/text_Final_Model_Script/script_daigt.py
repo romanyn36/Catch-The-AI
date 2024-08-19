@@ -1,6 +1,6 @@
 from .DAIGT import DAIGT
 import os
-token = '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' # Temporary token for testing
+token = os.environ.get('text_HUGGINGFACE_API_TOKEN')
 # Get the directory of the current script
 current_dir = os.path.dirname(os.path.abspath(__file__))
 

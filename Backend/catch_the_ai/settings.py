@@ -11,22 +11,31 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv() # to load the .env file
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-_no=x4shzgo*=b*z&&k=h8$yppy*0po=)qa(&2en5a4!0$%sb_"
+# Now you can use os.environ.get to fetch environment variables
+SECRET_KEY = os.environ.get('CATCG_THE_AI_SECRET_KEY') # load the environment variable from oberation system
+
+# Fallback in case the environment variable is not set
+if not SECRET_KEY:
+    SECRET_KEY=os.getenv('CATCG_THE_AI_SECRET_KEY') # to load the .env file
+    
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+DEBUG = True
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['romanyn36.pythonanywhere.com']
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['romanyn36.pythonanywhere.com']
 
 
 # Application definition
@@ -166,7 +175,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'catchtheai@gmail.com'
 DEFAULT_FROM_EMAIL = 'catchtheai@gmail.com'
-EMAIL_HOST_PASSWORD = 'pekt sluo iypx zgbm'
+EMAIL_HOST_PASSWORD = os.environ.get('CATCG_THE_AI_EMAIL_PASSWORD')
 # reset time out
 PASSWORD_RESET_TIMEOUT_MINUTES = 10
 

@@ -137,7 +137,8 @@ def predict_image(image_path,detector):
         return ["No faces detected"]
     # Query Hugging Face API
     API_URL = "https://api-inference.huggingface.co/models/Skullly/DeepFake-EN-B6"
-    API_TOKEN = "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"  # Replace with your Hugging Face API token
+    API_TOKEN =os.environ.get('image_HUGGINGFACE_API_TOKEN')
+    # Replace with your Hugging Face API token
         
     responses = []
     for preprocessed_image_path in preprocessed_image_paths:

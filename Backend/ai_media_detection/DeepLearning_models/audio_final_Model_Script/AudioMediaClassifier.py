@@ -4,7 +4,7 @@ import requests
 from typing import List, Dict
 import mimetypes
 class AudioMediaClassifier:
-    def __init__(self, api_token= "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",
+    def __init__(self, api_token= os.environ.get('audio_HUGGINGFACE_API_TOKEN'),
                   api_url="https://api-inference.huggingface.co/models/motheecreator/Deepfake-audio-detection"):
         self.api_token = api_token
         self.api_url = api_url
@@ -75,7 +75,7 @@ class AudioMediaClassifier:
 # # Example usage
 # if __name__ == "__main__":
 #     api_url = "https://api-inference.huggingface.co/models/motheecreator/Deepfake-audio-detection"
-#     api_token = "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"  # Replace with your Hugging Face API token
+#     api_token = os.environ.get('audio_HUGGINGFACE_API_TOKEN')
 
 #     classifier = AudioMediaClassifier(api_token, api_url)
 
