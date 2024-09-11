@@ -22,7 +22,6 @@ import EmailActivation from './Sign_Up/EmailActivation/EmailActivation';
 import ResetPassword from './Sign-In/ResetPassword/ResetPassword';
 import SuccessfullyResetPassword from './Sign-In/ResetPassword/SuccessfullyResetPassword';
 import ContactUs from './Navbar/ContactUs/ContactUs';
-import Dashboard from './Dashboard/Dashboard';
 import AboutTeam from './Navbar/AboutUs/AboutTeam/AboutTeam';
 
 const App = () => {
@@ -65,7 +64,6 @@ const App = () => {
             <Route path="/EmailActivation/:username" element={<EmailActivation />} />
             <Route path="/ResetPassword" element={<ResetPassword />} />
             <Route path="/SuccessfullyResetPassword" element={<SuccessfullyResetPassword />} />
-            <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="*" element={<div className='container' style={{ backgroundColor: "#e6d1d0" }}><h1>this page Not Found</h1></div>} />
           </Routes>
         </div>
