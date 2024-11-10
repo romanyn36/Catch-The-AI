@@ -174,7 +174,11 @@ def login(request):
     no need explicit ask for the role"""
     if request.method=="POST":
         # for react app
-        data = json.loads(request.body.decode('utf-8'))
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+        except:
+            data=request.POST
+            
         # if not react app
         # data=data
         # get username and password from params
@@ -188,7 +192,8 @@ def login(request):
             validate_email(username)
             # user login
             user=Users.objects.filter(email=username)
-            # print(user)
+            
+            print(user)
             if user.exists():
                 user=user[0]
                 if user.password==password:
@@ -418,7 +423,7 @@ def get_team_members(request):
             teams={
                 'team_members':team_members_info
             }
-            print("team members ")
+            # print("team members ")
         return JsonResponse(teams)
  
     return HttpResponse('error')
