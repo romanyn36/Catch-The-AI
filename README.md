@@ -30,7 +30,6 @@
     <li><a href="#busts_in_silhouette-collaborators">collaborators</a></li>
     <li><a href="#email-contact">Contact</a></li>
     <li><a href="#memo-license">License</a></li>
-    <li><a href="https://github.com/romanyn36" target="_blank">Author</a></li>
   </ol>
 
 
@@ -39,9 +38,10 @@
 # :dart: About ##
 Catch The AI is our graduation project, it is an
 Intelligent Sytem to detect AI-generated content with our advanced models. Our deep learning technology distinguishes between AI and human-authored media in images and text, 
-we deployed our model in a web application to make it easy to use for everyone. you can visit the website [Catch The AI](https://catch-the-ai.tech/)
+we deployed our model in a web application to make it easy to use for everyone. you can visit the website [Catch The AI](https://catch-the-ai.vercel.app/)
 
 ##### full project in details in the [documentation](/Documentaion/Documentation%20Library/Final%20versions%20of%20DOC/Project_Documentation.pdf)
+[linkedin post](https://www.linkedin.com/posts/romaninasrat_graduationabrproject-deepabrlearning-catchtheai-activity-7221596161067876352-hm-K?utm_source=share&utm_medium=member_desktop)
 
 # project Overview
 
@@ -202,8 +202,19 @@ the app will run on [http://localhost:3000/](http://localhost:3000/)
 
 ## :busts_in_silhouette: collaborators ##
 We did not just work as a team, but we were a family. These people are truly skilled and creative. Follow them and wait for their wonderful projects, from which they learn a lot and benefit a lot of people.❤️ <br>
-- Romani Nasrat (Team Leader): 
-<p align="center">work on Image detection model, and responsible for the backend development connected with the frontend and the database, and also responsible for the deployment of the project.</p>
+- Romani Nasrat (Team Leader):  <a href="https://github.com/romanyn36" target="_blank">
+  <img src="https://img.shields.io/badge/-@romanyn36-181717?style=flat&logo=github&logoColor=white" alt="GitHub" />
+</a>
+<a href="https://www.linkedin.com/in/romanyn36/" target="_blank">
+    <img src="https://img.shields.io/badge/Connect-Romani-blue.svg?style=flat&logo=linkedin" alt="linkedin"/>
+</a>
+
+
+<p align="center">work on Image detection model, and responsible for the backend and model deployment</p>
+
+
+
+
 
 - Ahmed Mohamed Ali &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![](https://img.shields.io/badge/-@AhmedAboElkassem-181717?style=flat&logo=github&logoColor=white)](https://github.com/AhmedAboElkassem) [![](https://img.shields.io/badge/-Ahmed_Ali-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/mwlite/in/ahmed-ali-54292924b)
 
@@ -222,25 +233,11 @@ We did not just work as a team, but we were a family. These people are truly ski
 - Mohammed Abdeldayem &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![](https://img.shields.io/badge/-@abdeldayem02-181717?style=flat&logo=github&logoColor=white)](https://github.com/abdeldayem02) [![](https://img.shields.io/badge/-Mohammed_Abdeldayem-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abdeldayem02/)
 
 ### :email: Contact ##
-
-<p align="center">
- <a href="https://www.facebook.com/romanyn3/" target="_blank">
-  <img src="https://img.shields.io/badge/-Romani-1877F2?style=flat&logo=facebook&logoColor=white" alt="Facebook" />
-</a>
-
-<a href="https://twitter.com/romanyn36" target="_blank">
-  <img src="https://img.shields.io/badge/-@romanyn36-1DA1F2?style=flat&logo=twitter&logoColor=white" alt="Twitter" />
-</a>
+you can contact team leader for any questions or help via the following links
 
 
-<a href="https://github.com/romanyn36" target="_blank">
-  <img src="https://img.shields.io/badge/-@romanyn36-181717?style=flat&logo=github&logoColor=white" alt="GitHub" />
-</a>
 
 
-<a href="https://stackoverflow.com/users/17348975/romani" target="_blank">
-  <img src="https://img.shields.io/badge/-Stack%20Overflow-FE7A16?style=flat&logo=stackoverflow&logoColor=white" alt="Stack Overflow" />
-</a>
 
 <a href="mailto:romanyyy36dr99@gmail.com" target="_blank">
   <img src="https://img.shields.io/badge/-Email-D14836?style=flat&logo=mail.ru&logoColor=white" alt="Email" />
@@ -250,15 +247,13 @@ We did not just work as a team, but we were a family. These people are truly ski
     <img src="https://img.shields.io/badge/Connect-Romani-blue.svg?style=flat&logo=linkedin" alt="linkedin"/>
 </a>
 
-
-
-
 <a href="https://www.kaggle.com/romanyn36" target="_blank" style="display: inline-block;">
     <img src="https://img.shields.io/badge/Kaggle-Romani-blue.svg?style=flat-square&logo=kaggle" />
 </a>
-<a href="https://www.buymeacoffee.com/romanyn36" target="_blank" style="display: inline-block;">
-    <img src="https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-orange.svg?style=flat-square&logo=buymeacoffee" align="center"/>
-  </a> 
+
+
+
+
   
 
 </p>
