@@ -173,8 +173,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'catchtheai@gmail.com'
-DEFAULT_FROM_EMAIL = 'catchtheai@gmail.com'
+EMAIL_HOST_USER = os.environ.get('SMTP_EMAIL')
+DEFAULT_FROM_EMAIL = os.environ.get('SMTP_EMAIL')
 EMAIL_HOST_PASSWORD = os.environ.get('CATCG_THE_AI_EMAIL_PASSWORD')
 # reset time out
 PASSWORD_RESET_TIMEOUT_MINUTES = 10
