@@ -40,7 +40,7 @@ Catch The AI is our graduation project, it is an
 Intelligent Sytem to detect AI-generated content with our advanced models. Our deep learning technology distinguishes between AI and human-authored media in images and text, 
 we deployed our model in a web application to make it easy to use for everyone. you can visit the website [Catch The AI](https://catch-the-ai.vercel.app/)
 
-##### full project in details in the [documentation](/Documentaion/Documentation%20Library/Final%20versions%20of%20DOC/Project_Documentation.pdf)
+##### full project in details in the [documentation](https://github.com/romanyn36/Catch-The-AI/blob/main/System%20Analysis%2C%20Design%20and%20Documentation/Documentaion/Documentation%20Library/Final%20versions%20of%20DOC/Project_Documentation.pdf)
 [linkedin post](https://www.linkedin.com/posts/romaninasrat_graduationabrproject-deepabrlearning-catchtheai-activity-7221596161067876352-hm-K?utm_source=share&utm_medium=member_desktop)
 
 # project Overview
@@ -252,12 +252,12 @@ you can contact team leader for any questions or help via the following links
 </a>
 
 
-
-
-  
-
 </p>
 
+### :memo: License ##
+This project is under license from Apache License 2.0.
+For more details, see the [LICENSE](license.md) file.
+any breach of the license will be prosecuted under the law.
 &#xa0;
 
 <a href="#top">Back to top</a>
